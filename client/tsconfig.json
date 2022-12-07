@@ -1,51 +1,60 @@
 {
-    "compilerOptions": {
-        "baseUrl": "src",
-        "paths": {
-            "@/components/*": [
-                "components/*"
-            ],
-            "@/assets/*": [
-                "assets/*"
-            ],
-            "@/layouts/*": [
-                "layouts/*"
-            ],
-            "@/store/*": [
-                "store/*"
-            ]
-        },
-        "target": "es5",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "noEmit": true,
-        "esModuleInterop": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "jsx": "preserve",
-        "incremental": true,
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ]
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/assets/*": [
+        "assets/*"
+      ],
+      "@/layouts/*": [
+        "layouts/*"
+      ],
+      "@/stores/*": [
+        "stores/*"
+      ],
+      "@/models/*": [
+        "models/*"
+      ],
+      "@/public/*": [
+        "../public/*"
+      ],
+      "@/ui/*": [
+        "components/ui/*"
+      ]
     },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        ".next/types/**/*.ts"
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "exclude": [
-        "node_modules"
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
     ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
