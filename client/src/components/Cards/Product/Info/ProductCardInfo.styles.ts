@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
 export const Root = styled.main`
-  margin-top: 8px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 12px;
 `
 
 export const Description = styled.div`
@@ -10,7 +10,7 @@ export const Description = styled.div`
 `
 
 export const Price = styled.p`
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-size: 24px;
   font-weight: 600;
 `
