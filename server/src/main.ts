@@ -1,15 +1,28 @@
 import { NestFactory } from '@nestjs/core'
+import { ValidationPipe } from '@nestjs/common'
+import * as cookieParser from 'cookie-parser'
 
 import { AppModule } from './app.module'
 
 const bootstrap = async () => {
-  const app = await NestFactory.create(AppModule)
-  const port = process.env.PORT || 5000
+  try {
+    const app = await NestFactory.create(AppModule)
+    const port = process.env.PORT || 4200
 
-  app.enableCors()
-  app.listen(port).then(() => {
-    console.log(`Server start on port: ${port}`)
-  })
+    app.enableCors()
+    app.use(cookieParser())
+    app.useGlobalPipes(
+      new ValidationPipe({
+        whitelist: true
+      })
+    )
+
+    app.listen(port).then(() => {
+      console.log(`Server start on port: ${port}`)
+    })
+  } catch (err) {
+    throw new Error(err)
+  }
 }
 
 bootstrap().then(() => {
