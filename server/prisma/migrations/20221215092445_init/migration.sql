@@ -20,6 +20,14 @@ CREATE TABLE "users" (
 );
 
 -- CreateTable
+CREATE TABLE "productCategories" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+
+    CONSTRAINT "productCategories_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "products" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
@@ -28,9 +36,13 @@ CREATE TABLE "products" (
     "price" INTEGER NOT NULL,
     "weight" INTEGER NOT NULL,
     "tag" TEXT NOT NULL,
+    "productCategoryId" TEXT NOT NULL,
 
     CONSTRAINT "products_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- AddForeignKey
+ALTER TABLE "products" ADD CONSTRAINT "products_productCategoryId_fkey" FOREIGN KEY ("productCategoryId") REFERENCES "productCategories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

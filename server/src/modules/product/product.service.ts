@@ -1,33 +1,79 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException
+} from '@nestjs/common'
+import type { Response } from 'express'
+import type { Product } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
-import { CreateProductDto } from './dto/create-product.dto'
+import type { CreateProductParams } from '@/models/CreateProductParams'
 
 @Injectable()
 export class ProductService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  public async createProduct(data: CreateProductDto) {
-    await this.prismaService.product.create({ data })
-
-    return {
-      message: 'product created'
-    }
+  // @Admin
+  public async create({ productData, productCategoryId }: CreateProductParams) {
+    return await this.prisma.product.create({
+      data: {
+        ...productData,
+        productCategoryId
+      }
+    })
   }
 
-  public async getProduct(id: string) {
-    const product = await this.prismaService.product.findFirst({
-      where: { id }
+  // @User & @Admin
+  public async getOne(productId: string): Promise<Product> {
+    const product = await this.prisma.product.findUnique({
+      where: {
+        id: productId
+      }
     })
 
     if (!product) {
-      throw new NotFoundException()
+      throw new NotFoundException('Product is not found.')
     }
 
     return product
   }
 
-  public async getAllProducts() {
-    return await this.prismaService.product.findMany()
+  // @User & @Admin
+  public async getAll() {
+    return await this.prisma.product.findMany()
+  }
+
+  // @Admin
+  public async delete(productId: string, res: Response) {
+    try {
+      await this.prisma.product.delete({
+        where: {
+          id: productId
+        }
+      })
+
+      return res.send({
+        message: 'Product successfully deleted'
+      })
+    } catch {
+      throw new BadRequestException('Something went wrong.')
+    }
+  }
+
+  // @Admin
+  public async deleteAllByCategory(categoryId: string, res: Response) {
+    try {
+      await this.prisma.product.deleteMany({
+        where: {
+          productCategoryId: categoryId
+        }
+      })
+
+      return res.send({
+        message: `All products from category ${categoryId} have been successfully deleted.`
+      })
+    } catch {
+      throw new BadRequestException('Something went wrong.')
+    }
   }
 }

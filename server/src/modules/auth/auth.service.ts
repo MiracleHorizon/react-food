@@ -3,22 +3,22 @@ import {
   ForbiddenException,
   Injectable
 } from '@nestjs/common'
-import { Request, Response } from 'express'
+import type { Request, Response } from 'express'
 import { JwtService } from '@nestjs/jwt'
 import * as bcrypt from 'bcrypt'
 
+import { PrismaService } from 'prisma/prisma.service'
 import { AuthDto } from './dto/auth.dto'
 import { CreateUserDto } from './dto/create-user.dto'
-import { PrismaService } from 'prisma/prisma.service'
-import { ComparePasswordsParams } from '../../models/ComparePasswordsParams'
-import { SignTokenParams } from '../../models/SignTokenParams'
+import type { ComparePasswordsParams } from '@/models/ComparePasswordsParams'
+import type { SignTokenParams } from '@/models/SignTokenParams'
 
 @Injectable()
 export class AuthService {
   private PASSWORD_HASH_SALT = 10
 
   constructor(
-    private readonly prismaService: PrismaService,
+    private readonly prisma: PrismaService,
     private readonly jwtService: JwtService
   ) {}
 
@@ -27,13 +27,15 @@ export class AuthService {
     password,
     ...otherData
   }: CreateUserDto): Promise<void> {
-    if (await this.isUserWithEmailExists(email)) {
+    const isUserExists = await this.isUserWithEmailExists(email)
+
+    if (isUserExists) {
       throw new BadRequestException('User with this email already exists.')
     }
 
     const hashedPassword = await this.hashPassword(password)
 
-    await this.prismaService.user.create({
+    await this.prisma.user.create({
       data: {
         email,
         hashedPassword,
@@ -47,11 +49,17 @@ export class AuthService {
     req: Request,
     res: Response
   ) {
-    const user = await this.prismaService.user.findUnique({ where: { email } })
+    const isUserExists = await this.isUserWithEmailExists(email)
 
-    if (!(await this.isUserWithEmailExists(email))) {
-      throw new BadRequestException('Wrong credentials')
+    if (!isUserExists) {
+      throw new BadRequestException('Wrong credentials.')
     }
+
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email
+      }
+    })
 
     const isPasswordsMatch = await this.comparePasswords({
       password,
@@ -62,7 +70,10 @@ export class AuthService {
       throw new BadRequestException('Wrong credentials')
     }
 
-    const token = await this.signToken({ id: user.id, email })
+    const token = await this.signToken({
+      id: user.id,
+      email
+    })
 
     if (!token) {
       throw new ForbiddenException()
@@ -71,7 +82,7 @@ export class AuthService {
     res.cookie('token', token)
 
     return res.send({
-      message: 'Logged in successfully'
+      message: 'Logged in successfully.'
     })
   }
 
@@ -84,8 +95,12 @@ export class AuthService {
   }
 
   private async isUserWithEmailExists(email: string): Promise<boolean> {
-    return await this.prismaService.user
-      .findUnique({ where: { email } })
+    return await this.prisma.user
+      .findUnique({
+        where: {
+          email
+        }
+      })
       .then(result => Boolean(result))
   }
 
@@ -102,7 +117,7 @@ export class AuthService {
 
   private async signToken(payload: SignTokenParams) {
     return await this.jwtService.signAsync(payload, {
-      secret: process.env.JWT_SECRET || 'zxcqwe'
+      secret: process.env.JWT_SECRET
     })
   }
 }

@@ -24,14 +24,24 @@ model User {
   @@map("users")
 }
 
+model ProductCategory {
+  id       String    @id @default(uuid())
+  title    String    @unique
+  products Product[]
+
+  @@map("productCategories")
+}
+
 model Product {
-  id          String  @id @default(uuid())
-  title       String
-  description String?
-  imageUrl    String?
-  price       Int
-  weight      Int
-  tag         String
+  id                String          @id @default(uuid())
+  title             String
+  description       String?
+  imageUrl          String?
+  price             Int
+  weight            Int
+  tag               String
+  productCategory   ProductCategory @relation(fields: [productCategoryId], references: [id])
+  productCategoryId String
 
   @@map("products")
 }
