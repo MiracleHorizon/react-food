@@ -28,6 +28,15 @@
       ],
       "@/ui/*": [
         "components/ui/*"
+      ],
+      "@/utils/*": [
+        "utils/*"
+      ],
+      "@/entities/*": [
+        "entities/*"
+      ],
+      "@/exceptions/*": [
+        "entities/exceptions/*"
       ]
     },
     "target": "es5",

@@ -1,4 +1,4 @@
-import { Product } from '@/modules/product/Product'
+import { Product } from '../Product'
 import { ICartProduct } from '@/models/product/ICartProduct'
 
 export class CartProduct extends Product implements ICartProduct {
@@ -23,26 +23,5 @@ export class CartProduct extends Product implements ICartProduct {
 
   public decrementCount(): void {
     this.count -= 1
-  }
-}
-
-export class OrderWeightError extends Error {
-  constructor() {
-    super('Maximum order weight exceeded')
-  }
-}
-
-export class PaymentLimitError extends Error {
-  constructor() {
-    super('Maximum payment limit exceeded')
-  }
-}
-
-export class StockProductLimitError extends Error {
-  constructor(productId: string, productTitle: string) {
-    super(`
-    There is no such quantity of this product 
-    in stock: ${productTitle}; id: ${productId}
-    `)
   }
 }
