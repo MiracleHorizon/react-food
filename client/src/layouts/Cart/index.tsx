@@ -1,9 +1,9 @@
-import Header from '@/layouts/Default/Header'
 import HeadComponent from '@/components/HeadComponent'
+import Header from '@/layouts/Cart/Header'
 import type { LayoutProps } from '@/models/LayoutProps'
-import * as Layout from './DefaultLayout.styles'
+import * as Layout from './CartLayout.styles'
 
-const DefaultLayout = ({ children, title }: LayoutProps) => (
+const CartLayout = ({ children, title }: LayoutProps) => (
   <Layout.Root>
     <HeadComponent title={title} />
     <Layout.Content>
@@ -13,4 +13,4 @@ const DefaultLayout = ({ children, title }: LayoutProps) => (
   </Layout.Root>
 )
 
-export default DefaultLayout
+export default CartLayout

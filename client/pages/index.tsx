@@ -1,23 +1,13 @@
-import { useQuery } from 'react-query'
-import { useEffect } from 'react'
+import type { NextPage } from 'next'
 
+import CartStore from '@/stores/Cart.store'
 import Home from '@/components/Home'
 import DefaultLayout from '@/layouts/Default'
-import CartStore from '@/stores/CartStore'
-import { CartService } from '@/services/CartService'
+import CartService from '@/services/CartService'
+import type { TCartProduct } from '@/models/product/TCartProduct'
 
-const HomePage = () => {
-  // TODO Почитать докумантацию React-Query
-  // TODO Прочитать про SSR и Next в React-Query
-  const { isSuccess, data } = useQuery('fetchCart', CartService.fetchCart, {
-    refetchOnWindowFocus: false
-  })
-
-  useEffect(() => {
-    if (isSuccess && data) {
-      CartStore.setProducts(data)
-    }
-  }, [isSuccess, data])
+const HomePage: NextPage<Props> = ({ cartProducts }) => {
+  CartStore.initializeCart(cartProducts)
 
   return (
     <DefaultLayout title='React.Еда'>
@@ -27,3 +17,17 @@ const HomePage = () => {
 }
 
 export default HomePage
+
+export const getStaticProps = async () => {
+  const cartProducts = await CartService.fetchCart()
+
+  return {
+    props: {
+      cartProducts
+    }
+  }
+}
+
+interface Props {
+  cartProducts: TCartProduct[]
+}

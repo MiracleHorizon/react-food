@@ -1,4 +1,4 @@
-import { AppProps } from 'next/app'
+import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
 import GlobalStyles from '@/components/GlobalStyles'

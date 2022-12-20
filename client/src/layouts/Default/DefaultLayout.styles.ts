@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 const LAYOUT_PADDING = 45
 
-export const Layout = styled.div`
+export const Root = styled.div`
   font-family: 'Proxima Nova', sans-serif;
   padding: ${LAYOUT_PADDING}px;
   background: #ffdf8c;

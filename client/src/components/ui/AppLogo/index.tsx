@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import * as Logo from './AppLogo.styles'
 import logo from '@/public/images/pizza-logo.png'
+import * as Logo from './AppLogo.styles'
 
 const AppLogo = () => (
   <Logo.Root>
