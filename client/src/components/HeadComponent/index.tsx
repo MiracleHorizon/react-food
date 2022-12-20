@@ -1,5 +1,7 @@
 import Head from 'next/head'
-import { FC } from 'react'
+import type { FC } from 'react'
+
+import type { HeadProps } from './HeadComponent.types'
 
 const HeadComponent: FC<HeadProps> = ({ title }) => (
   <Head>
@@ -8,7 +10,3 @@ const HeadComponent: FC<HeadProps> = ({ title }) => (
 )
 
 export default HeadComponent
-
-export interface HeadProps {
-  title: string
-}

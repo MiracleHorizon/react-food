@@ -14,6 +14,7 @@ const GlobalStyles = () => (
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        outline: none;
       }
 
       a {
@@ -23,6 +24,9 @@ const GlobalStyles = () => (
 
       button {
         cursor: pointer;
+      }
+
+      button, input {
         border: none;
         background: none;
 

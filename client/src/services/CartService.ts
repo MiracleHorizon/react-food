@@ -1,12 +1,17 @@
-import { ICartProduct } from '@/models/product/ICartProduct'
+import axios from 'axios'
 
-export class CartService {
-  public static async fetchCart(): Promise<ICartProduct[]> {
+import type { TCartProduct } from '@/models/product/TCartProduct'
+
+const api = axios.create({
+  baseURL: process.env.MOCK_API_URL + '/cart'
+})
+
+export default class CartService {
+  public static async fetchCart(): Promise<TCartProduct[]> {
     try {
-      const url = `${process.env.MOCK_API_URL}/cart`
-      const response = await fetch(url)
+      const { data } = await api.get<TCartProduct[]>('')
 
-      return response.json()
+      return data
     } catch (e) {
       throw new Error()
     }

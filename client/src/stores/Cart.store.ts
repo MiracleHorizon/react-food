@@ -1,34 +1,38 @@
 import { makeAutoObservable } from 'mobx'
 
+import { Cutlery } from '@/entities/Cutlery'
 import { CartProduct } from '@/entities/product/CartProduct'
 import { ReduceArray } from '@/modules/ReduceArray'
-import type { IProduct } from '@/models/product/IProduct'
-import type { ICartProduct } from '@/models/product/ICartProduct'
+import type { TProduct } from '@/models/product/TProduct'
+import type { TCartProduct } from '@/models/product/TCartProduct'
 import { InvalidPaymentPriceException } from '@/exceptions/InvalidPaymentPriceException'
 import { InvalidOrderWeightException } from '@/exceptions/InvalidOrderWeightException'
 
-class CartStore {
+export class CartStore {
   private _isCartDataLoading = true
-  private _cutleryCount = 0
   private _products: CartProduct[] = []
+  private readonly _cutlery = new Cutlery({
+    countPerOrderRestriction: 4,
+    count: 0
+  })
   private readonly MAX_ORDER_WEIGHT_RESTRICTION = 3e4
   private readonly MAX_ORDER_PRICE_RESTRICTION = 5e4
   private readonly reduceArray = ReduceArray.reduceNumberArray
-
-  public get products(): CartProduct[] {
-    return this._products
-  }
-
-  public set products(products: ICartProduct[]) {
-    this._products = products.map(product => new CartProduct(product))
-  }
 
   public get isCartDataLoading(): boolean {
     return this._isCartDataLoading
   }
 
-  public get isCutleryAdded(): boolean {
-    return this._cutleryCount > 0
+  public get products(): CartProduct[] {
+    return this._products
+  }
+
+  public set products(products: TCartProduct[]) {
+    this._products = products.map(product => new CartProduct(product))
+  }
+
+  public get cutlery(): Cutlery {
+    return this._cutlery
   }
 
   public get isEmpty(): boolean {
@@ -39,8 +43,7 @@ class CartStore {
     makeAutoObservable(this)
   }
 
-  // TODO Переименовать.
-  public init(products: ICartProduct[]): void {
+  public initializeCart(products: TCartProduct[]): void {
     this._isCartDataLoading = false
     this.products = products
   }
@@ -49,7 +52,7 @@ class CartStore {
     this._products.length = 0
   }
 
-  public addProduct(product: IProduct): void {
+  public addProduct(product: TProduct): void {
     this._products.push(new CartProduct({ ...product, count: 1 }))
   }
 
