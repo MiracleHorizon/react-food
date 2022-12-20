@@ -22,7 +22,7 @@ export class ProductCategoryController {
   ) {}
 
   @Post()
-  public create(@Body() { title }: CreateCategoryDto, res: Response) {
+  public create(@Body() { title }: CreateCategoryDto, @Res() res: Response) {
     return this.productCategoryService.create(title, res)
   }
 
