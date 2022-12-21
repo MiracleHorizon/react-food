@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 
 import CartStore from '@/stores/Cart.store'
-import Home from '@/components/Home'
-import DefaultLayout from '@/layouts/Default'
+import Home from '@/components/home'
+import DefaultLayout from '@/layouts/default'
 import CartService from '@/services/CartService'
 import type { TCartProduct } from '@/models/product/TCartProduct'
 

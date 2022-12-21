@@ -8,7 +8,7 @@ import type { TCartProduct } from '@/models/product/TCartProduct'
 import { InvalidPaymentPriceException } from '@/exceptions/InvalidPaymentPriceException'
 import { InvalidOrderWeightException } from '@/exceptions/InvalidOrderWeightException'
 
-export class CartStore {
+class CartStore {
   private _isCartDataLoading = true
   private _products: CartProduct[] = []
   private readonly _cutlery = new Cutlery({
@@ -100,12 +100,12 @@ export class CartStore {
   }
 
   private isWeightAvailable(newProductWeight: number): boolean {
-    const potentialWeight = this.getTotalWeight() + newProductWeight
+    const potentialWeight = this.getTotalProductsWeight() + newProductWeight
     return potentialWeight <= this.MAX_ORDER_WEIGHT_RESTRICTION
   }
 
   private isPriceAvailable(newProductPrice: number): boolean {
-    const potentialPrice = this.getTotalPrice() + newProductPrice
+    const potentialPrice = this.getTotalProductsPrice() + newProductPrice
     return potentialPrice <= this.MAX_ORDER_PRICE_RESTRICTION
   }
 
@@ -113,13 +113,13 @@ export class CartStore {
     return this.reduceArray(this._products.map(product => product.count))
   }
 
-  public getTotalWeight(): number {
+  public getTotalProductsWeight(): number {
     return this.reduceArray(
       this._products.map(product => product.getTotalWeight())
     )
   }
 
-  public getTotalPrice(): number {
+  public getTotalProductsPrice(): number {
     return this.reduceArray(
       this._products.map(product => product.getTotalPrice())
     )
