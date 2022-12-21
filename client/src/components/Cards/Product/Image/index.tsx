@@ -1,12 +1,12 @@
-import { FC } from 'react'
+import Image from 'next/image'
+import type { FC } from 'react'
 
-import * as Image from './ProductCard.styles'
+import Container from './ProductCardImage.styles'
 
-// TODO Заменить img на next/image.
 const ProductCardImage: FC<Props> = ({ imageUrl, title }) => (
-  <Image.ImageContainer>
-    <Image.Img src={imageUrl} alt={title} />
-  </Image.ImageContainer>
+  <Container>
+    <Image width={168} height={168} src={imageUrl} alt={title} />
+  </Container>
 )
 
 export default ProductCardImage
