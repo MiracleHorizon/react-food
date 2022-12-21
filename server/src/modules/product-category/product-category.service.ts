@@ -86,20 +86,9 @@ export class ProductCategoryService {
   }: CreateProductParams & Res) {
     await this.getOne(productCategoryId)
 
-    const product = await this.productService.create({
+    await this.productService.create({
       productData,
       productCategoryId
-    })
-
-    await this.prisma.productCategory.update({
-      where: {
-        id: productCategoryId
-      },
-      data: {
-        products: {
-          set: product
-        }
-      }
     })
 
     return res.send({
@@ -115,7 +104,8 @@ export class ProductCategoryService {
   }: AddManyProductsParams & Res) {
     await this.getOne(productCategoryId)
 
-    const products = await Promise.all(
+    // TODO createMany
+    await Promise.all(
       productsData.map(product => {
         return this.productService.create({
           productCategoryId,
@@ -123,17 +113,6 @@ export class ProductCategoryService {
         })
       })
     )
-
-    await this.prisma.productCategory.update({
-      where: {
-        id: productCategoryId
-      },
-      data: {
-        products: {
-          set: products
-        }
-      }
-    })
 
     return res.send({
       message: `Products successfully added to category ${productCategoryId}.`
