@@ -1,4 +1,4 @@
-import { CreateProductDto } from '@/modules/product/dto/create-product.dto'
+import { CreateProductDto } from '@/resources/product/dto/create-product.dto'
 
 export interface AddManyProductsParams {
   productCategoryId: string

@@ -10,8 +10,8 @@ import * as bcrypt from 'bcrypt'
 import { PrismaService } from 'prisma/prisma.service'
 import { AuthDto } from './dto/auth.dto'
 import { CreateUserDto } from './dto/create-user.dto'
-import type { ComparePasswordsParams } from '@/models/ComparePasswordsParams'
-import type { SignTokenParams } from '@/models/SignTokenParams'
+import type { ComparePasswordsParams } from '@/models/auth/ComparePasswordsParams'
+import type { SignTokenParams } from '@/models/auth/SignTokenParams'
 
 @Injectable()
 export class AuthService {

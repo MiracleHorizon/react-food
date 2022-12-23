@@ -7,11 +7,11 @@ import type { Response } from 'express'
 import type { ProductCategory } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
-import { ProductService } from '@/modules/product/product.service'
+import { ProductService } from '../product/product.service'
 import type { Res } from '@/models/Res'
 import type { PaginationParams } from '@/models/PaginationParams'
-import type { CreateProductParams } from '@/models/CreateProductParams'
-import type { AddManyProductsParams } from '@/models/AddManyProductsParams'
+import type { CreateProductParams } from '@/models/products/CreateProductParams'
+import type { AddManyProductsParams } from '@/models/products/AddManyProductsParams'
 
 @Injectable()
 export class ProductCategoryService {

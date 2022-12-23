@@ -7,7 +7,7 @@ import type { Response } from 'express'
 import type { Product } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
-import type { CreateProductParams } from '@/models/CreateProductParams'
+import type { CreateProductParams } from '@/models/products/CreateProductParams'
 
 @Injectable()
 export class ProductService {

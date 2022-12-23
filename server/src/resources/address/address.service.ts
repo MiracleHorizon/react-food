@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
 import { PrismaService } from 'prisma/prisma.service'
-import { CreateAddressDto } from '@/modules/address/dto/create-address.dto'
+import { CreateAddressDto } from '../address/dto/create-address.dto'
 
 // TODO Проверка на доступ пользователя.
 @Injectable()

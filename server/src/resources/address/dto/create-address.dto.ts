@@ -27,13 +27,4 @@ export class CreateAddressDto {
   @IsNotEmpty()
   @Min(0)
   public flatOrOffice: number
-
-  @IsString()
-  @IsNotEmpty()
-  public type: AddressType
-}
-
-enum AddressType {
-  PERSONAL = 'PERSONAL',
-  FRIEND = 'FRIEND'
 }

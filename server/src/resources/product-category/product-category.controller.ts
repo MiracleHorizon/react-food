@@ -3,7 +3,7 @@ import {
   Controller,
   Delete,
   Get,
-  Param,
+  Param, Patch,
   Post,
   Query,
   Res
@@ -39,7 +39,7 @@ export class ProductCategoryController {
     })
   }
 
-  @Post(':id/add_product')
+  @Patch(':id/add_product')
   public addOneProduct(
     @Param('id') id: string,
     @Body() dto: CreateProductDto,
@@ -52,7 +52,7 @@ export class ProductCategoryController {
     })
   }
 
-  @Post(':id/add_many_products')
+  @Patch(':id/add_many_products')
   public addManyProducts(
     @Param('id') id: string,
     @Body() dto: AddManyProductsDto,

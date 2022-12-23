@@ -21,8 +21,8 @@
       "@/models/*": [
         "src/models/*"
       ],
-      "@/modules/*": [
-        "src/modules/*"
+      "@/resources/*": [
+        "src/resources/*"
       ]
     }
   }
