@@ -15,6 +15,7 @@ export const Container = styled.div`
   max-width: 150px;
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   flex-direction: column;
   margin-left: 25px;
   font-size: 16px;

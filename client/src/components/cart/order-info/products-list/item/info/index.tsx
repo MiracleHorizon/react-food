@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import type { FC } from 'react'
+import { FC, memo } from 'react'
 
 import * as Info from './OrderProductItemInfo.styles'
 
-const OrderProductItemInfo: FC<Props> = ({ title, weight, imageUrl }) => (
+const OrderProductItemInfo: FC<Props> = memo(({ title, weight, imageUrl }) => (
   <Info.Root>
     <Image src={imageUrl} width={100} height={100} alt={title + 'image'} />
     <Info.Container>
@@ -11,7 +11,9 @@ const OrderProductItemInfo: FC<Props> = ({ title, weight, imageUrl }) => (
       <Info.Weight>{weight}</Info.Weight>
     </Info.Container>
   </Info.Root>
-)
+))
+
+OrderProductItemInfo.displayName = 'OrderProductItemInfo'
 
 export default OrderProductItemInfo
 

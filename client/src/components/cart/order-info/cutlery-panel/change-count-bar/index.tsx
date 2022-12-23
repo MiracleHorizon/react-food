@@ -23,6 +23,7 @@ const ChangeCutleryCountBar = observer(() => {
         value={CartStore.cutlery.count}
         decrement={handleDecrementCount}
         increment={handleIncrementCount}
+        isIncrementDisabled={CartStore.cutlery.isMaxCount}
       />
     </Bar.Root>
   )

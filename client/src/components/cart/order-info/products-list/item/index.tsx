@@ -4,11 +4,11 @@ import CartStore from '@/stores/Cart.store'
 import ChangeCountBar from '@/ui/change-count-bar'
 import OrderProductItemInfo from '@/components/cart/order-info/products-list/item/info'
 import { CartProduct } from '@/entities/product/CartProduct'
-import type { TCartProduct } from '@/models/product/TCartProduct'
+import type { CartProductModel } from '@/models/product/CartProductModel'
 import { RUBLE_SIGN } from '@/utils/constants'
 import * as Card from './OrderProductItem.styles'
 
-const OrderProductItem: FC<TCartProduct> = memo(productData => {
+const OrderProductItem: FC<CartProductModel> = memo(productData => {
   const cartProduct = useMemo(() => {
     return new CartProduct(productData)
   }, [productData])

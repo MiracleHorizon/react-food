@@ -7,7 +7,6 @@ const OrderInfo = dynamic(() => import('@/components/cart/order-info'), {
   loading: OrderingProductsListLoader
 })
 
-// TODO Вынести в отдельный компонент стилей контейнер для блоков ниже.
 const Cart = () => {
   return (
     <Styled.Wrapper>
