@@ -1,13 +1,12 @@
 import Link from 'next/link'
-import Image from 'next/image'
 
-import logo from '@/public/images/pizza-logo.png'
+import ReactSvg from '@/ui/svg/ReactSvg'
 import * as Logo from './AppLogo.styles'
 
 const AppLogo = () => (
   <Logo.Root>
     <Link href='/'>
-      <Image src={logo.src} width={44} height={44} alt='Logo' />
+      <ReactSvg />
     </Link>
     <div>
       <Logo.Title>React.Еда</Logo.Title>

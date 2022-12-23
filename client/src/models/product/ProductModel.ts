@@ -19,4 +19,4 @@ export const ProductSchema = z.object({
     .or(z.null())
 })
 
-export type TProduct = z.infer<typeof ProductSchema>
+export type ProductModel = z.infer<typeof ProductSchema>

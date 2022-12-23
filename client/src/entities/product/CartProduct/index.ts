@@ -1,10 +1,10 @@
 import { Product } from '../Product'
-import type { TCartProduct } from '@/models/product/TCartProduct'
+import type { CartProductModel } from '@/models/product/CartProductModel'
 
-export class CartProduct extends Product implements TCartProduct {
+export class CartProduct extends Product implements CartProductModel {
   public count: number
 
-  constructor({ count, ...product }: TCartProduct) {
+  constructor({ count, ...product }: CartProductModel) {
     super(product)
     this.count = count
   }

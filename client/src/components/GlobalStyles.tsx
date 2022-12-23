@@ -1,6 +1,5 @@
 import { css, Global } from '@emotion/react'
 
-// TODO Изменить цветовую палитру приложения.
 const GlobalStyles = () => (
   <Global
     styles={css`

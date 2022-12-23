@@ -1,17 +1,21 @@
 import { makeAutoObservable } from 'mobx'
 
-import { CutleryParams } from '@/entities/Cutlery/Cutlery.types'
+import type { CutleryParams } from '@/entities/Cutlery/Cutlery.types'
 
 export class Cutlery {
   private _count = 0
   private readonly _countPerOrderRestriction: number
 
-  public get count() {
+  public get count(): number {
     return this._count
   }
 
-  public get isAdded() {
+  public get isAdded(): boolean {
     return this.count > 0
+  }
+
+  public get isMaxCount(): boolean {
+    return this._count === this._countPerOrderRestriction
   }
 
   constructor({ count, countPerOrderRestriction }: CutleryParams) {
@@ -20,7 +24,7 @@ export class Cutlery {
     this._countPerOrderRestriction = countPerOrderRestriction
   }
 
-  public addToOrder() {
+  public addToOrder(): void {
     this._count = 1
   }
 

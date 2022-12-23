@@ -3,8 +3,8 @@ import { makeAutoObservable } from 'mobx'
 import { Cutlery } from '@/entities/Cutlery'
 import { CartProduct } from '@/entities/product/CartProduct'
 import { ReduceArray } from '@/modules/ReduceArray'
-import type { TProduct } from '@/models/product/TProduct'
-import type { TCartProduct } from '@/models/product/TCartProduct'
+import type { ProductModel } from '@/models/product/ProductModel'
+import type { CartProductModel } from '@/models/product/CartProductModel'
 import { InvalidPaymentPriceException } from '@/exceptions/InvalidPaymentPriceException'
 import { InvalidOrderWeightException } from '@/exceptions/InvalidOrderWeightException'
 
@@ -27,8 +27,16 @@ class CartStore {
     return this._products
   }
 
-  public set products(products: TCartProduct[]) {
+  public set products(products: CartProductModel[]) {
     this._products = products.map(product => new CartProduct(product))
+  }
+
+  public get totalPositions(): number {
+    return this._products.length
+  }
+
+  public get totalProducts(): number {
+    return this.reduceArray(this._products.map(product => product.count))
   }
 
   public get cutlery(): Cutlery {
@@ -43,7 +51,7 @@ class CartStore {
     makeAutoObservable(this)
   }
 
-  public initializeCart(products: TCartProduct[]): void {
+  public initializeCart(products: CartProductModel[]): void {
     this._isCartDataLoading = false
     this.products = products
   }
@@ -52,7 +60,7 @@ class CartStore {
     this._products.length = 0
   }
 
-  public addProduct(product: TProduct): void {
+  public addProduct(product: ProductModel): void {
     this._products.push(new CartProduct({ ...product, count: 1 }))
   }
 

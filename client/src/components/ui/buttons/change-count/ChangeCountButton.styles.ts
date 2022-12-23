@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { colors } from '@/public/styles/variables'
 
 // TODO Скорректировать размеры иконки.
-const Button = styled.button<{ iconUrl: string }>`
+const Button = styled.button<{ iconUrl: string; disabled?: boolean }>`
   width: 40px;
   height: 40px;
   display: flex;
@@ -12,13 +12,20 @@ const Button = styled.button<{ iconUrl: string }>`
   border-radius: 12px;
   background: ${colors.gray1} url(${p => p.iconUrl}) no-repeat center;
   transition: background 0.2s ease-out;
+  ${p =>
+    p.disabled &&
+    `
+    pointer-events: none;
+    opacity: 0.3;
+    background-color: ${colors.gray3};
+  `};
 
   &:hover {
-    background: ${colors.gray2} url(${p => p.iconUrl}) no-repeat center;
+    background-color: ${colors.gray2};
   }
 
   &:active {
-    background: ${colors.gray3} url(${p => p.iconUrl}) no-repeat center;
+    background-color: ${colors.gray3};
   }
 `
 

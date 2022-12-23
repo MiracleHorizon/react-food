@@ -1,7 +1,7 @@
-import type { TProduct } from '@/models/product/TProduct'
+import type { ProductModel } from '@/models/product/ProductModel'
 import { PRODUCT_IMAGE_FALLBACK } from '@/utils/constants'
 
-export abstract class Product implements TProduct {
+export abstract class Product implements ProductModel {
   public readonly id: string
   public readonly tag: string
   public readonly title: string
@@ -9,7 +9,7 @@ export abstract class Product implements TProduct {
   public readonly weight: number
   public readonly imageUrl: string | null
 
-  protected constructor({ id, tag, title, price, weight, imageUrl }: TProduct) {
+  protected constructor({ id, tag, title, price, weight, imageUrl }: ProductModel) {
     this.id = id
     this.tag = tag
     this.title = title

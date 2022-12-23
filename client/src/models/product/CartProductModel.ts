@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { ProductSchema } from '@/models/product/TProduct'
+import { ProductSchema } from '@/models/product/ProductModel'
 
 export const CartProductSchema = ProductSchema.extend({
   count: z.number().min(0, {
@@ -8,4 +8,4 @@ export const CartProductSchema = ProductSchema.extend({
   })
 })
 
-export type TCartProduct = z.infer<typeof CartProductSchema>
+export type CartProductModel = z.infer<typeof CartProductSchema>

@@ -4,7 +4,7 @@ import CartStore from '@/stores/Cart.store'
 import Home from '@/components/home'
 import DefaultLayout from '@/layouts/default'
 import CartService from '@/services/CartService'
-import type { TCartProduct } from '@/models/product/TCartProduct'
+import type { CartProductModel } from '@/models/product/CartProductModel'
 
 const HomePage: NextPage<Props> = ({ cartProducts }) => {
   CartStore.initializeCart(cartProducts)
@@ -29,5 +29,5 @@ export const getStaticProps = async () => {
 }
 
 interface Props {
-  cartProducts: TCartProduct[]
+  cartProducts: CartProductModel[]
 }

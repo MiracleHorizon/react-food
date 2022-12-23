@@ -6,12 +6,13 @@ export const Root = styled.div`
   justify-content: flex-start;
 
   a {
-    margin-right: 18px;
+    margin-right: 8px;
     border-radius: 50%;
   }
 
-  img {
-    object-fit: cover;
+  svg {
+    width: 50px;
+    height: 50px;
   }
 `
 

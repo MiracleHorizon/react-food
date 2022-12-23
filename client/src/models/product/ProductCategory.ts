@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { ProductSchema } from '@/models/product/TProduct'
+import { ProductSchema } from '@/models/product/ProductModel'
 
 export const ProductCategorySchema = z.object({
   id: z.string().uuid({

@@ -1,17 +1,17 @@
 import styled from '@emotion/styled'
 
-export const Root = styled.div`
-  img {
-    width: 24px;
-    height: 24px;
-    margin: 0 7px 1px 8px;
-  }
-`
-
-export const Title = styled.div`
+const Logo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 26px;
+
+  svg {
+    width: 38px;
+    height: 38px;
+    margin: 0 5px 1px 5px;
+  }
 `
+
+export default Logo
