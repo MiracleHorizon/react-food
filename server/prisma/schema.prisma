@@ -7,46 +7,91 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Проверены
 model User {
-  id             String        @id @default(uuid())
-  email          String        @unique
-  hashedPassword String
-  role           UserRole      @default(USER)
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  addresses      Address[]
-  billingCards   BillingCard[]
-  orders         Order[]
+  id                String            @id @default(uuid())
+  email             String            @unique
+  login             String
+  hashedPassword    String
+  role              UserRole          @default(USER)
+  reactCoinsCount   Int               @default(0)
+  phoneNumber       String?           @unique
+  deliveryAddresses DeliveryAddress[]
+  billingCards      BillingCard[]
+  orders            Order[]
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
 
   @@map("users")
 }
 
-model Address {
-  id           String @id @default(uuid())
+model DeliveryAddress {
+  id           String   @id @default(uuid())
   city         String
   street       String
   house        String
   entrance     Int
   floor        Int
   flatOrOffice Int
-  user         User   @relation(fields: [userId], references: [id])
+  intercom     Int?
+  user         User     @relation(fields: [userId], references: [id])
   userId       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  @@map("addresses")
+  @@map("deliveryAddresses")
 }
 
 model BillingCard {
-  id         String          @id @default(uuid())
-  number     String
-  expireDate DateTime
-  cvc        Int
-  type       BillingCardType @default(DEFAULT)
-  user       User            @relation(fields: [userId], references: [id])
-  userId     String
+  id          String          @id @default(uuid())
+  number      Int[]
+  cvc         Int
+  expiredDate DateTime
+  type        BillingCardType @default(DEFAULT)
+  user        User            @relation(fields: [userId], references: [id])
+  userId      String
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
 
   @@map("billingCards")
 }
 
+model Order {
+  id                   String         @id @default(uuid())
+  deliveryAddress      String
+  products             OrderProduct[]
+  cutleryCount         Int            @default(0)
+  totalPrice           Float
+  productsPrice        Float
+  deliveryPrice        Float
+  serviceFee           Float
+  status               OrderStatus    @default(ASSEMBLY)
+  recipientPhoneNumber String
+  recipientName        String
+  commentary           String?
+  user                 User           @relation(fields: [userId], references: [id])
+  userId               String
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+
+  @@map("orders")
+}
+
+model OrderProduct {
+  id        String   @id @default(uuid())
+  title     String
+  price     Float
+  count     Int
+  imageUrl  String?
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("orderProducts")
+}
+
+// Не проверены
 model ProductCategory {
   id       String    @id @default(uuid())
   title    String    @unique
@@ -67,35 +112,6 @@ model Product {
   productCategoryId String
 
   @@map("products")
-}
-
-model OrderProduct {
-  id       String  @id @default(uuid())
-  imageUrl String?
-  title    String
-  price    Float
-  count    Int
-  order    Order   @relation(fields: [orderId], references: [id])
-  orderId  String
-
-  @@map("orderProducts")
-}
-
-model Order {
-  id            String         @id @default(uuid())
-  address       String
-  products      OrderProduct[]
-  cutleryCount  Int            @default(0)
-  totalPrice    Float
-  productsPrice Float
-  deliveryPrice Float
-  serviceFee    Float
-  status        OrderStatus    @default(ASSEMBLY)
-  user          User           @relation(fields: [userId], references: [id])
-  userId        String
-  createdAt     DateTime       @default(now())
-
-  @@map("orders")
 }
 
 enum UserRole {
