@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
-import { AuthModule } from './resources/auth/auth.module'
-import { UsersModule } from './resources/users/users.module'
-import { AddressModule } from './resources/address/address.module'
-import { OrderModule } from './resources/order/order.module'
-import { ProductModule } from './resources/product/product.module'
-import { ProductCategoryModule } from './resources/product-category/product-category.module'
+import { AuthModule } from '@/resources/auth/auth.module'
+import { UsersModule } from '@/resources/users/users.module'
+import { OrderModule } from '@/resources/order/order.module'
+import { DeliveryAddressModule } from '@/resources/delivery-address/delivery-address.module'
+import { BillingCardModule } from '@/resources/billing-card/billing-card.module'
+import { ProductModule } from '@/resources/product/product.module'
+import { ProductCategoryModule } from '@/resources/product-category/product-category.module'
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { ProductCategoryModule } from './resources/product-category/product-cate
     AuthModule,
     UsersModule,
     OrderModule,
-    AddressModule,
+    DeliveryAddressModule,
+    BillingCardModule,
     ProductModule,
     ProductCategoryModule
   ]
