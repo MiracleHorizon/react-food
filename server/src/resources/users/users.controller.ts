@@ -9,12 +9,12 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  public getUser(@Param('id') id: string, @Req() req) {
-    return this.usersService.getUser(id, req)
+  public findOne(@Param('id') id: string, @Req() req) {
+    return this.usersService.findOne(id, req)
   }
 
   @Get()
-  public getAllUsers() {
-    return this.usersService.getAllUsers()
+  public findAll() {
+    return this.usersService.findAll()
   }
 }

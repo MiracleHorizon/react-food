@@ -4,11 +4,13 @@ import {
   ForbiddenException
 } from '@nestjs/common'
 import type { Order } from '@prisma/client'
+import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
 import { OrderStatus } from '@/models/order/OrderStatus'
-import type { CreateOrderParams } from '@/models/order/CreateOrderParams'
-import type { UpdateOrderStatusParams } from '@/models/order/UpdateOrderStatusParams'
+import type { CreateOrderArgs } from '@/models/order/CreateOrderArgs'
+import type { UpdateOrderStatusArgs } from '@/models/order/UpdateOrderStatusArgs'
+import type { ClientOrder } from '@/models/order/ClientOrder'
 
 @Injectable()
 export class OrderService {
@@ -19,7 +21,7 @@ export class OrderService {
     productsData,
     res,
     ...dto
-  }: CreateOrderParams) {
+  }: CreateOrderArgs): Promise<Response> {
     const order = await this.prisma.order.create({
       data: {
         userId,
@@ -39,7 +41,7 @@ export class OrderService {
     })
   }
 
-  public async getOne(orderId: string, userId: string): Promise<Order> {
+  public async findOne(orderId: string, userId: string): Promise<Order> {
     const order = await this.prisma.order.findUnique({
       where: {
         id: orderId
@@ -53,7 +55,7 @@ export class OrderService {
     return order
   }
 
-  public async getAll(userId: string) {
+  public async findAll(userId: string): Promise<ClientOrder[]> {
     const orders = await this.prisma.order.findMany({
       where: {
         userId
@@ -75,7 +77,7 @@ export class OrderService {
     return orders.map(order => ({
       ...order,
       products: order.products.slice(0, 5),
-      productCount: order.products.length
+      productsCount: order.products.length
     }))
   }
 
@@ -84,7 +86,7 @@ export class OrderService {
     orderId,
     status,
     res
-  }: UpdateOrderStatusParams) {
+  }: UpdateOrderStatusArgs): Promise<Response> {
     const order = await this.prisma.order.findUnique({
       where: {
         id: orderId
@@ -109,7 +111,8 @@ export class OrderService {
     })
   }
 
-  public async cancel(orderId: string) {
+  // TODO Дополнить.
+  public async cancel(orderId: string): Promise<void> {
     await this.prisma.order.update({
       where: {
         id: orderId

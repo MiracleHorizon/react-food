@@ -7,14 +7,17 @@ import type { Response } from 'express'
 import type { Product } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
-import type { CreateProductParams } from '@/models/products/CreateProductParams'
+import type { CreateProductArgs } from '@/models/products/CreateProductArgs'
 
 @Injectable()
 export class ProductService {
   constructor(private readonly prisma: PrismaService) {}
 
   // @Admin
-  public async create({ productData, productCategoryId }: CreateProductParams) {
+  public async create({
+    productData,
+    productCategoryId
+  }: CreateProductArgs): Promise<Product> {
     return await this.prisma.product.create({
       data: {
         ...productData,
@@ -24,7 +27,7 @@ export class ProductService {
   }
 
   // @User & @Admin
-  public async getOne(productId: string): Promise<Product> {
+  public async findOne(productId: string): Promise<Product> {
     const product = await this.prisma.product.findUnique({
       where: {
         id: productId
@@ -39,12 +42,12 @@ export class ProductService {
   }
 
   // @User & @Admin
-  public async getAll() {
+  public async findAll(): Promise<Product[]> {
     return await this.prisma.product.findMany()
   }
 
   // @Admin
-  public async delete(productId: string, res: Response) {
+  public async removeOne(productId: string, res: Response): Promise<Response> {
     try {
       await this.prisma.product.delete({
         where: {
@@ -53,7 +56,7 @@ export class ProductService {
       })
 
       return res.send({
-        message: 'Product successfully deleted'
+        message: 'Product successfully removed.'
       })
     } catch {
       throw new BadRequestException('Something went wrong.')
@@ -61,7 +64,10 @@ export class ProductService {
   }
 
   // @Admin
-  public async deleteAllByCategory(categoryId: string, res: Response) {
+  public async removeAllByCategory(
+    categoryId: string,
+    res: Response
+  ): Promise<Response> {
     try {
       await this.prisma.product.deleteMany({
         where: {
@@ -70,7 +76,7 @@ export class ProductService {
       })
 
       return res.send({
-        message: `All products from category ${categoryId} have been successfully deleted.`
+        message: `All products from category ${categoryId} have been successfully removed.`
       })
     } catch {
       throw new BadRequestException('Something went wrong.')

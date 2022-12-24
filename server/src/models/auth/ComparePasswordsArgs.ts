@@ -1,4 +1,4 @@
-export interface ComparePasswordsParams {
+export interface ComparePasswordsArgs {
   password: string
   passwordHash: string
 }

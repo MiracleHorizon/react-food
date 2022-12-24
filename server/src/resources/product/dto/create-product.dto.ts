@@ -3,34 +3,45 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  IsUrl,
   Min
 } from 'class-validator'
 
+import { ValidationMessage } from '@/modules/ValidationMessage'
+import { MIN_PRODUCT_PRICE } from '@/utils/constants'
+
 export class CreateProductDto {
-  @IsNotEmpty()
   @IsString()
+  @IsNotEmpty()
   public title: string
 
-  @IsNotEmpty()
   @IsString()
+  @IsNotEmpty()
   @IsOptional()
   public description?: string
 
-  @IsNotEmpty()
   @IsNumber()
-  @Min(0)
+  @IsNotEmpty()
+  @Min(MIN_PRODUCT_PRICE, {
+    message: validationArguments =>
+      ValidationMessage.getMinValueMessage(validationArguments.value)
+  })
   public price: number
 
-  @IsNotEmpty()
   @IsNumber()
-  @Min(0)
+  @IsNotEmpty()
+  @Min(0, {
+    message: validationArguments =>
+      ValidationMessage.getMinValueMessage(validationArguments.value)
+  })
   public weight: number
 
+  @IsUrl()
   @IsNotEmpty()
-  @IsString()
-  public imageUrl: string
+  @IsOptional()
+  public imageUrl?: string
 
-  @IsNotEmpty()
   @IsString()
+  @IsNotEmpty()
   public tag: string
 }

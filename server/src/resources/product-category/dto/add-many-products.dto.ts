@@ -1,9 +1,12 @@
-import { IsArray } from 'class-validator'
+import { ArrayNotEmpty, IsArray, ValidateNested } from 'class-validator'
+import { Type } from 'class-transformer'
 
-import { CreateProductDto } from '../../product/dto/create-product.dto'
+import { CreateProductDto } from '@/resources/product/dto/create-product.dto'
 
 export class AddManyProductsDto {
-  // TODO Сделать полную корректную валидацию
   @IsArray()
+  @ArrayNotEmpty()
+  @ValidateNested({ each: true })
+  @Type(() => CreateProductDto)
   data: CreateProductDto[]
 }

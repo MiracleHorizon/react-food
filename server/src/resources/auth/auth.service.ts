@@ -10,8 +10,9 @@ import * as bcrypt from 'bcrypt'
 import { PrismaService } from 'prisma/prisma.service'
 import { AuthDto } from './dto/auth.dto'
 import { CreateUserDto } from './dto/create-user.dto'
-import type { ComparePasswordsParams } from '@/models/auth/ComparePasswordsParams'
-import type { SignTokenParams } from '@/models/auth/SignTokenParams'
+import type { ComparePasswordsArgs } from '@/models/auth/ComparePasswordsArgs'
+import type { SignTokenArgs } from '@/models/auth/SignTokenArgs'
+import type { Res } from '@/models/Res'
 
 @Injectable()
 export class AuthService {
@@ -23,10 +24,11 @@ export class AuthService {
   ) {}
 
   public async signUp({
+    res,
     email,
     password,
     ...otherData
-  }: CreateUserDto): Promise<void> {
+  }: CreateUserDto & Res): Promise<Response> {
     const isUserExists = await this.isUserWithEmailExists(email)
 
     if (isUserExists) {
@@ -42,13 +44,17 @@ export class AuthService {
         ...otherData
       }
     })
+
+    return res.send({
+      message: 'User successfully created.'
+    })
   }
 
   public async signIn(
     { email, password }: AuthDto,
     req: Request,
     res: Response
-  ) {
+  ): Promise<Response> {
     const isUserExists = await this.isUserWithEmailExists(email)
 
     if (!isUserExists) {
@@ -67,7 +73,7 @@ export class AuthService {
     })
 
     if (!isPasswordsMatch) {
-      throw new BadRequestException('Wrong credentials')
+      throw new BadRequestException('Wrong credentials.')
     }
 
     const token = await this.signToken({
@@ -86,11 +92,11 @@ export class AuthService {
     })
   }
 
-  public async signOut(req: Request, res: Response) {
+  public async signOut(req: Request, res: Response): Promise<Response> {
     res.clearCookie('token')
 
     return res.send({
-      message: 'Logged out successfully'
+      message: 'Logged out successfully.'
     })
   }
 
@@ -111,11 +117,11 @@ export class AuthService {
   private async comparePasswords({
     password,
     passwordHash
-  }: ComparePasswordsParams): Promise<boolean> {
+  }: ComparePasswordsArgs): Promise<boolean> {
     return await bcrypt.compare(password, passwordHash)
   }
 
-  private async signToken(payload: SignTokenParams) {
+  private async signToken(payload: SignTokenArgs): Promise<string> {
     return await this.jwtService.signAsync(payload, {
       secret: process.env.JWT_SECRET
     })

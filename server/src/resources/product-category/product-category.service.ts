@@ -10,8 +10,8 @@ import { PrismaService } from 'prisma/prisma.service'
 import { ProductService } from '../product/product.service'
 import type { Res } from '@/models/Res'
 import type { PaginationParams } from '@/models/PaginationParams'
-import type { CreateProductParams } from '@/models/products/CreateProductParams'
-import type { AddManyProductsParams } from '@/models/products/AddManyProductsParams'
+import type { CreateProductArgs } from '@/models/products/CreateProductArgs'
+import type { AddManyProductsArgs } from '@/models/products/AddManyProductsArgs'
 
 @Injectable()
 export class ProductCategoryService {
@@ -21,7 +21,7 @@ export class ProductCategoryService {
   ) {}
 
   // @Admin
-  public async create(categoryTitle: string, res: Response) {
+  public async create(categoryTitle: string, res: Response): Promise<Response> {
     const isCategoryExists = await this.isCategoryExists(categoryTitle)
 
     if (isCategoryExists) {
@@ -50,7 +50,7 @@ export class ProductCategoryService {
   }
 
   // @User & @Admin
-  public async getOne(categoryId: string): Promise<ProductCategory> {
+  public async findOne(categoryId: string): Promise<ProductCategory> {
     const category = await this.prisma.productCategory.findUnique({
       where: {
         id: categoryId
@@ -68,7 +68,7 @@ export class ProductCategoryService {
   }
 
   // @User & @Admin
-  public getAll({ skip, take }: PaginationParams): Promise<ProductCategory[]> {
+  public findAll({ skip, take }: PaginationParams): Promise<ProductCategory[]> {
     return this.prisma.productCategory.findMany({
       take,
       skip: skip || 0,
@@ -83,8 +83,8 @@ export class ProductCategoryService {
     res,
     productData,
     productCategoryId
-  }: CreateProductParams & Res) {
-    await this.getOne(productCategoryId)
+  }: CreateProductArgs & Res): Promise<Response> {
+    await this.findOne(productCategoryId)
 
     await this.productService.create({
       productData,
@@ -101,8 +101,8 @@ export class ProductCategoryService {
     res,
     productsData,
     productCategoryId
-  }: AddManyProductsParams & Res) {
-    await this.getOne(productCategoryId)
+  }: AddManyProductsArgs): Promise<Response> {
+    await this.findOne(productCategoryId)
 
     // TODO createMany
     await Promise.all(
@@ -120,9 +120,9 @@ export class ProductCategoryService {
   }
 
   // @Admin
-  public async delete(categoryId: string, res: Response) {
+  public async removeOne(categoryId: string, res: Response): Promise<Response> {
     try {
-      await this.deleteAllProductsByCategory(categoryId, res)
+      await this.removeAllProductsByCategory(categoryId, res)
 
       await this.prisma.productCategory.delete({
         where: {
@@ -131,7 +131,7 @@ export class ProductCategoryService {
       })
 
       return res.send({
-        message: 'Category successfully deleted.'
+        message: 'Category successfully removed.'
       })
     } catch {
       throw new BadRequestException('Something went wrong.')
@@ -139,7 +139,10 @@ export class ProductCategoryService {
   }
 
   // @Admin
-  public async deleteAllProductsByCategory(categoryId: string, res: Response) {
-    return this.productService.deleteAllByCategory(categoryId, res)
+  public async removeAllProductsByCategory(
+    categoryId: string,
+    res: Response
+  ): Promise<Response> {
+    return this.productService.removeAllByCategory(categoryId, res)
   }
 }

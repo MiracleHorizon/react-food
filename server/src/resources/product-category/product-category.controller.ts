@@ -28,12 +28,12 @@ export class ProductCategoryController {
 
   @Get(':id')
   public getOne(@Param('id') id: string) {
-    return this.productCategoryService.getOne(id)
+    return this.productCategoryService.findOne(id)
   }
 
   @Get()
   public getAll(@Query('skip') skip: string, @Query('take') take: string) {
-    return this.productCategoryService.getAll({
+    return this.productCategoryService.findAll({
       skip: +skip,
       take: +take
     })
@@ -67,7 +67,7 @@ export class ProductCategoryController {
 
   @Delete(':id')
   public delete(@Param('id') id: string, @Res() res: Response) {
-    return this.productCategoryService.delete(id, res)
+    return this.productCategoryService.removeOne(id, res)
   }
 
   @Delete(':id/delete_products')
@@ -75,6 +75,6 @@ export class ProductCategoryController {
     @Param('id') id: string,
     @Res() res: Response
   ) {
-    return this.productCategoryService.deleteAllProductsByCategory(id, res)
+    return this.productCategoryService.removeAllProductsByCategory(id, res)
   }
 }

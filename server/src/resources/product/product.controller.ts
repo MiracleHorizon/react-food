@@ -8,17 +8,17 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get(':id')
-  public getOne(@Param('id') id: string) {
-    return this.productService.getOne(id)
+  public findOne(@Param('id') id: string) {
+    return this.productService.findOne(id)
   }
 
   @Get()
-  public getAll() {
-    return this.productService.getAll()
+  public findAll() {
+    return this.productService.findAll()
   }
 
   @Delete(':id')
-  public deleteProduct(@Param('id') id: string, @Res() res: Response) {
-    return this.productService.delete(id, res)
+  public removeOne(@Param('id') id: string, @Res() res: Response) {
+    return this.productService.removeOne(id, res)
   }
 }

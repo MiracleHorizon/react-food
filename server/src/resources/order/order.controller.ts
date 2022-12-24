@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Param, Patch, Post, Res } from '@nestjs/common'
 import type { Response } from 'express'
 
-import { OrderService } from '../order/order.service'
-import { CreateOrderDto } from '../order/dto/create-order.dto'
-import { UpdateOrderStatusDto } from '../order/dto/update-order-status.dto'
+import { OrderService } from './order.service'
+import { CreateOrderDto } from './dto/create-order.dto'
+import { UpdateOrderStatusDto } from './dto/update-order-status.dto'
 
-const MOCK_USER_ID = '4bd569c1-5417-45c5-8006-b45720817b2c'
+import { MOCK_USER_ID } from '@/utils/constants'
 
 @Controller('order')
 export class OrderController {
@@ -21,13 +21,13 @@ export class OrderController {
   }
 
   @Get(':id')
-  public getOne(@Param('id') id: string) {
-    return this.orderService.getOne(id, MOCK_USER_ID)
+  public findOne(@Param('id') id: string) {
+    return this.orderService.findOne(id, MOCK_USER_ID)
   }
 
   @Get()
-  public getAll() {
-    return this.orderService.getAll(MOCK_USER_ID)
+  public findAll() {
+    return this.orderService.findAll(MOCK_USER_ID)
   }
 
   @Patch(':id/update_status')
