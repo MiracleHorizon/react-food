@@ -4,10 +4,11 @@ interface ClientOrderProduct {
   imageUrl: string
 }
 
+// TODO Переименовать
 export interface ClientOrder {
   id: string
   status: OrderStatus
-  totalPrice: number
+  totalCost: number
   products: ClientOrderProduct[]
   productsCount: number
   createdAt: Date

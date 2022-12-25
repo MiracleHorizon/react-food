@@ -3,7 +3,8 @@ import {
   Controller,
   Delete,
   Get,
-  Param, Patch,
+  Param,
+  Patch,
   Post,
   Query,
   Res
@@ -27,12 +28,12 @@ export class ProductCategoryController {
   }
 
   @Get(':id')
-  public getOne(@Param('id') id: string) {
+  public findOne(@Param('id') id: string) {
     return this.productCategoryService.findOne(id)
   }
 
   @Get()
-  public getAll(@Query('skip') skip: string, @Query('take') take: string) {
+  public findAll(@Query('skip') skip: string, @Query('take') take: string) {
     return this.productCategoryService.findAll({
       skip: +skip,
       take: +take
@@ -66,12 +67,12 @@ export class ProductCategoryController {
   }
 
   @Delete(':id')
-  public delete(@Param('id') id: string, @Res() res: Response) {
+  public removeOne(@Param('id') id: string, @Res() res: Response) {
     return this.productCategoryService.removeOne(id, res)
   }
 
   @Delete(':id/delete_products')
-  public deleteAllProductsByCategory(
+  public removeAllProductsByCategory(
     @Param('id') id: string,
     @Res() res: Response
   ) {

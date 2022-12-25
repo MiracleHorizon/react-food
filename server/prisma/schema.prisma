@@ -61,9 +61,9 @@ model Order {
   deliveryAddress      String
   products             OrderProduct[]
   cutleryCount         Int            @default(0)
-  totalPrice           Float
-  productsPrice        Float
-  deliveryPrice        Float
+  totalCost            Float
+  productsCost         Float
+  deliveryCost         Float
   serviceFee           Float
   status               OrderStatus    @default(ASSEMBLY)
   recipientPhoneNumber String

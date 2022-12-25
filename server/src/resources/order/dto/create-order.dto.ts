@@ -3,9 +3,11 @@ import {
   IsArray,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsPhoneNumber,
   IsString,
   Max,
+  MaxLength,
   Min
 } from 'class-validator'
 
@@ -35,11 +37,19 @@ export class CreateOrderDto {
 
   @IsNumber()
   @IsNotEmpty()
-  @Min(0, {
+  @Min(1, {
     message: validationArguments =>
       ValidationMessage.getMinValueMessage(validationArguments.value)
   })
-  public totalPrice: number
+  public totalCost: number
+
+  @IsNumber()
+  @IsNotEmpty()
+  @Min(1, {
+    message: validationArguments =>
+      ValidationMessage.getMinValueMessage(validationArguments.value)
+  })
+  public productsCost: number
 
   @IsNumber()
   @IsNotEmpty()
@@ -47,15 +57,7 @@ export class CreateOrderDto {
     message: validationArguments =>
       ValidationMessage.getMinValueMessage(validationArguments.value)
   })
-  public productsPrice: number
-
-  @IsNumber()
-  @IsNotEmpty()
-  @Min(0, {
-    message: validationArguments =>
-      ValidationMessage.getMinValueMessage(validationArguments.value)
-  })
-  public deliveryPrice: number
+  public deliveryCost: number
 
   @IsNumber()
   @IsNotEmpty()
@@ -65,11 +67,22 @@ export class CreateOrderDto {
   })
   public serviceFee: number
 
-  @IsPhoneNumber('RU')
-  @IsNotEmpty()
-  public recipientPhoneNumber: string
+  @IsString()
+  @IsOptional()
+  @MaxLength(120, {
+    message: validationArguments =>
+      ValidationMessage.getMaxLengthMessage(
+        validationArguments.property,
+        validationArguments.value
+      )
+  })
+  public commentary?: string
 
   @IsString()
   @IsNotEmpty()
   public recipientName: string
+
+  @IsPhoneNumber('RU')
+  @IsNotEmpty()
+  public recipientPhoneNumber: string
 }

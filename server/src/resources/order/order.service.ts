@@ -3,7 +3,6 @@ import {
   NotFoundException,
   ForbiddenException
 } from '@nestjs/common'
-import type { Order } from '@prisma/client'
 import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
@@ -41,16 +40,35 @@ export class OrderService {
     })
   }
 
-  public async findOne(orderId: string, userId: string): Promise<Order> {
+  // TODO Обновить тип
+  public async findOne(orderId: string, userId: string): Promise<any> {
     const order = await this.prisma.order.findUnique({
       where: {
         id: orderId
+      },
+      select: {
+        id: true,
+        userId: true,
+        products: {
+          select: {
+            title: true,
+            count: true,
+            price: true
+          }
+        },
+        totalCost: true,
+        productsCost: true,
+        deliveryCost: true,
+        serviceFee: true,
+        createdAt: true
       }
     })
 
     if (!order) throw new NotFoundException('Order is not found.')
 
     if (userId !== order.userId) throw new ForbiddenException()
+
+    delete order.userId
 
     return order
   }
@@ -64,7 +82,7 @@ export class OrderService {
         id: true,
         status: true,
         createdAt: true,
-        totalPrice: true,
+        totalCost: true,
         products: {
           select: {
             imageUrl: true
