@@ -1,23 +1,14 @@
-import { observer } from 'mobx-react-lite'
-import { useRouter } from 'next/router'
+import LeftBar from './left-bar'
+import RightBar from './right-bar'
+import AppHeader from '@/components/app-header'
 
-import AppLogo from '@/ui/app-logo'
-import CartButton from '@/ui/buttons/cart'
-import CartStore from '@/stores/Cart.store'
-import * as Header from './DefaultLayoutHeader.styles'
-
-const DefaultLayoutHeader = observer(() => {
-  const router = useRouter()
-
-  return (
+const DefaultLayoutHeader = () => (
+  <AppHeader>
     <>
-      <Header.Root>
-        <AppLogo />
-        {!CartStore.isEmpty && router.asPath === '/' && <CartButton />}
-      </Header.Root>
-      <Header.Divider />
+      <LeftBar />
+      <RightBar />
     </>
-  )
-})
+  </AppHeader>
+)
 
 export default DefaultLayoutHeader

@@ -1,19 +1,19 @@
 import styled from '@emotion/styled'
 
-const LAYOUT_PADDING = 45
+import { colors } from '@/public/styles/variables'
+import { APP_HEADER_HEIGHT } from '@/components/app-header/AppHeader.styles'
 
 export const Root = styled.div`
   font-family: 'Proxima Nova', sans-serif;
-  padding: ${LAYOUT_PADDING}px;
-  background: #ffdf8c;
+  min-width: 100vw;
+  min-height: 200vh;
+  background: ${colors.gray4};
 `
 
-export const Content = styled.div`
-  min-height: calc(100vh - ${LAYOUT_PADDING * 2}px);
-  padding: 40px;
-  border-radius: 22px;
-  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.03);
-  background: #f5f4f2;
+export const Container = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: ${APP_HEADER_HEIGHT}px;
 `
-
-export const Main = styled.main``

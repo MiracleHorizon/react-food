@@ -34,6 +34,10 @@ const GlobalStyles = () => (
         }
       }
 
+      button {
+        font-family: inherit;
+      }
+
       li {
         list-style: none;
       }

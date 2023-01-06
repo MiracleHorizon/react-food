@@ -1,9 +1,11 @@
-import HeadComponent from '@/components/head'
-import Header from '@/layouts/cart/header'
-import type { LayoutProps } from '@/models/LayoutProps'
-import * as Layout from '@/layouts//cart/CartLayout.styles'
+import type { FC } from 'react'
 
-const CartLayout = ({ children, title }: LayoutProps) => (
+import Header from './header'
+import HeadComponent from '@/components/head'
+import type { LayoutProps } from '@/models/LayoutProps'
+import * as Layout from './CartLayout.styles'
+
+const CartLayout: FC<LayoutProps> = ({ children, title }) => (
   <Layout.Root>
     <HeadComponent title={title} />
     <Layout.Content>

@@ -1,10 +1,10 @@
 import { makeAutoObservable } from 'mobx'
 
-import type { CutleryParams } from '@/entities/Cutlery/Cutlery.types'
+import CartStore from '@/stores/Cart.store'
 
-export class Cutlery {
+class CutleryStore {
   private _count = 0
-  private readonly _countPerOrderRestriction: number
+  private readonly _countPerOrderRestriction = 4
 
   public get count(): number {
     return this._count
@@ -18,10 +18,12 @@ export class Cutlery {
     return this._count === this._countPerOrderRestriction
   }
 
-  constructor({ count, countPerOrderRestriction }: CutleryParams) {
+  public get isCutleryRequired(): boolean {
+    return CartStore.isIncludesReadyMeal
+  }
+
+  constructor() {
     makeAutoObservable(this)
-    this._count = count
-    this._countPerOrderRestriction = countPerOrderRestriction
   }
 
   public addToOrder(): void {
@@ -40,3 +42,5 @@ export class Cutlery {
     this._count -= 1
   }
 }
+
+export default new CutleryStore()

@@ -1,20 +1,16 @@
 import { makeAutoObservable } from 'mobx'
 
-import { Cutlery } from '@/entities/Cutlery'
 import { CartProduct } from '@/entities/product/CartProduct'
 import { ReduceArray } from '@/modules/ReduceArray'
 import type { ProductModel } from '@/models/product/ProductModel'
 import type { CartProductModel } from '@/models/product/CartProductModel'
 import { InvalidPaymentPriceException } from '@/exceptions/InvalidPaymentPriceException'
 import { InvalidOrderWeightException } from '@/exceptions/InvalidOrderWeightException'
+import { READY_MEAL_TAGS } from '@/utils/constants'
 
 class CartStore {
   private _isCartDataLoading = true
   private _products: CartProduct[] = []
-  private readonly _cutlery = new Cutlery({
-    countPerOrderRestriction: 4,
-    count: 0
-  })
   private readonly MAX_ORDER_WEIGHT_RESTRICTION = 3e4
   private readonly MAX_ORDER_PRICE_RESTRICTION = 5e4
   private readonly reduceArray = ReduceArray.reduceNumberArray
@@ -39,12 +35,18 @@ class CartStore {
     return this.reduceArray(this._products.map(product => product.count))
   }
 
-  public get cutlery(): Cutlery {
-    return this._cutlery
+  public get totalCost(): number {
+    return this.reduceArray(this._products.map(product => product.getCost()))
   }
 
   public get isEmpty(): boolean {
     return this._products.length === 0
+  }
+
+  public get isIncludesReadyMeal(): boolean {
+    return this.products
+      .map(({ tag }) => READY_MEAL_TAGS.includes(tag))
+      .includes(true)
   }
 
   constructor() {
@@ -113,7 +115,7 @@ class CartStore {
   }
 
   private isPriceAvailable(newProductPrice: number): boolean {
-    const potentialPrice = this.getTotalProductsPrice() + newProductPrice
+    const potentialPrice = this.totalCost + newProductPrice
     return potentialPrice <= this.MAX_ORDER_PRICE_RESTRICTION
   }
 
@@ -124,12 +126,6 @@ class CartStore {
   public getTotalProductsWeight(): number {
     return this.reduceArray(
       this._products.map(product => product.getTotalWeight())
-    )
-  }
-
-  public getTotalProductsPrice(): number {
-    return this.reduceArray(
-      this._products.map(product => product.getTotalPrice())
     )
   }
 }

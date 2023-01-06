@@ -4,7 +4,7 @@ import ReactSvg from '@/ui/svg/ReactSvg'
 import * as Logo from './AppLogo.styles'
 
 const AppLogo = () => (
-  <Logo.Root>
+  <Logo.Root data-el='app-logo'>
     <Link href='/'>
       <ReactSvg />
     </Link>

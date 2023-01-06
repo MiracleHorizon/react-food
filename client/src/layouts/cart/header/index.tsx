@@ -1,16 +1,16 @@
-import CartLayoutHeaderLogo from '@/layouts/cart/header/logo'
-import BackButton from '@/ui/buttons/back'
+import Logo from './logo'
 import Avatar from '@/ui/avatar'
-import * as Header from './CartLayoutHeader.styles'
+import BackButton from '@/ui/buttons/back'
+import AppHeader from '@/components/app-header'
 
 const CartLayoutHeader = () => (
-  <Header.Root>
-    <Header.Content>
+  <AppHeader>
+    <>
       <BackButton />
-      <CartLayoutHeaderLogo />
+      <Logo />
       <Avatar />
-    </Header.Content>
-  </Header.Root>
+    </>
+  </AppHeader>
 )
 
 export default CartLayoutHeader

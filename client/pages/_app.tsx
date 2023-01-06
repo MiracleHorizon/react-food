@@ -5,6 +5,7 @@ import GlobalStyles from '@/components/GlobalStyles'
 
 const queryClient = new QueryClient()
 
+// TODO React query SSR
 const App = ({ Component, pageProps }: AppProps) => (
   <QueryClientProvider client={queryClient}>
     <GlobalStyles />

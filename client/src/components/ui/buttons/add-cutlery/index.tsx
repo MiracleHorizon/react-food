@@ -1,11 +1,11 @@
 import Image from 'next/image'
 
-import CartStore from '@/stores/Cart.store'
+import CutleryStore from '@/stores/Cutlery.store'
 import { CUTLERY_IMAGE_URL } from '@/utils/constants'
 import Button from './AddCutleryButton.styles'
 
 const AddCutleryButton = () => {
-  const handleAddCutlery = () => CartStore.cutlery.addToOrder()
+  const handleAddCutlery = () => CutleryStore.addToOrder()
 
   return (
     <Button onClick={handleAddCutlery}>

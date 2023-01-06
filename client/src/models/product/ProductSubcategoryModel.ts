@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 import { ProductSchema } from '@/models/product/ProductModel'
 
-export const ProductCategorySchema = z.object({
+export const ProductSubcategorySchema = z.object({
   id: z.string().uuid({
     message: 'Значение должно соответствовать стандарду uuid.'
   }),
@@ -10,4 +10,4 @@ export const ProductCategorySchema = z.object({
   products: z.array(ProductSchema)
 })
 
-export type ProductCategory = z.infer<typeof ProductCategorySchema>
+export type ProductSubcategoryModel = z.infer<typeof ProductSubcategorySchema>

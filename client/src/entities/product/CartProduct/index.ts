@@ -9,7 +9,7 @@ export class CartProduct extends Product implements CartProductModel {
     this.count = count
   }
 
-  public getTotalPrice(): number {
+  public getCost(): number {
     return this.count * this.price
   }
 

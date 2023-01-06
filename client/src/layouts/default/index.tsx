@@ -1,15 +1,18 @@
-import Header from '@/layouts/default/header'
+import type { FC } from 'react'
+
+import Header from './header'
+import Content from './content'
 import HeadComponent from '@/components/head'
 import type { LayoutProps } from '@/models/LayoutProps'
-import * as Layout from '@/layouts/default/DefaultLayout.styles'
+import * as Layout from './DefaultLayout.styles'
 
-const DefaultLayout = ({ children, title }: LayoutProps) => (
+const DefaultLayout: FC<LayoutProps> = ({ title, children }) => (
   <Layout.Root>
     <HeadComponent title={title} />
-    <Layout.Content>
+    <Layout.Container>
       <Header />
-      <Layout.Main>{children}</Layout.Main>
-    </Layout.Content>
+      <Content>{children}</Content>
+    </Layout.Container>
   </Layout.Root>
 )
 
