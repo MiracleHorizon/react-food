@@ -1,7 +1,4 @@
-import { ReactNode } from 'react'
+import type { SeoData } from '@/models/SeoData'
+import type { ChildrenProps } from '@/models/ChildrenProps'
 
-import type { HeadProps } from '@/components/head/HeadComponent.types'
-
-export interface LayoutProps extends HeadProps {
-  children: ReactNode
-}
+export interface LayoutProps extends SeoData, ChildrenProps {}

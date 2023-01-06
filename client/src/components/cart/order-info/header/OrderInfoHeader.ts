@@ -7,13 +7,11 @@ export const Root = styled.header`
   margin-bottom: 26px;
 `
 
-export const TitleBlock = styled.div`
-  h2 {
-    margin-bottom: 4px;
-  }
+export const Title = styled.h2`
+  margin-bottom: 4px;
+`
 
-  span {
-    font-size: 17px;
-    color: #9e9b98;
-  }
+export const ProductsCount = styled.span`
+  font-size: 17px;
+  color: #9e9b98;
 `

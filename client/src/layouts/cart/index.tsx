@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import Header from './header'
-import HeadComponent from '@/components/head'
+import HeadComponent from '@/components/HeadComponent'
 import type { LayoutProps } from '@/models/LayoutProps'
 import * as Layout from './CartLayout.styles'
 

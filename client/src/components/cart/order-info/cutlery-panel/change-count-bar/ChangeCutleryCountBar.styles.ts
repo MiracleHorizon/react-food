@@ -17,11 +17,11 @@ export const TitleBlock = styled.div`
   img {
     margin-right: 12px;
   }
+`
 
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 16px;
-  }
+export const Title = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
 `

@@ -2,13 +2,14 @@ import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 
 import CartStore from '@/stores/Cart.store'
-import Loader from '@/components/cart/order-info/products-list/loader'
-import OrderCutleryPanel from '@/components/cart/order-info/cutlery-panel'
-import OrderProductsList from '@/components/cart/order-info/products-list'
-import OrderInfoHeader from '@/components/cart/order-info/header'
+import CutleryStore from '@/stores/Cutlery.store'
+import Loader from './products-list/loader'
+import OrderInfoHeader from './header'
+import OrderCutleryPanel from './cutlery-panel'
+import OrderProductsList from './products-list'
 import * as Styled from './OrderInfo.styles'
 
-const OrderInfo = observer(() => {
+const OrderInfo = () => {
   const router = useRouter()
 
   if (CartStore.isCartDataLoading) {
@@ -22,10 +23,10 @@ const OrderInfo = observer(() => {
   return (
     <Styled.Root>
       <OrderInfoHeader />
-      <OrderCutleryPanel />
+      {CutleryStore.isCutleryRequired && <OrderCutleryPanel />}
       <OrderProductsList />
     </Styled.Root>
   )
-})
+}
 
-export default OrderInfo
+export default observer(OrderInfo)

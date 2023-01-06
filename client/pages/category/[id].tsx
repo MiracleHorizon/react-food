@@ -3,7 +3,7 @@ import type { GetServerSidePropsContext, NextPage } from 'next'
 import AppStore from '@/stores/App.store'
 import CartStore from '@/stores/Cart.store'
 import ProductCategoryStore from '@/stores/ProductCategory.store'
-import DefaultLayout from '@/layouts/default'
+import ProductCategory from '@/components/product-category'
 import CartService from '@/services/CartService'
 import ProductCategoriesService from '@/services/ProductCategoriesService'
 import type { CartProductModel } from '@/models/product/CartProductModel'
@@ -19,7 +19,7 @@ const CategoryPage: NextPage<Props> = ({
   CartStore.initializeCart(cartProducts)
   ProductCategoryStore.setCategory(category)
 
-  return <DefaultLayout title={category.title}>{category.title}</DefaultLayout>
+  return <ProductCategory />
 }
 
 export default CategoryPage

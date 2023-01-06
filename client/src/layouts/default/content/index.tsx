@@ -1,9 +1,10 @@
-import type { FC, ReactNode } from 'react'
+import type { FC } from 'react'
 
 import LeftPanel from './left-panel'
+import type { ChildrenProps } from '@/models/ChildrenProps'
 import * as Content from './DefaultLayoutContent.styles'
 
-const DefaultLayoutContent: FC<Props> = ({ children }) => (
+const DefaultLayoutContent: FC<ChildrenProps> = ({ children }) => (
   <Content.Root>
     <LeftPanel />
     {children}
@@ -11,7 +12,3 @@ const DefaultLayoutContent: FC<Props> = ({ children }) => (
 )
 
 export default DefaultLayoutContent
-
-interface Props {
-  children: ReactNode
-}

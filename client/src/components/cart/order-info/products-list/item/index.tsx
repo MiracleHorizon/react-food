@@ -4,11 +4,11 @@ import CartStore from '@/stores/Cart.store'
 import ChangeCountBar from '@/ui/change-count-bar'
 import OrderProductItemInfo from '@/components/cart/order-info/products-list/item/info'
 import { CartProduct } from '@/entities/product/CartProduct'
-import type { CartProductModel } from '@/models/product/CartProductModel'
 import { RUBLE_SIGN } from '@/utils/constants'
+import type { CartProductModel } from '@/models/product/CartProductModel'
 import * as Card from './OrderProductItem.styles'
 
-const OrderProductItem: FC<CartProductModel> = memo(productData => {
+const OrderProductItem: FC<CartProductModel> = productData => {
   const cartProduct = useMemo(() => {
     return new CartProduct(productData)
   }, [productData])
@@ -34,12 +34,12 @@ const OrderProductItem: FC<CartProductModel> = memo(productData => {
         decrement={handleDecrementCount}
       />
       <Card.Price>
-        {cartProduct.getTotalPrice()} {RUBLE_SIGN}
+        {cartProduct.getCost()} {RUBLE_SIGN}
       </Card.Price>
     </Card.Root>
   )
-})
+}
 
 OrderProductItem.displayName = 'OrderProductItem'
 
-export default OrderProductItem
+export default memo(OrderProductItem)

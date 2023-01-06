@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 
 import CartStore from '@/stores/Cart.store'
-import CartLayout from '@/layouts/cart'
 import Cart from '@/components/cart'
 import CartService from '@/services/CartService'
 import type { CartProductModel } from '@/models/product/CartProductModel'
@@ -9,11 +8,7 @@ import type { CartProductModel } from '@/models/product/CartProductModel'
 const CartPage: NextPage<Props> = ({ cartProducts }) => {
   CartStore.initializeCart(cartProducts)
 
-  return (
-    <CartLayout title='React.Еда'>
-      <Cart />
-    </CartLayout>
-  )
+  return <Cart />
 }
 
 export default CartPage

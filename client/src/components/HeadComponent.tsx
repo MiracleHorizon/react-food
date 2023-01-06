@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import type { FC } from 'react'
 
-import type { HeadProps } from './HeadComponent.types'
+import type { SeoData } from '@/models/SeoData'
 
-const HeadComponent: FC<HeadProps> = ({ title }) => (
+const HeadComponent: FC<SeoData> = ({ title }) => (
   <Head>
     <title>{title}</title>
   </Head>

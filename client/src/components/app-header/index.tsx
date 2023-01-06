@@ -1,11 +1,12 @@
 import { useScroll } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import type { FC, ReactNode } from 'react'
+import type { FC } from 'react'
 
 import Divider from '@/ui/divider'
+import type { ChildrenProps } from '@/models/ChildrenProps'
 import * as Header from './AppHeader.styles'
 
-const AppHeader: FC<Props> = ({ children }) => {
+const AppHeader: FC<ChildrenProps> = ({ children }) => {
   const [isScrollOnTop, setScrollOnTop] = useState(true)
   const { scrollY } = useScroll()
 
@@ -30,7 +31,3 @@ const AppHeader: FC<Props> = ({ children }) => {
 }
 
 export default AppHeader
-
-interface Props {
-  children: ReactNode
-}
