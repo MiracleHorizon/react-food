@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
 
 import { colors } from '@/public/styles/variables'
+import { TEXT_Y_MARGIN } from '../DeliveryInfo.styles'
 
 export const Root = styled.div`
-  margin-top: 10px;
+  margin-top: ${TEXT_Y_MARGIN}px;
 `
 
 export const Text = styled.span`

@@ -1,4 +1,4 @@
-import Navigation from './navigation'
+import Navigation from './CatalogNavigation'
 import { Title } from '../DefaultLayoutLeftPanel.styles'
 import * as Catalog from './DefaultLayoutCatalog.styles'
 

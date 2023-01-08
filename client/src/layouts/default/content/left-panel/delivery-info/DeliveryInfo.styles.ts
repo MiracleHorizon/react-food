@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 import { colors } from '@/public/styles/variables'
 import { Title as RootTitle } from '../DefaultLayoutLeftPanel.styles'
 
+export const TEXT_Y_MARGIN = 14
+
 export const Root = styled.div`
   cursor: pointer;
   margin-bottom: 36px;
@@ -10,10 +12,6 @@ export const Root = styled.div`
   color: ${colors.black1};
 
   &:hover {
-    h4 {
-      opacity: 0.65;
-    }
-
     div[data-el='delivery-about'] {
       color: ${colors.red3};
 

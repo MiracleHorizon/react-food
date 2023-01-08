@@ -12,14 +12,12 @@ const CatalogNavigationItem: FC<NavigationCategory> = ({
 }) => {
   const router = useRouter()
 
-  const isSelected = router.query.categoryId === id
-
   return (
     <Item.Root>
       <Link href={`/category/${id}`}>
         {imageUrl ? <Item.Image imageUrl={imageUrl} /> : <Item.ImageFallback />}
         <Item.Content>
-          <Item.Title isSelected={isSelected}>{title}</Item.Title>
+          <Item.Title isSelected={router.query.id === id}>{title}</Item.Title>
         </Item.Content>
       </Link>
     </Item.Root>

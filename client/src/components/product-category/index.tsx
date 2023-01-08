@@ -5,7 +5,7 @@ import ProductCategoryStore from '@/stores/ProductCategory.store'
 
 const ProductCategory = observer(() => {
   return (
-    <DefaultLayout>
+    <DefaultLayout title={ProductCategoryStore.title}>
       <h1>{ProductCategoryStore.title}</h1>
     </DefaultLayout>
   )

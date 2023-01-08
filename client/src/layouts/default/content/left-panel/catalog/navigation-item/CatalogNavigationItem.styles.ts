@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
 
 import { colors } from '@/public/styles/variables'
-import { EllipsisSpan } from '@/public/styles/EllipsisText'
 
 const IMAGE_SIZE = 44
 
 export const Root = styled.li`
+  height: 52px;
   margin: 1px 0;
   border-radius: 12px;
   padding-left: 4px;
@@ -17,6 +17,7 @@ export const Root = styled.li`
   }
 
   a {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -25,6 +26,7 @@ export const Root = styled.li`
 `
 
 export const Image = styled.div<ImageProps>`
+  min-width: ${IMAGE_SIZE}px;
   width: ${IMAGE_SIZE}px;
   height: ${IMAGE_SIZE}px;
   background-image: url(${p => p.imageUrl});
@@ -44,7 +46,7 @@ export const Content = styled.div`
   margin-left: 12px;
 `
 
-export const Title = styled(EllipsisSpan)<TitleProps>`
+export const Title = styled.p<TitleProps>`
   font-size: 17px;
   ${p => p.isSelected && 'font-weight: 600'};
 `
