@@ -28,6 +28,24 @@ export class CreateProductSubcategoryDto {
   public title: string
 
   @IsString()
+  @IsNotEmpty()
+  @MinLength(20, {
+    message: validationArguments =>
+      ValidationMessage.getMinLengthMessage(
+        validationArguments.property,
+        validationArguments.value
+      )
+  })
+  @MaxLength(150, {
+    message: validationArguments =>
+      ValidationMessage.getMaxLengthMessage(
+        validationArguments.property,
+        validationArguments.value
+      )
+  })
+  public description: string
+
+  @IsString()
   @IsUUID()
   @IsNotEmpty()
   public productCategoryId: string

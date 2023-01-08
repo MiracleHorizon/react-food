@@ -92,6 +92,7 @@ model OrderProduct {
 
 model ProductCategory {
   id                   String               @id @default(uuid())
+  description          String
   title                String
   imageUrl             String?
   productSubcategories ProductSubcategory[]
@@ -100,6 +101,7 @@ model ProductCategory {
 model ProductSubcategory {
   id                String          @id @default(uuid())
   title             String
+  description       String
   products          Product[]
   productCategory   ProductCategory @relation(fields: [productCategoryId], references: [id])
   productCategoryId String
