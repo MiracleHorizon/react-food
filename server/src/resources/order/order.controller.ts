@@ -4,8 +4,11 @@ import type { Response } from 'express'
 import { OrderService } from './order.service'
 import { CreateOrderDto } from './dto/create-order.dto'
 import { UpdateOrderStatusDto } from './dto/update-order-status.dto'
-
-import { MOCK_USER_ID } from '@/utils/constants'
+import {
+  MAX_ORDER_COST,
+  MOCK_USER_ID,
+  SPACE_MAX_ORDER_COST
+} from '@/utils/constants'
 
 @Controller('order')
 export class OrderController {
@@ -28,6 +31,11 @@ export class OrderController {
   @Get()
   public findAll() {
     return this.orderService.findAll(MOCK_USER_ID)
+  }
+
+  @Get('max_order_cost')
+  public getMaxOrderCost() {
+    return MAX_ORDER_COST || SPACE_MAX_ORDER_COST
   }
 
   @Patch(':id/update_status')

@@ -7,7 +7,7 @@ import type { Request } from 'express'
 import type { User } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
-import type { ClientUser } from '@/models/user/ClientUser'
+import type { UserToClient } from '@/models/user/UserToClient'
 
 @Injectable()
 export class UsersService {
@@ -34,12 +34,12 @@ export class UsersService {
   }
 
   // @Admin
-  public async findAll(): Promise<ClientUser[]> {
+  public async findAll(): Promise<UserToClient[]> {
     return this.prisma.user.findMany({
       select: {
         id: true,
         email: true,
-        login: true
+        name: true
       }
     })
   }

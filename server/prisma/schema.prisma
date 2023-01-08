@@ -7,11 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Проверены
 model User {
   id                String            @id @default(uuid())
   email             String            @unique
-  login             String
+  name              String
   hashedPassword    String
   role              UserRole          @default(USER)
   reactCoinsCount   Int               @default(0)
@@ -91,27 +90,31 @@ model OrderProduct {
   @@map("orderProducts")
 }
 
-// Не проверены
 model ProductCategory {
-  id       String    @id @default(uuid())
-  title    String    @unique
-  products Product[]
+  id                   String               @id @default(uuid())
+  title                String
+  imageUrl             String?
+  productSubcategories ProductSubcategory[]
+}
 
-  @@map("productCategories")
+model ProductSubcategory {
+  id                String          @id @default(uuid())
+  title             String
+  products          Product[]
+  productCategory   ProductCategory @relation(fields: [productCategoryId], references: [id])
+  productCategoryId String
 }
 
 model Product {
-  id                String          @id @default(uuid())
-  title             String
-  description       String?
-  imageUrl          String?
-  price             Int
-  weight            Int
-  tag               String
-  productCategory   ProductCategory @relation(fields: [productCategoryId], references: [id])
-  productCategoryId String
-
-  @@map("products")
+  id                   String             @id @default(uuid())
+  title                String
+  description          String?
+  imageUrl             String?
+  price                Int
+  weight               Int
+  tag                  String
+  productSubcategory   ProductSubcategory @relation(fields: [productSubcategoryId], references: [id])
+  productSubcategoryId String
 }
 
 enum UserRole {

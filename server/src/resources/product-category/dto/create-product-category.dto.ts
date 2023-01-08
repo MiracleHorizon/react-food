@@ -1,36 +1,34 @@
 import {
-  IsEnum,
   IsNotEmpty,
+  IsOptional,
   IsString,
+  IsUrl,
   MaxLength,
   MinLength
 } from 'class-validator'
 
-import { AuthDto } from './auth.dto'
 import { ValidationMessage } from '@/modules/ValidationMessage'
-import { UserRole } from '@/models/user/UserRole'
 
-export class CreateUserDto extends AuthDto {
+export class CreateProductCategoryDto {
   @IsString()
   @IsNotEmpty()
-  @IsEnum(UserRole)
-  public role: UserRole
-
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(4, {
+  @MinLength(3, {
     message: validationArguments =>
       ValidationMessage.getMinLengthMessage(
         validationArguments.property,
         validationArguments.value
       )
   })
-  @MaxLength(24, {
+  @MaxLength(30, {
     message: validationArguments =>
       ValidationMessage.getMaxLengthMessage(
         validationArguments.property,
         validationArguments.value
       )
   })
-  public name: string
+  public title: string
+
+  @IsUrl()
+  @IsOptional()
+  public imageUrl?: string
 }

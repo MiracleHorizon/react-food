@@ -18,7 +18,7 @@ export class BillingCardService {
     userId,
     res,
     ...dto
-  }: CreateBillingCardArgs): Promise<Response> {
+  }: CreateBillingCardArgs): Promise<void> {
     // TODO Ограничить количество карт для одного пользователя
     await this.prisma.billingCard.create({
       data: {
@@ -27,7 +27,7 @@ export class BillingCardService {
       }
     })
 
-    return res.send({
+    res.send({
       message: 'Billing card successfully created.¬'
     })
   }
@@ -86,7 +86,7 @@ export class BillingCardService {
     cardId,
     userId,
     res
-  }: DeleteBillingCardArgs): Promise<Response> {
+  }: DeleteBillingCardArgs): Promise<void> {
     const billingCard = await this.prisma.billingCard.findUnique({
       where: {
         id: cardId
@@ -101,19 +101,19 @@ export class BillingCardService {
       }
     })
 
-    return res.send({
+    res.send({
       message: 'Billing card successfully removed.'
     })
   }
 
-  public async removeAll(userId: string, res: Response): Promise<Response> {
+  public async removeAll(userId: string, res: Response): Promise<void> {
     await this.prisma.billingCard.deleteMany({
       where: {
         id: userId
       }
     })
 
-    return res.send({
+    res.send({
       message: `All billing cards for user - ${userId} successfully removed.`
     })
   }

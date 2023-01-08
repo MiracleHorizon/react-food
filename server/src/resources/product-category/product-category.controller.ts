@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
   Query,
   Res
@@ -12,9 +11,7 @@ import {
 import type { Response } from 'express'
 
 import { ProductCategoryService } from './product-category.service'
-import { AddManyProductsDto } from './dto/add-many-products.dto'
-import { CreateCategoryDto } from './dto/create-category.dto'
-import { CreateProductDto } from '../product/dto/create-product.dto'
+import { CreateProductCategoryDto } from './dto/create-product-category.dto'
 
 @Controller('product_category')
 export class ProductCategoryController {
@@ -23,8 +20,11 @@ export class ProductCategoryController {
   ) {}
 
   @Post()
-  public create(@Body() { title }: CreateCategoryDto, @Res() res: Response) {
-    return this.productCategoryService.create(title, res)
+  public create(
+    @Body() { title }: CreateProductCategoryDto,
+    @Res() res: Response
+  ) {
+    return this.productCategoryService.create({ title, res })
   }
 
   @Get(':id')
@@ -40,42 +40,17 @@ export class ProductCategoryController {
     })
   }
 
-  @Patch(':id/add_product')
-  public addOneProduct(
-    @Param('id') id: string,
-    @Body() dto: CreateProductDto,
-    @Res() res: Response
-  ) {
-    return this.productCategoryService.addOneProduct({
-      productCategoryId: id,
-      productData: dto,
-      res
-    })
+  @Get('/navigation/all')
+  public findAllForNavigation() {
+    return this.productCategoryService.findAllForNavigation()
   }
 
-  @Patch(':id/add_many_products')
-  public addManyProducts(
-    @Param('id') id: string,
-    @Body() dto: AddManyProductsDto,
-    @Res() res: Response
-  ) {
-    return this.productCategoryService.addManyProducts({
-      productCategoryId: id,
-      productsData: dto.data,
-      res
-    })
-  }
+  public addSubcategory() {}
+
+  public removeSubcategory() {}
 
   @Delete(':id')
   public removeOne(@Param('id') id: string, @Res() res: Response) {
     return this.productCategoryService.removeOne(id, res)
-  }
-
-  @Delete(':id/delete_products')
-  public removeAllProductsByCategory(
-    @Param('id') id: string,
-    @Res() res: Response
-  ) {
-    return this.productCategoryService.removeAllProductsByCategory(id, res)
   }
 }

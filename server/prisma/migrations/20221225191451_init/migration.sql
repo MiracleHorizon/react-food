@@ -11,7 +11,7 @@ CREATE TYPE "OrderStatus" AS ENUM ('ASSEMBLY', 'ON_THE_WAY', 'DELIVERED', 'CANCE
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "login" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "hashedPassword" TEXT NOT NULL,
     "role" "UserRole" NOT NULL DEFAULT 'USER',
     "reactCoinsCount" INTEGER NOT NULL DEFAULT 0,
@@ -88,15 +88,24 @@ CREATE TABLE "orderProducts" (
 );
 
 -- CreateTable
-CREATE TABLE "productCategories" (
+CREATE TABLE "ProductCategory" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
 
-    CONSTRAINT "productCategories_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ProductCategory_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "products" (
+CREATE TABLE "ProductSubcategory" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "productCategoryId" TEXT NOT NULL,
+
+    CONSTRAINT "ProductSubcategory_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,
@@ -104,9 +113,9 @@ CREATE TABLE "products" (
     "price" INTEGER NOT NULL,
     "weight" INTEGER NOT NULL,
     "tag" TEXT NOT NULL,
-    "productCategoryId" TEXT NOT NULL,
+    "productSubcategoryId" TEXT NOT NULL,
 
-    CONSTRAINT "products_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -114,9 +123,6 @@ CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_phoneNumber_key" ON "users"("phoneNumber");
-
--- CreateIndex
-CREATE UNIQUE INDEX "productCategories_title_key" ON "productCategories"("title");
 
 -- AddForeignKey
 ALTER TABLE "deliveryAddresses" ADD CONSTRAINT "deliveryAddresses_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -131,4 +137,7 @@ ALTER TABLE "orders" ADD CONSTRAINT "orders_userId_fkey" FOREIGN KEY ("userId") 
 ALTER TABLE "orderProducts" ADD CONSTRAINT "orderProducts_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "orders"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "products" ADD CONSTRAINT "products_productCategoryId_fkey" FOREIGN KEY ("productCategoryId") REFERENCES "productCategories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ProductSubcategory" ADD CONSTRAINT "ProductSubcategory_productCategoryId_fkey" FOREIGN KEY ("productCategoryId") REFERENCES "ProductCategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Product" ADD CONSTRAINT "Product_productSubcategoryId_fkey" FOREIGN KEY ("productSubcategoryId") REFERENCES "ProductSubcategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

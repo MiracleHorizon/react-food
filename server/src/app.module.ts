@@ -6,8 +6,8 @@ import { UsersModule } from '@/resources/users/users.module'
 import { OrderModule } from '@/resources/order/order.module'
 import { DeliveryAddressModule } from '@/resources/delivery-address/delivery-address.module'
 import { BillingCardModule } from '@/resources/billing-card/billing-card.module'
-import { ProductModule } from '@/resources/product/product.module'
 import { ProductCategoryModule } from '@/resources/product-category/product-category.module'
+import { ProductSubcategoryModule } from '@/resources/product-subcategory/product-subcategory.module'
 
 @Module({
   imports: [
@@ -17,8 +17,8 @@ import { ProductCategoryModule } from '@/resources/product-category/product-cate
     OrderModule,
     DeliveryAddressModule,
     BillingCardModule,
-    ProductModule,
-    ProductCategoryModule
+    ProductCategoryModule,
+    ProductSubcategoryModule
   ]
 })
 export class AppModule {}

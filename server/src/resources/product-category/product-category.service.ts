@@ -1,52 +1,50 @@
 import {
-  Injectable,
   BadRequestException,
+  Injectable,
   NotFoundException
 } from '@nestjs/common'
-import type { Response } from 'express'
 import type { ProductCategory } from '@prisma/client'
+import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
-import { ProductService } from '../product/product.service'
-import type { Res } from '@/models/Res'
+import type { CreateProductCategoryArgs } from '@/models/product-category/CreateProductCategoryArgs'
 import type { PaginationParams } from '@/models/PaginationParams'
-import type { CreateProductArgs } from '@/models/products/CreateProductArgs'
-import type { AddManyProductsArgs } from '@/models/products/AddManyProductsArgs'
 
 @Injectable()
 export class ProductCategoryService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly productService: ProductService
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   // @Admin
-  public async create(categoryTitle: string, res: Response): Promise<Response> {
-    const isCategoryExists = await this.isCategoryExists(categoryTitle)
+  public async create({
+    title,
+    res
+  }: CreateProductCategoryArgs): Promise<void> {
+    const isCategoryExists = await this.isCategoryExists(title)
 
     if (isCategoryExists) {
-      throw new BadRequestException('This category already exists.')
+      throw new BadRequestException('Category already exists.')
     }
 
-    await this.prisma.productCategory.create({
+    const category = await this.prisma.productCategory.create({
       data: {
-        title: categoryTitle
+        title
       }
     })
 
-    return res.send({
-      message: 'Category successfully created.'
+    res.send({
+      message: 'Category successfully created.',
+      categoryId: category.id
     })
   }
 
-  private async isCategoryExists(categoryTitle: string): Promise<boolean> {
+  private async isCategoryExists(title: string): Promise<boolean> {
     return await this.prisma.productCategory
       .findFirst({
         where: {
-          title: categoryTitle
+          title
         }
       })
-      .then(res => Boolean(res))
+      .then(result => Boolean(result))
   }
 
   // @User & @Admin
@@ -56,7 +54,14 @@ export class ProductCategoryService {
         id: categoryId
       },
       include: {
-        products: true
+        productSubcategories: {
+          select: {
+            id: true,
+            title: true,
+            products: true,
+            productCategoryId: true
+          }
+        }
       }
     })
 
@@ -68,81 +73,37 @@ export class ProductCategoryService {
   }
 
   // @User & @Admin
-  public findAll({ skip, take }: PaginationParams): Promise<ProductCategory[]> {
+  public async findAll({
+    skip,
+    take
+  }: PaginationParams): Promise<ProductCategory[]> {
     return this.prisma.productCategory.findMany({
       take,
       skip: skip || 0,
       include: {
-        products: true
+        productSubcategories: {
+          include: {
+            products: true
+          }
+        }
       }
     })
   }
 
-  // @Admin
-  public async addOneProduct({
-    res,
-    productData,
-    productCategoryId
-  }: CreateProductArgs & Res): Promise<Response> {
-    await this.findOne(productCategoryId)
-
-    await this.productService.create({
-      productData,
-      productCategoryId
-    })
-
-    return res.send({
-      message: `Product successfully added to category ${productCategoryId}.`
-    })
+  public async findAllForNavigation(): Promise<ProductCategory[]> {
+    return this.prisma.productCategory.findMany()
   }
 
   // @Admin
-  public async addManyProducts({
-    res,
-    productsData,
-    productCategoryId
-  }: AddManyProductsArgs): Promise<Response> {
-    await this.findOne(productCategoryId)
-
-    // TODO createMany
-    await Promise.all(
-      productsData.map(product => {
-        return this.productService.create({
-          productCategoryId,
-          productData: product
-        })
-      })
-    )
-
-    return res.send({
-      message: `Products successfully added to category ${productCategoryId}.`
+  public async removeOne(categoryId: string, res: Response): Promise<void> {
+    await this.prisma.productCategory.delete({
+      where: {
+        id: categoryId
+      }
     })
-  }
 
-  // @Admin
-  public async removeOne(categoryId: string, res: Response): Promise<Response> {
-    try {
-      await this.removeAllProductsByCategory(categoryId, res)
-
-      await this.prisma.productCategory.delete({
-        where: {
-          id: categoryId
-        }
-      })
-
-      return res.send({
-        message: 'Category successfully removed.'
-      })
-    } catch {
-      throw new BadRequestException('Something went wrong.')
-    }
-  }
-
-  // @Admin
-  public async removeAllProductsByCategory(
-    categoryId: string,
-    res: Response
-  ): Promise<Response> {
-    return this.productService.removeAllByCategory(categoryId, res)
+    res.send({
+      message: 'Category successfully deleted.'
+    })
   }
 }

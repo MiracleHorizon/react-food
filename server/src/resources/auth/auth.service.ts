@@ -28,7 +28,7 @@ export class AuthService {
     email,
     password,
     ...otherData
-  }: CreateUserDto & Res): Promise<Response> {
+  }: CreateUserDto & Res): Promise<void> {
     const isUserExists = await this.isUserWithEmailExists(email)
 
     if (isUserExists) {
@@ -45,7 +45,7 @@ export class AuthService {
       }
     })
 
-    return res.send({
+    res.send({
       message: 'User successfully created.'
     })
   }
@@ -54,7 +54,7 @@ export class AuthService {
     { email, password }: AuthDto,
     req: Request,
     res: Response
-  ): Promise<Response> {
+  ): Promise<void> {
     const isUserExists = await this.isUserWithEmailExists(email)
 
     if (!isUserExists) {
@@ -87,15 +87,15 @@ export class AuthService {
 
     res.cookie('token', token)
 
-    return res.send({
+    res.send({
       message: 'Logged in successfully.'
     })
   }
 
-  public async signOut(req: Request, res: Response): Promise<Response> {
+  public async signOut(req: Request, res: Response): Promise<void> {
     res.clearCookie('token')
 
-    return res.send({
+    res.send({
       message: 'Logged out successfully.'
     })
   }

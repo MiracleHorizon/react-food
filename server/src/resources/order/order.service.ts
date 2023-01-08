@@ -3,7 +3,6 @@ import {
   NotFoundException,
   ForbiddenException
 } from '@nestjs/common'
-import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
 import { OrderStatus } from '@/models/order/OrderStatus'
@@ -20,7 +19,7 @@ export class OrderService {
     productsData,
     res,
     ...dto
-  }: CreateOrderArgs): Promise<Response> {
+  }: CreateOrderArgs): Promise<void> {
     const order = await this.prisma.order.create({
       data: {
         userId,
@@ -35,7 +34,7 @@ export class OrderService {
       }))
     })
 
-    return res.send({
+    res.send({
       message: 'Order successfully created.'
     })
   }
@@ -104,7 +103,7 @@ export class OrderService {
     orderId,
     status,
     res
-  }: UpdateOrderStatusArgs): Promise<Response> {
+  }: UpdateOrderStatusArgs): Promise<void> {
     const order = await this.prisma.order.findUnique({
       where: {
         id: orderId
@@ -124,7 +123,7 @@ export class OrderService {
       }
     })
 
-    return res.send({
+    res.send({
       message: 'Order status successfully updated.'
     })
   }
