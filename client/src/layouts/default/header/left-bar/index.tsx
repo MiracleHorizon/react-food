@@ -3,7 +3,7 @@ import LeftBar from './DefaultLayoutHeaderLeftBar.styles'
 
 const DefaultLayoutHeaderLeftBar = () => (
   <LeftBar>
-    {/*<AppLogo />*/}
+    <AppLogo />
   </LeftBar>
 )
 
