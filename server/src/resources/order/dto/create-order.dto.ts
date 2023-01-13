@@ -7,8 +7,8 @@ import {
   IsPhoneNumber,
   IsString,
   Max,
-  MaxLength,
-  Min
+  Min,
+  MaxLength
 } from 'class-validator'
 
 import { ValidationMessage } from '@/modules/ValidationMessage'
@@ -21,12 +21,10 @@ export class CreateOrderDto {
   @IsNumber()
   @IsNotEmpty()
   @Min(0, {
-    message: validationArguments =>
-      ValidationMessage.getMinValueMessage(validationArguments.value)
+    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
   })
   @Max(10, {
-    message: validationArguments =>
-      ValidationMessage.getMaxValueMessage(validationArguments.value)
+    message: ({ value }) => ValidationMessage.getMaxValueMessage(value)
   })
   public cutleryCount: number
 
@@ -38,43 +36,36 @@ export class CreateOrderDto {
   @IsNumber()
   @IsNotEmpty()
   @Min(1, {
-    message: validationArguments =>
-      ValidationMessage.getMinValueMessage(validationArguments.value)
+    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
   })
   public totalCost: number
 
   @IsNumber()
   @IsNotEmpty()
   @Min(1, {
-    message: validationArguments =>
-      ValidationMessage.getMinValueMessage(validationArguments.value)
+    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
   })
   public productsCost: number
 
   @IsNumber()
   @IsNotEmpty()
   @Min(0, {
-    message: validationArguments =>
-      ValidationMessage.getMinValueMessage(validationArguments.value)
+    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
   })
   public deliveryCost: number
 
   @IsNumber()
   @IsNotEmpty()
   @Min(0, {
-    message: validationArguments =>
-      ValidationMessage.getMinValueMessage(validationArguments.value)
+    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
   })
   public serviceFee: number
 
   @IsString()
   @IsOptional()
   @MaxLength(120, {
-    message: validationArguments =>
-      ValidationMessage.getMaxLengthMessage(
-        validationArguments.property,
-        validationArguments.value
-      )
+    message: ({ property, constraints }) =>
+      ValidationMessage.getMaxLengthMessage(property, constraints[0])
   })
   public commentary?: string
 

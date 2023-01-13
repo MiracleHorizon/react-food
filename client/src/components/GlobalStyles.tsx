@@ -1,8 +1,14 @@
 import { css, Global } from '@emotion/react'
 
+import { HIDDEN_OVERFLOW_CLASSNAME } from '@/utils/constants/styles'
+
 const GlobalStyles = () => (
   <Global
     styles={css`
+      .${HIDDEN_OVERFLOW_CLASSNAME} {
+        overflow: hidden;
+      }
+
       html,
       body {
         min-width: 100vw;

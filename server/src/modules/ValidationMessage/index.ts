@@ -1,9 +1,12 @@
+import { StringTransformer } from '@/modules/StringTransformer'
 import {
   USER_PASSWORD_MAX_LENGTH,
   USER_PASSWORD_MIN_LENGTH
 } from '@/utils/constants'
 
 export class ValidationMessage {
+  private static stringTransformer = new StringTransformer()
+
   public static getPasswordMessage(): string {
     const lengthPart = `The password must be a minimum of ${USER_PASSWORD_MIN_LENGTH} and a maximum of ${USER_PASSWORD_MAX_LENGTH} characters`
     const extraOptionsPart =
@@ -14,9 +17,9 @@ export class ValidationMessage {
 
   public static getMinLengthMessage(
     fieldName: string,
-    minLength: number
+    minLength: number,
   ): string {
-    return `${this.capitalize(
+    return `${this.stringTransformer.capitalize(
       fieldName
     )} length must be at least ${minLength} chars.`
   }
@@ -25,16 +28,9 @@ export class ValidationMessage {
     fieldName: string,
     maxLength: number
   ): string {
-    return `${this.capitalize(
+    return `${this.stringTransformer.capitalize(
       fieldName
     )} length must exceed ${maxLength} chars.`
-  }
-
-  private static capitalize(word: string): string {
-    return word
-      .split('')
-      .map((char, i) => (i === 0 ? char.toUpperCase() : char))
-      .join('')
   }
 
   public static getMinValueMessage(minValue: number): string {

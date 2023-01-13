@@ -18,24 +18,21 @@ export class CreateDeliveryAddressDto {
   @IsInt()
   @IsNotEmpty()
   @Min(1, {
-    message: validationArguments =>
-      ValidationMessage.getMinValueMessage(validationArguments.value)
+    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
   })
   public entrance: number
 
   @IsInt()
   @IsNotEmpty()
   @Min(-1, {
-    message: validationArguments =>
-      ValidationMessage.getMinValueMessage(validationArguments.value)
+    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
   })
   public floor: number
 
   @IsInt()
   @IsNotEmpty()
   @Min(0, {
-    message: validationArguments =>
-      ValidationMessage.getMinValueMessage(validationArguments.value)
+    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
   })
   public flatOrOffice: number
 

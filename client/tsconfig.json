@@ -9,6 +9,9 @@
       "@/assets/*": [
         "assets/*"
       ],
+      "@/hooks/*":  [
+        "hooks/*"
+      ],
       "@/layouts/*": [
         "layouts/*"
       ],

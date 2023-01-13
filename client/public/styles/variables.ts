@@ -1,3 +1,5 @@
+// TODO Скорректировать порядок цветов по их яркости.
+
 export const colors = {
   orangePrimary: '#fe5f1e',
   yellowPrimary: '#fbe000',
@@ -8,5 +10,6 @@ export const colors = {
   gray4: '#f5f4f2',
   gray5: '#e4e4e4',
   gray6: '#ebeae9',
+  gray7: '#f9f9f9',
   red3: '#cc2d32'
 }

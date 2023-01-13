@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 
+import { colors } from '@/public/styles/variables'
+
 export const Root = styled.footer`
   margin-top: auto;
 
@@ -13,7 +15,7 @@ export const Content = styled.div`
   height: 48px;
   padding: 14px;
   border-radius: 12px;
-  background: #f5f4f2;
+  background: ${colors.gray4};
 
   button {
     display: flex;

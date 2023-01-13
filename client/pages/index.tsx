@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
 import CartStore from '@/stores/Cart.store'
-import AppStore from '@/stores/App.store'
+import AppStore from '@/stores/Application.store'
 import Home from '@/components/home'
 import CartService from '@/services/CartService'
 import ProductCategoriesService from '@/services/ProductCategoriesService'

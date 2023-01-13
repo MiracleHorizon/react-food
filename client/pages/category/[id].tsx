@@ -1,6 +1,6 @@
 import type { GetServerSidePropsContext, NextPage } from 'next'
 
-import AppStore from '@/stores/App.store'
+import ApplicationStore from '@/stores/Application.store'
 import CartStore from '@/stores/Cart.store'
 import ProductCategoryStore from '@/stores/ProductCategory.store'
 import ProductCategory from '@/components/product-category'
@@ -15,7 +15,7 @@ const CategoryPage: NextPage<Props> = ({
   cartProducts,
   navigationCategories
 }) => {
-  AppStore.setNavigationCategories(navigationCategories)
+  ApplicationStore.setNavigationCategories(navigationCategories)
   CartStore.initializeCart(cartProducts)
   ProductCategoryStore.setCategory(category)
 

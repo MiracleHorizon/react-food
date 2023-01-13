@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 
 import { colors } from '@/public/styles/variables'
-
-export const CART_LAYOUT_HEADER_HEIGHT = 80
+import { APP_HEADER_HEIGHT } from '@/components/app-header/AppHeader.styles'
 
 export const Root = styled.div`
   font-family: 'Proxima Nova', sans-serif;
@@ -16,5 +15,5 @@ export const Content = styled.div`
 `
 
 export const Main = styled.main`
-  padding: ${CART_LAYOUT_HEADER_HEIGHT}px 150px 0 150px;
+  padding: ${APP_HEADER_HEIGHT}px 150px 0 150px;
 `

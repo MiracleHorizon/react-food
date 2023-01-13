@@ -19,18 +19,12 @@ export class CreateUserDto extends AuthDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(4, {
-    message: validationArguments =>
-      ValidationMessage.getMinLengthMessage(
-        validationArguments.property,
-        validationArguments.value
-      )
+    message: ({ property, constraints }) =>
+      ValidationMessage.getMinLengthMessage(property, constraints[0])
   })
   @MaxLength(24, {
-    message: validationArguments =>
-      ValidationMessage.getMaxLengthMessage(
-        validationArguments.property,
-        validationArguments.value
-      )
+    message: ({ property, constraints }) =>
+      ValidationMessage.getMaxLengthMessage(property, constraints[0])
   })
   public name: string
 }

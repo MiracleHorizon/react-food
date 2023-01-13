@@ -7,6 +7,7 @@ import {
   MaxLength,
   MinLength
 } from 'class-validator'
+
 import { ValidationMessage } from '@/modules/ValidationMessage'
 
 export class CreateBillingCardDto {
@@ -14,20 +15,20 @@ export class CreateBillingCardDto {
   @IsNotEmpty()
   @MinLength(4, {
     each: true,
-    message: validationArguments =>
+    message: ({ property, constraints }) =>
       'Each' +
       ValidationMessage.getMinLengthMessage(
-        validationArguments.property,
-        validationArguments.value
+        property,
+        constraints[0]
       ).toLowerCase()
   })
   @MaxLength(4, {
     each: true,
-    message: validationArguments =>
+    message: ({ property, constraints }) =>
       'Each' +
       ValidationMessage.getMaxLengthMessage(
-        validationArguments.property,
-        validationArguments.value
+        property,
+        constraints[0]
       ).toLowerCase()
   })
   @ArrayNotEmpty()
@@ -36,18 +37,12 @@ export class CreateBillingCardDto {
   @IsNumber()
   @IsNotEmpty()
   @MinLength(3, {
-    message: validationArguments =>
-      ValidationMessage.getMinLengthMessage(
-        validationArguments.property,
-        validationArguments.value
-      )
+    message: ({ property, constraints }) =>
+      ValidationMessage.getMinLengthMessage(property, constraints[0])
   })
   @MaxLength(3, {
-    message: validationArguments =>
-      ValidationMessage.getMaxLengthMessage(
-        validationArguments.property,
-        validationArguments.value
-      )
+    message: ({ property, constraints }) =>
+      ValidationMessage.getMaxLengthMessage(property, constraints[0])
   })
   public cvc: number
 

@@ -14,6 +14,10 @@ export const Root = styled.li`
 
   &:hover {
     background: ${colors.gray2};
+
+    div[data-el='nav-img-fallback'] {
+      background: ${colors.gray1};
+    }
   }
 
   a {
@@ -39,7 +43,7 @@ export const ImageFallback = styled.div`
   width: ${IMAGE_SIZE}px;
   height: ${IMAGE_SIZE}px;
   border-radius: 12px;
-  background: ${colors.gray1};
+  background: ${colors.gray2};
 `
 
 export const Content = styled.div`

@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 
 import type { NavigationCategory } from '@/models/NavigationCategory'
 
-class AppStore {
+class ApplicationStore {
   private _navigationCategories: NavigationCategory[] = []
 
   public get navigationCategories(): NavigationCategory[] {
@@ -20,4 +20,4 @@ class AppStore {
   }
 }
 
-export default new AppStore()
+export default new ApplicationStore()

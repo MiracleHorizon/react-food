@@ -15,7 +15,11 @@ const CatalogNavigationItem: FC<NavigationCategory> = ({
   return (
     <Item.Root>
       <Link href={`/category/${id}`}>
-        {imageUrl ? <Item.Image imageUrl={imageUrl} /> : <Item.ImageFallback />}
+        {imageUrl ? (
+          <Item.Image imageUrl={imageUrl} />
+        ) : (
+          <Item.ImageFallback data-el='nav-img-fallback' />
+        )}
         <Item.Content>
           <Item.Title isSelected={router.query.id === id}>{title}</Item.Title>
         </Item.Content>

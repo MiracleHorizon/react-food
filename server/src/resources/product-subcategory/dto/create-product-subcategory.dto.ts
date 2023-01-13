@@ -5,37 +5,25 @@ import { ValidationMessage } from '@/modules/ValidationMessage'
 export class CreateProductSubcategoryDto {
   @IsString()
   @IsNotEmpty()
-  @MinLength(3, {
-    message: validationArguments =>
-      ValidationMessage.getMinLengthMessage(
-        validationArguments.property,
-        validationArguments.value
-      )
+  @MinLength(4, {
+    message: ({ property, constraints }) =>
+      ValidationMessage.getMinLengthMessage(property, constraints[0])
   })
-  @MaxLength(30, {
-    message: validationArguments =>
-      ValidationMessage.getMaxLengthMessage(
-        validationArguments.property,
-        validationArguments.value
-      )
+  @MaxLength(35, {
+    message: ({ property, constraints }) =>
+      ValidationMessage.getMaxLengthMessage(property, constraints[0])
   })
   public title: string
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(20, {
-    message: validationArguments =>
-      ValidationMessage.getMinLengthMessage(
-        validationArguments.property,
-        validationArguments.value
-      )
+  @MinLength(15, {
+    message: ({ property, constraints }) =>
+      ValidationMessage.getMinLengthMessage(property, constraints[0])
   })
   @MaxLength(150, {
-    message: validationArguments =>
-      ValidationMessage.getMaxLengthMessage(
-        validationArguments.property,
-        validationArguments.value
-      )
+    message: ({ property, constraints }) =>
+      ValidationMessage.getMaxLengthMessage(property, constraints[0])
   })
   public description: string
 
