@@ -1,4 +1,4 @@
-import { StringTransformer } from '@/modules/StringTransformer'
+import { StringTransformer } from '../StringTransformer'
 import {
   USER_PASSWORD_MAX_LENGTH,
   USER_PASSWORD_MIN_LENGTH
@@ -17,7 +17,7 @@ export class ValidationMessage {
 
   public static getMinLengthMessage(
     fieldName: string,
-    minLength: number,
+    minLength: number
   ): string {
     return `${this.stringTransformer.capitalize(
       fieldName
@@ -38,6 +38,6 @@ export class ValidationMessage {
   }
 
   public static getMaxValueMessage(maxValue): string {
-    return `Value must not be greater than ${maxValue}`
+    return `Value must not be greater than ${maxValue}.`
   }
 }
