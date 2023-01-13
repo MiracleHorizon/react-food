@@ -7,8 +7,9 @@ import type { ProductCategory } from '@prisma/client'
 import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
-import type { CreateProductCategoryArgs } from '@/models/product-category/CreateProductCategoryArgs'
+import { CreateProductCategoryDto } from './dto/create-product-category.dto'
 import type { PaginationParams } from '@/models/PaginationParams'
+import type { Res } from '@/models/Res'
 
 @Injectable()
 export class ProductCategoryService {
@@ -16,19 +17,17 @@ export class ProductCategoryService {
 
   // @Admin
   public async create({
-    title,
-    res
-  }: CreateProductCategoryArgs): Promise<void> {
-    const isCategoryExists = await this.isCategoryExists(title)
+    res,
+    ...dto
+  }: CreateProductCategoryDto & Res): Promise<void> {
+    const isCategoryExists = await this.isCategoryExists(dto.title)
 
     if (isCategoryExists) {
       throw new BadRequestException('Category already exists.')
     }
 
     const category = await this.prisma.productCategory.create({
-      data: {
-        title
-      }
+      data: dto
     })
 
     res.send({

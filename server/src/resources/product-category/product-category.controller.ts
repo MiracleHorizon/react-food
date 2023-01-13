@@ -20,11 +20,8 @@ export class ProductCategoryController {
   ) {}
 
   @Post()
-  public create(
-    @Body() { title }: CreateProductCategoryDto,
-    @Res() res: Response
-  ) {
-    return this.productCategoryService.create({ title, res })
+  public create(@Body() dto: CreateProductCategoryDto, @Res() res: Response) {
+    return this.productCategoryService.create({ ...dto, res })
   }
 
   @Get(':id')

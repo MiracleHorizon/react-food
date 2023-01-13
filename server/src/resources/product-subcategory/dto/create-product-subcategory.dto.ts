@@ -1,10 +1,4 @@
-import {
-  IsNotEmpty,
-  IsString,
-  IsUUID,
-  MaxLength,
-  MinLength
-} from 'class-validator'
+import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator'
 
 import { ValidationMessage } from '@/modules/ValidationMessage'
 
@@ -46,7 +40,6 @@ export class CreateProductSubcategoryDto {
   public description: string
 
   @IsString()
-  @IsUUID()
   @IsNotEmpty()
   public productCategoryId: string
 }

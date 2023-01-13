@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Res } from '@nestjs/common'
+import { Body, Controller, Post, Res } from '@nestjs/common'
 import type { Response } from 'express'
 
 import { ProductSubcategoryService } from './product-subcategory.service'
