@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id                String            @id @default(uuid())
+  id                String            @id @default(cuid())
   email             String            @unique
   name              String
   hashedPassword    String
@@ -25,7 +25,7 @@ model User {
 }
 
 model DeliveryAddress {
-  id           String   @id @default(uuid())
+  id           String   @id @default(cuid())
   city         String
   street       String
   house        String
@@ -42,7 +42,7 @@ model DeliveryAddress {
 }
 
 model BillingCard {
-  id          String          @id @default(uuid())
+  id          String          @id @default(cuid())
   number      Int[]
   cvc         Int
   expiredDate DateTime
@@ -56,7 +56,7 @@ model BillingCard {
 }
 
 model Order {
-  id                   String         @id @default(uuid())
+  id                   String         @id @default(cuid())
   deliveryAddress      String
   products             OrderProduct[]
   cutleryCount         Int            @default(0)
@@ -77,7 +77,7 @@ model Order {
 }
 
 model OrderProduct {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   title     String
   price     Float
   count     Int
@@ -91,24 +91,28 @@ model OrderProduct {
 }
 
 model ProductCategory {
-  id                   String               @id @default(uuid())
-  description          String
+  id                   String               @id @default(cuid())
   title                String
+  description          String
   imageUrl             String?
   productSubcategories ProductSubcategory[]
+
+  @@map("productCategories")
 }
 
 model ProductSubcategory {
-  id                String          @id @default(uuid())
+  id                String          @id @default(cuid())
   title             String
   description       String
   products          Product[]
   productCategory   ProductCategory @relation(fields: [productCategoryId], references: [id])
   productCategoryId String
+
+  @@map("productSubcategories")
 }
 
 model Product {
-  id                   String             @id @default(uuid())
+  id                   String             @id @default(cuid())
   title                String
   description          String?
   imageUrl             String?
@@ -117,6 +121,8 @@ model Product {
   tag                  String
   productSubcategory   ProductSubcategory @relation(fields: [productSubcategoryId], references: [id])
   productSubcategoryId String
+
+  @@map("products")
 }
 
 enum UserRole {

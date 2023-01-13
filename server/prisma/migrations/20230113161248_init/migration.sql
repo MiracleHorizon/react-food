@@ -88,24 +88,27 @@ CREATE TABLE "orderProducts" (
 );
 
 -- CreateTable
-CREATE TABLE "ProductCategory" (
+CREATE TABLE "productCategories" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "imageUrl" TEXT,
 
-    CONSTRAINT "ProductCategory_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "productCategories_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ProductSubcategory" (
+CREATE TABLE "productSubcategories" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
     "productCategoryId" TEXT NOT NULL,
 
-    CONSTRAINT "ProductSubcategory_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "productSubcategories_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Product" (
+CREATE TABLE "products" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,
@@ -115,7 +118,7 @@ CREATE TABLE "Product" (
     "tag" TEXT NOT NULL,
     "productSubcategoryId" TEXT NOT NULL,
 
-    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "products_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -137,7 +140,7 @@ ALTER TABLE "orders" ADD CONSTRAINT "orders_userId_fkey" FOREIGN KEY ("userId") 
 ALTER TABLE "orderProducts" ADD CONSTRAINT "orderProducts_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "orders"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ProductSubcategory" ADD CONSTRAINT "ProductSubcategory_productCategoryId_fkey" FOREIGN KEY ("productCategoryId") REFERENCES "ProductCategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "productSubcategories" ADD CONSTRAINT "productSubcategories_productCategoryId_fkey" FOREIGN KEY ("productCategoryId") REFERENCES "productCategories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_productSubcategoryId_fkey" FOREIGN KEY ("productSubcategoryId") REFERENCES "ProductSubcategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "products" ADD CONSTRAINT "products_productSubcategoryId_fkey" FOREIGN KEY ("productSubcategoryId") REFERENCES "productSubcategories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
