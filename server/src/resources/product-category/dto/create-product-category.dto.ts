@@ -7,18 +7,18 @@ import {
   MinLength
 } from 'class-validator'
 
-import { ValidationMessage } from '@/modules/ValidationMessage'
+import { validationMessage } from '@/modules/ValidationMessage'
 
 export class CreateProductCategoryDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(4, {
     message: ({ property, constraints }) =>
-      ValidationMessage.getMinLengthMessage(property, constraints[0])
+      validationMessage.getMinLengthMessage(property, constraints[0])
   })
   @MaxLength(35, {
     message: ({ property, constraints }) =>
-      ValidationMessage.getMaxLengthMessage(property, constraints[0])
+      validationMessage.getMaxLengthMessage(property, constraints[0])
   })
   public title: string
 
@@ -26,11 +26,11 @@ export class CreateProductCategoryDto {
   @IsNotEmpty()
   @MinLength(15, {
     message: ({ property, constraints }) =>
-      ValidationMessage.getMinLengthMessage(property, constraints[0])
+      validationMessage.getMinLengthMessage(property, constraints[0])
   })
   @MaxLength(150, {
     message: ({ property, constraints }) =>
-      ValidationMessage.getMaxLengthMessage(property, constraints[0])
+      validationMessage.getMaxLengthMessage(property, constraints[0])
   })
   public description: string
 

@@ -53,7 +53,7 @@ export class ProductCategoryService {
         id: categoryId
       },
       include: {
-        productSubcategories: {
+        subcategories: {
           select: {
             id: true,
             title: true,
@@ -80,7 +80,7 @@ export class ProductCategoryService {
       take,
       skip: skip || 0,
       include: {
-        productSubcategories: {
+        subcategories: {
           include: {
             products: true
           }

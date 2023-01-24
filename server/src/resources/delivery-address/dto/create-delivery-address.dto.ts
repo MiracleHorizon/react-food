@@ -1,6 +1,6 @@
 import { IsInt, IsNotEmpty, IsOptional, IsString, Min } from 'class-validator'
 
-import { ValidationMessage } from '@/modules/ValidationMessage'
+import { validationMessage } from '@/modules/ValidationMessage'
 
 export class CreateDeliveryAddressDto {
   @IsString()
@@ -18,21 +18,21 @@ export class CreateDeliveryAddressDto {
   @IsInt()
   @IsNotEmpty()
   @Min(1, {
-    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
+    message: ({ value }) => validationMessage.getMinValueMessage(value)
   })
   public entrance: number
 
   @IsInt()
   @IsNotEmpty()
   @Min(-1, {
-    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
+    message: ({ value }) => validationMessage.getMinValueMessage(value)
   })
   public floor: number
 
   @IsInt()
   @IsNotEmpty()
   @Min(0, {
-    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
+    message: ({ value }) => validationMessage.getMinValueMessage(value)
   })
   public flatOrOffice: number
 

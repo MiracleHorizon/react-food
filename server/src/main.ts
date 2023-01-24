@@ -21,10 +21,8 @@ const bootstrap = async () => {
       console.log(`Server start on port: ${port}`)
     })
   } catch (err) {
-    throw new Error(err)
+    throw err
   }
 }
 
-bootstrap().then(() => {
-  console.log('Server is ok')
-})
+bootstrap().then(() => console.log('Server is ok'))

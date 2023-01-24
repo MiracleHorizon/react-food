@@ -11,7 +11,6 @@ import {
 import type { Response } from 'express'
 
 import { ProductCategoryService } from './product-category.service'
-import { CreateProductCategoryDto } from './dto/create-product-category.dto'
 
 @Controller('product_category')
 export class ProductCategoryController {
@@ -20,7 +19,7 @@ export class ProductCategoryController {
   ) {}
 
   @Post()
-  public create(@Body() dto: CreateProductCategoryDto, @Res() res: Response) {
+  public create(@Body() dto: any, @Res() res: Response) {
     return this.productCategoryService.create({ ...dto, res })
   }
 
@@ -41,10 +40,6 @@ export class ProductCategoryController {
   public findAllForNavigation() {
     return this.productCategoryService.findAllForNavigation()
   }
-
-  public addSubcategory() {}
-
-  public removeSubcategory() {}
 
   @Delete(':id')
   public removeOne(@Param('id') id: string, @Res() res: Response) {

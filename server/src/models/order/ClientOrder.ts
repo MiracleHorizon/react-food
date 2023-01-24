@@ -1,4 +1,4 @@
-import type { OrderStatus } from '@prisma/client'
+import { OrderStatus } from '@prisma/client'
 
 interface ClientOrderProduct {
   imageUrl: string

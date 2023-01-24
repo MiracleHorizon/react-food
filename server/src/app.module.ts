@@ -8,6 +8,7 @@ import { DeliveryAddressModule } from '@/resources/delivery-address/delivery-add
 import { BillingCardModule } from '@/resources/billing-card/billing-card.module'
 import { ProductCategoryModule } from '@/resources/product-category/product-category.module'
 import { ProductSubcategoryModule } from '@/resources/product-subcategory/product-subcategory.module'
+import { ProductModule } from '@/resources/product/product.module'
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { ProductSubcategoryModule } from '@/resources/product-subcategory/produc
     DeliveryAddressModule,
     BillingCardModule,
     ProductCategoryModule,
-    ProductSubcategoryModule
+    ProductSubcategoryModule,
+    ProductModule
   ]
 })
 export class AppModule {}

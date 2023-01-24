@@ -7,11 +7,11 @@ import {
   IsPhoneNumber,
   IsString,
   Max,
-  Min,
-  MaxLength
+  MaxLength,
+  Min
 } from 'class-validator'
 
-import { ValidationMessage } from '@/modules/ValidationMessage'
+import { validationMessage } from '@/modules/ValidationMessage'
 
 export class CreateOrderDto {
   @IsString()
@@ -21,10 +21,10 @@ export class CreateOrderDto {
   @IsNumber()
   @IsNotEmpty()
   @Min(0, {
-    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
+    message: ({ value }) => validationMessage.getMinValueMessage(value)
   })
   @Max(10, {
-    message: ({ value }) => ValidationMessage.getMaxValueMessage(value)
+    message: ({ value }) => validationMessage.getMaxValueMessage(value)
   })
   public cutleryCount: number
 
@@ -36,28 +36,28 @@ export class CreateOrderDto {
   @IsNumber()
   @IsNotEmpty()
   @Min(1, {
-    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
+    message: ({ value }) => validationMessage.getMinValueMessage(value)
   })
   public totalCost: number
 
   @IsNumber()
   @IsNotEmpty()
   @Min(1, {
-    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
+    message: ({ value }) => validationMessage.getMinValueMessage(value)
   })
   public productsCost: number
 
   @IsNumber()
   @IsNotEmpty()
   @Min(0, {
-    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
+    message: ({ value }) => validationMessage.getMinValueMessage(value)
   })
   public deliveryCost: number
 
   @IsNumber()
   @IsNotEmpty()
   @Min(0, {
-    message: ({ value }) => ValidationMessage.getMinValueMessage(value)
+    message: ({ value }) => validationMessage.getMinValueMessage(value)
   })
   public serviceFee: number
 
@@ -65,7 +65,7 @@ export class CreateOrderDto {
   @IsOptional()
   @MaxLength(120, {
     message: ({ property, constraints }) =>
-      ValidationMessage.getMaxLengthMessage(property, constraints[0])
+      validationMessage.getMaxLengthMessage(property, constraints[0])
   })
   public commentary?: string
 

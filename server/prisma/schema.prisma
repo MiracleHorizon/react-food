@@ -33,7 +33,7 @@ model DeliveryAddress {
   floor        Int
   flatOrOffice Int
   intercom     Int?
-  user         User     @relation(fields: [userId], references: [id])
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId       String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -47,7 +47,7 @@ model BillingCard {
   cvc         Int
   expiredDate DateTime
   type        BillingCardType @default(DEFAULT)
-  user        User            @relation(fields: [userId], references: [id])
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
   createdAt   DateTime        @default(now())
   updatedAt   DateTime        @updatedAt
@@ -68,7 +68,7 @@ model Order {
   recipientPhoneNumber String
   recipientName        String
   commentary           String?
-  user                 User           @relation(fields: [userId], references: [id])
+  user                 User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId               String
   createdAt            DateTime       @default(now())
   updatedAt            DateTime       @updatedAt
@@ -82,7 +82,7 @@ model OrderProduct {
   price     Float
   count     Int
   imageUrl  String?
-  order     Order    @relation(fields: [orderId], references: [id])
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -91,21 +91,21 @@ model OrderProduct {
 }
 
 model ProductCategory {
-  id                   String               @id @default(cuid())
-  title                String
-  description          String
-  imageUrl             String?
-  productSubcategories ProductSubcategory[]
+  id            String               @id @default(cuid())
+  title         String               @unique
+  description   String
+  imageUrl      String?
+  subcategories ProductSubcategory[]
 
   @@map("productCategories")
 }
 
 model ProductSubcategory {
   id                String          @id @default(cuid())
-  title             String
+  title             String          @unique
   description       String
   products          Product[]
-  productCategory   ProductCategory @relation(fields: [productCategoryId], references: [id])
+  productCategory   ProductCategory @relation(fields: [productCategoryId], references: [id], onDelete: Cascade)
   productCategoryId String
 
   @@map("productSubcategories")
@@ -113,13 +113,13 @@ model ProductSubcategory {
 
 model Product {
   id                   String             @id @default(cuid())
-  title                String
+  title                String             @unique
   description          String?
   imageUrl             String?
-  price                Int
-  weight               Int
+  price                Float
+  weight               Float
   tag                  String
-  productSubcategory   ProductSubcategory @relation(fields: [productSubcategoryId], references: [id])
+  productSubcategory   ProductSubcategory @relation(fields: [productSubcategoryId], references: [id], onDelete: Cascade)
   productSubcategoryId String
 
   @@map("products")
