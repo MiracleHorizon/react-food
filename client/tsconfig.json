@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
     "baseUrl": "./src",
     "paths": {
+      "@/pages/*": [
+        "../pages/*"
+      ],
       "@/components/*": [
         "components/*"
       ],
-      "@/assets/*": [
-        "assets/*"
-      ],
-      "@/hooks/*":  [
-        "hooks/*"
+      "@/ui/*": [
+        "components/ui/*"
       ],
       "@/layouts/*": [
         "layouts/*"
@@ -18,29 +17,38 @@
       "@/stores/*": [
         "stores/*"
       ],
+      "@/entities/*": [
+        "entities/*"
+      ],
       "@/models/*": [
         "models/*"
       ],
       "@/modules/*": [
         "modules/*"
       ],
-      "@/services/*": [
-        "services/*"
+      "@/hooks/*": [
+        "hooks/*"
       ],
-      "@/public/*": [
-        "../public/*"
-      ],
-      "@/ui/*": [
-        "components/ui/*"
+      "@/api/*": [
+        "api/*"
       ],
       "@/utils/*": [
         "utils/*"
       ],
-      "@/entities/*": [
-        "entities/*"
+      "@/types/*": [
+        "types/*"
       ],
       "@/exceptions/*": [
         "entities/exceptions/*"
+      ],
+      "@/public/*": [
+        "../public/*"
+      ],
+      "@/styles/*": [
+        "../public/styles/*"
+      ],
+      "@/images/*": [
+        "../public/images*"
       ]
     },
     "target": "es5",
@@ -49,11 +57,25 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
+    "experimentalDecorators": true,
+    "allowJs": false,
     "skipLibCheck": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "alwaysStrict": true,
     "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "useUnknownInCatchVariables": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
