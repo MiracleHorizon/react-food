@@ -1,10 +1,12 @@
 import Link from 'next/link'
 
+import { Routes } from '@/types/Routes'
+
 const OrdersPage = () => {
   return (
     <div>
       <h1>Ваши заказы</h1>
-      <Link href='/'>На домашнюю страницу</Link>
+      <Link href={Routes.HOME}>На домашнюю страницу</Link>
     </div>
   )
 }

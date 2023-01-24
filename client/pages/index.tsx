@@ -1,16 +1,16 @@
 import type { NextPage } from 'next'
 
-import CartStore from '@/stores/Cart.store'
-import AppStore from '@/stores/Application.store'
 import Home from '@/components/home'
-import CartService from '@/services/CartService'
-import ProductCategoriesService from '@/services/ProductCategoriesService'
-import type { CartProductModel } from '@/models/product/CartProductModel'
-import type { NavigationCategory } from '@/models/NavigationCategory'
+import CartStore from '@/stores/Cart.store'
+import NavigationStore from '@/stores/Navigation.store'
+import { cartService } from '@/api/services/Cart.service'
+import { productCategoryService } from '@/components/product-category'
+import type { ProductModel } from '@/entities/product'
+import type { NavigationCategory } from '@/models/navigation-category'
 
-const HomePage: NextPage<Props> = ({ cartProducts, navigationCategories }) => {
-  AppStore.setNavigationCategories(navigationCategories)
+const HomePage: NextPage<Props> = ({ cartProducts, navCategories }) => {
   CartStore.initializeCart(cartProducts)
+  NavigationStore.setCategories(navCategories)
 
   return <Home />
 }
@@ -18,19 +18,18 @@ const HomePage: NextPage<Props> = ({ cartProducts, navigationCategories }) => {
 export default HomePage
 
 export const getStaticProps = async () => {
-  const cartProducts = await CartService.fetchCart()
-  const navigationCategories =
-    await ProductCategoriesService.fetchNavCategories()
+  const cartProducts = await cartService.fetchCart()
+  const navCategories = await productCategoryService.fetchNavCategories()
 
   return {
     props: {
       cartProducts,
-      navigationCategories
+      navCategories
     }
   }
 }
 
 interface Props {
-  cartProducts: CartProductModel[]
-  navigationCategories: NavigationCategory[]
+  cartProducts: ProductModel[]
+  navCategories: NavigationCategory[]
 }

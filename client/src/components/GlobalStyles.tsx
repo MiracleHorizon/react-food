@@ -28,24 +28,22 @@ const GlobalStyles = () => (
       }
 
       button {
+        font-family: inherit;
         cursor: pointer;
       }
 
-      button, input {
+      li {
+        list-style: none;
+      }
+
+      button,
+      input {
         border: none;
         background: none;
 
         &:focus {
           border: none;
         }
-      }
-
-      button {
-        font-family: inherit;
-      }
-
-      li {
-        list-style: none;
       }
     `}
   />

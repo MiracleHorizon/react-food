@@ -1,42 +1,42 @@
 import { makeAutoObservable } from 'mobx'
 
-import { CartProduct } from '@/entities/product/CartProduct'
-import { ReduceArray } from '@/modules/ReduceArray'
-import type { ProductModel } from '@/models/product/ProductModel'
-import type { CartProductModel } from '@/models/product/CartProductModel'
-import { InvalidPaymentPriceException } from '@/exceptions/InvalidPaymentPriceException'
-import { InvalidOrderWeightException } from '@/exceptions/InvalidOrderWeightException'
-import { READY_MEAL_TAGS } from '@/utils/constants'
+import type { ProductModel } from '@/entities/product'
+import { Product } from '@/entities/product'
+import { ArrayReducer } from '@/modules/array-reducer'
+import { NumberFormatter } from '@/modules/number-formatter'
+import { InvalidPaymentCostException } from '@/exceptions/invalid-payment-cost'
+import { InvalidOrderWeightException } from '@/exceptions/invalid-order-weight'
+import { MIN_ORDER_COST, READY_MEAL_TAGS } from '@/utils/constants'
+import { intlConfig } from '@/utils/configs/intl.config'
 
 class CartStore {
   private _isCartDataLoading = true
-  private _products: CartProduct[] = []
+  private _products: Product[] = []
+
   private readonly MAX_ORDER_WEIGHT_RESTRICTION = 3e4
   private readonly MAX_ORDER_PRICE_RESTRICTION = 5e4
-  private readonly reduceArray = ReduceArray.reduceNumberArray
+  private readonly numberFormatter = new NumberFormatter('ru')
 
   public get isCartDataLoading(): boolean {
     return this._isCartDataLoading
   }
 
-  public get products(): CartProduct[] {
+  public get products(): ProductModel[] {
     return this._products
   }
 
-  public set products(products: CartProductModel[]) {
-    this._products = products.map(product => new CartProduct(product))
+  public set products(products: ProductModel[]) {
+    this._products = products.map(product => new Product(product))
   }
 
   public get totalPositions(): number {
     return this._products.length
   }
 
-  public get totalProducts(): number {
-    return this.reduceArray(this._products.map(product => product.count))
-  }
-
   public get totalCost(): number {
-    return this.reduceArray(this._products.map(product => product.getCost()))
+    return ArrayReducer.reduceNumberArray(
+      this._products.map(product => product.getCost())
+    )
   }
 
   public get isEmpty(): boolean {
@@ -49,11 +49,19 @@ class CartStore {
       .includes(true)
   }
 
+  public get minOrderCostExceeded(): boolean {
+    return this.totalCost >= MIN_ORDER_COST
+  }
+
+  public get orderCostShortage(): number {
+    return MIN_ORDER_COST - this.totalCost
+  }
+
   constructor() {
     makeAutoObservable(this)
   }
 
-  public initializeCart(products: CartProductModel[]): void {
+  public initializeCart(products: ProductModel[]): void {
     this._isCartDataLoading = false
     this.products = products
   }
@@ -63,11 +71,15 @@ class CartStore {
   }
 
   public addProduct(product: ProductModel): void {
-    this._products.push(new CartProduct({ ...product, count: 1 }))
+    this._products.push(new Product({ ...product, count: 1 }))
   }
 
   public removeProduct(productId: string): void {
     this._products = this._products.filter(product => product.id !== productId)
+  }
+
+  public isProductInCart(productId: string): boolean {
+    return this._products.map(product => product.id).includes(productId)
   }
 
   public incrementProductCount(productId: string): void {
@@ -80,8 +92,8 @@ class CartStore {
         throw new InvalidOrderWeightException()
       }
 
-      if (!this.isPriceAvailable(product.price)) {
-        throw new InvalidPaymentPriceException()
+      if (!this.isCostAvailable(product.price)) {
+        throw new InvalidPaymentCostException()
       }
 
       product.incrementCount()
@@ -114,20 +126,32 @@ class CartStore {
     return potentialWeight <= this.MAX_ORDER_WEIGHT_RESTRICTION
   }
 
-  private isPriceAvailable(newProductPrice: number): boolean {
-    const potentialPrice = this.totalCost + newProductPrice
-    return potentialPrice <= this.MAX_ORDER_PRICE_RESTRICTION
-  }
-
-  public getTotalProductsCount(): number {
-    return this.reduceArray(this._products.map(product => product.count))
+  private isCostAvailable(newProductPrice: number): boolean {
+    const potentialCost = this.totalCost + newProductPrice
+    return potentialCost <= this.MAX_ORDER_PRICE_RESTRICTION
   }
 
   public getTotalProductsWeight(): number {
-    return this.reduceArray(
+    return ArrayReducer.reduceNumberArray(
       this._products.map(product => product.getTotalWeight())
     )
   }
+
+  public getFormattedTotalCost(): string {
+    return this.numberFormatter.formatCurrency({
+      value: this.totalCost,
+      ...intlConfig.currencyOptions
+    })
+  }
+
+  public getFormattedOrderCostShortage(): string {
+    return this.numberFormatter.formatCurrency({
+      value: this.orderCostShortage,
+      ...intlConfig.currencyOptions
+    })
+  }
 }
 
-export default new CartStore()
+const cartStore = new CartStore()
+
+export default cartStore

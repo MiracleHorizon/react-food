@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 
+import Cart from '@/components/cart/cart'
 import CartStore from '@/stores/Cart.store'
-import Cart from '@/components/cart'
-import CartService from '@/services/CartService'
-import type { CartProductModel } from '@/models/product/CartProductModel'
+import { cartService } from '@/api/services/Cart.service'
+import type { ProductModel } from '@/entities/product'
 
 const CartPage: NextPage<Props> = ({ cartProducts }) => {
   CartStore.initializeCart(cartProducts)
@@ -14,7 +14,7 @@ const CartPage: NextPage<Props> = ({ cartProducts }) => {
 export default CartPage
 
 export const getServerSideProps = async () => {
-  const cartProducts = await CartService.fetchCart()
+  const cartProducts = await cartService.fetchCart()
 
   return {
     props: {
@@ -24,5 +24,5 @@ export const getServerSideProps = async () => {
 }
 
 interface Props {
-  cartProducts: CartProductModel[]
+  cartProducts: ProductModel[]
 }
