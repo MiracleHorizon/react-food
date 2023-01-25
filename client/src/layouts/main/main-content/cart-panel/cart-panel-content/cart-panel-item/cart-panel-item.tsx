@@ -1,8 +1,8 @@
 import { FC, memo, useCallback, useMemo } from 'react'
 
-import CartStore from '@/stores/Cart.store'
 import ItemContent from './cart-panel-item-content'
 import ChangeCountLabel from './change-count-label'
+import { cartStore } from '@/stores/cart.store'
 import { Product, ProductModel } from '@/entities/product'
 import * as Item from './cart-panel-item.styled'
 
@@ -11,11 +11,11 @@ const CartPanelItem: FC<Props> = ({ lastInOrder, ...productData }) => {
   const { id, title, count } = product
 
   const handleDecrementCount = useCallback(() => {
-    CartStore.decrementProductCount(id)
+    cartStore.decrementProductCount(id)
   }, [id])
 
   const handleIncrementCount = useCallback(() => {
-    CartStore.incrementProductCount(id)
+    cartStore.incrementProductCount(id)
   }, [id])
 
   return (

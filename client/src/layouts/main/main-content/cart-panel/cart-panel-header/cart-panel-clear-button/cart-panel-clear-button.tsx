@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite'
 
-import CartStore from '@/stores/Cart.store'
 import ClearCartButton from '@/ui/buttons/clear-cart-button'
+import { cartStore } from '@/stores/cart.store'
 
 const CartPanelClearButton = () => (
-  <>{!CartStore.isEmpty && <ClearCartButton title='Очистить' />}</>
+  <>{!cartStore.isEmpty && <ClearCartButton title='Очистить' />}</>
 )
 
 export default observer(CartPanelClearButton)

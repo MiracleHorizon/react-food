@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import ArrowLeftSvg from '@/ui/svg/ArrowLeftSvg'
+import ArrowLeftSvg from '@/ui/svg/arrow-left-svg'
 import StyledButton from './back-button.styled'
 
 const BackButton = () => {

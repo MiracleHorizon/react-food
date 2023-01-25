@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
-import SmallMinusSvg from '@/ui/svg/SmallMinusSvg'
-import SmallPlusSvg from '@/ui/svg/SmallPlusSvg'
+import SmallMinusSvg from '@/ui/svg/small-minus-svg'
+import SmallPlusSvg from '@/ui/svg/small-plus-svg'
 import * as Label from './change-count-label.styled'
 
 // TODO Добавить отключение кнопки по условию.

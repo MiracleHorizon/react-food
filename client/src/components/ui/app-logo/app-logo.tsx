@@ -1,4 +1,4 @@
-import ReactSvg from '@/ui/svg/ReactSvg'
+import ReactSvg from '@/ui/svg/react-svg'
 import { Routes } from '@/types/Routes'
 import * as Logo from './app-logo.styled'
 

@@ -1,4 +1,4 @@
-import ListSvg from '@/ui/svg/ListSvg'
+import ListSvg from '@/ui/svg/list-svg'
 import { Routes } from '@/types/Routes'
 import * as Label from './orders-label.styled'
 

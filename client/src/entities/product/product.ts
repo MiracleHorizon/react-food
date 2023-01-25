@@ -1,4 +1,4 @@
-import { NumberFormatter } from '@/modules/number-formatter'
+import { NumberFormatter } from '@/utils/number-formatter'
 import { PRODUCT_IMAGE_FALLBACK } from '@/utils/constants'
 import type { ProductModel } from '@/entities/product'
 
@@ -31,7 +31,7 @@ export class Product implements ProductModel {
   }
 
   public getImageUrl(): string {
-    return this.imageUrl || PRODUCT_IMAGE_FALLBACK
+    return this.imageUrl ?? PRODUCT_IMAGE_FALLBACK
   }
 
   public getCost(): number {

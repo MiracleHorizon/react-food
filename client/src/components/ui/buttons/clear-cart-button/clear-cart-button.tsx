@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 
-import CartStore from '@/stores/Cart.store'
+import { cartStore } from '@/stores/cart.store'
 import { Routes } from '@/types/Routes'
 import * as Button from './clear-cart-button.styled'
 
@@ -14,7 +14,7 @@ const ClearCartButton: FC<Props> = ({ title, withIcon }) => {
   const handleClearCart = () => {
     if (!confirm('Очистить корзину?')) return
 
-    CartStore.clear()
+    cartStore.clear()
 
     if (router.asPath === Routes.CART) {
       router.push(Routes.HOME)

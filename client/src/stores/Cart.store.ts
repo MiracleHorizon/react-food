@@ -2,8 +2,8 @@ import { makeAutoObservable } from 'mobx'
 
 import type { ProductModel } from '@/entities/product'
 import { Product } from '@/entities/product'
-import { ArrayReducer } from '@/modules/array-reducer'
-import { NumberFormatter } from '@/modules/number-formatter'
+import { ArrayReducer } from '@/utils/array-reducer'
+import { NumberFormatter } from '@/utils/number-formatter'
 import { InvalidPaymentCostException } from '@/exceptions/invalid-payment-cost'
 import { InvalidOrderWeightException } from '@/exceptions/invalid-order-weight'
 import { MIN_ORDER_COST, READY_MEAL_TAGS } from '@/utils/constants'
@@ -152,6 +152,4 @@ class CartStore {
   }
 }
 
-const cartStore = new CartStore()
-
-export default cartStore
+export const cartStore = new CartStore()

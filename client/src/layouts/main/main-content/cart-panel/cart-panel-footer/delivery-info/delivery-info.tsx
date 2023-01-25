@@ -1,16 +1,16 @@
 import { observer } from 'mobx-react-lite'
 
 import CarBanner from '@/ui/banner/components/car-banner'
-import DeliveryStore from '@/stores/Delivery.store'
+import { deliveryStore } from '@/stores/delivery.store'
 import * as Info from './delivery-info.styled'
 
 const DeliveryInfo = () => (
   <Info.Root>
     <CarBanner />
     <Info.Content>
-      <Info.Title>{DeliveryStore.description.getDescription()}</Info.Title>
+      <Info.Title>{deliveryStore.description.getDescription()}</Info.Title>
       <Info.ServiceFee>
-        Работа сервиса {DeliveryStore.description.getServiceFee()}
+        Работа сервиса {deliveryStore.description.getServiceFee()}
       </Info.ServiceFee>
     </Info.Content>
   </Info.Root>

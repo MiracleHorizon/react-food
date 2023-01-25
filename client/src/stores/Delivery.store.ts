@@ -23,6 +23,4 @@ class DeliveryStore {
   }
 }
 
-const deliveryStore = new DeliveryStore()
-
-export default deliveryStore
+export const deliveryStore = new DeliveryStore()

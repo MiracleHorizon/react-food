@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react-lite'
 
 import NavigationItem from './navigation-item'
-import NavigationStore from '@/stores/Navigation.store'
+import { navigationStore } from '@/layouts/main'
 
 const Navigation = () => (
   <nav>
     <ul>
-      {NavigationStore.getCategories().map(category => (
+      {navigationStore.getCategories().map(category => (
         <NavigationItem key={category.id} {...category} />
       ))}
     </ul>

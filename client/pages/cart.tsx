@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 
-import Cart from '@/components/cart/cart'
-import CartStore from '@/stores/Cart.store'
-import { cartService } from '@/api/services/Cart.service'
+import Cart from '@/modules/cart'
+import { cartStore } from '@/stores/cart.store'
+import { cartService } from '@/api/services/cart.service'
 import type { ProductModel } from '@/entities/product'
 
 const CartPage: NextPage<Props> = ({ cartProducts }) => {
-  CartStore.initializeCart(cartProducts)
+  cartStore.initializeCart(cartProducts)
 
   return <Cart />
 }

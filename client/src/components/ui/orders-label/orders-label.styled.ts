@@ -18,6 +18,10 @@ export const Root = styled(Link)`
   &:hover {
     background: ${colors.gray['4']};
   }
+
+  &:active {
+    background: ${colors.gray['6']};
+  }
 `
 
 export const SvgWrapper = styled.span`

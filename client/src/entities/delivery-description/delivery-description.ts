@@ -1,4 +1,4 @@
-import { NumberFormatter } from '@/modules/number-formatter'
+import { NumberFormatter } from '@/utils/number-formatter'
 import { intlConfig } from '@/utils/configs/intl.config'
 import type { Range } from '@/models/range'
 import type { DeliveryDescriptionModel } from './delivery-description.model'

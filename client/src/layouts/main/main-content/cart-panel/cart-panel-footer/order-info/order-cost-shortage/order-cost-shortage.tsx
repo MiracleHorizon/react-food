@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 
-import CartStore from '@/stores/Cart.store'
+import { cartStore } from '@/stores/cart.store'
 import CartBanner from '@/ui/banner/components/cart-banner'
 import * as Shortage from './order-cost-shortage.styled'
 
@@ -8,7 +8,7 @@ const OrderCostShortage = () => (
   <Shortage.Root>
     <CartBanner />
     <Shortage.Title>
-      Ещё {CartStore.getFormattedOrderCostShortage()} до минимального заказа
+      Ещё {cartStore.getFormattedOrderCostShortage()} до минимального заказа
     </Shortage.Title>
   </Shortage.Root>
 )
