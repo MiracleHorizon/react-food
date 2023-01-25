@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException
-} from '@nestjs/common'
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import type { ProductCategory } from '@prisma/client'
 import type { Response } from 'express'
 
@@ -11,6 +7,7 @@ import { CreateProductCategoryDto } from './dto/create-product-category.dto'
 import type { PaginationParams } from '@/models/PaginationParams'
 import type { Res } from '@/models/Res'
 
+// TODO При пустом массиве products или subcategories не возвращать
 @Injectable()
 export class ProductCategoryService {
   constructor(private readonly prisma: PrismaService) {}
@@ -54,11 +51,17 @@ export class ProductCategoryService {
       },
       include: {
         subcategories: {
+          where: {
+            products: {
+              some: {}
+            }
+          },
           select: {
             id: true,
             title: true,
-            products: true,
-            productCategoryId: true
+            description: true,
+            productCategoryId: true,
+            products: true
           }
         }
       }
@@ -76,7 +79,7 @@ export class ProductCategoryService {
     skip,
     take
   }: PaginationParams): Promise<ProductCategory[]> {
-    return this.prisma.productCategory.findMany({
+    const categories = await this.prisma.productCategory.findMany({
       take,
       skip: skip || 0,
       include: {
@@ -87,6 +90,8 @@ export class ProductCategoryService {
         }
       }
     })
+
+    return categories.filter(category => category.subcategories.length > 0)
   }
 
   public async findAllForNavigation(): Promise<ProductCategory[]> {

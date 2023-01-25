@@ -25,8 +25,8 @@ export class ProductSubcategoryController {
   }
 
   @Get('category/:id')
-  public findAll(@Param('id') categoryId: string) {
-    return this.productSubcategoryService.findAll(categoryId)
+  public findAllByCategory(@Param('id') categoryId: string) {
+    return this.productSubcategoryService.findAllByCategory(categoryId)
   }
 
   @Post(':id/add_product')

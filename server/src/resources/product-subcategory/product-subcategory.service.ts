@@ -56,7 +56,9 @@ export class ProductSubcategoryService {
     return subcategory
   }
 
-  public async findAll(categoryId: string): Promise<ProductSubcategory[]> {
+  public async findAllByCategory(
+    categoryId: string
+  ): Promise<ProductSubcategory[]> {
     return this.prisma.productSubcategory.findMany({
       where: {
         productCategoryId: categoryId
