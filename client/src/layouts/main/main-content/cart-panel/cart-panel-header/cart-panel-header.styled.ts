@@ -4,8 +4,9 @@ export const Root = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 6px;
-  padding-bottom: 16px;
+  padding: 0 16px;
+  height: 60px;
+  min-height: 60px;
 `
 
 export const Title = styled.h3`

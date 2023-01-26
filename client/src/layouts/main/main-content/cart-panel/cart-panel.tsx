@@ -1,7 +1,12 @@
+import dynamic from 'next/dynamic'
+
 import PanelHeader from './cart-panel-header'
-import PanelContent from './cart-panel-content'
 import PanelFooter from './cart-panel-footer'
 import * as Panel from './cart-panel.styled'
+
+const PanelContent = dynamic(import('./cart-panel-content'), {
+  ssr: false
+})
 
 const CartPanel = () => (
   <Panel.Root>

@@ -1,30 +1,27 @@
-import { useScroll } from 'framer-motion'
-import type { FC } from 'react'
-import { useEffect, useState } from 'react'
+import { useMotionValueEvent, useScroll } from 'framer-motion'
+import { FC, useState } from 'react'
 
 import type { ChildrenProps } from '@/types/ChildrenProps'
 import * as Header from './app-header.styled'
 
 const AppHeader: FC<ChildrenProps> = ({ children }) => {
-  const [isScrollOnTop, setScrollOnTop] = useState(true)
+  const [isPageScrollOnTop, setPageScrollOnTop] = useState(true)
   const { scrollY } = useScroll()
 
-  useEffect(() => {
-    return scrollY.onChange(latest => {
-      if (isScrollOnTop && latest > 10) {
-        setScrollOnTop(false)
-      }
+  useMotionValueEvent(scrollY, 'change', latest => {
+    if (isPageScrollOnTop && latest > 10) {
+      setPageScrollOnTop(false)
+    }
 
-      if (!isScrollOnTop && latest <= 10) {
-        setScrollOnTop(true)
-      }
-    })
-  }, [scrollY, isScrollOnTop])
+    if (!isPageScrollOnTop && latest <= 10) {
+      setPageScrollOnTop(true)
+    }
+  })
 
   return (
-    <Header.Root isScrollOnTop={isScrollOnTop}>
+    <Header.Root isScrollOnTop={isPageScrollOnTop}>
       <Header.Content>{children}</Header.Content>
-      {isScrollOnTop && <Header.Divider />}
+      {isPageScrollOnTop && <Header.Divider />}
     </Header.Root>
   )
 }

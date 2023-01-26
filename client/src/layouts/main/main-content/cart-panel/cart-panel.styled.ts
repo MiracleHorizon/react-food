@@ -9,6 +9,7 @@ const topOffset = appHeaderHeight + contentTopPadding
 export const Root = styled.aside`
   position: sticky;
   top: ${topOffset}px;
+  min-width: 320px;
   width: 320px;
   height: calc(100vh - ${topOffset}px);
   margin-left: ${asideMarginX}px;
@@ -22,5 +23,4 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 16px;
 `
