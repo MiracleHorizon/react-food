@@ -22,15 +22,15 @@ const OrderProductItem: FC<ProductModel> = productData => {
     <Item.Root>
       <ItemContent
         title={title}
-        imageUrl={product.getImageUrl()}
-        weight={product.getFormattedWeight()}
+        imagePath={product.image}
+        weight={product.formattedWeight}
       />
       <ChangeCountLabel
         value={count}
         increment={handleIncrementCount}
         decrement={handleDecrementCount}
       />
-      <Item.Price>{product.getFormattedPrice()}</Item.Price>
+      <Item.Price>{product.price.formattedPrice}</Item.Price>
     </Item.Root>
   )
 }

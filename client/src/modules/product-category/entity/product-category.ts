@@ -8,20 +8,20 @@ export class ProductCategoryImpl implements ProductCategoryModel {
   public readonly id: string
   public readonly title: string
   public readonly description: string
-  public readonly imageUrl: string | null
+  public readonly imagePath: string | null
   public readonly subcategories: ProductSubcategoryModel[]
 
   constructor({
     id,
     title,
     description,
-    imageUrl,
+    imagePath,
     subcategories
   }: ProductCategoryModel) {
     this.id = id
     this.title = title
     this.description = description
-    this.imageUrl = imageUrl
+    this.imagePath = imagePath
     this.subcategories = subcategories
   }
 

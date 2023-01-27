@@ -5,14 +5,14 @@ import { Routes } from '@/types/Routes'
 import type { NavigationCategory } from '@/models/navigation-category'
 import * as Item from './navigation-item.styled'
 
-const NavigationItem: FC<NavigationCategory> = ({ id, title, imageUrl }) => {
+const NavigationItem: FC<NavigationCategory> = ({ id, title, imagePath }) => {
   const router = useRouter()
 
   return (
     <Item.Root>
       <Item.Link href={`${Routes.CATEGORY}/${id}`}>
-        {imageUrl ? (
-          <Item.Image backgroundImage={imageUrl} />
+        {imagePath ? (
+          <Item.Image backgroundImage={imagePath} />
         ) : (
           <Item.ImageFallback data-el='nav-img-fb' />
         )}

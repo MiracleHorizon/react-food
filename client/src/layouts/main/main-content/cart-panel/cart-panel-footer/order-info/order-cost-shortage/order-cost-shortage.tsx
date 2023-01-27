@@ -8,7 +8,7 @@ const OrderCostShortage = () => (
   <Shortage.Root>
     <CartBanner />
     <Shortage.Title>
-      Ещё {cartStore.getFormattedOrderCostShortage()} до минимального заказа
+      Ещё {cartStore.formattedOrderCostShortage} до минимального заказа
     </Shortage.Title>
   </Shortage.Root>
 )

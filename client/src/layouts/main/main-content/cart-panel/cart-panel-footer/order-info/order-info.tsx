@@ -16,15 +16,15 @@ const OrderInfo = () => {
       {cartStore.minOrderCostExceeded ? (
         <OrderButton
           title='Верно, к оплате'
-          cost={cartStore.getFormattedTotalCost()}
+          cost={cartStore.formattedTotalCost}
           disabled={false}
         />
       ) : (
         <>
           <OrderCostShortage />
           <OrderButton
-            title={`Добавьте еще на ${cartStore.getFormattedOrderCostShortage()}`}
-            cost={cartStore.getFormattedTotalCost()}
+            title={`Добавьте еще на ${cartStore.formattedOrderCostShortage}`}
+            cost={cartStore.formattedTotalCost}
             disabled={true}
             onClick={handleGoToCart}
           />

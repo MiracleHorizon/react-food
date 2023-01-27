@@ -1,13 +1,19 @@
 import styled from '@emotion/styled'
+import NextImage from 'next/image'
 
-const StyledIcon = styled.div`
-  width: 40px;
-  height: 40px;
+import { colors } from '@/styles/variables'
+
+export const Root = styled.div`
+  width: 28px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  background: rgb(90, 195, 26);
+  border-radius: 4px;
+  background: ${colors.green['1']};
 `
 
-export default StyledIcon
+export const Image = styled(NextImage)`
+  filter: invert(1);
+  object-fit: cover;
+`

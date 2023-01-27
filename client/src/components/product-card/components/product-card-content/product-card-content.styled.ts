@@ -1,7 +1,10 @@
 import styled from '@emotion/styled'
 
 import { colors } from '@/styles/variables'
-import { IProductCardVariant, ProductCardVariant } from '../product-card-models'
+import {
+  IProductCardVariant,
+  ProductCardVariant
+} from '@/components/product-card'
 
 export const Root = styled.main<IProductCardVariant>`
   flex: 1 1 auto;
@@ -19,15 +22,15 @@ export const Container = styled.div`
 
 export const Title = styled.span<IProductCardVariant>`
   height: 40px;
-  display: inline-block;
+  width: 100%;
+  display: -webkit-box;
   margin-top: ${p => (p.variant === ProductCardVariant.SMALL ? '4px' : '7px')};
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-word;
+  overflow: hidden;
   font-size: 17px;
   line-height: 22px;
-`
-
-export const Price = styled.span`
-  font-size: 24px;
-  font-weight: 500;
 `
 
 export const Weight = styled.span`

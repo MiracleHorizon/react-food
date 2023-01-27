@@ -1,61 +1,58 @@
+import { ProductPrice } from './product-price'
 import { NumberFormatter } from '@/utils/number-formatter'
 import { PRODUCT_IMAGE_FALLBACK } from '@/utils/constants'
-import type { ProductModel } from '@/entities/product'
+import type { ProductModel } from './product.model'
 
-export class Product implements ProductModel {
-  private readonly numberFormatter = new NumberFormatter('ru')
+export class Product {
+  private readonly numberFormatter: NumberFormatter
   public readonly id: string
   public readonly tag: string
   public readonly title: string
-  public readonly price: number
   public readonly weight: number
-  public readonly imageUrl: string | null
+  public readonly price: ProductPrice
+  public readonly imagePath: string | null
   public count: number
 
-  constructor({
-    id,
-    tag,
-    title,
-    price,
-    weight,
-    count,
-    imageUrl
-  }: ProductModel) {
-    this.id = id
-    this.tag = tag
-    this.title = title
-    this.price = price
-    this.weight = weight
-    this.imageUrl = imageUrl
-    this.count = count
+  public get cost(): number {
+    return this.price.price * this.count
   }
 
-  public getImageUrl(): string {
-    return this.imageUrl ?? PRODUCT_IMAGE_FALLBACK
+  public get totalWeight(): number {
+    return this.weight * this.count
   }
 
-  public getCost(): number {
-    return this.price * this.count
-  }
-
-  // TODO Добавить в тесты
-  public getFormattedPrice(): string {
-    return this.numberFormatter.formatCurrency({
-      value: this.price,
-      currency: 'RUB',
-      maximumSignificantDigits: 6
-    })
-  }
-
-  // TODO Добавить в тесты
-  public getFormattedWeight(): string {
+  public get formattedWeight(): string {
     return this.numberFormatter.formatWeight({
       value: this.weight
     })
   }
 
-  public getTotalWeight(): number {
-    return this.weight * this.count
+  public get image(): string {
+    return this.imagePath ?? PRODUCT_IMAGE_FALLBACK
+  }
+
+  constructor({
+    id,
+    tag,
+    title,
+    count,
+    weight,
+    imagePath,
+    fullPrice,
+    discountPercent
+  }: ProductModel) {
+    this.id = id
+    this.tag = tag
+    this.title = title
+    this.count = count
+    this.weight = weight
+    this.imagePath = imagePath
+    this.numberFormatter = new NumberFormatter('ru')
+    this.price = new ProductPrice({
+      fullPrice,
+      discountPercent,
+      numberFormatter: this.numberFormatter
+    })
   }
 
   public incrementCount(): void {

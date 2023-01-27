@@ -20,6 +20,13 @@ export const Root = styled.li<RootProps>`
     height: 0.5px;
     background: #8a878466;
   }
+
+  div[data-el='discount-icon'] {
+    position: absolute;
+    left: -4px;
+    bottom: 6px;
+    rotate: -4deg;
+  }
 `
 
 export const Image = styled(NextImage)`

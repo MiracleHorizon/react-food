@@ -6,7 +6,7 @@ import { cartStore } from '@/stores/cart.store'
 const MainLayoutHeaderCartLabel = () => (
   <>
     {cartStore.totalCost > 0 && (
-      <CartButton productsCost={cartStore.getFormattedTotalCost()} />
+      <CartButton productsCost={cartStore.formattedTotalCost} />
     )}
   </>
 )

@@ -6,6 +6,7 @@ import { cartStore } from '@/stores/cart.store'
 import type { ProductModel } from '@/entities/product'
 import * as Footer from './product-card-footer.styled'
 
+// TODO Полностью переработать механизм добавлена продукта в корзину
 const ProductCardFooter: FC<Props> = ({
   increment,
   decrement,

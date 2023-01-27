@@ -22,7 +22,13 @@ class CartStore {
   }
 
   public get products(): ProductModel[] {
-    return this._products
+    return this._products.map(product => {
+      return {
+        ...product,
+        fullPrice: product.price.fullPrice,
+        discountPercent: product.price.discountPercent
+      }
+    })
   }
 
   public set products(products: ProductModel[]) {
@@ -35,7 +41,21 @@ class CartStore {
 
   public get totalCost(): number {
     return ArrayReducer.reduceNumberArray(
-      this._products.map(product => product.getCost())
+      this._products.map(product => product.cost)
+    )
+  }
+
+  public get formattedTotalCost(): string {
+    return this.formatCurrency(this.totalCost)
+  }
+
+  public get formattedOrderCostShortage(): string {
+    return this.formatCurrency(this.orderCostShortage)
+  }
+
+  public get totalProductsWeight(): number {
+    return ArrayReducer.reduceNumberArray(
+      this._products.map(product => product.totalWeight)
     )
   }
 
@@ -92,7 +112,7 @@ class CartStore {
         throw new InvalidOrderWeightException()
       }
 
-      if (!this.isCostAvailable(product.price)) {
+      if (!this.isCostAvailable(product.price.price)) {
         throw new InvalidPaymentCostException()
       }
 
@@ -122,7 +142,7 @@ class CartStore {
   }
 
   private isWeightAvailable(newProductWeight: number): boolean {
-    const potentialWeight = this.getTotalProductsWeight() + newProductWeight
+    const potentialWeight = this.totalProductsWeight + newProductWeight
     return potentialWeight <= this.MAX_ORDER_WEIGHT_RESTRICTION
   }
 
@@ -131,23 +151,10 @@ class CartStore {
     return potentialCost <= this.MAX_ORDER_PRICE_RESTRICTION
   }
 
-  public getTotalProductsWeight(): number {
-    return ArrayReducer.reduceNumberArray(
-      this._products.map(product => product.getTotalWeight())
-    )
-  }
-
-  public getFormattedTotalCost(): string {
+  private formatCurrency(value: number): string {
     return this.numberFormatter.formatCurrency({
-      value: this.totalCost,
-      ...intlConfig.currencyOptions
-    })
-  }
-
-  public getFormattedOrderCostShortage(): string {
-    return this.numberFormatter.formatCurrency({
-      value: this.orderCostShortage,
-      ...intlConfig.currencyOptions
+      ...intlConfig.currencyOptions,
+      value
     })
   }
 }

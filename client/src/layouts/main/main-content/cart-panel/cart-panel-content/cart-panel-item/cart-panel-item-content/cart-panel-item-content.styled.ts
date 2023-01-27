@@ -37,17 +37,29 @@ export const Container = styled.div`
   }
 `
 
-export const Price = styled.span`
-  font-weight: 500;
-`
-
 export const Weight = styled.span`
   color: ${colors.gray['8']};
+`
+
+export const Price = styled.span`
+  font-weight: 500;
 `
 
 export const Dot = styled.span`
   display: inline-block;
   margin-left: 6px;
   margin-right: 4px;
+  color: ${colors.gray['8']};
+`
+
+export const DiscountPrice = styled.span`
+  margin-right: 6px;
+  font-weight: 500;
+  color: ${colors.orange['1']};
+`
+
+export const ThroughFullPrice = styled.span`
+  margin-bottom: 2px;
+  text-decoration: line-through;
   color: ${colors.gray['8']};
 `

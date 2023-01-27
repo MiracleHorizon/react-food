@@ -1,4 +1,4 @@
-import { ProductCardVariant } from './index'
+import type { ProductCardVariant } from './index'
 
 export interface IProductCardVariant {
   variant: ProductCardVariant
