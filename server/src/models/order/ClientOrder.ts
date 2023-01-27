@@ -1,7 +1,7 @@
 import { OrderStatus } from '@prisma/client'
 
 interface ClientOrderProduct {
-  imageUrl: string
+  imagePath: string
 }
 
 // TODO Переименовать

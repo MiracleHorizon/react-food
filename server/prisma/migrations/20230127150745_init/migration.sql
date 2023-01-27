@@ -74,25 +74,26 @@ CREATE TABLE "orders" (
 );
 
 -- CreateTable
-CREATE TABLE "orderProducts" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "price" DOUBLE PRECISION NOT NULL,
-    "count" INTEGER NOT NULL,
-    "imageUrl" TEXT,
-    "orderId" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
+CREATE TABLE "orderProducts"(
+                                "id"        TEXT             NOT NULL,
+                                "title"     TEXT             NOT NULL,
+                                "price"     DOUBLE PRECISION NOT NULL,
+                                "count"     INTEGER          NOT NULL,
+                                "imagePath" TEXT,
+                                "orderId"   TEXT             NOT NULL,
+                                "createdAt" TIMESTAMP(3)     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                "updatedAt" TIMESTAMP(3)     NOT NULL,
 
-    CONSTRAINT "orderProducts_pkey" PRIMARY KEY ("id")
+                                CONSTRAINT "orderProducts_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "productCategories" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
+CREATE TABLE "productCategories"
+(
+    "id"          TEXT NOT NULL,
+    "title"       TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "imageUrl" TEXT,
+    "imagePath"   TEXT,
 
     CONSTRAINT "productCategories_pkey" PRIMARY KEY ("id")
 );
@@ -108,39 +109,56 @@ CREATE TABLE "productSubcategories" (
 );
 
 -- CreateTable
-CREATE TABLE "products" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "description" TEXT,
-    "imageUrl" TEXT,
-    "price" INTEGER NOT NULL,
-    "weight" INTEGER NOT NULL,
-    "tag" TEXT NOT NULL,
-    "productSubcategoryId" TEXT NOT NULL,
+CREATE TABLE "products"
+(
+    "id"                   TEXT             NOT NULL,
+    "title"                TEXT             NOT NULL,
+    "description"          TEXT             NOT NULL,
+    "imagePath"            TEXT,
+    "fullPrice"            DOUBLE PRECISION NOT NULL,
+    "discountPercent"      INTEGER          NOT NULL DEFAULT 0,
+    "weight"               DOUBLE PRECISION NOT NULL,
+    "tag"                  TEXT             NOT NULL,
+    "productSubcategoryId" TEXT             NOT NULL,
 
     CONSTRAINT "products_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+CREATE UNIQUE INDEX "users_email_key" ON "users" ("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_phoneNumber_key" ON "users"("phoneNumber");
+CREATE UNIQUE INDEX "users_phoneNumber_key" ON "users" ("phoneNumber");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "productCategories_title_key" ON "productCategories" ("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "productSubcategories_title_key" ON "productSubcategories" ("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "products_title_key" ON "products" ("title");
 
 -- AddForeignKey
-ALTER TABLE "deliveryAddresses" ADD CONSTRAINT "deliveryAddresses_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "deliveryAddresses"
+    ADD CONSTRAINT "deliveryAddresses_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "billingCards" ADD CONSTRAINT "billingCards_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "billingCards"
+    ADD CONSTRAINT "billingCards_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "orders" ADD CONSTRAINT "orders_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "orders"
+    ADD CONSTRAINT "orders_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "orderProducts" ADD CONSTRAINT "orderProducts_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "orders"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "orderProducts"
+    ADD CONSTRAINT "orderProducts_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "orders" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "productSubcategories" ADD CONSTRAINT "productSubcategories_productCategoryId_fkey" FOREIGN KEY ("productCategoryId") REFERENCES "productCategories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "productSubcategories"
+    ADD CONSTRAINT "productSubcategories_productCategoryId_fkey" FOREIGN KEY ("productCategoryId") REFERENCES "productCategories" ("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "products" ADD CONSTRAINT "products_productSubcategoryId_fkey" FOREIGN KEY ("productSubcategoryId") REFERENCES "productSubcategories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "products"
+    ADD CONSTRAINT "products_productSubcategoryId_fkey" FOREIGN KEY ("productSubcategoryId") REFERENCES "productSubcategories" ("id") ON DELETE CASCADE ON UPDATE CASCADE;

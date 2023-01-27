@@ -37,6 +37,9 @@ export class ProductService {
     dtos,
     productSubcategoryId
   }: CreateManyProductsArgs): Promise<void> {
+    // const isSubcategoryExists = await this.existInSubcategory()
+    // TODO Проверка существования категории
+
     await this.prisma.product.createMany({
       data: dtos.map(dto => ({ ...dto, productSubcategoryId })),
       skipDuplicates: true
@@ -64,5 +67,11 @@ export class ProductService {
     })
 
     return subcategoryProducts.some(product => product.title === title)
+  }
+
+  public async deleteOne(id: string) {
+    await this.prisma.product.delete({
+      where: { id }
+    })
   }
 }

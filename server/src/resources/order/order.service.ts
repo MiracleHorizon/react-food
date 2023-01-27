@@ -1,7 +1,7 @@
 import {
+  ForbiddenException,
   Injectable,
-  NotFoundException,
-  ForbiddenException
+  NotFoundException
 } from '@nestjs/common'
 
 import { PrismaService } from 'prisma/prisma.service'
@@ -84,7 +84,7 @@ export class OrderService {
         totalCost: true,
         products: {
           select: {
-            imageUrl: true
+            imagePath: true
           }
         }
       },

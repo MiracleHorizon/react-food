@@ -81,7 +81,7 @@ model OrderProduct {
   title     String
   price     Float
   count     Int
-  imageUrl  String?
+  imagePath String?
   order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   String
   createdAt DateTime @default(now())
@@ -94,7 +94,7 @@ model ProductCategory {
   id            String               @id @default(cuid())
   title         String               @unique
   description   String
-  imageUrl      String?
+  imagePath     String?
   subcategories ProductSubcategory[]
 
   @@map("productCategories")
@@ -114,9 +114,10 @@ model ProductSubcategory {
 model Product {
   id                   String             @id @default(cuid())
   title                String             @unique
-  description          String?
-  imageUrl             String?
-  price                Float
+  description          String
+  imagePath            String?
+  fullPrice            Float
+  discountPercent      Int                @default(0)
   weight               Float
   tag                  String
   productSubcategory   ProductSubcategory @relation(fields: [productSubcategoryId], references: [id], onDelete: Cascade)

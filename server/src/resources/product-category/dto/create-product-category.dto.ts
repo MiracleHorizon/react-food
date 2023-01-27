@@ -36,5 +36,5 @@ export class CreateProductCategoryDto {
 
   @IsUrl()
   @IsOptional()
-  public imageUrl?: string
+  public imagePath?: string
 }

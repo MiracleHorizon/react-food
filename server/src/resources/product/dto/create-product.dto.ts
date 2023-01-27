@@ -1,4 +1,5 @@
 import {
+  IsInt,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -18,11 +19,16 @@ export class CreateProductDto {
   @IsUrl()
   @IsNotEmpty()
   @IsOptional()
-  public imageUrl: string
+  public imagePath?: string
 
   @IsNumber()
   @IsNotEmpty()
-  public price: number
+  public fullPrice: number
+
+  @IsNumber()
+  @IsInt()
+  @IsNotEmpty()
+  public discountPercent: number
 
   @IsNumber()
   @IsNotEmpty()
