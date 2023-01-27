@@ -2,17 +2,14 @@ import { makeObservable, observable } from 'mobx'
 
 import type { NavigationCategory } from '@/models/navigation-category'
 
+// TODO Целесообразность
 class NavigationStore {
-  categories: NavigationCategory[] = []
+  public categories: NavigationCategory[] = []
 
   constructor() {
     makeObservable(this, {
       categories: observable
     })
-  }
-
-  public getCategories(): NavigationCategory[] {
-    return this.categories
   }
 
   public setCategories(categories: NavigationCategory[]): void {

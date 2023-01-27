@@ -10,12 +10,21 @@ import { HIDDEN_OVERFLOW_CLASSNAME } from '@/utils/constants/styles'
 import type { LayoutProps } from '@/types/LayoutProps'
 import * as Layout from './main-layout.styled'
 
-const ChangeRouteLoader = dynamic(
-  import('@/ui/change-route-loader/change-route-loader'),
-  {
-    ssr: false
+const ChangeRouteLoader = dynamic(import('@/ui/change-route-loader'), {
+  ssr: false
+})
+
+const animations = {
+  hidden: {
+    opacity: 0
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.5
+    }
   }
-)
+}
 
 const MainLayout: FC<LayoutProps> = ({ children, ...seoData }) => {
   const isPageLoading = useChangeRoute()
@@ -34,7 +43,7 @@ const MainLayout: FC<LayoutProps> = ({ children, ...seoData }) => {
     <>
       {isPageLoading && <ChangeRouteLoader />}
       <HeadComponent {...seoData} />
-      <Layout.Root>
+      <Layout.Root initial='hidden' animate='show' variants={animations}>
         <Layout.Container>
           <LayoutHeader />
           <LayoutContent>{children}</LayoutContent>

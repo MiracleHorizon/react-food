@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 
-import { cartStore } from '@/stores/cart.store'
 import CartBanner from '@/ui/banner/components/cart-banner'
+import { cartStore } from '@/stores/cart.store'
 import * as Shortage from './order-cost-shortage.styled'
 
 const OrderCostShortage = () => (

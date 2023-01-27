@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 
 import { colors } from '@/styles/variables'
-import { appHeaderHeight } from '@/components/app-header/app-header.styled'
+import { appHeaderHeight } from '@/components/app-header'
 
-export const Root = styled.div`
+export const Root = styled(motion.div)`
   font-family: 'Proxima Nova', sans-serif;
   min-width: 100vw;
   background: ${colors.gray['2']};

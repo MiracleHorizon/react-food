@@ -1,11 +1,20 @@
-import Navigation from './navigation'
+import { observer } from 'mobx-react-lite'
+
+import Navigation, { navigationStore } from './navigation'
 import StyledTitle from './navigation-catalog.styled'
 
-const NavigationCatalog = () => (
-  <div>
-    <StyledTitle>Каталог</StyledTitle>
-    <Navigation />
-  </div>
-)
+// TODO Skeleton loader
+const NavigationCatalog = () => {
+  if (navigationStore.categories.length === 0) {
+    return null
+  }
 
-export default NavigationCatalog
+  return (
+    <div>
+      <StyledTitle>Каталог</StyledTitle>
+      <Navigation categories={navigationStore.categories} />
+    </div>
+  )
+}
+
+export default observer(NavigationCatalog)

@@ -1,4 +1,4 @@
-import { Range } from '@/models/range'
+import type { Range } from '@/models/range'
 
 export const RUBLE_SIGN = '₽'
 export const SPACE_SIGN = '&nbsp;'

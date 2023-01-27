@@ -1,4 +1,4 @@
-import { NextParsedUrlQuery } from 'next/dist/server/request-meta'
+import type { NextParsedUrlQuery } from 'next/dist/server/request-meta'
 
 export class UrlQueryHandler {
   constructor(private readonly query: NextParsedUrlQuery) {}

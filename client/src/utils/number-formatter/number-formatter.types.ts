@@ -1,4 +1,4 @@
-import { Range } from '@/models/range'
+import type { Range } from '@/models/range'
 
 export interface BaseArguments<T>
   extends Omit<Intl.NumberFormatOptions, 'currency'> {

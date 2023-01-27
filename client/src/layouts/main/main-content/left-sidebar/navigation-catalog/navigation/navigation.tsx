@@ -1,16 +1,20 @@
-import { observer } from 'mobx-react-lite'
+import type { FC } from 'react'
 
 import NavigationItem from './navigation-item'
-import { navigationStore } from '@/layouts/main'
+import type { NavigationCategory } from '@/models/navigation-category'
 
-const Navigation = () => (
+const Navigation: FC<Props> = ({ categories }) => (
   <nav>
     <ul>
-      {navigationStore.getCategories().map(category => (
+      {categories.map(category => (
         <NavigationItem key={category.id} {...category} />
       ))}
     </ul>
   </nav>
 )
 
-export default observer(Navigation)
+export default Navigation
+
+interface Props {
+  categories: NavigationCategory[]
+}

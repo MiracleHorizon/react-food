@@ -51,12 +51,13 @@
         "../public/images*"
       ]
     },
-    "target": "es5",
+    "target": "ESNext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "importsNotUsedAsValues": "error",
     "experimentalDecorators": true,
     "allowJs": false,
     "skipLibCheck": true,

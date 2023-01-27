@@ -1,4 +1,4 @@
-import {
+import type {
   BaseArguments,
   FormatCurrencyArgs,
   FormatCurrencyRangeArgs,
@@ -96,7 +96,7 @@ export class NumberFormatter {
     return value.replace(SPACE_SIGN, '').slice(0, valueLength)
   }
 
-  private setThinSpaceBeforeSign(value: string) {
+  private setThinSpaceBeforeSign(value: string): string {
     const THIN_SPACE_SIGN = ' '
 
     const splitValue = value.split('')

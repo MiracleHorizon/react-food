@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react'
 
-import { ButtonVariant } from '@/ui/buttons/button/button-variant'
+import type { ButtonVariant } from './button-variant'
 import * as StyledButton from './button.styled'
 
 const Button: FC<Props> = ({ text, icon, variant, onClick }) => (

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
-import { ButtonVariant } from '@/ui/buttons/button/button-variant'
 import { colors } from '@/styles/variables'
+import type { ButtonVariant } from './button-variant'
 
 export const Root = styled.button<RootProps>`
   display: flex;

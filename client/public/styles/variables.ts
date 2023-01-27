@@ -17,5 +17,11 @@ export const colors = {
   },
   red: {
     '1': '#cc2d32'
+  },
+  orange: {
+    '1': '#fa6a3c'
+  },
+  green: {
+    '1': '#5ac31aff'
   }
 }

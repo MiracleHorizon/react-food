@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { HorizontalDivider } from '@/ui/divider/divider.styled'
+import { HorizontalDivider } from '@/ui/divider'
 import { FixedHeader } from '@/styles/FixedHeader'
 import { colors } from '@/styles/variables'
 
