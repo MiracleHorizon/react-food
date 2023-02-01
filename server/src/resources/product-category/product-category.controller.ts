@@ -11,6 +11,7 @@ import {
 import type { Response } from 'express'
 
 import { ProductCategoryService } from './product-category.service'
+import { CreateProductCategoryDto } from './dto/create-product-category.dto'
 
 @Controller('product_category')
 export class ProductCategoryController {
@@ -19,8 +20,11 @@ export class ProductCategoryController {
   ) {}
 
   @Post()
-  public create(@Body() dto: any, @Res() res: Response) {
-    return this.productCategoryService.create({ ...dto, res })
+  public createOne(
+    @Body() dto: CreateProductCategoryDto,
+    @Res() res: Response
+  ) {
+    return this.productCategoryService.createOne({ ...dto, res })
   }
 
   @Get(':id')

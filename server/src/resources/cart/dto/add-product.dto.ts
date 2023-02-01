@@ -5,17 +5,13 @@ import {
   IsOptional,
   IsString,
   IsUrl
-} from 'class-validator'
+} from 'class-validator' // TODO: Валидация
 
 // TODO: Валидация
-export class CreateProductDto {
+export class AddProductDto {
   @IsString()
   @IsNotEmpty()
   public title: string
-
-  @IsString()
-  @IsNotEmpty()
-  public description: string
 
   @IsUrl()
   @IsNotEmpty()
@@ -38,4 +34,8 @@ export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
   public tag: string
+
+  @IsString()
+  @IsNotEmpty()
+  public productReferenceId
 }

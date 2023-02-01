@@ -14,14 +14,40 @@ model User {
   hashedPassword    String
   role              UserRole          @default(USER)
   reactCoinsCount   Int               @default(0)
-  phoneNumber       String?           @unique
+  cart              Cart[]
   deliveryAddresses DeliveryAddress[]
   billingCards      BillingCard[]
   orders            Order[]
+  phoneNumber       String?           @unique
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
 
   @@map("users")
+}
+
+model Cart {
+  id       String        @id @default(cuid())
+  products CartProduct[]
+  user     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   String        @unique
+
+  @@map("carts")
+}
+
+model CartProduct {
+  id                 String  @id @default(cuid())
+  title              String  @unique
+  fullPrice          Float
+  discountPercent    Int     @default(0)
+  weight             Float
+  tag                String
+  imagePath          String?
+  count              Int     @default(1)
+  productReferenceId String
+  cart               Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId             String
+
+  @@map("cartProducts")
 }
 
 model DeliveryAddress {
@@ -81,9 +107,9 @@ model OrderProduct {
   title     String
   price     Float
   count     Int
-  imagePath String?
   order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   String
+  imagePath String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -94,34 +120,34 @@ model ProductCategory {
   id            String               @id @default(cuid())
   title         String               @unique
   description   String
-  imagePath     String?
   subcategories ProductSubcategory[]
+  imagePath     String?
 
   @@map("productCategories")
 }
 
 model ProductSubcategory {
-  id                String          @id @default(cuid())
-  title             String          @unique
-  description       String
-  products          Product[]
-  productCategory   ProductCategory @relation(fields: [productCategoryId], references: [id], onDelete: Cascade)
-  productCategoryId String
+  id              String          @id @default(cuid())
+  title           String          @unique
+  description     String
+  products        Product[]
+  productCategory ProductCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId      String
 
   @@map("productSubcategories")
 }
 
 model Product {
-  id                   String             @id @default(cuid())
-  title                String             @unique
-  description          String
-  imagePath            String?
-  fullPrice            Float
-  discountPercent      Int                @default(0)
-  weight               Float
-  tag                  String
-  productSubcategory   ProductSubcategory @relation(fields: [productSubcategoryId], references: [id], onDelete: Cascade)
-  productSubcategoryId String
+  id                 String             @id @default(cuid())
+  title              String             @unique
+  description        String
+  fullPrice          Float
+  discountPercent    Int                @default(0)
+  weight             Float
+  tag                String
+  imagePath          String?
+  productSubcategory ProductSubcategory @relation(fields: [subcategoryId], references: [id], onDelete: Cascade)
+  subcategoryId      String
 
   @@map("products")
 }

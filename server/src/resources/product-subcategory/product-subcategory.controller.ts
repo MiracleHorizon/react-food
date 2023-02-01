@@ -12,7 +12,7 @@ export class ProductSubcategoryController {
   ) {}
 
   @Post()
-  public create(
+  public createOne(
     @Body() dto: CreateProductSubcategoryDto,
     @Res() res: Response
   ) {
@@ -24,33 +24,28 @@ export class ProductSubcategoryController {
     return this.productSubcategoryService.findOne(id)
   }
 
-  @Get('category/:id')
-  public findAllByCategory(@Param('id') categoryId: string) {
-    return this.productSubcategoryService.findAllByCategory(categoryId)
-  }
-
   @Post(':id/add_product')
   public addOneProduct(
-    @Param('id') productSubcategoryId: string,
+    @Param('id') subcategoryId: string,
     @Body() dto: CreateProductDto,
     @Res() res: Response
   ) {
     return this.productSubcategoryService.addOneProduct({
-      productSubcategoryId,
-      res,
-      dto
+      subcategoryId,
+      dto,
+      res
     })
   }
 
   @Post(':id/add_many_products')
   public addManyProducts(
-    @Param('id') id: string,
-    @Body() dtos: CreateProductDto[],
+    @Param('id') subcategoryId: string,
+    @Body() productsData: CreateProductDto[],
     @Res() res: Response
   ) {
     return this.productSubcategoryService.addManyProducts({
-      productSubcategoryId: id,
-      dtos,
+      subcategoryId,
+      productsData,
       res
     })
   }

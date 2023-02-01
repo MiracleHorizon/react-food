@@ -13,11 +13,11 @@ export class ProductService {
   constructor(private readonly prisma: PrismaService) {}
 
   public async createOne({
-    productSubcategoryId,
+    subcategoryId,
     dto
   }: CreateProductArgs): Promise<void> {
-    const isProductExist = await this.existInSubcategory(
-      productSubcategoryId,
+    const isProductExist = await this.checkIsExistsByTitleInSubcategory(
+      subcategoryId,
       dto.title
     )
 
@@ -27,32 +27,35 @@ export class ProductService {
 
     await this.prisma.product.create({
       data: {
-        ...dto,
-        productSubcategoryId
+        subcategoryId,
+        ...dto
       }
     })
   }
 
   public async createMany({
-    dtos,
-    productSubcategoryId
+    subcategoryId,
+    productsData
   }: CreateManyProductsArgs): Promise<void> {
-    // const isSubcategoryExists = await this.existInSubcategory()
-    // TODO Проверка существования категории
-
     await this.prisma.product.createMany({
-      data: dtos.map(dto => ({ ...dto, productSubcategoryId })),
+      data: productsData.map(dto => ({ ...dto, subcategoryId })),
       skipDuplicates: true
     })
   }
 
-  private async existInSubcategory(
-    productSubcategoryId: string,
-    title: string
+  public async checkIsExistsById(id: string): Promise<boolean> {
+    return await this.prisma.product
+      .findFirst({ where: { id } })
+      .then(result => Boolean(result))
+  }
+
+  private async checkIsExistsByTitleInSubcategory(
+    subcategoryId: string,
+    productTitle: string
   ): Promise<boolean> {
     const productSubcategory = await this.prisma.productSubcategory.findFirst({
       where: {
-        id: productSubcategoryId
+        id: subcategoryId
       }
     })
 
@@ -62,16 +65,10 @@ export class ProductService {
 
     const subcategoryProducts = await this.prisma.product.findMany({
       where: {
-        productSubcategoryId
+        subcategoryId
       }
     })
 
-    return subcategoryProducts.some(product => product.title === title)
-  }
-
-  public async deleteOne(id: string) {
-    await this.prisma.product.delete({
-      where: { id }
-    })
+    return subcategoryProducts.some(product => product.title === productTitle)
   }
 }

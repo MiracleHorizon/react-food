@@ -29,5 +29,5 @@ export class CreateProductSubcategoryDto {
 
   @IsString()
   @IsNotEmpty()
-  public productCategoryId: string
+  public categoryId: string
 }

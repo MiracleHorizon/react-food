@@ -18,6 +18,14 @@ export class UsersService {
     const user = await this.prisma.user.findUnique({
       where: {
         id: userId
+      },
+      include: {
+        cart: {
+          select: {
+            id: true,
+            products: true
+          }
+        }
       }
     })
 
@@ -42,5 +50,11 @@ export class UsersService {
         name: true
       }
     })
+  }
+
+  public async checkIsExistsById(id: string): Promise<boolean> {
+    return this.prisma.user
+      .findFirst({ where: { id } })
+      .then(result => Boolean(result))
   }
 }

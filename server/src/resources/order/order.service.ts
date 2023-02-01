@@ -98,6 +98,30 @@ export class OrderService {
     }))
   }
 
+  public fetchOrderParameters() {
+    // TODO: Менять значения в зависимости от, например, времени суток
+
+    const SERVICE_FEE = 49
+    const MIN_ORDER_COST = 1e3
+    const MAX_ORDER_COST = 4e4
+    const MAX_ORDER_WEIGHT = 3e4
+    const FREE_DELIVERY_ORDER_COST = 1.5e3
+    const DELIVERY_COST_RANGE = { start: 0, end: 399 }
+    const DELIVERY_TIME_RANGE = { start: 30, end: 55 }
+    const DELIVERY_DISTANCE = 5.6e3
+
+    return {
+      serviceFee: SERVICE_FEE,
+      minOrderCost: MIN_ORDER_COST,
+      maxOrderCost: MAX_ORDER_COST,
+      maxOrderWeight: MAX_ORDER_WEIGHT,
+      freeDeliveryOrderCost: FREE_DELIVERY_ORDER_COST,
+      deliveryCostRange: DELIVERY_COST_RANGE,
+      deliveryTimeRange: DELIVERY_TIME_RANGE,
+      deliveryDistance: DELIVERY_DISTANCE
+    }
+  }
+
   public async updateStatus({
     userId,
     orderId,

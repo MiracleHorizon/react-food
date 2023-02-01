@@ -19,11 +19,12 @@ export class ProductSubcategoryService {
     private readonly productService: ProductService
   ) {}
 
+  // @Admin
   public async create({
     res,
     ...dto
   }: CreateProductSubcategoryDto & Res): Promise<void> {
-    const isSubcategoryExists = await this.exist(dto.title)
+    const isSubcategoryExists = await this.checkIsExistsByTitle(dto.title)
 
     if (isSubcategoryExists) {
       throw new BadRequestException('Subcategory already exists.')
@@ -39,6 +40,7 @@ export class ProductSubcategoryService {
     })
   }
 
+  // @Admin & @User
   public async findOne(id: string): Promise<ProductSubcategory> {
     const subcategory = await this.prisma.productSubcategory.findFirst({
       where: {
@@ -56,23 +58,17 @@ export class ProductSubcategoryService {
     return subcategory
   }
 
-  public async findAllByCategory(
-    categoryId: string
-  ): Promise<ProductSubcategory[]> {
-    return this.prisma.productSubcategory.findMany({
-      where: {
-        productCategoryId: categoryId
-      },
-      include: {
-        products: true
-      }
-    })
-  }
-
+  // @Admin
   public async addOneProduct({
     res,
     ...data
   }: CreateProductArgs & Res): Promise<void> {
+    const isSubcategoryExists = await this.checkIsExistsById(data.subcategoryId)
+
+    if (!isSubcategoryExists) {
+      throw new NotFoundException('Subcategory is not found.')
+    }
+
     await this.productService.createOne(data)
 
     res.send({
@@ -80,10 +76,17 @@ export class ProductSubcategoryService {
     })
   }
 
+  // @Admin
   public async addManyProducts({
     res,
     ...data
   }: CreateManyProductsArgs & Res): Promise<void> {
+    const isSubcategoryExists = await this.checkIsExistsById(data.subcategoryId)
+
+    if (!isSubcategoryExists) {
+      throw new NotFoundException('Subcategory is not found')
+    }
+
     await this.productService.createMany(data)
 
     res.send({
@@ -91,13 +94,15 @@ export class ProductSubcategoryService {
     })
   }
 
-  private async exist(title: string): Promise<boolean> {
+  private async checkIsExistsById(id: string): Promise<boolean> {
     return await this.prisma.productSubcategory
-      .findFirst({
-        where: {
-          title
-        }
-      })
+      .findFirst({ where: { id } })
+      .then(result => Boolean(result))
+  }
+
+  private async checkIsExistsByTitle(title: string): Promise<boolean> {
+    return await this.prisma.productSubcategory
+      .findFirst({ where: { title } })
       .then(result => Boolean(result))
   }
 }

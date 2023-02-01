@@ -29,7 +29,7 @@ export class AuthService {
     password,
     ...otherData
   }: CreateUserDto & Res): Promise<void> {
-    const isUserExists = await this.isUserWithEmailExists(email)
+    const isUserExists = await this.checkIsExistsByEmail(email)
 
     if (isUserExists) {
       throw new BadRequestException('User with this email already exists.')
@@ -55,7 +55,7 @@ export class AuthService {
     req: Request,
     res: Response
   ): Promise<void> {
-    const isUserExists = await this.isUserWithEmailExists(email)
+    const isUserExists = await this.checkIsExistsByEmail(email)
 
     if (!isUserExists) {
       throw new BadRequestException('Wrong credentials.')
@@ -100,13 +100,9 @@ export class AuthService {
     })
   }
 
-  private async isUserWithEmailExists(email: string): Promise<boolean> {
+  private async checkIsExistsByEmail(email: string): Promise<boolean> {
     return await this.prisma.user
-      .findUnique({
-        where: {
-          email
-        }
-      })
+      .findUnique({ where: { email } })
       .then(result => Boolean(result))
   }
 

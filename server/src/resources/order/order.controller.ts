@@ -4,13 +4,9 @@ import type { Response } from 'express'
 import { OrderService } from './order.service'
 import { CreateOrderDto } from './dto/create-order.dto'
 import { UpdateOrderStatusDto } from './dto/update-order-status.dto'
-import {
-  MAX_ORDER_COST,
-  MOCK_USER_ID,
-  SPACE_MAX_ORDER_COST
-} from '@/utils/constants'
+import { MOCK_USER_ID } from '@/utils/constants'
 
-@Controller('order')
+@Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
@@ -23,7 +19,7 @@ export class OrderController {
     })
   }
 
-  @Get(':id')
+  @Get('order/:id')
   public findOne(@Param('id') id: string) {
     return this.orderService.findOne(id, MOCK_USER_ID)
   }
@@ -33,9 +29,10 @@ export class OrderController {
     return this.orderService.findAll(MOCK_USER_ID)
   }
 
-  @Get('max_order_cost')
-  public getMaxOrderCost() {
-    return MAX_ORDER_COST || SPACE_MAX_ORDER_COST
+  // TODO: Delivery.
+  @Get('parameters')
+  public fetchOrderParameters() {
+    return this.orderService.fetchOrderParameters()
   }
 
   @Patch(':id/update_status')

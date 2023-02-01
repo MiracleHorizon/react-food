@@ -1,5 +1,9 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
-import type { ProductCategory } from '@prisma/client'
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException
+} from '@nestjs/common'
+import type { ProductCategory, ProductSubcategory } from '@prisma/client'
 import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
@@ -7,17 +11,20 @@ import { CreateProductCategoryDto } from './dto/create-product-category.dto'
 import type { PaginationParams } from '@/models/PaginationParams'
 import type { Res } from '@/models/Res'
 
-// TODO При пустом массиве products или subcategories не возвращать
+type ProductCategoryWithSubcategories = ProductCategory & {
+  subcategories: ProductSubcategory[]
+}
+
 @Injectable()
 export class ProductCategoryService {
   constructor(private readonly prisma: PrismaService) {}
 
   // @Admin
-  public async create({
+  public async createOne({
     res,
     ...dto
   }: CreateProductCategoryDto & Res): Promise<void> {
-    const isCategoryExists = await this.isCategoryExists(dto.title)
+    const isCategoryExists = await this.checkIsExistsByTitle(dto.title)
 
     if (isCategoryExists) {
       throw new BadRequestException('Category already exists.')
@@ -33,34 +40,35 @@ export class ProductCategoryService {
     })
   }
 
-  private async isCategoryExists(title: string): Promise<boolean> {
-    return await this.prisma.productCategory
-      .findFirst({
-        where: {
-          title
-        }
-      })
-      .then(result => Boolean(result))
-  }
-
   // @User & @Admin
-  public async findOne(categoryId: string): Promise<ProductCategory> {
+  public async findOne(id: string): Promise<ProductCategoryWithSubcategories> {
+    const subcategoriesFilter = {
+      NOT: {
+        products: {
+          every: {
+            subcategoryId: {
+              equals: ''
+            },
+            fullPrice: {
+              lt: 0
+            }
+          }
+        }
+      }
+    }
+
     const category = await this.prisma.productCategory.findUnique({
       where: {
-        id: categoryId
+        id
       },
       include: {
         subcategories: {
-          where: {
-            products: {
-              some: {}
-            }
-          },
+          where: subcategoriesFilter,
           select: {
             id: true,
             title: true,
             description: true,
-            productCategoryId: true,
+            categoryId: true,
             products: true
           }
         }
@@ -78,10 +86,32 @@ export class ProductCategoryService {
   public async findAll({
     skip,
     take
-  }: PaginationParams): Promise<ProductCategory[]> {
-    const categories = await this.prisma.productCategory.findMany({
+  }: PaginationParams): Promise<ProductCategoryWithSubcategories[]> {
+    const productsFilterParameters = {
+      every: {
+        subcategoryId: {
+          equals: ''
+        },
+        fullPrice: {
+          lt: 0
+        }
+      }
+    }
+    const subcategoriesFilterParameters = {
+      every: {
+        products: productsFilterParameters
+      }
+    }
+    const filterParameters = {
+      NOT: {
+        subcategories: subcategoriesFilterParameters
+      }
+    }
+
+    return this.prisma.productCategory.findMany({
       take,
-      skip: skip || 0,
+      skip: skip ?? 0,
+      where: filterParameters,
       include: {
         subcategories: {
           include: {
@@ -90,24 +120,37 @@ export class ProductCategoryService {
         }
       }
     })
-
-    return categories.filter(category => category.subcategories.length > 0)
   }
 
+  // @User & @Admin
   public async findAllForNavigation(): Promise<ProductCategory[]> {
-    return this.prisma.productCategory.findMany()
+    const categories = await this.findAll({})
+    return categories.map(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ({ subcategories, ...dataForNavigation }) => dataForNavigation
+    )
   }
 
   // @Admin
-  public async removeOne(categoryId: string, res: Response): Promise<void> {
+  public async removeOne(id: string, res: Response): Promise<void> {
     await this.prisma.productCategory.delete({
       where: {
-        id: categoryId
+        id
       }
     })
 
     res.send({
       message: 'Category successfully deleted.'
     })
+  }
+
+  private async checkIsExistsByTitle(title: string): Promise<boolean> {
+    return await this.prisma.productCategory
+      .findFirst({
+        where: {
+          title
+        }
+      })
+      .then(result => Boolean(result))
   }
 }
