@@ -11,7 +11,7 @@ import {
   Min
 } from 'class-validator'
 
-import { validationMessage } from '@/modules/ValidationMessage'
+import { validationMessage } from '@/utils/validation-message'
 
 export class CreateOrderDto {
   @IsString()

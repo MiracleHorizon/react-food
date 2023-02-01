@@ -7,7 +7,7 @@ import {
   MinLength
 } from 'class-validator'
 
-import { validationMessage } from '@/modules/ValidationMessage'
+import { validationMessage } from '@/utils/validation-message'
 import {
   USER_PASSWORD_MAX_LENGTH,
   USER_PASSWORD_MIN_LENGTH,
@@ -29,8 +29,8 @@ export class AuthDto {
     message: ({ property, constraints }) =>
       validationMessage.getMaxLengthMessage(property, constraints[0])
   })
-  @Matches(USER_PASSWORD_VALIDATION_REGEX, null, {
-    message: validationMessage.getPasswordMessage
+  @Matches(new RegExp(USER_PASSWORD_VALIDATION_REGEX), {
+    message: validationMessage.getPasswordMessage()
   })
   public password: string
 }

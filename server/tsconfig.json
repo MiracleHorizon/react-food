@@ -24,9 +24,6 @@
       "@/resources/*": [
         "src/resources/*"
       ],
-      "@/modules/*": [
-        "src/modules/*"
-      ],
       "@/utils/*": [
         "src/utils/*"
       ]

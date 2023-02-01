@@ -7,7 +7,7 @@ import {
 } from 'class-validator'
 
 import { AuthDto } from './auth.dto'
-import { validationMessage } from '@/modules/ValidationMessage'
+import { validationMessage } from '@/utils/validation-message'
 import { UserRole } from '@/models/user/UserRole'
 
 export class CreateUserDto extends AuthDto {
