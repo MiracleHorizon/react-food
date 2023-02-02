@@ -12,7 +12,7 @@ import { AddProductDto } from '@/resources/cart/dto/add-product.dto'
 
 interface ChangeProductCountArgs {
   cartId: string
-  productReferenceId: string
+  productId: string
   dest: 'increment' | 'decrement'
 }
 
@@ -114,7 +114,7 @@ export class CartService {
 
   public async changeProductCountInCart({
     cartId,
-    productReferenceId,
+    productId,
     dest
   }: ChangeProductCountArgs): Promise<void> {
     // TODO: Проверка на доступ пользователя.
@@ -123,21 +123,21 @@ export class CartService {
       throw new NotFoundException('Cart is not found')
     }
 
-    const isProductExists = await this.productService.checkIsExistsById(
-      productReferenceId
-    )
-    if (!isProductExists) {
-      throw new NotFoundException('Product is not found')
-    }
-
     const cartProduct = await this.prisma.cartProduct.findFirst({
       where: {
-        productReferenceId
+        id: productId
       }
     })
 
     if (!cartProduct) {
       throw new NotFoundException('Cart product is not found')
+    }
+
+    const isProductExists = await this.productService.checkIsExistsById(
+      cartProduct.productReferenceId
+    )
+    if (!isProductExists) {
+      throw new NotFoundException('Product is not found')
     }
 
     const { id, count } = cartProduct

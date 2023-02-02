@@ -22,26 +22,26 @@ export class CartController {
     return this.cartService.addProduct(id, dto)
   }
 
-  @Patch(':id/increment/:productReferenceId')
+  @Patch(':cartId/increment/:productId')
   public incrementProductCount(
-    @Param('id') cartId: string,
-    @Param('productReferenceId') productReferenceId: string
+    @Param('cartId') cartId: string,
+    @Param('productId') productId: string
   ) {
     return this.cartService.changeProductCountInCart({
       cartId,
-      productReferenceId,
+      productId,
       dest: 'increment'
     })
   }
 
-  @Patch(':id/decrement/:productReferenceId')
+  @Patch(':cartId/decrement/:productId')
   public decrementProductCount(
-    @Param('id') cartId: string,
-    @Param('productReferenceId') productReferenceId: string
+    @Param('cartId') cartId: string,
+    @Param('productId') productId: string
   ) {
     return this.cartService.changeProductCountInCart({
       cartId,
-      productReferenceId,
+      productId,
       dest: 'decrement'
     })
   }
