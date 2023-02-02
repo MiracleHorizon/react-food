@@ -9,8 +9,8 @@ export const Root = styled.section`
 
 export const TitleLink = styled(Link)`
   display: inline-block;
-  margin-bottom: 20px;
-  font-size: 28px;
+  margin-bottom: 25px;
+  font-size: 26px;
   font-weight: 600;
 `
 

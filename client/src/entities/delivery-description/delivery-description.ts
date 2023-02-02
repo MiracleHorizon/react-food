@@ -1,7 +1,7 @@
 import { NumberFormatter } from '@/utils/number-formatter'
 import { intlConfig } from '@/utils/configs/intl.config'
-import type { Range } from '@/models/range'
 import type { DeliveryDescriptionModel } from './delivery-description.model'
+import type { Range } from '@/models/range'
 
 export class DeliveryDescription {
   private readonly distance: number
@@ -10,6 +10,42 @@ export class DeliveryDescription {
   private readonly freeCost: number
   private readonly serviceFee: number
   private readonly numberFormatter: NumberFormatter
+
+  public get description(): string {
+    return [
+      this.formattedTimeRange,
+      this.formattedDistance,
+      `Доставка ${this.formattedCostRange}`
+    ].join(' · ')
+  }
+
+  public get formattedDistance(): string {
+    const METERS_PER_KILOMETER = 1000
+
+    return this.numberFormatter.formatDistance({
+      value: this.distance / METERS_PER_KILOMETER,
+      unit: 'kilometer'
+    })
+  }
+
+  public get formattedTimeRange(): string {
+    return this.numberFormatter.formatTimeRange({
+      ...this.timeRange,
+      unit: 'minute'
+    })
+  }
+
+  public get formattedCostRange(): string {
+    return this.formatCurrencyRange(this.costRange)
+  }
+
+  public get formattedFreeCost(): string {
+    return this.formatCurrency(this.freeCost)
+  }
+
+  public get formattedServiceFee(): string {
+    return this.formatCurrency(this.serviceFee)
+  }
 
   constructor({
     distance,
@@ -26,48 +62,17 @@ export class DeliveryDescription {
     this.numberFormatter = new NumberFormatter('ru')
   }
 
-  public getDistance(): string {
-    const METERS_PER_KILOMETER = 1000
-
-    return this.numberFormatter.formatDistance({
-      value: this.distance / METERS_PER_KILOMETER,
-      unit: 'kilometer'
+  private formatCurrency(value: number): string {
+    return this.numberFormatter.formatCurrency({
+      ...intlConfig.currencyOptions,
+      value
     })
   }
 
-  public getTimeRange(): string {
-    return this.numberFormatter.formatTimeRange({
-      ...this.timeRange,
-      unit: 'minute'
-    })
-  }
-
-  public getCostRange(): string {
+  private formatCurrencyRange(range: Range): string {
     return this.numberFormatter.formatCurrencyRange({
-      ...this.costRange,
-      ...intlConfig.currencyOptions
+      ...intlConfig.currencyOptions,
+      ...range
     })
-  }
-
-  public getServiceFee(): string {
-    return this.numberFormatter.formatCurrency({
-      value: this.serviceFee,
-      ...intlConfig.currencyOptions
-    })
-  }
-
-  public getFreeCost(): string {
-    return this.numberFormatter.formatCurrency({
-      value: this.freeCost,
-      ...intlConfig.currencyOptions
-    })
-  }
-
-  public getDescription(): string {
-    return [
-      this.getTimeRange(),
-      this.getDistance(),
-      `Доставка ${this.getCostRange()}`
-    ].join(' · ')
   }
 }

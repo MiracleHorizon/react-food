@@ -1,5 +1,5 @@
 import ListSvg from '@/ui/svg/list-svg'
-import { Routes } from '@/types/Routes'
+import { Routes } from '@/types/routes'
 import * as Label from './orders-label.styled'
 
 const OrdersLabel = () => (

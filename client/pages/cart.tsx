@@ -3,10 +3,11 @@ import type { NextPage } from 'next'
 import Cart from '@/modules/cart'
 import { cartStore } from '@/stores/cart.store'
 import { cartService } from '@/api/services/cart.service'
-import type { ProductModel } from '@/entities/product'
+import { CART_ID } from '@/utils/constants/mock-user'
+import type { CartModel } from '@/models/cart.model'
 
-const CartPage: NextPage<Props> = ({ cartProducts }) => {
-  cartStore.initializeCart(cartProducts)
+const CartPage: NextPage<Props> = ({ cart }) => {
+  cartStore.initialize(cart)
 
   return <Cart />
 }
@@ -14,15 +15,15 @@ const CartPage: NextPage<Props> = ({ cartProducts }) => {
 export default CartPage
 
 export const getServerSideProps = async () => {
-  const cartProducts = await cartService.fetchCart()
+  const cart = await cartService.fetchCart(CART_ID)
 
   return {
     props: {
-      cartProducts
+      cart
     }
   }
 }
 
 interface Props {
-  cartProducts: ProductModel[]
+  cart: CartModel
 }

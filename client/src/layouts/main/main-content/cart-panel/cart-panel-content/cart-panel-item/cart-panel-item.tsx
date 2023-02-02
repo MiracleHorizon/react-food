@@ -4,41 +4,44 @@ import ItemContent from './cart-panel-item-content'
 import ChangeCountLabel from './change-count-label'
 import DiscountIcon from '@/ui/discount-icon'
 import { cartStore } from '@/stores/cart.store'
-import { Product, ProductModel } from '@/entities/product'
+import { CartProduct, CartProductModel } from '@/entities/product'
 import * as Item from './cart-panel-item.styled'
 
-const CartPanelItem: FC<Props> = ({ lastInOrder, ...productData }) => {
-  const product = useMemo(() => new Product(productData), [productData])
+const CartPanelItem: FC<CartProductModel> = productData => {
+  const cartProduct = useMemo(() => new CartProduct(productData), [productData])
   const {
-    id,
     title,
     count,
-    price: { formattedFullPrice, formattedPrice, withDiscount }
-  } = product
+    image,
+    formattedWeight,
+    productReferenceId,
+    price: { withDiscount, description: priceDescription }
+  } = cartProduct
 
-  const handleDecrementCount = useCallback(() => {
-    cartStore.decrementProductCount(id)
-  }, [id])
+  const handleDecrementCount = useCallback(
+    () => cartStore.decrementProductCount(productReferenceId),
+    [productReferenceId]
+  )
 
-  const handleIncrementCount = useCallback(() => {
-    cartStore.incrementProductCount(id)
-  }, [id])
+  const handleIncrementCount = useCallback(
+    () => cartStore.incrementProductCount(productReferenceId),
+    [productReferenceId]
+  )
 
   return (
-    <Item.Root lastInOrder={lastInOrder}>
+    <Item.Root>
       {withDiscount && <DiscountIcon />}
       <Item.Image
+        priority
         width={Item.imageSize}
         height={Item.imageSize}
-        src={product.image}
+        src={image}
         alt={title}
       />
       <ItemContent
         title={title}
-        weight={product.formattedWeight}
-        price={formattedPrice}
-        fullPrice={formattedFullPrice}
-        withDiscount={withDiscount}
+        weight={formattedWeight}
+        {...priceDescription}
       />
       <ChangeCountLabel
         count={count}
@@ -50,7 +53,3 @@ const CartPanelItem: FC<Props> = ({ lastInOrder, ...productData }) => {
 }
 
 export default memo(CartPanelItem)
-
-interface Props extends ProductModel {
-  lastInOrder: boolean
-}

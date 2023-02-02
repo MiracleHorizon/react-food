@@ -5,5 +5,6 @@ export const Root = styled.main`
 `
 
 export const Title = styled.h1`
-  margin-bottom: 20px;
+  margin-bottom: 14px;
+  font-size: 36px;
 `

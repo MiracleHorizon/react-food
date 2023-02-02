@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 import { useRouter } from 'next/router'
 
-import { Routes } from '@/types/Routes'
+import { Routes } from '@/types/routes'
 import type { NavigationCategory } from '@/models/navigation-category'
 import * as Item from './navigation-item.styled'
 

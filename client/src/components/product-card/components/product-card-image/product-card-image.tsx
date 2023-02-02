@@ -23,7 +23,7 @@ const ProductCardImage: FC<Props> = ({
 
   return (
     <Image.Root variant={variant}>
-      <Image.Image {...imageSizes} src={imagePath} alt={alt}></Image.Image>
+      <Image.Image {...imageSizes} priority src={imagePath} alt={alt} />
       {withDiscount && <DiscountPercentLabel percent={discountPercent} />}
     </Image.Root>
   )

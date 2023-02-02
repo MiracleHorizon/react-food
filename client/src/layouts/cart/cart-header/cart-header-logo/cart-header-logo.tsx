@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import ReactSvg from '@/ui/svg/react-svg'
-import { Routes } from '@/types/Routes'
+import { Routes } from '@/types/routes'
 import StyledLogo from './cart-header-logo.styled'
 
 const CartLayoutHeaderLogo = () => (

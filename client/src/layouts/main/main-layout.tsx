@@ -7,7 +7,7 @@ import LayoutFooter from './main-footer'
 import HeadComponent from '@/components/HeadComponent'
 import { useChangeRoute } from '@/hooks/useChangeRoute'
 import { HIDDEN_OVERFLOW_CLASSNAME } from '@/utils/constants/styles'
-import type { LayoutProps } from '@/types/LayoutProps'
+import type { LayoutProps } from '@/types/layout-props'
 import * as Layout from './main-layout.styled'
 
 const ChangeRouteLoader = dynamic(import('@/ui/change-route-loader'), {

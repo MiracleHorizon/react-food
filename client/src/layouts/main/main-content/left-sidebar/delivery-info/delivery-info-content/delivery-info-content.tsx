@@ -10,14 +10,14 @@ const DeliveryInfoContent = () => (
     <Content.Time>
       <ClockSvg />
       <Content.TimeRange>
-        {deliveryStore.description.getTimeRange()}
+        {deliveryStore.description.formattedTimeRange}
       </Content.TimeRange>
     </Content.Time>
     <Content.Price>
-      Бесплатно от {deliveryStore.description.getFreeCost()}
+      Бесплатно от {deliveryStore.description.formattedFreeCost}
     </Content.Price>
     <Content.ServiceFee>
-      Работа сервиса {deliveryStore.description.getServiceFee()}
+      Работа сервиса {deliveryStore.description.formattedServiceFee}
     </Content.ServiceFee>
     <DeliveryInfoAbout />
   </Content.Root>

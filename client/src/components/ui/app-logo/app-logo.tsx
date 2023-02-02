@@ -1,5 +1,5 @@
 import ReactSvg from '@/ui/svg/react-svg'
-import { Routes } from '@/types/Routes'
+import { Routes } from '@/types/routes'
 import * as Logo from './app-logo.styled'
 
 const AppLogo = () => (

@@ -8,9 +8,9 @@ const DeliveryInfo = () => (
   <Info.Root>
     <CarBanner />
     <Info.Content>
-      <Info.Title>{deliveryStore.description.getDescription()}</Info.Title>
+      <Info.Title>{deliveryStore.description.description}</Info.Title>
       <Info.ServiceFee>
-        Работа сервиса {deliveryStore.description.getServiceFee()}
+        Работа сервиса {deliveryStore.description.formattedServiceFee}
       </Info.ServiceFee>
     </Info.Content>
   </Info.Root>

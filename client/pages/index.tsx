@@ -2,21 +2,26 @@ import type { NextPage } from 'next'
 
 import Home from '@/modules/home'
 import { cartStore } from '@/stores/cart.store'
-import { navigationStore } from '@/layouts/main'
-import { cartService } from '@/api/services/cart.service'
+import {
+  baseMainLayoutApiRequest,
+  BaseMainLayoutApiRequest,
+  navigationStore
+} from '@/layouts/main'
 import {
   ProductCategoryModel,
   productCategoryService
 } from '@/modules/product-category'
-import type { ProductModel } from '@/entities/product'
-import type { NavigationCategory } from '@/models/navigation-category'
+import { CART_ID } from '@/utils/constants/mock-user'
+import type { PaginationParams } from '@/api/models/pagination-params.model'
 
 const HomePage: NextPage<Props> = ({
-  cartProducts,
+  cart,
+  orderParameters,
   navCategories,
   productCategories
 }) => {
-  cartStore.initializeCart(cartProducts)
+  cartStore.initialize(cart)
+  cartStore.setParameters(orderParameters)
   navigationStore.setCategories(navCategories)
 
   return <Home productCategories={productCategories} />
@@ -25,24 +30,24 @@ const HomePage: NextPage<Props> = ({
 export default HomePage
 
 export const getStaticProps = async () => {
-  const cartProducts = await cartService.fetchCart()
-  const navCategories = await productCategoryService.fetchNavCategories()
-  const productCategories = await productCategoryService.fetchAllCategories({
+  const startPaginationParams: PaginationParams = {
     skip: 0,
-    take: 4
-  })
+    take: 3
+  }
+  const productCategories = await productCategoryService.fetchAllCategories(
+    startPaginationParams
+  )
+
+  const environmentData = await baseMainLayoutApiRequest(CART_ID)
 
   return {
     props: {
-      cartProducts,
-      navCategories,
-      productCategories
+      productCategories,
+      ...environmentData
     }
   }
 }
 
-interface Props {
-  cartProducts: ProductModel[]
-  navCategories: NavigationCategory[]
+interface Props extends BaseMainLayoutApiRequest {
   productCategories: ProductCategoryModel[]
 }

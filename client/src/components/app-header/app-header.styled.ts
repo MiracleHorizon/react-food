@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 import { HorizontalDivider } from '@/ui/divider'
-import { FixedHeader } from '@/styles/FixedHeader'
+import { FixedHeader } from '@/styles/styled-components/fixed-header'
 import { colors } from '@/styles/variables'
 
 export const appHeaderHeight = 80

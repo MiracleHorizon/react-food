@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
+import { darken, lighten } from 'polished'
 
+import { ButtonVariant } from './button-variant'
 import { colors } from '@/styles/variables'
-import type { ButtonVariant } from './button-variant'
 
 export const Root = styled.button<RootProps>`
   display: flex;
@@ -11,7 +12,23 @@ export const Root = styled.button<RootProps>`
   height: 50px;
   padding: 0 16px;
   border-radius: 16px;
-  background: ${colors.yellow['1']};
+  transition: all 100ms ease-out;
+
+  ${p => {
+    const bgColor = getBackgroundColorByVariant(p.variant)
+
+    return `
+    background: ${bgColor};
+    
+    &:hover {
+      background: ${darken(0.03, bgColor)};
+    }
+    
+    &:active {
+      background: ${lighten(0.01, bgColor)};
+    }
+    `
+  }};
 `
 
 export const Text = styled.span`
@@ -22,4 +39,13 @@ export const Text = styled.span`
 
 interface RootProps {
   variant: ButtonVariant
+}
+
+const getBackgroundColorByVariant = (variant: ButtonVariant): string => {
+  switch (variant) {
+    case ButtonVariant.PRIMARY:
+      return colors.yellow['1']
+    case ButtonVariant.SECONDARY:
+      return '#eeeeee'
+  }
 }

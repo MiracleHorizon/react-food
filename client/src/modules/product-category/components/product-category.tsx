@@ -6,12 +6,8 @@ import { cartStore } from '@/stores/cart.store'
 import type { Props } from '@/pages/category/[id]'
 import * as Category from './product-category.styled'
 
-const ProductCategory: FC<Props> = ({
-  cartProducts,
-  navCategories,
-  category
-}) => {
-  cartStore.initializeCart(cartProducts)
+const ProductCategory: FC<Props> = ({ category, navCategories, cart }) => {
+  cartStore.initialize(cart)
   navigationStore.setCategories(navCategories)
 
   return (

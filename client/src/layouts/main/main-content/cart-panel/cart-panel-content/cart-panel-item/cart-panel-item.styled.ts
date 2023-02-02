@@ -3,9 +3,9 @@ import NextImage from 'next/image'
 
 import { colors } from '@/styles/variables'
 
-export const imageSize = 70
+export const imageSize = 60
 
-export const Root = styled.li<RootProps>`
+export const Root = styled.li`
   position: relative;
   display: flex;
   align-items: center;
@@ -15,10 +15,22 @@ export const Root = styled.li<RootProps>`
     content: '';
     position: absolute;
     right: 0;
-    left: ${p => (p.lastInOrder ? '0px' : `calc(${imageSize}px + 8px)`)};
-    bottom: ${p => (p.lastInOrder ? '-4px' : '0px')};
     height: 0.5px;
     background: #8a878466;
+  }
+
+  &:last-of-type {
+    &::before {
+      left: 0;
+      bottom: -4px;
+    }
+  }
+
+  &:not(&:last-of-type) {
+    &::before {
+      left: calc(${imageSize}px + 8px);
+      bottom: 0;
+    }
   }
 
   div[data-el='discount-icon'] {
@@ -30,12 +42,7 @@ export const Root = styled.li<RootProps>`
 `
 
 export const Image = styled(NextImage)`
-  margin-right: 10px;
   border-radius: 18px;
   background: ${colors.gray['2']};
   object-fit: cover;
 `
-
-interface RootProps {
-  lastInOrder: boolean
-}

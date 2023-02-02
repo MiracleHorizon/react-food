@@ -1,37 +1,47 @@
-import type { FC } from 'react'
+import { FC, useCallback } from 'react'
+import { observer } from 'mobx-react-lite'
 
 import SmallPlusSvg from '@/ui/svg/small-plus-svg'
 import SmallMinusSvg from '@/ui/svg/small-minus-svg'
 import { cartStore } from '@/stores/cart.store'
-import type { ProductModel } from '@/entities/product'
+import type { ShowcaseProductModel } from '@/entities/product'
 import * as Footer from './product-card-footer.styled'
 
-// TODO Полностью переработать механизм добавлена продукта в корзину
-const ProductCardFooter: FC<Props> = ({
-  increment,
-  decrement,
-  incrementDisabled,
-  decrementDisabled,
-  ...product
-}) => {
-  const isOnCart = cartStore.isProductInCart(product.id)
+const ProductCardFooter: FC<ShowcaseProductModel> = showcaseProduct => {
+  const { id } = showcaseProduct
 
-  const handleAddToCart = () => cartStore.addProduct(product)
+  const handleAddToCart = useCallback(() => {
+    return cartStore.addProduct(showcaseProduct)
+  }, [showcaseProduct])
+
+  const handleDecrementCount = useCallback(() => {
+    return cartStore.decrementProductCount(id)
+  }, [id])
+
+  const handleIncrementCount = useCallback(() => {
+    return cartStore.incrementProductCount(id)
+  }, [id])
 
   return (
     <Footer.Root>
       <Footer.Content>
-        {!isOnCart ? (
+        {!cartStore.isProductInCart(showcaseProduct.id) ? (
           <Footer.AddButton onClick={handleAddToCart}>
             <SmallPlusSvg />
           </Footer.AddButton>
         ) : (
           <Footer.ChangeCountLabel>
-            <Footer.ChangeCountButton position='left' onClick={decrement}>
+            <Footer.ChangeCountButton
+              position='left'
+              onClick={handleDecrementCount}
+            >
               <SmallMinusSvg />
             </Footer.ChangeCountButton>
-            <Footer.Count>{product.count}</Footer.Count>
-            <Footer.ChangeCountButton position='right' onClick={increment}>
+            <Footer.Count>{cartStore.getProductCount(id)}</Footer.Count>
+            <Footer.ChangeCountButton
+              position='right'
+              onClick={handleIncrementCount}
+            >
               <SmallPlusSvg />
             </Footer.ChangeCountButton>
           </Footer.ChangeCountLabel>
@@ -41,11 +51,4 @@ const ProductCardFooter: FC<Props> = ({
   )
 }
 
-export default ProductCardFooter
-
-interface Props extends ProductModel {
-  increment: () => void
-  decrement: () => void
-  decrementDisabled?: boolean
-  incrementDisabled?: boolean
-}
+export default observer(ProductCardFooter)

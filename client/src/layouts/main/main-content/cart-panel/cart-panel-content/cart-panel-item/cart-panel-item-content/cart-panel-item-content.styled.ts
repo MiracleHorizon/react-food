@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 import { colors } from '@/styles/variables'
-import { EllipsisSpan } from '@/public/styles/EllipsisText'
+import { EllipsisSpan } from '@/styles/styled-components/ellipsis-text'
 
 export const Root = styled.div`
   max-width: 105px;
@@ -11,6 +11,7 @@ export const Root = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   margin-right: auto;
+  margin-left: 10px;
 `
 
 // TODO Вынести в стили параметры переноса строк

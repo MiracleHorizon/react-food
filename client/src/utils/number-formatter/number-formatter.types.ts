@@ -11,6 +11,7 @@ export interface RangeArguments extends Range, Intl.NumberFormatOptions {}
 
 export interface FormatCurrencyArgs extends BaseArguments<number> {
   currency: string
+  withoutSpaces?: boolean
 }
 
 export interface FormatCurrencyRangeArgs extends RangeArguments {

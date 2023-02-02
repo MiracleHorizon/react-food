@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react-lite'
+import {observer} from 'mobx-react-lite'
 
-import { cartStore } from '@/stores/cart.store'
-import ClearCartButton from '@/ui/buttons/clear-cart-button'
+import ClearCartButton from '@/components/cart/clear-cart-button'
+import {cartStore} from '@/stores/cart.store'
 import * as Header from './order-info-header.styled'
 
 // TODO Окончание существительного "товар".
@@ -13,7 +13,7 @@ const OrderInfoHeader = () => (
         {cartStore.totalPositions} товара
       </Header.ProductsCount>
     </div>
-    <ClearCartButton title='Очистить корзину' withIcon />
+    <ClearCartButton title='Очистить корзину' withIcon withConfirm />
   </Header.Root>
 )
 

@@ -2,7 +2,7 @@ import type {
   ProductCategoryModel,
   ProductSubcategoryModel
 } from '@/modules/product-category'
-import type { ProductModel } from '@/entities/product'
+import type { ShowcaseProductModel } from '@/entities/product'
 
 export class ProductCategoryImpl implements ProductCategoryModel {
   public readonly id: string
@@ -25,7 +25,7 @@ export class ProductCategoryImpl implements ProductCategoryModel {
     this.subcategories = subcategories
   }
 
-  public getFirstProducts(): ProductModel[] {
+  public getFirstProducts(): ShowcaseProductModel[] {
     // TODO Сделать случайную перемешку.
     return this.subcategories
       .map(subcategory => subcategory.products.slice(0, 5))

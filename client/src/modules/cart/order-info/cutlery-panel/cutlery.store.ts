@@ -16,7 +16,7 @@ class CutleryStore {
   }
 
   public get isCutleryRequired(): boolean {
-    return cartStore.isIncludesReadyMeal
+    return cartStore.withReadyMeal
   }
 
   constructor() {

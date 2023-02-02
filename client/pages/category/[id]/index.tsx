@@ -4,10 +4,12 @@ import ProductCategory, {
   ProductCategoryModel,
   productCategoryService
 } from '@/modules/product-category'
-import { UrlQueryHandler } from '@/utils/url-query-handler'
-import { cartService } from '@/api/services/cart.service'
-import type { ProductModel } from '@/entities/product'
-import type { NavigationCategory } from '@/models/navigation-category'
+import {
+  baseMainLayoutApiRequest,
+  BaseMainLayoutApiRequest
+} from '@/layouts/main'
+import { ParsedUrlQueryHandler } from '@/utils/parsed-url-query-handler'
+import { CART_ID } from '@/utils/constants/mock-user'
 
 const CategoryPage: NextPage<Props> = props => <ProductCategory {...props} />
 
@@ -16,22 +18,18 @@ export default CategoryPage
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const id = new UrlQueryHandler(context.query).getId()
+  const id = new ParsedUrlQueryHandler(context.query).getId()
   const category = await productCategoryService.fetchOneCategory(id)
-  const navCategories = await productCategoryService.fetchNavCategories()
-  const cartProducts = await cartService.fetchCart()
+  const environmentData = await baseMainLayoutApiRequest(CART_ID)
 
   return {
     props: {
       category,
-      cartProducts,
-      navCategories
+      ...environmentData
     }
   }
 }
 
-export interface Props {
+export interface Props extends BaseMainLayoutApiRequest {
   category: ProductCategoryModel
-  cartProducts: ProductModel[]
-  navCategories: NavigationCategory[]
 }

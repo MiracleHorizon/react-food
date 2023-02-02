@@ -1,73 +1,47 @@
-import { FC, memo, useCallback, useMemo } from 'react'
+import { FC, memo, useMemo } from "react";
 
-import CardContent from './product-card-content'
-import CardFooter from './product-card-footer'
-import CardImage from './product-card-image'
-import { cartStore } from '@/stores/cart.store'
-import { Product, ProductModel } from '@/entities/product'
-import type { IProductCardVariant } from '../product-card-models'
-import StyledWrapper from './product-card.styled'
+import CardImage from "./product-card-image";
+import CardContent from "./product-card-content";
+import CardFooter from "./product-card-footer";
+import { ShowcaseProduct, ShowcaseProductModel } from "@/entities/product";
+import type { IProductCardVariant } from "../product-card-models";
+import StyledWrapper from "./product-card.styled";
 
 // TODO Обработка ошибки получения изображения продукта.
-const ProductCard: FC<ProductModel & IProductCardVariant> = ({
+const ProductCard: FC<ShowcaseProductModel & IProductCardVariant> = ({
   variant,
   ...productData
 }) => {
-  const product = useMemo(() => new Product(productData), [productData])
+  const showcaseProduct = useMemo(() => {
+    return new ShowcaseProduct(productData)
+  }, [productData])
   const {
-    id,
     title,
-    price: {
-      fullPrice,
-      formattedPrice,
-      formattedFullPrice,
-      discountPercent,
-      withDiscount
-    }
-  } = product
-
-  const priceData = useMemo(() => {
-    return {
-      price: formattedPrice,
-      fullPrice: formattedFullPrice,
-      withDiscount
-    }
-  }, [formattedFullPrice, formattedPrice, withDiscount])
-
-  const handleDecrementCount = useCallback(() => {
-    cartStore.decrementProductCount(id)
-  }, [id])
-
-  const handleIncrementCount = useCallback(() => {
-    cartStore.incrementProductCount(id)
-  }, [id])
+    image,
+    imagePath,
+    price: { withDiscount, discountPercent, description: priceDescription }
+  } = showcaseProduct
 
   return (
     <StyledWrapper
       data-el='product-card'
       variant={variant}
-      imageLoadError={!product.imagePath}
+      imageLoadError={!imagePath}
     >
       <CardImage
         alt={title}
         variant={variant}
-        imagePath={product.image}
+        imagePath={image}
         withDiscount={withDiscount}
         discountPercent={discountPercent}
       />
       <CardContent
         variant={variant}
         title={title}
-        weight={product.formattedWeight}
-        {...priceData}
+        weight={showcaseProduct.formattedWeight}
+        {...priceDescription}
       />
-      <CardFooter
-        {...product}
-        fullPrice={fullPrice}
-        discountPercent={discountPercent}
-        increment={handleIncrementCount}
-        decrement={handleDecrementCount}
-      />
+      <CardFooter {...productData} />
     </StyledWrapper>
   )
 }

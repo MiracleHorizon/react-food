@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 
-import CartButton from '@/ui/buttons/cart-button'
+import CartButton from '@/components/cart/cart-button'
 import { cartStore } from '@/stores/cart.store'
 
 const MainLayoutHeaderCartLabel = () => (

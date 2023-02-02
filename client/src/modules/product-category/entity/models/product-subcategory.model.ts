@@ -1,11 +1,11 @@
 import { z } from 'zod'
 
-import { ProductSchema } from '@/entities/product/product.model'
+import { ShowcaseProductSchema } from '@/entities/product'
 
 export const ProductSubcategorySchema = z.object({
   id: z.string().cuid(),
   title: z.string(),
-  products: z.array(ProductSchema),
+  products: z.array(ShowcaseProductSchema),
   productCategoryId: z.string().cuid()
 })
 

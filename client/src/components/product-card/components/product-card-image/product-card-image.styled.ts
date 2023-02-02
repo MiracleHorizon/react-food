@@ -25,5 +25,5 @@ export const Root = styled.div<IProductCardVariant>`
 export const Image = styled(NextImage)`
   border-radius: 18px;
   user-select: none;
-  background: ${colors.gray['2']};
+  // background: ${colors.gray['2']};
 `

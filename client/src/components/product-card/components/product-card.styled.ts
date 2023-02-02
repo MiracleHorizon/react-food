@@ -13,7 +13,8 @@ const StyledWrapper = styled.div<WrapperProps>`
   transition: background 100ms ease-in;
 
   img {
-    object-fit: ${p => (p.imageLoadError ? 'contain' : 'cover')};
+    // object-fit: ${p => (p.imageLoadError ? 'contain' : 'cover')};
+    object-fit: contain;
   }
 `
 

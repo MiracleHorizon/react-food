@@ -10,7 +10,7 @@ const ChangeCountLabel: FC<Props> = ({
   isDecrementDisabled,
   isIncrementDisabled
 }) => (
-  <Bar.Root>
+  <Bar.Root data-ui='change-count-label'>
     <ChangeCountButton
       destination='decrement'
       onClick={decrement}

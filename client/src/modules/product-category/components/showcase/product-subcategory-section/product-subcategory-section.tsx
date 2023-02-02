@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import ProductCard, { ProductCardVariant } from '@/components/product-card'
-import { Routes } from '@/types/Routes'
+import { Routes } from '@/types/routes'
 import type { ProductSubcategoryModel } from '@/modules/product-category'
 import * as Section from './product-subcategory-section.styled'
 

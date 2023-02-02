@@ -1,8 +1,10 @@
 import { intlConfig } from '@/utils/configs/intl.config'
-import type { ProductPriceModel } from './product-price.model'
 import type { NumberFormatter } from '@/utils/number-formatter'
-
-type Rounding = 'floor' | 'ceil' | 'round'
+import type {
+  PriceDescription,
+  ProductPriceModel,
+  Rounding
+} from './product-price.types'
 
 export class ProductPrice {
   private readonly numberFormatter: NumberFormatter
@@ -27,6 +29,14 @@ export class ProductPrice {
     return this.formatCurrency(this.fullPrice)
   }
 
+  public get description(): PriceDescription {
+    return {
+      price: this.formattedPrice,
+      fullPrice: this.formattedFullPrice,
+      withDiscount: this.withDiscount
+    }
+  }
+
   constructor({
     fullPrice,
     discountPercent,
@@ -47,6 +57,7 @@ export class ProductPrice {
   }
 
   private calculateDiscountPrice(rounding: Rounding): number {
+    // TODO: Перенести логику на бэкенд.
     const price = this.fullPrice - this.calculateDiscount()
 
     switch (rounding) {

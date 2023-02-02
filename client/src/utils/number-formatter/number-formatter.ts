@@ -11,13 +11,22 @@ import { SPACE_SIGN } from '@/utils/constants'
 export class NumberFormatter {
   constructor(private readonly location: string) {}
 
-  public formatCurrency({ value, ...options }: FormatCurrencyArgs): string {
+  public formatCurrency({
+    value,
+    withoutSpaces,
+    ...options
+  }: FormatCurrencyArgs): string {
     const formattedValue = Intl.NumberFormat(this.location, {
       style: 'currency',
       ...options
     }).format(value)
+    const withThinSpaceBeforeSign = this.setThinSpaceBeforeSign(formattedValue)
 
-    return this.setThinSpaceBeforeSign(formattedValue)
+    if (withoutSpaces) {
+      return this.removeValueSpaces(withThinSpaceBeforeSign)
+    }
+
+    return withThinSpaceBeforeSign
   }
 
   public formatWeight({
@@ -65,6 +74,7 @@ export class NumberFormatter {
       ...options
     })
 
+    // TODO Откорректировать
     return `${this.cutOutSign(
       startValue,
       start.toString().length
@@ -103,5 +113,12 @@ export class NumberFormatter {
     const sign = splitValue.pop()
 
     return splitValue.join('').trim() + THIN_SPACE_SIGN + sign
+  }
+
+  private removeValueSpaces(value: string): string {
+    return value
+      .split('')
+      .filter(c => c !== ' ')
+      .join('')
   }
 }

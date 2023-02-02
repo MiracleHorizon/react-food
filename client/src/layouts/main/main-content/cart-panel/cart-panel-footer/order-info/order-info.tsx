@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 
-import OrderButton from './order-button'
+import OrderButton from '@/ui/buttons/order-button'
 import OrderCostShortage from './order-cost-shortage'
 import { cartStore } from '@/stores/cart.store'
-import { Routes } from '@/types/Routes'
+import { Routes } from '@/types/routes'
 
 const OrderInfo = () => {
   const router = useRouter()
@@ -13,10 +13,11 @@ const OrderInfo = () => {
 
   return (
     <div>
-      {cartStore.minOrderCostExceeded ? (
+      {cartStore.isMinOrderCostExceeded ? (
         <OrderButton
           title='Верно, к оплате'
           cost={cartStore.formattedTotalCost}
+          onClick={handleGoToCart}
           disabled={false}
         />
       ) : (
@@ -25,8 +26,8 @@ const OrderInfo = () => {
           <OrderButton
             title={`Добавьте еще на ${cartStore.formattedOrderCostShortage}`}
             cost={cartStore.formattedTotalCost}
-            disabled={true}
-            onClick={handleGoToCart}
+            transparentDisableColor
+            disabled
           />
         </>
       )}

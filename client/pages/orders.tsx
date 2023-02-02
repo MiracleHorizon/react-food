@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Routes } from '@/types/Routes'
+import { Routes } from '@/types/routes'
 
 const OrdersPage = () => {
   return (
