@@ -1,22 +1,27 @@
+import { FC, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
-import type { FC } from 'react'
 
 import { CART_IMAGE_URL } from '@/utils/constants/images'
 import * as Button from './cart-button.styled'
 
-const CartButton: FC<Props> = ({ productsCost }) => {
-  const router = useRouter()
+const OrderModal = dynamic(import('../order-modal'))
 
-  const handleGoToCart = () => {
-    router.push('/cart')
-  }
+const CartButton: FC<Props> = ({ productsCost }) => {
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const handleOpenModal = () => setModalOpen(true)
+
+  const handleCloseModal = () => setModalOpen(false)
 
   return (
-    <Button.Root onClick={handleGoToCart}>
-      <Image width={24} height={24} src={CART_IMAGE_URL} alt='Cart' />
-      <Button.Cost>{productsCost}</Button.Cost>
-    </Button.Root>
+    <>
+      <Button.Root onClick={handleOpenModal}>
+        <Image width={24} height={24} src={CART_IMAGE_URL} alt='Cart' />
+        <Button.Cost>{productsCost}</Button.Cost>
+      </Button.Root>
+      <OrderModal open={modalOpen} onClose={handleCloseModal} />
+    </>
   )
 }
 
