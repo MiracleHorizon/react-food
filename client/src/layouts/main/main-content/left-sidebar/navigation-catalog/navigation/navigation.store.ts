@@ -19,4 +19,4 @@ class NavigationStore {
   }
 }
 
-export const navigationStore = new NavigationStore()
+export const useNavigationStore = new NavigationStore()

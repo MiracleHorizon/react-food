@@ -235,6 +235,6 @@ export class CartStore {
   }
 }
 
-export const cartStore = new CartStore({
+export const useCartStore = new CartStore({
   location: 'ru'
 })

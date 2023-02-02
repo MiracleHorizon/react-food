@@ -1,14 +1,14 @@
 import type { FC } from 'react'
 
-import MainLayout, { navigationStore } from '@/layouts/main'
+import MainLayout, { useNavigationStore } from '@/layouts/main'
 import CategoryShowcase from './showcase'
-import { cartStore } from '@/stores/cart.store'
+import { useCartStore } from '@/stores/cart.store'
 import type { Props } from '@/pages/category/[id]'
 import * as Category from './product-category.styled'
 
 const ProductCategory: FC<Props> = ({ category, navCategories, cart }) => {
-  cartStore.initialize(cart)
-  navigationStore.setCategories(navCategories)
+  useCartStore.initialize(cart)
+  useNavigationStore.setCategories(navCategories)
 
   return (
     <MainLayout title={category.title}>

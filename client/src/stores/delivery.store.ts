@@ -1,6 +1,6 @@
 import { computed, makeObservable, observable } from 'mobx'
 
-import { cartStore, CartStore } from '@/stores/cart.store'
+import { CartStore, useCartStore } from '@/stores/cart.store'
 import { DeliveryDescription } from '@/entities/delivery-description'
 import { intlConfig } from '@/utils/configs/intl.config'
 
@@ -29,7 +29,7 @@ class DeliveryStore extends CartStore {
   })
 
   public get deliveryPrice(): number {
-    return cartStore.totalCost >= this.parameters.freeDeliveryOrderCost
+    return useCartStore.totalCost >= this.parameters.freeDeliveryOrderCost
       ? 0
       : 149
   }
@@ -108,6 +108,6 @@ class DeliveryStore extends CartStore {
   }
 }
 
-export const deliveryStore = new DeliveryStore({
+export const useDeliveryStore = new DeliveryStore({
   location: 'ru'
 })

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 
-import { deliveryStore } from '@/stores/delivery.store'
+import { useDeliveryStore } from '@/stores/delivery.store'
 import * as Content from './delivery-info-modal-content.styled'
 
 // TODO: Доработать все, что связано с этим компонентом.
@@ -10,11 +10,11 @@ const DeliveryInfoModalContent = () => {
     () => [
       {
         title: 'Стоимость',
-        content: deliveryStore.getCostInformation()
+        content: useDeliveryStore.getCostInformation()
       },
       {
         title: 'Детали',
-        content: deliveryStore.getDetails()
+        content: useDeliveryStore.getDetails()
       }
     ],
     []

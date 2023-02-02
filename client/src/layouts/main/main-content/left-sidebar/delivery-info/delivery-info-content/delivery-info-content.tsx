@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 
 import ClockSvg from '@/ui/svg/clock-svg'
 import DeliveryInfoAbout from '../delivery-info-about'
-import { deliveryStore } from '@/stores/delivery.store'
+import { useDeliveryStore } from '@/stores/delivery.store'
 import * as Content from './delivery-info-content.styled'
 
 const DeliveryInfoContent = () => (
@@ -10,14 +10,14 @@ const DeliveryInfoContent = () => (
     <Content.Time>
       <ClockSvg />
       <Content.TimeRange>
-        {deliveryStore.description.formattedTimeRange}
+        {useDeliveryStore.description.formattedTimeRange}
       </Content.TimeRange>
     </Content.Time>
     <Content.Price>
-      Бесплатно от {deliveryStore.description.formattedFreeCost}
+      Бесплатно от {useDeliveryStore.description.formattedFreeCost}
     </Content.Price>
     <Content.ServiceFee>
-      Работа сервиса {deliveryStore.description.formattedServiceFee}
+      Работа сервиса {useDeliveryStore.description.formattedServiceFee}
     </Content.ServiceFee>
     <DeliveryInfoAbout />
   </Content.Root>

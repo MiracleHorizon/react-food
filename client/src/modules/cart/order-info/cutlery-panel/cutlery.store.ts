@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 
-import { cartStore } from '@/stores/cart.store'
+import { useCartStore } from '@/stores/cart.store'
 
 class CutleryStore {
   private count = 0
@@ -16,7 +16,7 @@ class CutleryStore {
   }
 
   public get isCutleryRequired(): boolean {
-    return cartStore.withReadyMeal
+    return useCartStore.withReadyMeal
   }
 
   constructor() {
@@ -44,4 +44,4 @@ class CutleryStore {
   }
 }
 
-export const cutleryStore = new CutleryStore()
+export const useCutleryStore = new CutleryStore()

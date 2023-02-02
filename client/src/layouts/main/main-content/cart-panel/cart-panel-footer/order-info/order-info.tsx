@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import OrderButton from '@/ui/buttons/order-button'
 import OrderCostShortage from './order-cost-shortage'
-import { cartStore } from '@/stores/cart.store'
+import { useCartStore } from '@/stores/cart.store'
 import { Routes } from '@/types/routes'
 
 const OrderInfo = () => {
@@ -13,10 +13,10 @@ const OrderInfo = () => {
 
   return (
     <div>
-      {cartStore.isMinOrderCostExceeded ? (
+      {useCartStore.isMinOrderCostExceeded ? (
         <OrderButton
           title='Верно, к оплате'
-          cost={cartStore.formattedTotalCost}
+          cost={useCartStore.formattedTotalCost}
           onClick={handleGoToCart}
           disabled={false}
         />
@@ -24,8 +24,8 @@ const OrderInfo = () => {
         <>
           <OrderCostShortage />
           <OrderButton
-            title={`Добавьте еще на ${cartStore.formattedOrderCostShortage}`}
-            cost={cartStore.formattedTotalCost}
+            title={`Добавьте еще на ${useCartStore.formattedOrderCostShortage}`}
+            cost={useCartStore.formattedTotalCost}
             transparentDisableColor
             disabled
           />

@@ -1,2 +1,2 @@
 export { default } from './cutlery-panel'
-export { cutleryStore } from './cutlery.store'
+export { useCutleryStore } from './cutlery.store'

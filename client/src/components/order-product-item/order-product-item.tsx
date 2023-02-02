@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useMemo } from 'react'
 
 import ItemContent from './order-product-item-content'
 import ChangeCountLabel from '@/ui/change-count-label'
-import { cartStore } from '@/stores/cart.store'
+import { useCartStore } from '@/stores/cart.store'
 import { CartProduct, CartProductModel } from '@/entities/product'
 import * as Item from './order-product-item.styled'
 
@@ -18,12 +18,12 @@ const OrderProductItem: FC<Props> = ({ variant, ...productData }) => {
   } = cartProduct
 
   const handleIncrementCount = useCallback(
-    () => cartStore.incrementProductCount(productReferenceId),
+    () => useCartStore.incrementProductCount(productReferenceId),
     [productReferenceId]
   )
 
   const handleDecrementCount = useCallback(
-    () => cartStore.decrementProductCount(productReferenceId),
+    () => useCartStore.decrementProductCount(productReferenceId),
     [productReferenceId]
   )
 

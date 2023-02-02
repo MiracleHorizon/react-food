@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 
 import Home from '@/modules/home'
-import { cartStore } from '@/stores/cart.store'
+import { useCartStore } from '@/stores/cart.store'
 import {
   baseMainLayoutApiRequest,
   BaseMainLayoutApiRequest,
-  navigationStore
+  useNavigationStore
 } from '@/layouts/main'
 import {
   ProductCategoryModel,
@@ -20,9 +20,9 @@ const HomePage: NextPage<Props> = ({
   navCategories,
   productCategories
 }) => {
-  cartStore.initialize(cart)
-  cartStore.setParameters(orderParameters)
-  navigationStore.setCategories(navCategories)
+  useCartStore.initialize(cart)
+  useCartStore.setParameters(orderParameters)
+  useNavigationStore.setCategories(navCategories)
 
   return <Home productCategories={productCategories} />
 }

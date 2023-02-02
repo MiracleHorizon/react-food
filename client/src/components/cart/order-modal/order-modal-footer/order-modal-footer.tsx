@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { observer } from 'mobx-react-lite'
 
 import OrderButton from '@/ui/buttons/order-button'
-import { cartStore } from '@/stores/cart.store'
+import { useCartStore } from '@/stores/cart.store'
 import { Routes } from '@/types/routes'
 import * as Footer from './order-modal-footer.styled'
 
@@ -13,30 +13,30 @@ const OrderModalFooter: FC<Props> = props => {
   const handleGoToCart = useCallback(() => router.push(Routes.CART), [router])
 
   const orderButtonProps = useMemo(() => {
-    return cartStore.isMinOrderCostExceeded
+    return useCartStore.isMinOrderCostExceeded
       ? {
           title: 'Верно, к оплате',
           disabled: false,
           onClick: handleGoToCart
         }
       : {
-          title: `Добавьте еще на ${cartStore.formattedOrderCostShortage}`,
+          title: `Добавьте еще на ${useCartStore.formattedOrderCostShortage}`,
           disabled: true
         }
   }, [
     handleGoToCart,
-    cartStore.isMinOrderCostExceeded,
-    cartStore.formattedOrderCostShortage
+    useCartStore.isMinOrderCostExceeded,
+    useCartStore.formattedOrderCostShortage
   ])
 
   return (
     <Footer.Root {...props}>
       <OrderButton
         {...orderButtonProps}
-        cost={cartStore.formattedTotalCost}
+        cost={useCartStore.formattedTotalCost}
         withoutCost
       />
-      <Footer.Price>{cartStore.formattedTotalCost}</Footer.Price>
+      <Footer.Price>{useCartStore.formattedTotalCost}</Footer.Price>
     </Footer.Root>
   )
 }

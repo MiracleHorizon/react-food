@@ -1,14 +1,14 @@
 import { useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 
-import { deliveryStore } from '@/stores/delivery.store'
+import { useDeliveryStore } from '@/stores/delivery.store'
 import * as Info from './order-info.styled'
 
 const OrderInfo = () => {
   const {
     description: { formattedServiceFee },
     formattedDeliveryPrice
-  } = deliveryStore
+  } = useDeliveryStore
 
   const info = useMemo(() => {
     return [

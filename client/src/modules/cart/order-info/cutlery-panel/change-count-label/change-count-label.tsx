@@ -3,17 +3,17 @@ import { observer } from 'mobx-react-lite'
 import { useCallback } from 'react'
 
 import ChangeCountLabel from '@/ui/change-count-label'
-import { cutleryStore } from '../cutlery.store'
+import { useCutleryStore } from '../cutlery.store'
 import { CUTLERY_IMAGE_URL } from '@/utils/constants'
 import * as Label from './change-count-label.styled'
 
 const ChangeCutleryCountLabel = () => {
   const handleIncrementCount = useCallback(() => {
-    cutleryStore.incrementCount()
+    useCutleryStore.incrementCount()
   }, [])
 
   const handleDecrementCount = useCallback(() => {
-    cutleryStore.decrementCount()
+    useCutleryStore.decrementCount()
   }, [])
 
   return (
@@ -25,10 +25,10 @@ const ChangeCutleryCountLabel = () => {
         </Label.Title>
       </Label.TitleLabel>
       <ChangeCountLabel
-        value={cutleryStore.getCount()}
+        value={useCutleryStore.getCount()}
         decrement={handleDecrementCount}
         increment={handleIncrementCount}
-        isIncrementDisabled={cutleryStore.isMaxCount}
+        isIncrementDisabled={useCutleryStore.isMaxCount}
       />
     </Label.Root>
   )

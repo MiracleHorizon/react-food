@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 
 import SmallPlusSvg from '@/ui/svg/small-plus-svg'
 import SmallMinusSvg from '@/ui/svg/small-minus-svg'
-import { cartStore } from '@/stores/cart.store'
+import { useCartStore } from '@/stores/cart.store'
 import type { ShowcaseProductModel } from '@/entities/product'
 import * as Footer from './product-card-footer.styled'
 
@@ -11,21 +11,21 @@ const ProductCardFooter: FC<ShowcaseProductModel> = showcaseProduct => {
   const { id } = showcaseProduct
 
   const handleAddToCart = useCallback(() => {
-    return cartStore.addProduct(showcaseProduct)
+    return useCartStore.addProduct(showcaseProduct)
   }, [showcaseProduct])
 
   const handleDecrementCount = useCallback(() => {
-    return cartStore.decrementProductCount(id)
+    return useCartStore.decrementProductCount(id)
   }, [id])
 
   const handleIncrementCount = useCallback(() => {
-    return cartStore.incrementProductCount(id)
+    return useCartStore.incrementProductCount(id)
   }, [id])
 
   return (
     <Footer.Root>
       <Footer.Content>
-        {!cartStore.isProductInCart(showcaseProduct.id) ? (
+        {!useCartStore.isProductInCart(showcaseProduct.id) ? (
           <Footer.AddButton onClick={handleAddToCart}>
             <SmallPlusSvg />
           </Footer.AddButton>
@@ -37,7 +37,7 @@ const ProductCardFooter: FC<ShowcaseProductModel> = showcaseProduct => {
             >
               <SmallMinusSvg />
             </Footer.ChangeCountButton>
-            <Footer.Count>{cartStore.getProductCount(id)}</Footer.Count>
+            <Footer.Count>{useCartStore.getProductCount(id)}</Footer.Count>
             <Footer.ChangeCountButton
               position='right'
               onClick={handleIncrementCount}

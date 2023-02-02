@@ -1,2 +1,2 @@
 export { default } from './navigation'
-export { navigationStore } from './navigation.store'
+export { useNavigationStore } from './navigation.store'

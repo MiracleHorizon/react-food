@@ -5,8 +5,8 @@ import CartPanelItem from './cart-panel-item'
 import EmptyPanel from './empty-cart-panel'
 import ServiceFeeLabel from '@/ui/service-fee-label'
 import { useScrollPosition } from '@/hooks/useScrollPosition'
-import { cartStore } from '@/stores/cart.store'
-import { deliveryStore } from '@/stores/delivery.store'
+import { useCartStore } from '@/stores/cart.store'
+import { useDeliveryStore } from '@/stores/delivery.store'
 import * as Content from './cart-panel-content.styled'
 
 // TODO: Лишние ререндеры.
@@ -19,12 +19,12 @@ const CartPanelContent = () => {
 
   return (
     <Content.Root ref={rootRef} isScrollOnTop={isScrollOnTop}>
-      {cartStore.isEmpty ? (
+      {useCartStore.isEmpty ? (
         <EmptyPanel />
       ) : (
         <>
           <Content.List>
-            {cartStore.products.map(product => (
+            {useCartStore.products.map(product => (
               <CartPanelItem
                 key={product.id}
                 {...product}
@@ -35,7 +35,7 @@ const CartPanelContent = () => {
             ))}
           </Content.List>
           <ServiceFeeLabel
-            serviceFee={deliveryStore.description.formattedServiceFee}
+            serviceFee={useDeliveryStore.description.formattedServiceFee}
           />
         </>
       )}
