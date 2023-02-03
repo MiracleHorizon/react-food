@@ -9,7 +9,7 @@ const StyledContent = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  padding: ${contentTopPadding}px 55px 0 55px;
+  padding: ${contentTopPadding}px 55px 20px 55px;
   transition: filter 0.2s ease-in;
 `
 

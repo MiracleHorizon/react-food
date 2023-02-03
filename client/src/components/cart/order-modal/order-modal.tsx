@@ -8,12 +8,12 @@ import DefaultModal from '@/ui/modals/default-modal'
 import type { ModalProps } from '@/models/modal-props'
 import styles from './order-modal.module.css'
 
-const OrderModal: FC<ModalProps> = ({ open, onClose }) => {
+const OrderModal: FC<ModalProps> = props => {
   const [isScrollOnTop, setScrollOnTop] = useState(true)
   const [isScrollOnBottom, setScrollOnBottom] = useState(false)
 
   return (
-    <DefaultModal open={open} onClose={onClose}>
+    <DefaultModal {...props}>
       <Dialog.Panel as='div' className={styles.panel}>
         <ModalHeader isScrollOnTop={isScrollOnTop} />
         <ModalContent

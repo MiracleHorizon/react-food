@@ -1,4 +1,4 @@
-import { makeObservable, observable } from 'mobx'
+import { makeObservable, observable, runInAction } from 'mobx'
 
 import type { NavigationCategory } from '@/models/navigation-category'
 
@@ -14,7 +14,7 @@ class NavigationStore {
 
   public setCategories(categories: NavigationCategory[]): void {
     if (this.categories.length === 0) {
-      this.categories = categories
+      runInAction(() => (this.categories = categories))
     }
   }
 }
