@@ -1,13 +1,17 @@
 import styled from '@emotion/styled'
 
+import BaseProductCard from '@/components/product-card'
+
+export const cardAnimation = {}
+
 export const Root = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: space-between;
+`
 
-  div[data-el='product-card'] {
-    margin: 0 4px;
-  }
+export const ProductCard = styled(BaseProductCard)`
+  margin: 0 4px;
 `

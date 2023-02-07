@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { useRouter } from 'next/router'
 
-import ArrowRightSvg from '@/ui/svg/arrow-right-svg'
+import ArrowSvg from '@/ui/svg/arrow-svg'
 import { Routes } from '@/types/routes'
 import * as Button from './load-more-button.styled'
 
@@ -14,7 +14,7 @@ const LoadMoreButton: FC<Props> = ({ categoryId }) => {
     <Button.Root onClick={handleLoadMore}>
       <Button.Content>
         <Button.Title>посмотреть все</Button.Title>
-        <ArrowRightSvg />
+        <ArrowSvg />
       </Button.Content>
     </Button.Root>
   )
