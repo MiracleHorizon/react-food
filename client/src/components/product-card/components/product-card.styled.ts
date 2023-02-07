@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import { IProductCardVariant, ProductCardVariant } from '../product-card-models'
 
-const StyledWrapper = styled.div<WrapperProps>`
+export const StyledWrapper = styled.div<IProductCardVariant>`
   cursor: pointer;
   width: ${p => (p.variant === ProductCardVariant.SMALL ? '172px' : '224px')};
   display: flex;
@@ -11,15 +11,4 @@ const StyledWrapper = styled.div<WrapperProps>`
   border-radius: 24px;
   background: white;
   transition: background 100ms ease-in;
-
-  img {
-    // object-fit: ${p => (p.imageLoadError ? 'contain' : 'cover')};
-    object-fit: contain;
-  }
 `
-
-export default StyledWrapper
-
-interface WrapperProps extends IProductCardVariant {
-  imageLoadError: boolean
-}

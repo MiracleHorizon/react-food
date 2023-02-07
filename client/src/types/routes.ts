@@ -3,5 +3,8 @@ export enum Routes {
   CART = '/cart',
   ORDERS = '/orders',
   CATEGORY = '/category',
-  SUBCATEGORY = '/category/subcategory'
+  NOT_FOUND = '/404',
+  SIGNUP = '/auth/signup',
+  SIGNIN = '/auth/signin',
+  DASHBOARD = '/dashboard'
 }

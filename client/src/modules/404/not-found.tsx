@@ -3,7 +3,7 @@ import HeadComponent from '@/components/HeadComponent'
 import notFoundImage from '@/public/images/not-found-image.png'
 import * as NotFound from './not-found.styled'
 
-const NotFoundComponent = () => (
+const NotFoundPageComponent = () => (
   <NotFound.Root>
     <HeadComponent title='404 - Страница не найдена' />
     <NotFound.Wrapper>
@@ -19,4 +19,4 @@ const NotFoundComponent = () => (
   </NotFound.Root>
 )
 
-export default NotFoundComponent
+export default NotFoundPageComponent

@@ -1,17 +1,17 @@
-import Link from 'next/link'
 import styled from '@emotion/styled'
+import Link from 'next/link'
 
 import { colors } from '@/styles/variables'
 
-export const Root = styled(Link)`
+export const LinkRoot = styled(Link)`
   cursor: pointer;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-right: 6px;
   padding: 0 18px;
-  margin: 0 6px;
   border-radius: 12px;
   transition: background 50ms ease-out;
 

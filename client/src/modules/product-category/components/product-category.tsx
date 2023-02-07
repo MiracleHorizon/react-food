@@ -1,29 +1,22 @@
 import type { FC } from 'react'
 
-import MainLayout, { useNavigationStore } from '@/layouts/main'
-import Breadcrumb, { BreadcrumbItem } from '@/ui/breadcrumb'
-import CategoryShowcase from './showcase'
-import { useCartStore } from '@/stores/cart.store'
+import MainLayout from '@/layouts/main'
+import CategoryHeader from './product-category-header'
+import CategoryShowcase from './product-category-showcase'
+import { useRefreshAuth } from '@/hooks/useRefreshAuth'
 import { APP_TITLE } from '@/utils/constants/app'
-import { Routes } from '@/types/routes'
-import type { Props } from '@/pages/category/[id]'
-import * as Category from './product-category.styled'
+import type { ProductCategoryModel } from '@/modules/product-category'
+import { StyledWrapper } from './product-category.styled'
 
-const breadcrumbItems: BreadcrumbItem[] = [
-  { title: 'Главная', href: Routes.HOME }
-]
-
-const ProductCategory: FC<Props> = ({ category, navCategories, cart }) => {
-  useCartStore.initialize(cart)
-  useNavigationStore.setCategories(navCategories)
+const ProductCategory: FC<ProductCategoryModel> = category => {
+  useRefreshAuth()
 
   return (
-    <MainLayout title={`${APP_TITLE} | ${category.title}`}>
-      <Category.Root>
-        <Breadcrumb items={breadcrumbItems} withFinishingSeparator />
-        <Category.Title>{category.title}</Category.Title>
+    <MainLayout title={`${category.title} | ${APP_TITLE}`}>
+      <StyledWrapper>
+        <CategoryHeader {...category} />
         <CategoryShowcase {...category} />
-      </Category.Root>
+      </StyledWrapper>
     </MainLayout>
   )
 }

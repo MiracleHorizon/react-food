@@ -1,53 +1,40 @@
 import type { NextPage } from 'next'
 
 import Home from '@/modules/home'
-import { useCartStore } from '@/stores/cart.store'
 import {
-  baseMainLayoutApiRequest,
-  BaseMainLayoutApiRequest,
-  useNavigationStore
-} from '@/layouts/main'
-import {
-  ProductCategoryModel,
-  productCategoryService
+  productCategoryService,
+  ShowcaseProductCategoryModel
 } from '@/modules/product-category'
-import { CART_ID } from '@/utils/constants/mock-user'
-import type { PaginationParams } from '@/api/models/pagination-params.model'
+import {
+  EnvironmentData,
+  fetchEnvironmentData,
+  initializeEnvironmentData
+} from '@lib/environment'
 
-const HomePage: NextPage<Props> = ({
-  cart,
-  orderParameters,
-  navCategories,
-  productCategories
-}) => {
-  useCartStore.initialize(cart)
-  useCartStore.setParameters(orderParameters)
-  useNavigationStore.setCategories(navCategories)
+const HomePage: NextPage<Props> = ({ environmentData, productCategories }) => {
+  initializeEnvironmentData(environmentData)
 
   return <Home productCategories={productCategories} />
 }
 
 export default HomePage
 
-export const getStaticProps = async () => {
-  const startPaginationParams: PaginationParams = {
+export const getServerSideProps = async () => {
+  const environmentData = await fetchEnvironmentData()
+  const productCategories = await productCategoryService.fetchAll({
     skip: 0,
     take: 3
-  }
-  const productCategories = await productCategoryService.fetchAllCategories(
-    startPaginationParams
-  )
-
-  const environmentData = await baseMainLayoutApiRequest(CART_ID)
+  })
 
   return {
     props: {
-      productCategories,
-      ...environmentData
+      environmentData,
+      productCategories
     }
   }
 }
 
-interface Props extends BaseMainLayoutApiRequest {
-  productCategories: ProductCategoryModel[]
+interface Props {
+  productCategories: ShowcaseProductCategoryModel[]
+  environmentData: EnvironmentData
 }

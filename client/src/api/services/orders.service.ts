@@ -6,7 +6,7 @@ class OrdersService extends BaseService {
     super('orders')
   }
 
-  public async fetchOrderParameters(): Promise<OrderParameters> {
+  public async fetchDeliveryParameters(): Promise<OrderParameters> {
     try {
       const { data } = await this.api.get('parameters')
 

@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react-lite'
 
-import CartButton from '@/components/cart/cart-button'
 import { useCartStore } from '@/stores/cart.store'
+import { StyledCartButton } from './cart-label.styled'
 
 const MainLayoutHeaderCartLabel = () => (
   <>
-    {useCartStore.totalCost > 0 && (
-      <CartButton productsCost={useCartStore.formattedTotalCost} />
+    {!useCartStore.isEmpty && (
+      <StyledCartButton productsCost={useCartStore.formattedTotalCost} />
     )}
   </>
 )

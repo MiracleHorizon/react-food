@@ -1,29 +1,11 @@
-import type { NextPage } from 'next'
-
 import Cart from '@/modules/cart'
-import { useCartStore } from '@/stores/cart.store'
-import { cartService } from '@/api/services/cart.service'
-import { CART_ID } from '@/utils/constants/mock-user'
-import type { CartModel } from '@/models/cart.model'
+import { useRefreshAuth } from '@/hooks/useRefreshAuth'
 
-const CartPage: NextPage<Props> = ({ cart }) => {
-  useCartStore.initialize(cart)
+// TODO: Page loader.
+const CartPage = () => {
+  useRefreshAuth()
 
   return <Cart />
 }
 
 export default CartPage
-
-export const getServerSideProps = async () => {
-  const cart = await cartService.fetchCart(CART_ID)
-
-  return {
-    props: {
-      cart
-    }
-  }
-}
-
-interface Props {
-  cart: CartModel
-}

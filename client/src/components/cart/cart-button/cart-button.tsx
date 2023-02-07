@@ -7,7 +7,7 @@ import * as Button from './cart-button.styled'
 
 const OrderModal = dynamic(import('../order-modal'))
 
-const CartButton: FC<Props> = ({ productsCost }) => {
+const CartButton: FC<Props> = ({ productsCost, className }) => {
   const [modalOpen, setModalOpen] = useState(false)
 
   const handleOpenModal = () => setModalOpen(true)
@@ -16,7 +16,7 @@ const CartButton: FC<Props> = ({ productsCost }) => {
 
   return (
     <>
-      <Button.Root onClick={handleOpenModal}>
+      <Button.Root className={className} onClick={handleOpenModal}>
         <Image width={24} height={24} src={CART_IMAGE_URL} alt='Cart' />
         <Button.Cost>{productsCost}</Button.Cost>
       </Button.Root>
@@ -29,4 +29,5 @@ export default CartButton
 
 interface Props {
   productsCost: string
+  className?: string
 }

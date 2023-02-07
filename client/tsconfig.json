@@ -49,6 +49,9 @@
       ],
       "@/images/*": [
         "../public/images*"
+      ],
+      "@lib/*": [
+        "../lib/*"
       ]
     },
     "target": "ESNext",

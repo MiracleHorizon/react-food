@@ -4,7 +4,7 @@ import { FC, Fragment } from 'react'
 import { ModalBackdrop } from '@/styles/styled-components/modal-backdrop'
 import { ModalContainer } from './default-layout.styled'
 import type { ChildrenProps } from '@/types/children-props'
-import type { ModalProps } from '@/models/modal-props'
+import type { ModalProps } from '@/types/modal-props'
 import styles from './default-modal.module.css'
 
 const transition = {

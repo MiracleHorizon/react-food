@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { HorizontalDivider } from '@/ui/divider'
+import { HorizontalDivider } from '@/styles/styled-components/divider'
 import { FixedHeader } from '@/styles/styled-components/fixed-header'
 import { colors } from '@/styles/variables'
 
@@ -12,7 +12,8 @@ export const Root = styled(FixedHeader)<RootProps>`
   padding: 0 24px;
   background: ${colors.gray['2']};
   transition: box-shadow 0.2s ease-in-out;
-  ${p => !p.isScrollOnTop && 'box-shadow: 0 8px 20px rgb(117 115 111 / 20%)'};
+  ${p =>
+    !p.isPageScrollOnTop && 'box-shadow: 0 8px 20px rgb(117 115 111 / 20%)'};
 `
 
 export const Content = styled.div`
@@ -28,5 +29,5 @@ export const Divider = styled(HorizontalDivider)`
 `
 
 interface RootProps {
-  isScrollOnTop: boolean
+  isPageScrollOnTop: boolean
 }

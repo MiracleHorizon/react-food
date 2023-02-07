@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { defaultScrollbarStyles } from '@/styles/scrollbar'
 
 // todo Сколлбар в Firefox.
-export const Root = styled.main<RootProps>`
+export const StyledWrapper = styled.main<Props>`
   flex: 1 1 auto;
   padding: 0 16px 20px 16px;
   border-radius: 24px 24px 0 0;
@@ -24,10 +24,6 @@ export const Root = styled.main<RootProps>`
   ${defaultScrollbarStyles.webkitScrollbarThumb};
 `
 
-export const List = styled.ul`
-  margin-bottom: 25px;
-`
-
-interface RootProps {
+interface Props {
   isScrollOnTop: boolean
 }

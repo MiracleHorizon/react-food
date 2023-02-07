@@ -31,14 +31,18 @@ export const Root = styled.button<RootProps>`
   }};
 `
 
-export const Text = styled.span`
-  margin-left: 6px;
+export const Text = styled.span<TextProps>`
+  ${p => p.withIcon && 'margin-left: 6px'};
   font-size: 18px;
   font-weight: 500;
 `
 
 interface RootProps {
   variant: ButtonVariant
+}
+
+interface TextProps {
+  withIcon: boolean
 }
 
 const getBackgroundColorByVariant = (variant: ButtonVariant): string => {

@@ -7,17 +7,17 @@ import * as Info from './delivery-info.styled'
 const DeliveryInfo = () => {
   const [modalOpen, setModalOpen] = useState(false)
 
-  const onOpenModal = () => setModalOpen(true)
+  const handleOpenModal = () => setModalOpen(true)
 
-  const onCloseModal = () => setModalOpen(false)
+  const handleCloseModal = () => setModalOpen(false)
 
   return (
     <>
-      <Info.Root onClick={onOpenModal}>
+      <Info.Root onClick={handleOpenModal}>
         <Info.StyledTitle>Доставка</Info.StyledTitle>
         <InfoContent />
       </Info.Root>
-      <InfoModal open={modalOpen} onClose={onCloseModal} />
+      <InfoModal open={modalOpen} onClose={handleCloseModal} />
     </>
   )
 }

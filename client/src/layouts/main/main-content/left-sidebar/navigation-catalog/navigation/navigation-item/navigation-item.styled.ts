@@ -1,11 +1,27 @@
 import styled from '@emotion/styled'
 import NextLink from 'next/link'
+import { motion, Variants } from 'framer-motion'
 
 import { colors } from '@/styles/variables'
 
 const imageSize = 44
 
-export const Root = styled.li`
+export const animation: Variants = {
+  hidden: {
+    x: -40,
+    opacity: 0
+  },
+  visible: (custom: number) => ({
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      delay: custom * 0.15
+    }
+  })
+}
+
+export const Root = styled(motion.li)`
   height: 52px;
   margin: 1px 0;
   padding-left: 4px;

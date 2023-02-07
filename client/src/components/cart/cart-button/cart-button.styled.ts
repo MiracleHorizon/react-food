@@ -9,7 +9,6 @@ export const Root = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 6px;
   padding-right: 16px;
   padding-left: 12px;
   border-radius: 16px;

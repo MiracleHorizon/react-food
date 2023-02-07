@@ -1,5 +1,5 @@
 export { default } from './components/product-category'
 export { productCategoryService } from './api/product-category.service'
-export { ProductCategoryImpl } from './entity/product-category'
-export type { ProductCategoryModel } from './entity/models/product-category.model'
-export type { ProductSubcategoryModel } from './entity/models/product-subcategory.model'
+export type { ProductCategoryModel } from './models/product-category.model'
+export type { ProductSubcategoryModel } from './models/product-subcategory.model'
+export type { ShowcaseProductCategoryModel } from './models/showcase-product-category.model'

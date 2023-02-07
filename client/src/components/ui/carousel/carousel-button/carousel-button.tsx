@@ -1,11 +1,11 @@
 import { FC, memo } from 'react'
 
-import ArrowRightSvg from '@/ui/svg/arrow-right-svg'
+import ArrowSvg from '@/ui/svg/arrow-svg'
 import StyledButton from './carousel-button.styled'
 
 const CarouselButton: FC<Props> = ({ onClick, ...stylesProps }) => (
   <StyledButton {...stylesProps} onClick={onClick}>
-    <ArrowRightSvg />
+    <ArrowSvg />
   </StyledButton>
 )
 

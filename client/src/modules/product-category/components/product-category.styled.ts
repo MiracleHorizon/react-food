@@ -1,15 +1,9 @@
 import styled from '@emotion/styled'
 
-const productCardMaxWidth = 300
+export const productCardMaxWidth = 300
 
-export const Root = styled.main`
-  flex: 1 1 auto;
+export const StyledWrapper = styled.main`
   max-width: ${productCardMaxWidth * 4}px;
-`
-
-export const Title = styled.h1`
-  margin-top: 8px;
-  margin-bottom: 14px;
-  font-size: 44px;
-  font-weight: 600;
+  min-width: calc(100vw - 240px - 110px - 320px - 50px);
+  padding-bottom: 20px;
 `

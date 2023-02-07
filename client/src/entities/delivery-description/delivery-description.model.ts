@@ -1,4 +1,4 @@
-import type { Range } from '@/models/range'
+import type { Range } from '@/types/range'
 
 export interface DeliveryDescriptionModel {
   distance: number

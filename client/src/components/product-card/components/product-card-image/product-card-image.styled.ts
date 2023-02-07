@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import NextImage from 'next/image'
 
-import { colors } from '@/styles/variables'
 import {
   IProductCardVariant,
   ProductCardVariant
@@ -25,5 +24,5 @@ export const Root = styled.div<IProductCardVariant>`
 export const Image = styled(NextImage)`
   border-radius: 18px;
   user-select: none;
-  // background: ${colors.gray['2']};
+  object-fit: contain;
 `

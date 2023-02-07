@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import type { FC } from 'react'
 
 import NavigationItem from './navigation-item'
@@ -5,11 +6,11 @@ import type { NavigationCategory } from '@/models/navigation-category'
 
 const Navigation: FC<Props> = ({ categories }) => (
   <nav>
-    <ul>
-      {categories.map(category => (
-        <NavigationItem key={category.id} {...category} />
+    <motion.ul initial='hidden' whileInView='visible' viewport={{ once: true }}>
+      {categories.map((category, index) => (
+        <NavigationItem key={category.id} {...category} index={index} />
       ))}
-    </ul>
+    </motion.ul>
   </nav>
 )
 

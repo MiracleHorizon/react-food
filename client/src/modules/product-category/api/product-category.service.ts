@@ -1,5 +1,8 @@
 import { BaseService } from '@/api/base-service'
-import type { ProductCategoryModel } from '@/modules/product-category'
+import type {
+  ProductCategoryModel,
+  ShowcaseProductCategoryModel
+} from '@/modules/product-category'
 import type { PaginationParams } from '@/api/models/pagination-params.model'
 import type { NavigationCategory } from '@/models/navigation-category'
 
@@ -8,7 +11,7 @@ class ProductCategoryService extends BaseService {
     super('product_category')
   }
 
-  public async fetchOneCategory(id: string): Promise<ProductCategoryModel> {
+  public async fetchOne(id: string): Promise<ProductCategoryModel> {
     try {
       const { data } = await this.api.get<ProductCategoryModel>(id)
 
@@ -18,9 +21,9 @@ class ProductCategoryService extends BaseService {
     }
   }
 
-  public async fetchAllCategories(
+  public async fetchAll(
     paginationParams: PaginationParams
-  ): Promise<ProductCategoryModel[]> {
+  ): Promise<ShowcaseProductCategoryModel[]> {
     try {
       const { data } = await this.api.get('', {
         params: paginationParams
@@ -32,7 +35,7 @@ class ProductCategoryService extends BaseService {
     }
   }
 
-  public async fetchNavCategories(): Promise<NavigationCategory[]> {
+  public async fetchNavigation(): Promise<NavigationCategory[]> {
     try {
       const url = '/navigation/all'
       const { data } = await this.api.get<NavigationCategory[]>(url)

@@ -7,6 +7,7 @@ import { useCartStore } from '@/stores/cart.store'
 import type { ShowcaseProductModel } from '@/entities/product'
 import * as Footer from './product-card-footer.styled'
 
+// TODO: Лишние перерисовки
 const ProductCardFooter: FC<ShowcaseProductModel> = showcaseProduct => {
   const { id } = showcaseProduct
 

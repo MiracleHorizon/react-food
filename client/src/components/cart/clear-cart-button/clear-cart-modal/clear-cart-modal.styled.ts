@@ -1,18 +1,20 @@
 import styled from '@emotion/styled'
 
-export const ModalContent = styled.div`
+import Button from '@/ui/buttons/button'
+
+export const Content = styled.div`
   display: flex;
   justify-content: space-between;
+`
 
-  button {
-    flex: 1 1 auto;
+export const StyledButton = styled(Button)`
+  flex: 1 1 auto;
 
-    &:first-of-type {
-      margin-right: 6px;
-    }
+  &:first-of-type {
+    margin-right: 6px;
+  }
 
-    &:last-of-type {
-      margin-left: 6px;
-    }
+  &:last-of-type {
+    margin-left: 6px;
   }
 `

@@ -1,0 +1,13 @@
+.panel {
+  max-width: 400px;
+  width: 100%;
+  padding: 24px;
+  border-radius: 32px;
+  background: white;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}

@@ -1,33 +1,25 @@
-import { FC, memo, useMemo } from "react";
+import { FC, memo, useMemo } from 'react'
 
-import CardImage from "./product-card-image";
-import CardContent from "./product-card-content";
-import CardFooter from "./product-card-footer";
-import { ShowcaseProduct, ShowcaseProductModel } from "@/entities/product";
-import type { IProductCardVariant } from "../product-card-models";
-import StyledWrapper from "./product-card.styled";
+import CardImage from './product-card-image'
+import CardContent from './product-card-content'
+import CardFooter from './product-card-footer'
+import { ShowcaseProduct, ShowcaseProductModel } from '@/entities/product'
+import type { IProductCardVariant } from '../product-card-models'
+import { StyledWrapper } from './product-card.styled'
 
 // TODO Обработка ошибки получения изображения продукта.
-const ProductCard: FC<ShowcaseProductModel & IProductCardVariant> = ({
-  variant,
-  ...productData
-}) => {
+const ProductCard: FC<Props> = ({ className, variant, ...productData }) => {
   const showcaseProduct = useMemo(() => {
     return new ShowcaseProduct(productData)
   }, [productData])
   const {
     title,
     image,
-    imagePath,
     price: { withDiscount, discountPercent, description: priceDescription }
   } = showcaseProduct
 
   return (
-    <StyledWrapper
-      data-el='product-card'
-      variant={variant}
-      imageLoadError={!imagePath}
-    >
+    <StyledWrapper className={className} variant={variant}>
       <CardImage
         alt={title}
         variant={variant}
@@ -47,3 +39,7 @@ const ProductCard: FC<ShowcaseProductModel & IProductCardVariant> = ({
 }
 
 export default memo(ProductCard)
+
+interface Props extends ShowcaseProductModel, IProductCardVariant {
+  className?: string
+}

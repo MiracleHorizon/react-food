@@ -1,4 +1,4 @@
-import { makeObservable, observable, runInAction } from 'mobx'
+import { action, makeObservable, observable, runInAction } from 'mobx'
 
 import type { NavigationCategory } from '@/models/navigation-category'
 
@@ -8,7 +8,8 @@ class NavigationStore {
 
   constructor() {
     makeObservable(this, {
-      categories: observable
+      categories: observable,
+      setCategories: action
     })
   }
 

@@ -9,7 +9,7 @@ import { InvalidPaymentCostException } from '@/exceptions/invalid-payment-cost'
 import { READY_MEAL_TAGS } from '@/utils/constants'
 import { intlConfig } from '@/utils/configs/intl.config'
 import type { CartModel } from '@/models/cart.model'
-import type { Range } from '@/models/range'
+import type { Range } from '@/types/range'
 
 interface Constructor {
   location: string
@@ -42,15 +42,15 @@ const annotations = {
 
 export class CartStore {
   protected readonly numberFormatter: NumberFormatter
-  protected parameters: OrderParameters = {
-    serviceFee: 49,
-    minOrderCost: 1e3,
-    maxOrderCost: 5e4,
-    maxOrderWeight: 6e4,
-    freeDeliveryOrderCost: 1.5e3,
-    deliveryCostRange: { start: 0, end: 399 },
-    deliveryTimeRange: { start: 30, end: 55 },
-    deliveryDistance: 5.6e3
+  public parameters: OrderParameters = {
+    serviceFee: 39,
+    minOrderCost: 1.5e3,
+    maxOrderCost: 4e4,
+    maxOrderWeight: 5e4,
+    freeDeliveryOrderCost: 1e3,
+    deliveryCostRange: { start: 0, end: 299 },
+    deliveryTimeRange: { start: 30, end: 70 },
+    deliveryDistance: 2.4e3
   }
   private cartId: string | null = null
   public products: CartProduct[] = []
@@ -126,8 +126,15 @@ export class CartStore {
     })
   }
 
+  public deinitialize(): void {
+    runInAction(() => {
+      this.cartId = null
+      this.products = []
+    })
+  }
+
   public setParameters(parameters: OrderParameters): void {
-    this.parameters = Object.assign(parameters)
+    this.parameters = parameters
   }
 
   public isProductInCart(productReferenceId: string): boolean {

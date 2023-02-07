@@ -5,11 +5,16 @@ import { Routes } from '@/types/routes'
 import type { NavigationCategory } from '@/models/navigation-category'
 import * as Item from './navigation-item.styled'
 
-const NavigationItem: FC<NavigationCategory> = ({ id, title, imagePath }) => {
+const NavigationItem: FC<NavigationCategory & { index: number }> = ({
+  id,
+  title,
+  imagePath,
+  index
+}) => {
   const router = useRouter()
 
   return (
-    <Item.Root>
+    <Item.Root variants={Item.animation} custom={index}>
       <Item.Link href={`${Routes.CATEGORY}/${id}`}>
         {imagePath ? (
           <Item.Image backgroundImage={imagePath} />

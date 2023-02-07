@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { FC, memo } from 'react'
 
 import * as Label from './service-fee-label.styled'
 
@@ -9,7 +9,7 @@ const ServiceFeeLabel: FC<Props> = ({ serviceFee }) => (
   </Label.Root>
 )
 
-export default ServiceFeeLabel
+export default memo(ServiceFeeLabel)
 
 interface Props {
   serviceFee: string

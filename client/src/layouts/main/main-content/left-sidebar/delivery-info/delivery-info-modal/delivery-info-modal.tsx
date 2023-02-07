@@ -3,7 +3,7 @@ import type { FC } from 'react'
 
 import DefaultModal from '@/ui/modals/default-modal'
 import ModalContent from './delivery-info-modal-content'
-import type { ModalProps } from '@/models/modal-props'
+import type { ModalProps } from '@/types/modal-props'
 import styles from './delivery-info-modal.module.css'
 
 const DeliveryInfoModal: FC<ModalProps> = props => (

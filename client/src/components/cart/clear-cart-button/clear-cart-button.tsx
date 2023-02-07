@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, memo, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import ClearCartModal from './clear-cart-modal'
@@ -19,7 +19,7 @@ const ClearCartButton: FC<Props> = ({ title, withIcon, withConfirm }) => {
     handleCloseModal()
 
     useCartStore.clearCart().then(() => {
-      if (router.asPath !== Routes.HOME) {
+      if (router.asPath === Routes.CART) {
         router.push(Routes.HOME)
       }
     })
@@ -47,7 +47,7 @@ const ClearCartButton: FC<Props> = ({ title, withIcon, withConfirm }) => {
   )
 }
 
-export default ClearCartButton
+export default memo(ClearCartButton)
 
 interface Props {
   title: string

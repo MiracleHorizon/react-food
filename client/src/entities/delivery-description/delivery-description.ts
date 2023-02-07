@@ -1,7 +1,7 @@
 import { NumberFormatter } from '@/utils/number-formatter'
 import { intlConfig } from '@/utils/configs/intl.config'
 import type { DeliveryDescriptionModel } from './delivery-description.model'
-import type { Range } from '@/models/range'
+import type { Range } from '@/types/range'
 
 export class DeliveryDescription {
   private readonly distance: number

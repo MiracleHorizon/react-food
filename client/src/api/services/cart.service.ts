@@ -1,6 +1,7 @@
 import { BaseService } from '@/api/base-service'
 import type { CartModel } from '@/models/cart.model'
 import type { CartProductModel, ShowcaseProductModel } from '@/entities/product'
+import axios from 'axios'
 
 export class CartService extends BaseService {
   constructor() {
@@ -9,8 +10,9 @@ export class CartService extends BaseService {
 
   public async fetchCart(userId: string): Promise<CartModel> {
     try {
-      const { data } = await this.api.get<CartModel>(userId)
-
+      const { data } = await axios.get<CartModel>(
+        `${process.env.SERVER_API}/cart/${userId}`
+      )
       return data
     } catch (e) {
       throw e
