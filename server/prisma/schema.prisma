@@ -8,19 +8,20 @@ datasource db {
 }
 
 model User {
-  id                String            @id @default(cuid())
-  email             String            @unique
-  name              String
-  hashedPassword    String
-  role              UserRole          @default(USER)
-  reactCoinsCount   Int               @default(0)
-  cart              Cart[]
-  deliveryAddresses DeliveryAddress[]
-  billingCards      BillingCard[]
-  orders            Order[]
-  phoneNumber       String?           @unique
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
+  id                 String            @id @default(cuid())
+  email              String            @unique
+  name               String
+  hashedPassword     String
+  role               UserRole          @default(USER)
+  reactCoinsCount    Int               @default(0)
+  cart               Cart[]
+  deliveryAddresses  DeliveryAddress[]
+  billingCards       BillingCard[]
+  orders             Order[]
+  phoneNumber        String?           @unique
+  hashedRefreshToken String?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
 
   @@map("users")
 }
@@ -94,7 +95,7 @@ model Order {
   recipientPhoneNumber String
   recipientName        String
   commentary           String?
-  user                 User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                 User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId               String
   createdAt            DateTime       @default(now())
   updatedAt            DateTime       @updatedAt

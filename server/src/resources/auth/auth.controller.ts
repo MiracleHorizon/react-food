@@ -1,30 +1,72 @@
-import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common'
-import type { Request, Response } from 'express'
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Patch,
+  Post,
+  Req,
+  Res,
+  UseGuards
+} from '@nestjs/common'
+import { Request, Response } from 'express'
 
 import { AuthService } from './auth.service'
-import { CreateUserDto } from './dto/create-user.dto'
-import { AuthDto } from './dto/auth.dto'
+import { SigninDto, SignupDto } from './dto'
+import { JwtPayloadVm } from './view-models'
+import { JwtGuard, JwtRefreshGuard } from '@common/guards'
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('signUp')
-  public signUp(@Body() dto: CreateUserDto, @Res() res: Response) {
-    return this.authService.signUp({ ...dto, res })
+  @Post('local/signup')
+  @HttpCode(HttpStatus.CREATED)
+  public signupLocal(
+    @Body() dto: SignupDto,
+    @Res() res: Response
+  ): Promise<void> {
+    return this.authService.signupLocal(dto, res)
   }
 
-  @Post('signIn')
-  public signIn(
-    @Body() dto: AuthDto,
+  @Post('local/signin')
+  @HttpCode(HttpStatus.OK)
+  public signinLocal(
+    @Body() dto: SigninDto,
+    @Res() res: Response
+  ): Promise<void> {
+    return this.authService.signinLocal(dto, res)
+  }
+
+  @UseGuards(JwtGuard)
+  @Patch('signout')
+  @HttpCode(HttpStatus.OK)
+  public signout(@Req() req: Request, @Res() res: Response): Promise<void> {
+    const userPayload = req.user as JwtPayloadVm
+    return this.authService.signout(userPayload.sub, res)
+  }
+
+  @UseGuards(JwtRefreshGuard)
+  @Post('refresh')
+  @HttpCode(HttpStatus.OK)
+  public refreshTokens(
     @Req() req: Request,
     @Res() res: Response
-  ) {
-    return this.authService.signIn(dto, req, res)
+  ): Promise<void> {
+    const userPayload = req.user as JwtPayloadVm
+    return this.authService.refreshTokens(
+      userPayload.sub,
+      req.cookies.refreshToken,
+      res
+    )
   }
 
-  @Get('signOut')
-  public signOut(@Req() req: Request, @Res() res: Response) {
-    return this.authService.signOut(req, res)
+  @UseGuards(JwtRefreshGuard)
+  @Get('role')
+  @HttpCode(HttpStatus.OK)
+  public fetchRole(@Req() req: Request) {
+    const userPayload = req.user as JwtPayloadVm
+    return this.authService.fetchRole(userPayload.sub)
   }
 }

@@ -1,12 +1,15 @@
 import {
   IsEmail,
+  IsEnum,
   IsNotEmpty,
+  IsOptional,
   IsString,
   Matches,
   MaxLength,
   MinLength
 } from 'class-validator'
 
+import { UserRole } from '@/models/user/UserRole'
 import { validationMessage } from '@/utils/validation-message'
 import {
   USER_PASSWORD_MAX_LENGTH,
@@ -14,7 +17,19 @@ import {
   USER_PASSWORD_VALIDATION_REGEX
 } from '@/utils/constants'
 
-export class AuthDto {
+export class SignupDto {
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(4, {
+    message: ({ property, constraints }) =>
+      validationMessage.getMinLengthMessage(property, constraints[0])
+  })
+  @MaxLength(24, {
+    message: ({ property, constraints }) =>
+      validationMessage.getMaxLengthMessage(property, constraints[0])
+  })
+  public name: string
+
   @IsEmail()
   @IsNotEmpty()
   public email: string
@@ -33,4 +48,10 @@ export class AuthDto {
     message: validationMessage.getPasswordMessage()
   })
   public password: string
+
+  @IsString()
+  @IsNotEmpty()
+  @IsEnum(UserRole)
+  @IsOptional()
+  public role?: UserRole
 }

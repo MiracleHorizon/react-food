@@ -26,6 +26,9 @@
       ],
       "@/utils/*": [
         "src/utils/*"
+      ],
+      "@common/*": [
+        "src/common/*"
       ]
     }
   }
