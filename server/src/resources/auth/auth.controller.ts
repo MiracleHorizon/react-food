@@ -67,6 +67,8 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   public fetchRole(@Req() req: Request) {
     const userPayload = req.user as JwtPayloadVm
-    return this.authService.fetchRole(userPayload.sub)
+    return {
+      role: userPayload.role
+    }
   }
 }
