@@ -16,6 +16,7 @@ interface ChangeProductCountArgs {
   dest: 'increment' | 'decrement'
 }
 
+// TODO: Отслеживание изменений цены, скидок и удаления продуктов с витрины, OnUpdate
 @Injectable()
 export class CartService {
   constructor(
@@ -24,7 +25,7 @@ export class CartService {
     private readonly usersService: UsersService
   ) {}
 
-  public async createOne(userId: string): Promise<{ id: string }> {
+  public async createOne(userId: string): Promise<Cart> {
     const isUserExists = await this.usersService.checkIsExistsById(userId)
     if (!isUserExists) {
       throw new NotFoundException('User is not found')
@@ -35,15 +36,11 @@ export class CartService {
       throw new BadRequestException('User already has a cart')
     }
 
-    const cart = await this.prisma.cart.create({
+    return this.prisma.cart.create({
       data: {
         userId
       }
     })
-
-    return {
-      id: cart.id
-    }
   }
 
   private async isUserHasCart(userId: string): Promise<boolean> {
@@ -52,11 +49,10 @@ export class CartService {
       .then(result => Boolean(result))
   }
 
-  public async findOne(cartId: string): Promise<Omit<Cart, 'userId'>> {
-    // TODO: Проверка доступа пользователя
+  public async findOneByUser(userId: string): Promise<Cart> {
     const cart = await this.prisma.cart.findFirst({
       where: {
-        id: cartId
+        userId
       },
       include: {
         products: true

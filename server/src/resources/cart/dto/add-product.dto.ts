@@ -5,7 +5,7 @@ import {
   IsOptional,
   IsString,
   IsUrl
-} from 'class-validator' // TODO: Валидация
+} from 'class-validator'
 
 // TODO: Валидация
 export class AddProductDto {

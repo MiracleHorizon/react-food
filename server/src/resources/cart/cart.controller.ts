@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common'
 
 import { CartService } from './cart.service'
-import { AddProductDto } from '@/resources/cart/dto/add-product.dto'
+import { AddProductDto } from './dto/add-product.dto'
 
 @Controller('cart')
 export class CartController {
@@ -12,9 +12,9 @@ export class CartController {
     return this.cartService.createOne(userId)
   }
 
-  @Get(':id')
-  public findOne(@Param('id') id: string) {
-    return this.cartService.findOne(id)
+  @Get(':userId')
+  public findOneByUser(@Param('userId') userId: string) {
+    return this.cartService.findOneByUser(userId)
   }
 
   @Post(':id/add_product')

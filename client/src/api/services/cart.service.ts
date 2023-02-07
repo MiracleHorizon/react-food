@@ -7,9 +7,9 @@ export class CartService extends BaseService {
     super('cart')
   }
 
-  public async fetchCart(cartId: string): Promise<CartModel> {
+  public async fetchCart(userId: string): Promise<CartModel> {
     try {
-      const { data } = await this.api.get<CartModel>(cartId)
+      const { data } = await this.api.get<CartModel>(userId)
 
       return data
     } catch (e) {
