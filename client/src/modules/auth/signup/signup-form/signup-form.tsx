@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
+import { useRouter } from 'next/router'
 import { RegisterOptions, useForm } from 'react-hook-form'
 
 import { ButtonVariant } from '@/ui/buttons/button'
-import * as Form from './signup-form.styled'
 import { authService } from '@/modules/auth/api/auth.service'
 import { useUserStore } from '@/stores/user.store'
-import { useRouter } from 'next/router'
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
+import * as Form from './signup-form.styled'
 
 export interface SignupDataForm {
   name: string

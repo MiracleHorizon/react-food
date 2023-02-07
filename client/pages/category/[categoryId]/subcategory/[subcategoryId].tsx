@@ -12,7 +12,7 @@ import {
   fetchEnvironmentData,
   initializeEnvironmentData
 } from '@lib/environment'
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
 import { ParsedUrlQueryHandler } from '@/utils/parsed-url-query-handler'
 
 const ProductSubcategoryPage: NextPage<Props> = ({

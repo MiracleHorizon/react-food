@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import LoadMoreButton from './load-more-button'
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
 import type { ProductCategoryModel } from '@/modules/product-category'
 import * as Header from './category-section-header.styled'
 

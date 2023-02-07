@@ -2,7 +2,7 @@ import { FC, memo } from 'react'
 
 import SubcategoriesNavigation from './subcategories-navigation'
 import Breadcrumb, { BreadcrumbItem } from '@/ui/breadcrumb'
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
 import type { ProductSubcategoryModel } from '@/modules/product-category'
 import * as Header from './product-category-header.styled'
 

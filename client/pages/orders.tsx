@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { useRefreshAuth } from '@/hooks/useRefreshAuth'
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
 
 const OrdersPage = () => {
   useRefreshAuth()

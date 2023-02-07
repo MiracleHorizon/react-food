@@ -2,15 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import { authService } from '@/modules/auth'
 import { UserRole } from '@/models/user-role'
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
+import {
+  authorizedRoutes,
+  privateRoutes,
+  unauthorizedRoutes
+} from '@router/routes'
 
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
 }
-
-const privateRoutes = [Routes.DASHBOARD]
-const authorizedRoutes = [Routes.ORDERS, Routes.CART]
-const unauthorizedRoutes = [Routes.SIGNUP, Routes.SIGNIN]
 
 export const middleware = async (req: NextRequest) => {
   const pathname = req.nextUrl.pathname as Routes

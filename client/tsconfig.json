@@ -38,6 +38,9 @@
       "@/types/*": [
         "types/*"
       ],
+      "@router/*": [
+        "router/*"
+      ],
       "@/exceptions/*": [
         "entities/exceptions/*"
       ],

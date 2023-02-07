@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import OrderButton from '@/ui/buttons/order-button'
 import OrderCostShortage from './order-cost-shortage'
 import { useCartStore } from '@/stores/cart.store'
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
 
 const OrderInfo = () => {
   const router = useRouter()

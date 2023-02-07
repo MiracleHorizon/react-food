@@ -1,4 +1,4 @@
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
 import * as Content from './not-found-content.styled'
 
 const NotFoundContent = () => (

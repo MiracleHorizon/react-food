@@ -10,7 +10,7 @@ import {
   fetchEnvironmentData,
   initializeEnvironmentData
 } from '@lib/environment'
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
 
 const ProductCategoryPage: NextPage<Props> = ({
   category,

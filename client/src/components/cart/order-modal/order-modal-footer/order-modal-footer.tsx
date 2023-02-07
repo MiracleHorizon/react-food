@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 
 import OrderButton from '@/ui/buttons/order-button'
 import { useCartStore } from '@/stores/cart.store'
-import { Routes } from '@/types/routes'
+import { Routes } from '@router/routes.enum'
 import * as Footer from './order-modal-footer.styled'
 
 const OrderModalFooter: FC<Props> = props => {
