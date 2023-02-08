@@ -1,4 +1,7 @@
-.panel {
+import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
+
+export const StyledPanel = styled(motion.div)`
   max-height: 520px;
   width: 500px;
   display: flex;
@@ -6,4 +9,4 @@
   border-radius: 24px;
   background: white;
   box-shadow: rgba(0, 0, 0, 0.2) 0 4px 16px;
-}
+`

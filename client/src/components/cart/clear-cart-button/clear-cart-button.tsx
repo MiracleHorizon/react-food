@@ -8,8 +8,8 @@ import { TRASH_CART_IMAGE_URL } from '@/utils/constants/images'
 import * as Button from './clear-cart-button.styled'
 
 const ClearCartButton: FC<Props> = ({ title, withIcon, withConfirm }) => {
-  const [modalOpen, setModalOpen] = useState(false)
   const router = useRouter()
+  const [modalOpen, setModalOpen] = useState(false)
 
   const handleOpenModal = () => setModalOpen(true)
 

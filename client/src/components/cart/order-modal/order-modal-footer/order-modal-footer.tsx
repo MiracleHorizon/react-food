@@ -2,7 +2,6 @@ import { FC, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { observer } from 'mobx-react-lite'
 
-import OrderButton from '@/ui/buttons/order-button'
 import { useCartStore } from '@/stores/cart.store'
 import { Routes } from '@router/routes.enum'
 import * as Footer from './order-modal-footer.styled'
@@ -31,7 +30,7 @@ const OrderModalFooter: FC<Props> = props => {
 
   return (
     <Footer.Root {...props}>
-      <OrderButton
+      <Footer.StyledOrderButton
         {...orderButtonProps}
         cost={useCartStore.formattedTotalCost}
         withoutCost

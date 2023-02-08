@@ -1,36 +1,33 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { FC, Fragment } from 'react'
+import { Dialog } from '@headlessui/react'
+import { AnimatePresence } from 'framer-motion'
+import type { FC } from 'react'
 
-import { ModalBackdrop } from '@/styles/styled-components/modal-backdrop'
-import { ModalContainer } from './default-layout.styled'
 import type { ChildrenProps } from '@/types/children-props'
 import type { ModalProps } from '@/types/modal-props'
-import styles from './default-modal.module.css'
-
-const transition = {
-  enter: styles.enter,
-  enterFrom: styles.enterFrom,
-  enterTo: styles.enterTo,
-  leave: styles.leave,
-  leaveFrom: styles.leaveFrom,
-  leaveTo: styles.leaveTo
-}
+import { MotionModalBackdrop } from '@/public/styles/styled-components/modal-backdrop'
+import { defaultModalAppearAnimation } from '@/styles/animations/default-modal-appear.animation'
+import * as Modal from './default-modal.styled'
 
 const DefaultModal: FC<ChildrenProps & ModalProps> = ({
   children,
   open,
-  onClose
+  onClose,
+  initialFocusRef
 }) => (
-  <Transition appear show={open} as={Fragment}>
-    <Dialog unmount={open} className={styles.root} as='div' onClose={onClose}>
-      <Transition.Child {...transition} as={Fragment}>
-        <ModalBackdrop />
-      </Transition.Child>
-      <Transition.Child {...transition} as={Fragment}>
-        <ModalContainer>{children}</ModalContainer>
-      </Transition.Child>
-    </Dialog>
-  </Transition>
+  <AnimatePresence>
+    {open && (
+      <Dialog
+        initialFocus={initialFocusRef}
+        as={Modal.Root}
+        unmount={open}
+        open={open}
+        onClose={onClose}
+      >
+        <MotionModalBackdrop {...defaultModalAppearAnimation} />
+        <Modal.Container>{children}</Modal.Container>
+      </Dialog>
+    )}
+  </AnimatePresence>
 )
 
 export default DefaultModal

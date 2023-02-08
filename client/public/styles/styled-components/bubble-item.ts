@@ -10,6 +10,7 @@ export const BubbleItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 1px;
   border-radius: 16px;
   background: ${itemBgColor};
   font-size: 16px;

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { darken } from 'polished'
 
 import { colors } from '@/styles/variables'
 
@@ -12,6 +13,7 @@ export const Root = styled.button<RootProps>`
   padding: 0 18px;
   border-radius: 16px;
   color: ${colors.black['1']};
+  transition: background 20ms ease-out;
   ${p => {
     const disableColor = p.transparentDisableColor
       ? colors.gray['2']
@@ -22,6 +24,14 @@ export const Root = styled.button<RootProps>`
       background: ${bgColor};
       ${p.disabled && 'opacity: 0.6'};
       ${p.disabled && 'pointer-events: none'};
+      
+      ${
+        !p.disabled &&
+        `
+      &:hover {
+        background: ${darken(0.015, bgColor)};
+      }`
+      };
     `
   }};
 `

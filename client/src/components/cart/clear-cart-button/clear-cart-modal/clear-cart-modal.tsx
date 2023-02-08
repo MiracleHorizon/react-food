@@ -4,15 +4,15 @@ import type { FC } from 'react'
 import DefaultModal from '@/ui/modals/default-modal'
 import { ButtonVariant } from '@/ui/buttons/button'
 import type { ModalProps } from '@/types/modal-props'
+import { defaultModalAppearAnimation } from '@/styles/animations/default-modal-appear.animation'
 import * as Modal from './clear-cart-modal.styled'
-import styles from './clear-cart-modal.module.css'
 
 const ClearCartModal: FC<Props> = ({ open, onClose, handleClearCart }) => (
   <DefaultModal open={open} onClose={onClose}>
-    <Dialog.Panel className={styles.panel}>
-      <Dialog.Title as='h3' className={styles.title}>
-        Очистить корзину?
-      </Dialog.Title>
+    <Dialog.Panel as={Modal.Panel} {...defaultModalAppearAnimation}>
+      <Modal.Header>
+        <Dialog.Title as={Modal.Title}>Очистить корзину?</Dialog.Title>
+      </Modal.Header>
       <Modal.Content>
         <Modal.StyledButton
           text='Отменить'

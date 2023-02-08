@@ -19,12 +19,11 @@ export const useScrollProgress = ({ positions, ...options }: Parameters) => {
       }
 
       if (positions.includes('bottom')) {
-        if (!isScrollOnBottom && latest === 1) return
         if (latest >= 1) setScrollOnBottom(true)
         if (latest < 1) setScrollOnBottom(false)
       }
     },
-    [isScrollOnBottom, isScrollOnTop, positions]
+    [isScrollOnTop, positions]
   )
 
   const handleHorizontalScroll = useCallback(

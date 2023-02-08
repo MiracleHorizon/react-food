@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 
 export const ModalBackdrop = styled.div`
   position: fixed;
@@ -8,3 +9,5 @@ export const ModalBackdrop = styled.div`
   bottom: 0;
   background: rgba(0, 0, 0, 0.3);
 `
+
+export const MotionModalBackdrop = ModalBackdrop.withComponent(motion.div)

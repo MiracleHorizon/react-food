@@ -1,59 +1,39 @@
-import { Dispatch, FC, SetStateAction, useRef } from 'react'
-import { useMotionValueEvent, useScroll } from 'framer-motion'
+import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
 
 import ProductsList from './order-products-list'
 import OrderInfo from './order-info'
-import * as Content from './order-modal-content.styled'
+import { useScrollProgress } from '@/hooks/useScrollProgress'
+import { StyledContent } from './order-modal-content.styled'
 
-// TODO: useScrollPosition.
 const OrderModalContent: FC<Props> = ({
-  isScrollOnTop,
-  isScrollOnBottom,
   setScrollOnTop,
   setScrollOnBottom
 }) => {
-  const rootRef = useRef<HTMLElement>(null)
-  const { scrollY } = useScroll({
-    container: rootRef
+  const ref = useRef<HTMLElement>(null)
+  const { isScrollOnTop, isScrollOnBottom } = useScrollProgress({
+    positions: ['top', 'bottom'],
+    container: ref
   })
 
-  const handleScrollPosition = (latest: number) => {
-    if (!rootRef.current) return
-    const scrollHeight = rootRef.current.scrollHeight
-    const offsetHeight = rootRef.current.offsetHeight
+  useEffect(() => {
+    setScrollOnTop(isScrollOnTop)
+  }, [setScrollOnTop, isScrollOnTop])
 
-    if (isScrollOnTop && latest > 0) {
-      setScrollOnTop(false)
-    }
-
-    if (!isScrollOnTop && latest <= 0) {
-      setScrollOnTop(true)
-    }
-
-    if (isScrollOnBottom && latest !== scrollHeight - offsetHeight) {
-      setScrollOnBottom(false)
-    }
-
-    if (!isScrollOnBottom && latest === scrollHeight - offsetHeight) {
-      setScrollOnBottom(true)
-    }
-  }
-
-  useMotionValueEvent(scrollY, 'change', handleScrollPosition)
+  useEffect(() => {
+    setScrollOnBottom(isScrollOnBottom)
+  }, [setScrollOnBottom, isScrollOnBottom])
 
   return (
-    <Content.Root ref={rootRef}>
+    <StyledContent ref={ref}>
       <ProductsList />
       <OrderInfo />
-    </Content.Root>
+    </StyledContent>
   )
 }
 
 export default OrderModalContent
 
 interface Props {
-  isScrollOnTop: boolean
-  isScrollOnBottom: boolean
   setScrollOnTop: Dispatch<SetStateAction<boolean>>
   setScrollOnBottom: Dispatch<SetStateAction<boolean>>
 }

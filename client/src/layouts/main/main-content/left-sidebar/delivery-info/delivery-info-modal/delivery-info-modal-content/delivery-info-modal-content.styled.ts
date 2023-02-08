@@ -7,9 +7,9 @@ export const List = styled.ul`
 `
 
 export const ListTitle = styled.h6`
+  margin-bottom: 12px;
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 12px;
 `
 
 export const ListItem = styled.li`

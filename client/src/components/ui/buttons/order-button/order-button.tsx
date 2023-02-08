@@ -2,16 +2,14 @@ import { FC, memo } from 'react'
 
 import * as Button from './order-button.styled'
 
-// TODO Доработать пропс
-// TODO Цвета наведения и клика на кнопке
 const OrderButton: FC<Props> = ({
   title,
   cost,
   onClick,
   withoutCost,
-  ...disabledData
+  ...stylesData
 }) => (
-  <Button.Root onClick={onClick} {...disabledData}>
+  <Button.Root onClick={onClick} {...stylesData}>
     <Button.Title>{title}</Button.Title>
     {!withoutCost && <Button.Cost>{cost}</Button.Cost>}
   </Button.Root>
@@ -26,4 +24,5 @@ interface Props {
   onClick?: () => void
   withoutCost?: boolean
   transparentDisableColor?: boolean
+  className?: string
 }

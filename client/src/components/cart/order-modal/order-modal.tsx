@@ -5,8 +5,9 @@ import ModalHeader from './order-modal-header'
 import ModalContent from './order-modal-content'
 import ModalFooter from './order-modal-footer'
 import DefaultModal from '@/ui/modals/default-modal'
-import type { ModalProps } from '@/models/modal-props'
-import styles from './order-modal.module.css'
+import type { ModalProps } from '@/types/modal-props'
+import { defaultModalAppearAnimation } from '@/styles/animations/default-modal-appear.animation'
+import { StyledPanel } from './order-modal.styled'
 
 const OrderModal: FC<ModalProps> = props => {
   const [isScrollOnTop, setScrollOnTop] = useState(true)
@@ -14,11 +15,9 @@ const OrderModal: FC<ModalProps> = props => {
 
   return (
     <DefaultModal {...props}>
-      <Dialog.Panel as='div' className={styles.panel}>
+      <Dialog.Panel as={StyledPanel} {...defaultModalAppearAnimation}>
         <ModalHeader isScrollOnTop={isScrollOnTop} />
         <ModalContent
-          isScrollOnTop={isScrollOnTop}
-          isScrollOnBottom={isScrollOnBottom}
           setScrollOnTop={setScrollOnTop}
           setScrollOnBottom={setScrollOnBottom}
         />

@@ -22,9 +22,9 @@ const DeliveryInfoModalContent = () => {
 
   return (
     <div>
-      {data.map(({ title, content }) => (
-        <Content.List key={title}>
-          <Content.ListTitle>{title}</Content.ListTitle>
+      {data.map(({ title: listTitle, content }) => (
+        <Content.List key={listTitle}>
+          <Content.ListTitle>{listTitle}</Content.ListTitle>
           {content.map(({ title, value }) => (
             <Content.ListItem key={title}>
               <span>{title}</span>

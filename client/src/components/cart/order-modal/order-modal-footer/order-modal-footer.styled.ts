@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 
+import OrderButton from '@/ui/buttons/order-button'
+
 export const Root = styled.footer<RootProps>`
   display: flex;
   align-items: center;
@@ -11,16 +13,16 @@ export const Root = styled.footer<RootProps>`
     !p.isScrollOnTop &&
     !p.isScrollOnBottom &&
     'box-shadow: 0px -4px 20px rgb(117 115 111 / 20%)'};
-
-  button {
-    width: 280px;
-    justify-content: center;
-  }
 `
 
 export const Price = styled.span`
   font-weight: 500;
   font-size: 26px;
+`
+
+export const StyledOrderButton = styled(OrderButton)`
+  width: 280px;
+  justify-content: center;
 `
 
 interface RootProps {
