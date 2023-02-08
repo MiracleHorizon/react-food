@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
-import { authService } from '@/modules/auth'
 import { useUserStore } from '@/stores/user.store'
-import { cartService } from '@/api/services/cart.service'
 import { useCartStore } from '@/stores/cart.store'
+import { authService } from '@/modules/auth'
+import { cartService } from '@/api/services/cart.service'
 
 export const useRefreshAuth = () => {
   const { mutateAsync: refreshAuth } = useMutation({
@@ -32,7 +32,10 @@ export const useRefreshAuth = () => {
 
   useEffect(() => {
     if (!useUserStore.isAuth) {
-      handleRefreshAuth().then(user => handleFetchCart(user.id))
+      import('js-cookie').then(({ default: Cookie }) => {
+        if (!Cookie.get('refreshToken')) return
+        handleRefreshAuth().then(user => handleFetchCart(user.id))
+      })
     }
   }, [handleRefreshAuth, handleFetchCart])
 }
