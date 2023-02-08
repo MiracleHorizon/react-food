@@ -1,5 +1,5 @@
 import { useCutleryStore } from '../cutlery.store'
-import { CUTLERY_IMAGE_URL } from '@/utils/constants'
+import { CUTLERY_IMAGE_URL } from '@utils/constants'
 import * as Button from './add-cutlery-button.styled'
 
 const AddCutleryButton = () => {

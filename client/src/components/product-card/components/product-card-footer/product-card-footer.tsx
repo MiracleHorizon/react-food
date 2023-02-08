@@ -1,10 +1,10 @@
-import { FC, useCallback } from 'react'
-import { observer } from 'mobx-react-lite'
+import {FC, useCallback} from 'react'
+import {observer} from 'mobx-react-lite'
 
-import SmallPlusSvg from '@/ui/svg/small-plus-svg'
-import SmallMinusSvg from '@/ui/svg/small-minus-svg'
-import { useCartStore } from '@/stores/cart.store'
-import type { ShowcaseProductModel } from '@/entities/product'
+import SmallPlusSvg from '@ui/svg/small-plus-svg'
+import SmallMinusSvg from '@ui/svg/small-minus-svg'
+import {useCartStore} from '@stores/cart.store'
+import type {ShowcaseProductModel} from '@entities/product'
 import * as Footer from './product-card-footer.styled'
 
 // TODO: Лишние перерисовки

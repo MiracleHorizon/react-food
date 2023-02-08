@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 
-import ClearCartButton from '@/components/cart/clear-cart-button'
-import { useCartStore } from '@/stores/cart.store'
+import ClearCartButton from '@components/cart/clear-cart-button'
+import { useCartStore } from '@stores/cart.store'
 
 const CartPanelClearButton = () => (
   <>

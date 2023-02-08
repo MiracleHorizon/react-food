@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import OrderButton from '@/ui/buttons/order-button'
+import OrderButton from '@ui/buttons/order-button'
 
 export const Root = styled.footer<RootProps>`
   display: flex;

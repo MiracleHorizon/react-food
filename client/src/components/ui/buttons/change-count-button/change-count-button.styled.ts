@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { colors } from '@/styles/variables'
+import {colors} from '@styles/variables'
 
 // TODO Скорректировать размеры иконки.
 const Button = styled.button<{ iconUrl: string; disabled?: boolean }>`

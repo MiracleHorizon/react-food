@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 
-import DefaultButton from '@/ui/buttons/button'
+import DefaultButton from '@ui/buttons/button'
 
 export const Panel = styled(motion.div)`
   max-width: 400px;

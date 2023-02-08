@@ -2,7 +2,7 @@ import { FC, memo } from 'react'
 import { useRouter } from 'next/router'
 
 import { Routes } from '@router/routes.enum'
-import type { NavigationCategory } from '@/models/navigation-category'
+import type { NavigationCategory } from '@models/navigation-category'
 import * as Item from './navigation-item.styled'
 
 const NavigationItem: FC<NavigationCategory & { index: number }> = ({

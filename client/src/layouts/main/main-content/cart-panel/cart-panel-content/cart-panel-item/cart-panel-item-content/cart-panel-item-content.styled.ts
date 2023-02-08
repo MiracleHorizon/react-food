@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
-import { colors } from '@/styles/variables'
-import { EllipsisSpan } from '@/styles/styled-components/ellipsis-text'
+import { colors } from '@styles/variables'
+import { EllipsisSpan } from '@styles/styled-components/ellipsis-text'
 
 export const Root = styled.div`
   max-width: 105px;

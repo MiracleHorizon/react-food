@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 import NextImage from 'next/image'
 
-import notFoundImage from '@/public/images/not-found-image.png'
-import { devicesMaxWidth } from '@/styles/responsive/devices'
-import { colors } from '@/styles/variables'
+import notFoundImage from '@images/not-found-image.png'
+import { devicesMaxWidth } from '@styles/responsive/devices'
+import { colors } from '@styles/variables'
 
 export const smallScreenBreakpoint = 600
 export const smallScreenMaxWidth = `max-width: ${smallScreenBreakpoint}px`

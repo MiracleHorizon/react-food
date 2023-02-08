@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 
 import CarouselButton from './carousel-button'
-import type { ChildrenProps } from '@/types/children-props'
+import type { ChildrenProps } from '@app-types/children-props'
 import * as StyledCarousel from './carousel.styled'
 
 const Carousel: FC<Props> = ({ children, totalSteps }) => {

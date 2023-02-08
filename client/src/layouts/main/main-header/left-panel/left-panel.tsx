@@ -1,4 +1,4 @@
-// import AppLogo from '@/ui/app-logo'
+// import AppLogo from '@ui/app-logo'
 import StyledPanel from './left-panel.styled'
 
 const MainLayoutHeaderLeftPanel = () => (

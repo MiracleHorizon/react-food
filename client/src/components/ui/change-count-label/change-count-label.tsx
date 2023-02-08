@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import ChangeCountButton from '@/ui/buttons/change-count-button'
+import ChangeCountButton from '@ui/buttons/change-count-button'
 import * as Bar from './change-count-label.styled'
 
 const ChangeCountLabel: FC<Props> = ({

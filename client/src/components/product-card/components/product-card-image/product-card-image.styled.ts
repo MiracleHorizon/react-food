@@ -4,7 +4,7 @@ import NextImage from 'next/image'
 import {
   IProductCardVariant,
   ProductCardVariant
-} from '@/components/product-card'
+} from '@components/product-card'
 
 export const Root = styled.div<IProductCardVariant>`
   position: relative;

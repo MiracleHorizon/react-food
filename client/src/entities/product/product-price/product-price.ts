@@ -1,5 +1,5 @@
-import { intlConfig } from '@/utils/configs/intl.config'
-import type { NumberFormatter } from '@/utils/number-formatter'
+import { intlConfig } from '@utils/configs/intl.config'
+import type { NumberFormatter } from '@utils/number-formatter'
 import type {
   PriceDescription,
   ProductPriceModel,

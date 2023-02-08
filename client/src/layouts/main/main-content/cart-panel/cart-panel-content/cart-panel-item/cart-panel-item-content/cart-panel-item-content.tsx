@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import type { ProductModel } from '@/entities/product'
+import type { ProductModel } from '@entities/product'
 import * as Content from './cart-panel-item-content.styled'
 
 const CartPanelItemContent: FC<Props> = ({

@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite'
 import { useRouter } from 'next/router'
 
-import OrderButton from '@/ui/buttons/order-button'
 import OrderCostShortage from './order-cost-shortage'
-import { useCartStore } from '@/stores/cart.store'
+import OrderButton from '@ui/buttons/order-button'
+import { useCartStore } from '@stores/cart.store'
 import { Routes } from '@router/routes.enum'
 
 const OrderInfo = () => {

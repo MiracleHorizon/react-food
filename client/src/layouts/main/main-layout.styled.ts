@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 
-import { colors } from '@/styles/variables'
-import { appHeaderHeight } from '@/components/app-header'
+import { colors } from '@styles/variables'
+import { appHeaderHeight } from '@components/app-header'
 
 export const Root = styled(motion.div)`
   font-family: 'Proxima Nova', sans-serif;

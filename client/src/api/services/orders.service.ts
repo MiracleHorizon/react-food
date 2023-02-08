@@ -1,5 +1,5 @@
 import { BaseService } from '../base-service'
-import type { OrderParameters } from '@/stores/cart.store'
+import type { OrderParameters } from '@stores/cart.store'
 
 class OrdersService extends BaseService {
   constructor() {

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { defaultScrollbarStyles } from '@/styles/scrollbar'
+import { defaultScrollbarStyles } from '@styles/scrollbar'
 
 export const StyledContent = styled.main`
   padding: 4px 36px;

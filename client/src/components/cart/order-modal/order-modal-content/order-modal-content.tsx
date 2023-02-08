@@ -2,7 +2,7 @@ import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
 
 import ProductsList from './order-products-list'
 import OrderInfo from './order-info'
-import { useScrollProgress } from '@/hooks/useScrollProgress'
+import { useScrollProgress } from '@hooks/useScrollProgress'
 import { StyledContent } from './order-modal-content.styled'
 
 const OrderModalContent: FC<Props> = ({

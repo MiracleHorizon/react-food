@@ -1,4 +1,4 @@
-import { useRefreshAuth } from '@/hooks/useRefreshAuth'
+import { useRefreshAuth } from '@hooks/useRefreshAuth'
 
 const DashboardPage = () => {
   useRefreshAuth()

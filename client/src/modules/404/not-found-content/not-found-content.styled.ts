@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 
-import { devicesMaxWidth } from '@/styles/responsive/devices'
+import { devicesMaxWidth } from '@styles/responsive/devices'
 import { smallScreenMaxWidth } from '../not-found.styled'
 
 export const Root = styled.div`

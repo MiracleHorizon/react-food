@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import NextImage from 'next/image'
 
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 
 export const imageSize = 60
 

@@ -1,6 +1,6 @@
 import { ProductPrice } from './product-price/product-price'
-import { NumberFormatter } from '@/utils/number-formatter'
-import { PRODUCT_IMAGE_FALLBACK } from '@/utils/constants'
+import { NumberFormatter } from '@utils/number-formatter'
+import { PRODUCT_IMAGE_FALLBACK } from '@utils/constants'
 import type { ProductModel } from './product.model'
 
 export abstract class Product {

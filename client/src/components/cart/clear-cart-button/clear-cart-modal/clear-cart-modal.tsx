@@ -1,10 +1,10 @@
 import { Dialog } from '@headlessui/react'
 import type { FC } from 'react'
 
-import DefaultModal from '@/ui/modals/default-modal'
-import { ButtonVariant } from '@/ui/buttons/button'
-import type { ModalProps } from '@/types/modal-props'
-import { defaultModalAppearAnimation } from '@/styles/animations/default-modal-appear.animation'
+import DefaultModal from '@ui/modals/default-modal'
+import { ButtonVariant } from '@ui/buttons/button'
+import type { ModalProps } from '@app-types/modal-props'
+import { defaultModalAppearAnimation } from '@styles/animations/default-modal-appear.animation'
 import * as Modal from './clear-cart-modal.styled'
 
 const ClearCartModal: FC<Props> = ({ open, onClose, handleClearCart }) => (

@@ -1,10 +1,10 @@
 import { FC, useMemo } from 'react'
 
-import DiscountPercentLabel from '@/ui/discount-percent-label'
+import DiscountPercentLabel from '@ui/discount-percent-label'
 import {
   IProductCardVariant,
   ProductCardVariant
-} from '@/components/product-card'
+} from '@components/product-card'
 import * as Image from './product-card-image.styled'
 
 const ProductCardImage: FC<Props> = ({

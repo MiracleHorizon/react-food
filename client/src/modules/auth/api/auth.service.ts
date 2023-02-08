@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios'
 
-import type { UserModel } from '@/models/user.model'
-import type { UserRole } from '@/models/user-role'
+import type { UserModel } from '@models/user.model'
+import type { UserRole } from '@models/user-role'
 
 interface SignupBody {
   email: string
@@ -12,11 +12,6 @@ interface SignupBody {
 interface SigninBody {
   email: string
   password: string
-}
-
-export interface Tokens {
-  accessToken?: string
-  refreshToken?: string
 }
 
 export class AuthService {

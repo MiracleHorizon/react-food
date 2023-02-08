@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import LoginModal from '../login-modal'
-import { ButtonVariant } from '@/ui/buttons/button'
+import { ButtonVariant } from '@ui/buttons/button'
 import { StyledButton } from './login-button.styled'
 
 const LoginButton = () => {

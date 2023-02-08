@@ -1,9 +1,9 @@
 import { FC, memo, useMemo } from 'react'
 
-import Breadcrumb, { BreadcrumbItem } from '@/ui/breadcrumb/breadcrumb'
+import Breadcrumb, { BreadcrumbItem } from '@ui/breadcrumb/breadcrumb'
 import { Routes } from '@router/routes.enum'
-import type { Props as PageProps } from '@/pages/category/[categoryId]/subcategory/[subcategoryId]'
-import type { ProductSubcategoryModel } from '@/modules/product-category'
+import type { Props as PageProps } from '@pages/category/[categoryId]/subcategory/[subcategoryId]'
+import type { ProductSubcategoryModel } from '@modules/product-category'
 import * as Header from './product-subcategory-header.styled'
 
 const ProductSubcategoryHeader: FC<Props> = ({

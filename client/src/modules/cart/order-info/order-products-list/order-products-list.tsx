@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 
-import OrderProductItem from '@/components/order-product-item'
-import { useCartStore } from '@/stores/cart.store'
+import OrderProductItem from '@components/order-product-item'
+import { useCartStore } from '@stores/cart.store'
 
 const OrderProductsList = () => (
   <ul>

@@ -1,6 +1,6 @@
 import { computed, makeObservable, observable, runInAction } from 'mobx'
 
-import type { UserModel } from '@/models/user.model'
+import type { UserModel } from '@models/user.model'
 
 const annotations = {
   _isAuth: observable,

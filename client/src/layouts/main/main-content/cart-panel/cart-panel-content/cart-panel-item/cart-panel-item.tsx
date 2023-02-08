@@ -2,9 +2,9 @@ import { FC, memo, useCallback, useMemo } from 'react'
 
 import ItemContent from './cart-panel-item-content'
 import ChangeCountLabel from './change-count-label'
-import DiscountIcon from '@/ui/discount-icon'
-import { useCartStore } from '@/stores/cart.store'
-import { CartProduct, CartProductModel } from '@/entities/product'
+import DiscountIcon from '@ui/discount-icon'
+import { useCartStore } from '@stores/cart.store'
+import { CartProduct, CartProductModel } from '@entities/product'
 import * as Item from './cart-panel-item.styled'
 
 const CartPanelItem: FC<CartProductModel> = productData => {

@@ -1,12 +1,11 @@
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 
-import userImage from '@/public/images/user.png'
+import userImage from '@images/user.png'
 import * as StyledAvatar from './avatar.styled'
 
 const Avatar: FC<Props> = ({ className, onClick }) => (
   <StyledAvatar.Root
-    data-el='avatar'
     className={className}
     withAction={Boolean(onClick)}
     onClick={onClick}

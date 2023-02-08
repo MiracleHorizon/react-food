@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 
-import ProductsGrid from '@/components/products-grid'
-import type { ProductSubcategoryModel } from '@/modules/product-category'
+import ProductsGrid from '@components/products-grid'
+import type { ProductSubcategoryModel } from '@modules/product-category'
 import * as Section from './product-subcategory-section.styled'
 
 const ProductSubcategorySection: FC<ProductSubcategoryModel> = ({

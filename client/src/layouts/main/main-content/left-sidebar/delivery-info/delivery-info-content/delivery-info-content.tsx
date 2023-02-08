@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite'
 
-import ClockSvg from '@/ui/svg/clock-svg'
+import ClockSvg from '@ui/svg/clock-svg'
 import DeliveryInfoAbout from '../delivery-info-about'
-import { useDeliveryStore } from '@/stores/delivery.store'
+import { useDeliveryStore } from '@stores/delivery.store'
 import * as Content from './delivery-info-content.styled'
 
 const DeliveryInfoContent = () => (

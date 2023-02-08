@@ -1,11 +1,11 @@
-import { FC, memo, useMemo } from 'react'
+import {FC, memo, useMemo} from 'react'
 
 import CardImage from './product-card-image'
 import CardContent from './product-card-content'
 import CardFooter from './product-card-footer'
-import { ShowcaseProduct, ShowcaseProductModel } from '@/entities/product'
-import type { IProductCardVariant } from '../product-card-models'
-import { StyledWrapper } from './product-card.styled'
+import {ShowcaseProduct, ShowcaseProductModel} from '@entities/product'
+import type {IProductCardVariant} from '../product-card-models'
+import {StyledWrapper} from './product-card.styled'
 
 // TODO Обработка ошибки получения изображения продукта.
 const ProductCard: FC<Props> = ({ className, variant, ...productData }) => {

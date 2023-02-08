@@ -1,6 +1,6 @@
 import { css, Global } from '@emotion/react'
 
-import { HIDDEN_OVERFLOW_CLASSNAME } from '@/utils/constants/styles'
+import { HIDDEN_OVERFLOW_CLASSNAME } from '@utils/constants/styles'
 
 const GlobalStyles = () => (
   <Global

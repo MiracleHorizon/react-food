@@ -1,5 +1,5 @@
-import type { ProductCategoryModel } from '@/modules/product-category'
-import type { ShowcaseProductModel } from '@/entities/product'
+import type { ProductCategoryModel } from '@modules/product-category'
+import type { ShowcaseProductModel } from '@entities/product'
 
 export interface ShowcaseProductCategoryModel
   extends Omit<ProductCategoryModel, 'subcategories'> {

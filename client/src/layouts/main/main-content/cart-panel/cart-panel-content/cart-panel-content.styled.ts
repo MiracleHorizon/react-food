@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { defaultScrollbarStyles } from '@/styles/scrollbar'
+import {defaultScrollbarStyles} from '@styles/scrollbar'
 
 // todo Сколлбар в Firefox.
 export const StyledWrapper = styled.main<Props>`

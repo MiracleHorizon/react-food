@@ -2,10 +2,10 @@ import { Dialog } from '@headlessui/react'
 import { AnimatePresence } from 'framer-motion'
 import type { FC } from 'react'
 
-import type { ChildrenProps } from '@/types/children-props'
-import type { ModalProps } from '@/types/modal-props'
-import { MotionModalBackdrop } from '@/public/styles/styled-components/modal-backdrop'
-import { defaultModalAppearAnimation } from '@/styles/animations/default-modal-appear.animation'
+import type { ChildrenProps } from '@app-types/children-props'
+import type { ModalProps } from '@app-types/modal-props'
+import { MotionModalBackdrop } from '@public/styles/styled-components/modal-backdrop'
+import { defaultModalAppearAnimation } from '@styles/animations/default-modal-appear.animation'
 import * as Modal from './default-modal.styled'
 
 const DefaultModal: FC<ChildrenProps & ModalProps> = ({

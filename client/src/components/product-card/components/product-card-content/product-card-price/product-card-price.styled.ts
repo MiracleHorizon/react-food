@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 
 export const Price = styled.span`
   font-size: 24px;

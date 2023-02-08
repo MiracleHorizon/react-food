@@ -2,9 +2,9 @@ import Image from 'next/image'
 import { observer } from 'mobx-react-lite'
 import { useCallback } from 'react'
 
-import ChangeCountLabel from '@/ui/change-count-label'
+import ChangeCountLabel from '@ui/change-count-label'
 import { useCutleryStore } from '../cutlery.store'
-import { CUTLERY_IMAGE_URL } from '@/utils/constants'
+import { CUTLERY_IMAGE_URL } from '@utils/constants'
 import * as Label from './change-count-label.styled'
 
 const ChangeCutleryCountLabel = () => {

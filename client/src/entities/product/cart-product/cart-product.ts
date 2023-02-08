@@ -1,4 +1,4 @@
-import { CartProductModel, Product } from '@/entities/product'
+import { CartProductModel, Product } from '@entities/product'
 
 export class CartProduct extends Product {
   public readonly productReferenceId: string

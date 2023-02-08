@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 import {
   IProductCardVariant,
   ProductCardVariant
-} from '@/components/product-card'
+} from '@components/product-card'
 
 export const Root = styled.main<IProductCardVariant>`
   flex: 1 1 auto;

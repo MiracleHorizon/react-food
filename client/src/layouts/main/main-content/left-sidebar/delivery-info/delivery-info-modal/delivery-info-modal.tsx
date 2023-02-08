@@ -1,9 +1,9 @@
 import { FC, useRef } from 'react'
 import { Dialog } from '@headlessui/react'
 
-import DefaultModal from '@/ui/modals/default-modal'
+import DefaultModal from '@ui/modals/default-modal'
 import ModalContent from './delivery-info-modal-content'
-import type { ModalProps } from '@/types/modal-props'
+import type { ModalProps } from '@app-types/modal-props'
 import * as Modal from './delivery-info-modal.styled'
 
 const DeliveryInfoModal: FC<ModalProps> = props => {

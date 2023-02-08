@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 
 import CartPanelItem from '../cart-panel-item'
-import { useCartStore } from '@/stores/cart.store'
+import { useCartStore } from '@stores/cart.store'
 import { StyledList } from './cart-panel-list.styled'
 
 const CartPanelList = () => (

@@ -1,7 +1,8 @@
-import { BaseService } from '@/api/base-service'
-import type { CartModel } from '@/models/cart.model'
-import type { CartProductModel, ShowcaseProductModel } from '@/entities/product'
 import axios from 'axios'
+
+import { BaseService } from '@api/base-service'
+import type { CartModel } from '@models/cart.model'
+import type { CartProductModel, ShowcaseProductModel } from '@entities/product'
 
 export class CartService extends BaseService {
   constructor() {

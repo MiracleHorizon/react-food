@@ -1,11 +1,11 @@
 import type { FC } from 'react'
 
-import MainLayout from '@/layouts/main'
-import ProductsGrid from '@/components/products-grid'
+import MainLayout from '@layouts/main'
+import ProductsGrid from '@components/products-grid'
 import SubcategoryHeader from './product-subcategory-header'
-import { APP_TITLE } from '@/utils/constants/app'
-import { useRefreshAuth } from '@/hooks/useRefreshAuth'
-import type { Props } from '@/pages/category/[categoryId]/subcategory/[subcategoryId]'
+import { APP_TITLE } from '@utils/constants/app'
+import { useRefreshAuth } from '@hooks/useRefreshAuth'
+import type { Props } from '@pages/category/[categoryId]/subcategory/[subcategoryId]'
 import { StyledWrapper } from './product-subcategory.styled'
 
 const ProductSubcategory: FC<Omit<Props, 'environmentData'>> = ({

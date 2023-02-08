@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 
-import DefaultInput from '@/ui/inputs/input'
-import DefaultButton from '@/ui/buttons/button'
+import DefaultInput from '@ui/inputs/input'
+import DefaultButton from '@ui/buttons/button'
 
 export const Root = styled.form`
   width: 100%;

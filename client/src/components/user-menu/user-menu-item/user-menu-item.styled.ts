@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import NextLink from 'next/link'
 import { motion, Variants } from 'framer-motion'
 
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 
 export const animation: Variants = {
   open: {

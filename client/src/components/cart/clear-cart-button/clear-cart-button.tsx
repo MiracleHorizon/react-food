@@ -2,9 +2,9 @@ import { FC, memo, useCallback, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import ClearCartModal from './clear-cart-modal'
-import { useCartStore } from '@/stores/cart.store'
+import { useCartStore } from '@stores/cart.store'
 import { Routes } from '@router/routes.enum'
-import { TRASH_CART_IMAGE_URL } from '@/utils/constants/images'
+import { TRASH_CART_IMAGE_URL } from '@utils/constants/images'
 import * as Button from './clear-cart-button.styled'
 
 const ClearCartButton: FC<Props> = ({ title, withIcon, withConfirm }) => {

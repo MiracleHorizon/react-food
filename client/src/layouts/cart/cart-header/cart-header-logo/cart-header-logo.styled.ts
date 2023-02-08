@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-const StyledLogo = styled.div`
+export const StyledLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,5 +13,3 @@ const StyledLogo = styled.div`
     margin: 0 5px 1px 5px;
   }
 `
-
-export default StyledLogo

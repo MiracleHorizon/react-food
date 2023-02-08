@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
-import { useUserStore } from '@/stores/user.store'
-import { useCartStore } from '@/stores/cart.store'
-import { authService } from '@/modules/auth'
-import { cartService } from '@/api/services/cart.service'
+import { useUserStore } from '@stores/user.store'
+import { useCartStore } from '@stores/cart.store'
+import { authService } from '@modules/auth'
+import { cartService } from '@api/services/cart.service'
 
 export const useRefreshAuth = () => {
   const { mutateAsync: refreshAuth } = useMutation({

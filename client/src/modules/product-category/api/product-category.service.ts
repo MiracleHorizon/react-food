@@ -1,10 +1,10 @@
-import { BaseService } from '@/api/base-service'
+import { BaseService } from '@api/base-service'
 import type {
   ProductCategoryModel,
   ShowcaseProductCategoryModel
-} from '@/modules/product-category'
-import type { PaginationParams } from '@/api/models/pagination-params.model'
-import type { NavigationCategory } from '@/models/navigation-category'
+} from '@modules/product-category'
+import type { PaginationParams } from '@api/models/pagination-params.model'
+import type { NavigationCategory } from '@models/navigation-category'
 
 class ProductCategoryService extends BaseService {
   constructor() {

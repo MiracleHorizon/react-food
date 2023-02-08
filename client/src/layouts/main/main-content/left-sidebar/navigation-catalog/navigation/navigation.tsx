@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import type { FC } from 'react'
 
 import NavigationItem from './navigation-item'
-import type { NavigationCategory } from '@/models/navigation-category'
+import type { NavigationCategory } from '@models/navigation-category'
 
 const Navigation: FC<Props> = ({ categories }) => (
   <nav>

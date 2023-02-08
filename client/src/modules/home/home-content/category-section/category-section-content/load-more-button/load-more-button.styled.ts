@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 
 export const Root = styled.div`
   cursor: pointer;

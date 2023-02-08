@@ -3,17 +3,17 @@ import type { GetServerSidePropsContext, NextPage } from 'next'
 import {
   productCategoryService,
   ProductSubcategoryModel
-} from '@/modules/product-category'
+} from '@modules/product-category'
 import ProductSubcategory, {
   productSubcategoryService
-} from '@/modules/product-subcategory'
+} from '@modules/product-subcategory'
 import {
   EnvironmentData,
   fetchEnvironmentData,
   initializeEnvironmentData
 } from '@lib/environment'
 import { Routes } from '@router/routes.enum'
-import { ParsedUrlQueryHandler } from '@/utils/parsed-url-query-handler'
+import { ParsedUrlQueryHandler } from '@utils/parsed-url-query-handler'
 
 const ProductSubcategoryPage: NextPage<Props> = ({
   environmentData,

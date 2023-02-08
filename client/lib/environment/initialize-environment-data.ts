@@ -1,5 +1,5 @@
-import { useCartStore } from '@/stores/cart.store'
-import { useNavigationStore } from '@/layouts/main'
+import { useCartStore } from '@stores/cart.store'
+import { useNavigationStore } from '@layouts/main'
 import type { EnvironmentData } from './fetch-environment-data'
 
 export const initializeEnvironmentData = ({

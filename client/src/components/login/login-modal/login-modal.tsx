@@ -1,9 +1,9 @@
 import { Dialog } from '@headlessui/react'
 import type { FC } from 'react'
 
-import DefaultModal from '@/ui/modals/default-modal'
-import LoginForm from '@/components/login/login-form'
-import type { ModalProps } from '@/types/modal-props'
+import DefaultModal from '@ui/modals/default-modal'
+import LoginForm from '@components/login/login-form'
+import type { ModalProps } from '@app-types/modal-props'
 import * as Modal from './login-modal.styled'
 
 const LoginModal: FC<ModalProps> = props => (

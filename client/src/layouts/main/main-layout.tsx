@@ -4,13 +4,13 @@ import { FC, useEffect } from 'react'
 import LayoutHeader from './main-header'
 import LayoutContent from './main-content'
 import LayoutFooter from './main-footer'
-import HeadComponent from '@/components/HeadComponent'
-import { useChangeRoute } from '@/hooks/useChangeRoute'
-import { HIDDEN_OVERFLOW_CLASSNAME } from '@/utils/constants/styles'
-import type { LayoutProps } from '@/types/layout-props'
+import HeadComponent from '@components/HeadComponent'
+import { useChangeRoute } from '@hooks/useChangeRoute'
+import { HIDDEN_OVERFLOW_CLASSNAME } from '@utils/constants/styles'
+import type { LayoutProps } from '@app-types/layout-props'
 import * as Layout from './main-layout.styled'
 
-const ChangeRouteLoader = dynamic(import('@/ui/change-route-loader'), {
+const ChangeRouteLoader = dynamic(import('@ui/change-route-loader'), {
   ssr: false
 })
 

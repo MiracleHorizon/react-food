@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 
-import Home from '@/modules/home'
+import Home from '@modules/home'
 import {
   productCategoryService,
   ShowcaseProductCategoryModel
-} from '@/modules/product-category'
+} from '@modules/product-category'
 import {
   EnvironmentData,
   fetchEnvironmentData,

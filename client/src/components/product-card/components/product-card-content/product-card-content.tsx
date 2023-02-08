@@ -1,8 +1,8 @@
 import { FC, memo } from 'react'
 
 import ContentPrice from './product-card-price'
-import type { ProductModel } from '@/entities/product'
-import type { IProductCardVariant } from '../../product-card-models'
+import type { ProductModel } from '@entities/product'
+import type { IProductCardVariant } from '@components/product-card'
 import * as Content from './product-card-content.styled'
 
 const ProductCardContent: FC<Props> = ({

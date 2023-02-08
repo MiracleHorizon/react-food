@@ -1,4 +1,4 @@
-import type { CartProductModel } from '@/entities/product'
+import type { CartProductModel } from '@entities/product'
 
 export interface CartModel {
   id: string

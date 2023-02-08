@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 
-import DiscountIcon from '@/ui/discount-icon'
-import type { ProductModel } from '@/entities/product'
+import DiscountIcon from '@ui/discount-icon'
+import type { ProductModel } from '@entities/product'
 import * as Content from './order-product-item-content.styled'
 
 const OrderProductItemContent: FC<Props> = ({

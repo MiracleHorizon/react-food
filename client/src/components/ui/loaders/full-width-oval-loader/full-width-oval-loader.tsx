@@ -1,8 +1,8 @@
 import { Oval } from 'react-loader-spinner'
 import type { FC } from 'react'
 
-import { colors } from '@/styles/variables'
-import StyledLoader from './full-width-oval-loader.styled'
+import { colors } from '@styles/variables'
+import { StyledLoader } from './full-width-oval-loader.styled'
 
 const FullWidthOvalLoader: FC<Props> = ({ color }) => (
   <StyledLoader>

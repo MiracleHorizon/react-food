@@ -1,12 +1,12 @@
-import { useForm } from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 
-import { authService } from '@/modules/auth/api/auth.service'
-import { useUserStore } from '@/stores/user.store'
-import { cartService } from '@/api/services/cart.service'
-import { useCartStore } from '@/stores/cart.store'
-import { Routes } from '@router/routes.enum'
-import { ButtonVariant } from '@/ui/buttons/button'
-import type { LoginData } from '../login.types'
+import {authService} from '@modules/auth/api/auth.service'
+import {useUserStore} from '@stores/user.store'
+import {cartService} from '@api/services/cart.service'
+import {useCartStore} from '@stores/cart.store'
+import {Routes} from '@router/routes.enum'
+import {ButtonVariant} from '@ui/buttons/button'
+import type {LoginData} from '../login.types'
 import * as Form from './login-form.styled'
 
 // TODO: Отображение ошибок.

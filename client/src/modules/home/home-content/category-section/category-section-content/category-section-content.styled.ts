@@ -1,8 +1,6 @@
 import styled from '@emotion/styled'
 
-import BaseProductCard from '@/components/product-card'
-
-export const cardAnimation = {}
+import BaseProductCard from '@components/product-card'
 
 export const Root = styled.div`
   position: relative;

@@ -1,6 +1,6 @@
 import { action, makeObservable, observable, runInAction } from 'mobx'
 
-import type { NavigationCategory } from '@/models/navigation-category'
+import type { NavigationCategory } from '@models/navigation-category'
 
 // TODO Целесообразность
 class NavigationStore {

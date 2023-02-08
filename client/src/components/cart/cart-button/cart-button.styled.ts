@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { darken } from 'polished'
 
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 
 export const Root = styled.button`
   cursor: pointer;

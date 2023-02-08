@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import NextLink from 'next/link'
 
-import { BubbleItem } from '@/public/styles/styled-components/bubble-item'
+import { BubbleItem } from '@public/styles/styled-components/bubble-item'
 
 export const Root = styled(BubbleItem.withComponent('li'))`
   margin-bottom: 8px;

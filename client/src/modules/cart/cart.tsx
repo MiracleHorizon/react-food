@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 
-import CartLayout from '@/layouts/cart'
-import FullWidthOvalLoader from '@/ui/loaders/full-width-oval-loader'
+import CartLayout from '@layouts/cart'
+import FullWidthOvalLoader from '@ui/loaders/full-width-oval-loader'
 import * as Styled from './cart.styled'
 
 const OrderInfo = dynamic(() => import('./order-info'), {

@@ -1,4 +1,4 @@
-import Signup from '@/modules/auth/signup'
+import Signup from '@modules/auth/signup'
 
 const SignupPage = () => <Signup />
 

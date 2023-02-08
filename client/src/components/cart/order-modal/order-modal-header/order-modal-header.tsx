@@ -1,7 +1,7 @@
 import { Dialog } from '@headlessui/react'
 import type { FC } from 'react'
 
-import ClearCartButton from '@/components/cart/clear-cart-button'
+import ClearCartButton from '@components/cart/clear-cart-button'
 import StyledHeader from './order-modal-header.styled'
 
 const OrderModalHeader: FC<Props> = props => (

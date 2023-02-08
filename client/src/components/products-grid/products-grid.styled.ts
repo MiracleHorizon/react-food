@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 
-import BaseProductCard from '@/components/product-card'
+import BaseProductCard from '@components/product-card'
 
 export const Root = styled(motion.div)`
   width: 100%;

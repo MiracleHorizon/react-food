@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { appHeaderHeight } from '@/components/app-header/app-header.styled'
+import { appHeaderHeight } from '@components/app-header/app-header.styled'
 import { asideMarginX, contentTopPadding } from '../main-content.styled'
 
 const borderRadius = 24

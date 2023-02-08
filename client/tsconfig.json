@@ -2,56 +2,56 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@/pages/*": [
+      "@pages/*": [
         "../pages/*"
       ],
-      "@/components/*": [
+      "@components/*": [
         "components/*"
       ],
-      "@/ui/*": [
+      "@ui/*": [
         "components/ui/*"
       ],
-      "@/layouts/*": [
+      "@layouts/*": [
         "layouts/*"
       ],
-      "@/stores/*": [
+      "@stores/*": [
         "stores/*"
       ],
-      "@/entities/*": [
+      "@entities/*": [
         "entities/*"
       ],
-      "@/models/*": [
+      "@models/*": [
         "models/*"
       ],
-      "@/modules/*": [
+      "@modules/*": [
         "modules/*"
       ],
-      "@/hooks/*": [
+      "@hooks/*": [
         "hooks/*"
       ],
-      "@/api/*": [
+      "@api/*": [
         "api/*"
       ],
-      "@/utils/*": [
+      "@utils/*": [
         "utils/*"
       ],
-      "@/types/*": [
+      "@exceptions/*":  [
+        "entities/exceptions/*",
+      ],
+      "@app-types/*": [
         "types/*"
       ],
       "@router/*": [
         "router/*"
       ],
-      "@/exceptions/*": [
-        "entities/exceptions/*"
-      ],
-      "@/public/*": [
+      "@public/*": [
         "../public/*"
       ],
-      "@/styles/*": [
+      "@styles/*": [
         "../public/styles/*"
       ],
-      "@/images/*": [
-        "../public/images*"
+      "@images/*": [
+        "../public/images/*"
       ],
       "@lib/*": [
         "../lib/*"

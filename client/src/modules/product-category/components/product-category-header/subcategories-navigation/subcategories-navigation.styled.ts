@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { BubbleItem } from '@/styles/styled-components/bubble-item'
+import { BubbleItem } from '@styles/styled-components/bubble-item'
 
 export const Root = styled.nav`
   width: 100%;

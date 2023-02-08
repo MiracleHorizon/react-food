@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { authService } from '@/modules/auth'
-import { UserRole } from '@/models/user-role'
+import { authService } from '@modules/auth'
+import { UserRole } from '@models/user-role'
 import { Routes } from '@router/routes.enum'
 import {
   authorizedRoutes,

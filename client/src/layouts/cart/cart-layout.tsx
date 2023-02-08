@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 
 import LayoutHeader from './cart-header'
-import HeadComponent from '@/components/HeadComponent'
-import type { LayoutProps } from '@/types/layout-props'
+import HeadComponent from '@components/HeadComponent'
+import type { LayoutProps } from '@app-types/layout-props'
 import * as Layout from './cart-layout.styled'
 
 const CartLayout: FC<LayoutProps> = ({ children, ...seoData }) => (

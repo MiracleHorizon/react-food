@@ -1,5 +1,5 @@
-import { BaseService } from '@/api/base-service'
-import type { ProductSubcategoryModel } from '@/modules/product-category'
+import { BaseService } from '@api/base-service'
+import type { ProductSubcategoryModel } from '@modules/product-category'
 
 class ProductSubcategoryService extends BaseService {
   constructor() {

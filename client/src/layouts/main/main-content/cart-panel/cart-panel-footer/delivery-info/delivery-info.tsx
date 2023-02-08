@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 
-import CarBanner from '@/ui/banner/components/car-banner'
-import { useDeliveryStore } from '@/stores/delivery.store'
+import CarBanner from '@ui/banner/components/car-banner'
+import { useDeliveryStore } from '@stores/delivery.store'
 import * as Info from './delivery-info.styled'
 
 const DeliveryInfo = () => (

@@ -1,6 +1,6 @@
 import NotFoundContent from './not-found-content'
-import HeadComponent from '@/components/HeadComponent'
-import notFoundImage from '@/public/images/not-found-image.png'
+import HeadComponent from '@components/HeadComponent'
+import notFoundImage from '@images/not-found-image.png'
 import * as NotFound from './not-found.styled'
 
 const NotFoundPageComponent = () => (

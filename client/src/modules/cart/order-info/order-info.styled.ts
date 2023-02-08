@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { DefaultRoundedDiv } from '@/styles/styled-components/default-rounded-div'
+import { DefaultRoundedDiv } from '@styles/styled-components/default-rounded-div'
 
 export const Root = styled(DefaultRoundedDiv)`
   width: 580px;

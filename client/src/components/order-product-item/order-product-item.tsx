@@ -1,9 +1,9 @@
 import { FC, memo, useCallback, useMemo } from 'react'
 
 import ItemContent from './order-product-item-content'
-import ChangeCountLabel from '@/ui/change-count-label'
-import { useCartStore } from '@/stores/cart.store'
-import { CartProduct, CartProductModel } from '@/entities/product'
+import ChangeCountLabel from '@ui/change-count-label'
+import { useCartStore } from '@stores/cart.store'
+import { CartProduct, CartProductModel } from '@entities/product'
 import * as Item from './order-product-item.styled'
 
 const OrderProductItem: FC<Props> = ({ variant, ...productData }) => {

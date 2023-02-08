@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { darken, lighten } from 'polished'
 
 import { ButtonVariant } from './button-variant'
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 
 export const Root = styled.button<RootProps>`
   display: flex;

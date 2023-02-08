@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 
 const imageSize = 44
 

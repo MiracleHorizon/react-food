@@ -1,7 +1,7 @@
-import { useMemo } from 'react'
-import { observer } from 'mobx-react-lite'
+import {useMemo} from 'react'
+import {observer} from 'mobx-react-lite'
 
-import { useDeliveryStore } from '@/stores/delivery.store'
+import {useDeliveryStore} from '@stores/delivery.store'
 import * as Content from './delivery-info-modal-content.styled'
 
 // TODO: Доработать все, что связано с этим компонентом.

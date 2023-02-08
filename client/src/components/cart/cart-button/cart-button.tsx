@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 
-import { CART_IMAGE_URL } from '@/utils/constants/images'
+import { CART_IMAGE_URL } from '@utils/constants/images'
 import * as Button from './cart-button.styled'
 
 const OrderModal = dynamic(import('../order-modal'))

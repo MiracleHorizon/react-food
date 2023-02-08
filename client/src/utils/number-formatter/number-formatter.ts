@@ -6,7 +6,7 @@ import type {
   FormatTimeArgs,
   FormatTimeRangeArgs
 } from './number-formatter.types'
-import { SPACE_SIGN } from '@/utils/constants'
+import { SPACE_SIGN } from '@utils/constants'
 
 export class NumberFormatter {
   constructor(private readonly location: string) {}

@@ -3,10 +3,10 @@ import { useRef } from 'react'
 
 import EmptyPanel from './empty-cart-panel'
 import CartPanelList from './cart-panel-list'
-import ServiceFeeLabel from '@/ui/service-fee-label'
-import { useCartStore } from '@/stores/cart.store'
-import { useDeliveryStore } from '@/stores/delivery.store'
-import { useScrollProgress } from '@/hooks/useScrollProgress'
+import ServiceFeeLabel from '@ui/service-fee-label'
+import { useCartStore } from '@stores/cart.store'
+import { useDeliveryStore } from '@stores/delivery.store'
+import { useScrollProgress } from '@hooks/useScrollProgress'
 import * as Content from './cart-panel-content.styled'
 
 const CartPanelContent = () => {

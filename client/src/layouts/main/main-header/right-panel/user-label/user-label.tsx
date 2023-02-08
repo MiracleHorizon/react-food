@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import dynamic from 'next/dynamic'
 
-import { useUserStore } from '@/stores/user.store'
+import { useUserStore } from '@stores/user.store'
 import { StyledAvatar, StyledLoginButton } from './user-label.styled'
 
-const UserMenu = dynamic(import('@/components/user-menu'), {
+const UserMenu = dynamic(import('@components/user-menu'), {
   ssr: false
 })
 

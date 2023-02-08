@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 
-import { useCartStore } from '@/stores/cart.store'
+import { useCartStore } from '@stores/cart.store'
 
 class CutleryStore {
   private count = 0

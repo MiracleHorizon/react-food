@@ -1,5 +1,5 @@
-import Cart from '@/modules/cart'
-import { useRefreshAuth } from '@/hooks/useRefreshAuth'
+import Cart from '@modules/cart'
+import {useRefreshAuth} from '@hooks/useRefreshAuth'
 
 // TODO: Page loader.
 const CartPage = () => {

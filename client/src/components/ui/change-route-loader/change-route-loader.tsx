@@ -1,9 +1,9 @@
 import { Oval } from 'react-loader-spinner'
 
-import Portal from '@/ui/portal'
-import ModalWrapper from '@/styles/styled-components/modal-wrapper'
-import StyledLoader from './change-route-loader.styled'
-import { colors } from '@/styles/variables'
+import Portal from '@ui/portal'
+import { ModalWrapper } from '@styles/styled-components/modal-wrapper'
+import { StyledLoader } from './change-route-loader.styled'
+import { colors } from '@styles/variables'
 
 const ChangeRouteLoader = () => (
   <Portal>

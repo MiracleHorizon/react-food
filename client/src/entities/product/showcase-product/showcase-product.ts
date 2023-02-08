@@ -1,4 +1,4 @@
-import { Product, ShowcaseProductModel } from '@/entities/product'
+import { Product, ShowcaseProductModel } from '@entities/product'
 
 export class ShowcaseProduct extends Product {
   public readonly description: string

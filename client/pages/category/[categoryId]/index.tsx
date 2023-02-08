@@ -3,8 +3,8 @@ import type { GetServerSidePropsContext, NextPage } from 'next'
 import ProductCategory, {
   ProductCategoryModel,
   productCategoryService
-} from '@/modules/product-category'
-import { ParsedUrlQueryHandler } from '@/utils/parsed-url-query-handler'
+} from '@modules/product-category'
+import { ParsedUrlQueryHandler } from '@utils/parsed-url-query-handler'
 import {
   EnvironmentData,
   fetchEnvironmentData,

@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import ProductSubcategorySection from './product-subcategory-section'
-import type { ProductCategoryModel } from '@/modules/product-category'
+import type { ProductCategoryModel } from '@modules/product-category'
 
 const ProductCategoryShowcase: FC<ProductCategoryModel> = productCategory => (
   <div>

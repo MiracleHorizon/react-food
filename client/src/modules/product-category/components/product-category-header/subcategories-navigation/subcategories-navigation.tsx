@@ -1,8 +1,8 @@
 import { FC, memo, useCallback, useState } from 'react'
 
-import ArrowSvg from '@/ui/svg/arrow-svg'
+import ArrowSvg from '@ui/svg/arrow-svg'
 import NavigationItem from './subcategories-navigation-item'
-import type { ProductSubcategoryModel } from '@/modules/product-category'
+import type { ProductSubcategoryModel } from '@modules/product-category'
 import * as Navigation from './subcategories-navigation.styled'
 
 const MAX_ITEMS = 10

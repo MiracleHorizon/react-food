@@ -3,12 +3,12 @@ import { AnimatePresence } from 'framer-motion'
 import type { FC } from 'react'
 
 import MenuItem from './user-menu-item'
-import { authService } from '@/modules/auth'
-import { useUserStore } from '@/stores/user.store'
-import { useCartStore } from '@/stores/cart.store'
+import { authService } from '@modules/auth'
+import { useUserStore } from '@stores/user.store'
+import { useCartStore } from '@stores/cart.store'
 import { Routes } from '@router/routes.enum'
-import type { ModalProps } from '@/types/modal-props'
-import type { UserModel } from '@/models/user.model'
+import type { ModalProps } from '@app-types/modal-props'
+import type { UserModel } from '@models/user.model'
 import * as Menu from './user-menu.styled'
 
 const menuItems = [
@@ -39,6 +39,7 @@ const menuItems = [
   }
 ]
 
+// TODO: Dialog -> Menu
 const UserMenu: FC<Props> = ({ user, open, onClose }) => (
   <AnimatePresence>
     {open && (

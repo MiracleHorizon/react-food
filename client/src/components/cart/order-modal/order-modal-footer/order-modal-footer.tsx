@@ -2,7 +2,7 @@ import { FC, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { observer } from 'mobx-react-lite'
 
-import { useCartStore } from '@/stores/cart.store'
+import { useCartStore } from '@stores/cart.store'
 import { Routes } from '@router/routes.enum'
 import * as Footer from './order-modal-footer.styled'
 

@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { darken } from 'polished'
 
-import DefaultButton from '@/ui/buttons/button'
-import { colors } from '@/styles/variables'
+import DefaultButton from '@ui/buttons/button'
+import { colors } from '@styles/variables'
 
 export const StyledButton = styled(DefaultButton)`
   height: 100%;

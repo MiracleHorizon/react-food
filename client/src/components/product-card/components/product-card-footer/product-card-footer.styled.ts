@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 
 const borderRadius = 12
 

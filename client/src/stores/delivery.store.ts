@@ -1,8 +1,8 @@
 import { computed, makeObservable, observable } from 'mobx'
 
-import { CartStore, useCartStore } from '@/stores/cart.store'
-import { DeliveryDescription } from '@/entities/delivery-description'
-import { intlConfig } from '@/utils/configs/intl.config'
+import { CartStore, useCartStore } from '@stores/cart.store'
+import { DeliveryDescription } from '@entities/delivery-description'
+import { intlConfig } from '@utils/configs/intl.config'
 
 interface Constructor {
   location: string

@@ -1,9 +1,9 @@
 import { FC, useRef } from 'react'
 
-import Carousel from '@/ui/carousel'
+import Carousel from '@ui/carousel'
 import LoadMoreButton from './load-more-button'
-import { ProductCardVariant } from '@/components/product-card'
-import type { ShowcaseProductModel } from '@/entities/product'
+import { ProductCardVariant } from '@components/product-card'
+import type { ShowcaseProductModel } from '@entities/product'
 import * as Content from './category-section-content.styled'
 
 const ProductCategorySectionContent: FC<Props> = ({ id, products }) => {

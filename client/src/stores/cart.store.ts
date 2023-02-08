@@ -1,15 +1,15 @@
 import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 
-import { CartProduct, ShowcaseProductModel } from '@/entities/product'
-import { cartService } from '@/api/services/cart.service'
-import { ArrayReducer } from '@/utils/array-reducer'
-import { NumberFormatter } from '@/utils/number-formatter'
-import { InvalidOrderWeightException } from '@/exceptions/invalid-order-weight'
-import { InvalidPaymentCostException } from '@/exceptions/invalid-payment-cost'
-import { READY_MEAL_TAGS } from '@/utils/constants'
-import { intlConfig } from '@/utils/configs/intl.config'
-import type { CartModel } from '@/models/cart.model'
-import type { Range } from '@/types/range'
+import { CartProduct, ShowcaseProductModel } from '@entities/product'
+import { cartService } from '@api/services/cart.service'
+import { ArrayReducer } from '@utils/array-reducer'
+import { NumberFormatter } from '@utils/number-formatter'
+import { InvalidOrderWeightException } from '@exceptions/invalid-order-weight.exception'
+import { InvalidPaymentCostException } from '@exceptions/invalid-payment-cost.exception'
+import { READY_MEAL_TAGS } from '@utils/constants'
+import { intlConfig } from '@utils/configs/intl.config'
+import type { CartModel } from '@models/cart.model'
+import type { Range } from '@app-types/range'
 
 interface Constructor {
   location: string

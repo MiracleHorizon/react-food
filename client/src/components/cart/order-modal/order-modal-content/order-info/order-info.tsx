@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 
-import { useDeliveryStore } from '@/stores/delivery.store'
+import { useDeliveryStore } from '@stores/delivery.store'
 import * as Info from './order-info.styled'
 
 const OrderInfo = () => {

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { colors } from '@/styles/variables'
+import { colors } from '@styles/variables'
 import { textMarginY } from '../delivery-info.styled'
 
 export const Root = styled.div`
