@@ -3,7 +3,11 @@ import {
   Injectable,
   NotFoundException
 } from '@nestjs/common'
-import type { ProductCategory, ProductSubcategory } from '@prisma/client'
+import type {
+  Product,
+  ProductCategory,
+  ProductSubcategory
+} from '@prisma/client'
 import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
@@ -13,6 +17,11 @@ import type { Res } from '@/models/Res'
 
 type ProductCategoryWithSubcategories = ProductCategory & {
   subcategories: ProductSubcategory[]
+}
+
+export interface ShowcaseProductCategoryModel
+  extends Omit<ProductCategoryWithSubcategories, 'subcategories'> {
+  products: Product[]
 }
 
 @Injectable()
@@ -83,10 +92,9 @@ export class ProductCategoryService {
   }
 
   // @User & @Admin
-  public async findAll({
-    skip,
-    take
-  }: PaginationParams): Promise<ProductCategoryWithSubcategories[]> {
+  public async findAll(
+    paginationParams: PaginationParams
+  ): Promise<ShowcaseProductCategoryModel[]> {
     const productsFilterParameters = {
       every: {
         subcategoryId: {
@@ -108,9 +116,8 @@ export class ProductCategoryService {
       }
     }
 
-    return this.prisma.productCategory.findMany({
-      take,
-      skip: skip ?? 0,
+    const categories = await this.prisma.productCategory.findMany({
+      ...paginationParams,
       where: filterParameters,
       include: {
         subcategories: {
@@ -120,6 +127,19 @@ export class ProductCategoryService {
         }
       }
     })
+
+    return categories.map(({ subcategories, ...category }) => {
+      const products = subcategories
+        .map(subcategory => {
+          return subcategory.products.slice(0, 5)
+        })
+        .reduce((acc, array) => acc.concat(array), [])
+
+      return {
+        ...category,
+        products
+      }
+    })
   }
 
   // @User & @Admin
@@ -127,7 +147,7 @@ export class ProductCategoryService {
     const categories = await this.findAll({})
     return categories.map(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      ({ subcategories, ...dataForNavigation }) => dataForNavigation
+      ({ products, ...dataForNavigation }) => dataForNavigation
     )
   }
 

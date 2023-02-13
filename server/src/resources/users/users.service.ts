@@ -1,9 +1,4 @@
-import {
-  ForbiddenException,
-  Injectable,
-  NotFoundException
-} from '@nestjs/common'
-import type { Request } from 'express'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import type { User } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
@@ -14,7 +9,7 @@ export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
   // @User & @Admin
-  public async findOne(userId: string, req: Request): Promise<User> {
+  public async findOne(userId: string): Promise<User> {
     const user = await this.prisma.user.findUnique({
       where: {
         id: userId
@@ -30,13 +25,6 @@ export class UsersService {
     })
 
     if (!user) throw new NotFoundException('User is not found.')
-
-    // TODO Доработать
-    const userFromClient = req.user as { id: string }
-
-    if (user.id !== userFromClient.id) throw new ForbiddenException()
-
-    delete user.hashedPassword
 
     return user
   }

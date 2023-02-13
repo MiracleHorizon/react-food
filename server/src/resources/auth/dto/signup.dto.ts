@@ -1,20 +1,32 @@
+// import {
+//   IsEmail,
+//   IsEnum,
+//   IsNotEmpty,
+//   IsOptional,
+//   IsString,
+//   Matches,
+//   MaxLength,
+//   MinLength
+// } from 'class-validator'
 import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
   IsOptional,
   IsString,
-  Matches,
   MaxLength,
   MinLength
 } from 'class-validator'
-
+// import {
+//   USER_PASSWORD_MAX_LENGTH,
+//   USER_PASSWORD_MIN_LENGTH,
+//   USER_PASSWORD_VALIDATION_REGEX
+// } from '@/utils/constants'
 import { UserRole } from '@/models/user/UserRole'
 import { validationMessage } from '@/utils/validation-message'
 import {
   USER_PASSWORD_MAX_LENGTH,
-  USER_PASSWORD_MIN_LENGTH,
-  USER_PASSWORD_VALIDATION_REGEX
+  USER_PASSWORD_MIN_LENGTH
 } from '@/utils/constants'
 
 export class SignupDto {
@@ -44,9 +56,9 @@ export class SignupDto {
     message: ({ property, constraints }) =>
       validationMessage.getMaxLengthMessage(property, constraints[0])
   })
-  @Matches(new RegExp(USER_PASSWORD_VALIDATION_REGEX), {
-    message: validationMessage.getPasswordMessage()
-  })
+  // @Matches(new RegExp(USER_PASSWORD_VALIDATION_REGEX), {
+  //   message: validationMessage.getPasswordMessage()
+  // })
   public password: string
 
   @IsString()
