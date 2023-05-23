@@ -4,7 +4,7 @@ Frontend:
 - Next.js, React
 - Emotion, framer-motion, headlessui
 - React-Query V4, axios
-- MobX
+- Zustand
 - react-hook-form
 
 Backend:
