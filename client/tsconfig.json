@@ -74,7 +74,7 @@
         "src/common/router/*"
       ],
       "@utils/*": [
-        "src/common/utils/*"
+        "src/utils/*"
       ],
       "@helpers/*": [
         "src/common/helpers/*"
