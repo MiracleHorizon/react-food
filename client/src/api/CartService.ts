@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-import {BaseService} from '@api/BaseService'
-import type {UserCart} from '@models/UserCart'
-import type {CartProductModel} from '@models/product/CartProduct'
-import type {ShowcaseProductModel} from '@models/product/ShowcaseProduct'
+import { BaseService } from '@api/BaseService'
+import type { UserCart } from '@models/UserCart'
+import type { CartProductModel } from '@models/product/CartProduct'
+import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct' // TODO: Axios
 
 // TODO: Axios
 class CartService extends BaseService {

@@ -1,7 +1,7 @@
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 
 import ArrowSvg from '@ui/svg/ArrowSvg'
-import {Button} from './BackButton.styled'
+import { Button } from './BackButton.styled' // TODO: Не работает
 
 // TODO: Не работает
 const BackButton = () => {

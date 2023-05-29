@@ -1,13 +1,13 @@
-import {type FC, memo, useCallback, useMemo} from 'react'
-import {useRouter} from 'next/router'
+import { type FC, memo, useCallback, useMemo } from 'react'
+import { useRouter } from 'next/router'
 
-import {useSelectOrderCost} from '@hooks/selectors/useSelectOrderCost'
-import {useSelectIsMinOrderCostExceeded} from '@hooks/selectors/useSelectIsMinOrderCostExceeded'
-import {numberFormatter} from '@utils/NumberFormatter'
-import {MIN_ORDER_COST} from '@constants/payment'
-import {DEFAULT_CURRENCY_INTL_ARGS} from '@constants/intl'
-import {Routes} from '@router/Routes.enum'
-import * as Footer from './CartModalFooter.styled'
+import { useSelectOrderCost } from '@hooks/selectors/useSelectOrderCost'
+import { useSelectIsMinOrderCostExceeded } from '@hooks/selectors/useSelectIsMinOrderCostExceeded'
+import { numberFormatter } from '@utils/NumberFormatter'
+import { MIN_ORDER_COST } from '@constants/payment'
+import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
+import { Routes } from '@router/Routes.enum'
+import * as Footer from './CartModalFooter.styled' // TODO: Without cost, cost
 
 // TODO: Without cost, cost
 const CartModalFooter: FC<Props> = props => {

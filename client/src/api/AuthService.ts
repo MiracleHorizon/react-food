@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-import {BaseService} from './BaseService'
-import {UserRole} from '@models/UserRole'
-import type {UserModel} from '@models/User'
-import type {SigninDto} from '@app-types/auth/SigninDto'
-import type {SignupDto} from '@app-types/auth/SignupDto'
+import { BaseService } from './BaseService'
+import { UserRole } from '@models/UserRole'
+import type { UserModel } from '@models/User'
+import type { SigninDto } from '@app-types/auth/SigninDto'
+import type { SignupDto } from '@app-types/auth/SignupDto' // TODO: this.api.getUri
 
 // TODO: this.api.getUri
 class AuthService extends BaseService {

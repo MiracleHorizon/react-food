@@ -1,11 +1,11 @@
-import {type FC, useEffect} from 'react'
+import { type FC, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 
 import Head from '@components/seo/Head'
 import MobileFooterMenu from './mobile'
-import {useChangeRoute} from '@hooks/useChangeRoute'
-import type {LayoutProps} from '@app-types/LayoutProps'
-import {HIDDEN_OVERFLOW_CLASSNAME} from '@styles/constants'
+import { useChangeRoute } from '@hooks/useChangeRoute'
+import { HIDDEN_OVERFLOW_CLASSNAME } from '@styles/constants'
+import type { LayoutProps } from '@app-types/LayoutProps' // TODO: Set timeout
 
 // TODO: Set timeout
 const ChangeRouteLoader = dynamic(import('@components/ChangeRouteLoader'), {

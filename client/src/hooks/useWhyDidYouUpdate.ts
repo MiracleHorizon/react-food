@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react'
+import { useEffect, useRef } from 'react' // @ts-ignore
 
 // @ts-ignore
 export function useWhyDidYouUpdate(name, props) {

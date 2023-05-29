@@ -1,14 +1,14 @@
-import {type FC, useMemo, useRef} from 'react'
-import {useRouter} from 'next/router'
-import {Dialog} from '@headlessui/react'
+import { type FC, useMemo, useRef } from 'react'
+import { useRouter } from 'next/router'
+import { Dialog } from '@headlessui/react'
 
 import UserMenuItem from './UserMenuItem'
-import {authService} from '@api/AuthService'
-import {useUserStore} from '@stores/userStore'
-import {useCartStore} from '@stores/cartStore'
-import {Routes} from '@router/Routes.enum'
-import type {UserModel} from '@models/User'
-import * as Menu from './UserMenu.styled'
+import { authService } from '@api/AuthService'
+import { useUserStore } from '@stores/userStore'
+import { useCartStore } from '@stores/cartStore'
+import { Routes } from '@router/Routes.enum'
+import type { UserModel } from '@models/User'
+import * as Menu from './UserMenu.styled' // TODO: Dialog -> Menu
 
 // TODO: Dialog -> Menu
 const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {

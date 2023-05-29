@@ -1,7 +1,7 @@
 import WithCartProduct from '@hoc/withCartProduct'
 import CartProductItem from './CartProductItem'
-import {useCartStore} from '@stores/cartStore'
-import * as List from './CartProductsList.styled'
+import { useCartStore } from '@stores/cartStore'
+import * as List from './CartProductsList.styled' // TODO: State refresh
 
 // TODO: State refresh
 const CartProductsList = () => (

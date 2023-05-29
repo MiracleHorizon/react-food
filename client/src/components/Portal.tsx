@@ -1,9 +1,9 @@
-import {createPortal} from 'react-dom'
-import type {FC} from 'react'
+import { createPortal } from 'react-dom'
+import type { FC } from 'react'
 
-import {checkIsClient} from '@helpers/checkIsClient'
-import {ROOT_ELEMENT_ID} from '@constants/next'
-import type {ChildrenProps} from '@app-types/ChildrenProps'
+import { checkIsClient } from '@helpers/checkIsClient'
+import { ROOT_ELEMENT_ID } from '@constants/next'
+import type { ChildrenProps } from '@app-types/ChildrenProps' // TODO: SSR?
 
 // TODO: SSR?
 const Portal: FC<ChildrenProps> = ({ children }) => {
