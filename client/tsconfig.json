@@ -1,69 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@pages/*": [
-        "../pages/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@ui/*": [
-        "components/ui/*"
-      ],
-      "@layouts/*": [
-        "layouts/*"
-      ],
-      "@stores/*": [
-        "stores/*"
-      ],
-      "@entities/*": [
-        "entities/*"
-      ],
-      "@models/*": [
-        "models/*"
-      ],
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@hooks/*": [
-        "hooks/*"
-      ],
-      "@api/*": [
-        "api/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ],
-      "@exceptions/*":  [
-        "entities/exceptions/*",
-      ],
-      "@app-types/*": [
-        "types/*"
-      ],
-      "@router/*": [
-        "router/*"
-      ],
-      "@public/*": [
-        "../public/*"
-      ],
-      "@styles/*": [
-        "../public/styles/*"
-      ],
-      "@images/*": [
-        "../public/images/*"
-      ],
-      "@lib/*": [
-        "../lib/*"
-      ]
-    },
+    "baseUrl": ".",
     "target": "ESNext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "importsNotUsedAsValues": "error",
+    "verbatimModuleSyntax": true,
     "experimentalDecorators": true,
     "allowJs": false,
     "skipLibCheck": true,
@@ -94,7 +38,66 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@public/*": [
+        "public/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@api/*": [
+        "src/api/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@hoc/*": [
+        "src/hoc/*"
+      ],
+      "@ui/*": [
+        "src/components/ui/*"
+      ],
+      "@stores/*": [
+        "src/stores/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@router/*": [
+        "src/common/router/*"
+      ],
+      "@utils/*": [
+        "src/common/utils/*"
+      ],
+      "@helpers/*": [
+        "src/common/helpers/*"
+      ],
+      "@entities/*": [
+        "src/common/entities/*"
+      ],
+      "@constants/*": [
+        "src/common/constants/*"
+      ],
+      "@models/*": [
+        "src/common/models/*"
+      ],
+      "@libs/*": [
+        "src/common/libs/*"
+      ],
+      "@app-types/*": [
+        "src/common/types/*"
+      ],
+      "@styles/*": [
+        "public/styles/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",

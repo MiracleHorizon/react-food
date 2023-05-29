@@ -1,14 +1,20 @@
 /** @type {import('next').NextConfig} */
-require('dotenv').config()
 
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
+    CLIENT_API: process.env.CLIENT_API,
     SERVER_API: process.env.SERVER_API
   },
   images: {
-    domains: ['eda.yandex', 'avatars.mds.yandex.net', 'yastatic.net']
+    domains: [
+      process.env.CLIENT_API,
+      process.env.SERVER_API,
+      'eda.yandex',
+      'avatars.mds.yandex.net',
+      'yastatic.net'
+    ]
   }
 }
 
