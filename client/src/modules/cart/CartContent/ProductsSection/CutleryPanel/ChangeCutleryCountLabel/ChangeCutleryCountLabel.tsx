@@ -1,8 +1,8 @@
-import {useCallback} from 'react'
+import { useCallback } from 'react'
 
-import {useCutleryStore} from '@stores/cutleryStore'
+import { useCutleryStore } from '@stores/cutleryStore'
 import * as Label from './ChangeCutleryCountLabel.styled'
-import cutlerySvg from '@public/svg/cutlery.svg'
+import cutlerySvg from '@public/svg/cutlery.svg' // TODO: useCallback
 
 // TODO: useCallback
 const ChangeCutleryCountLabel = () => {

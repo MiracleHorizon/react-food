@@ -1,6 +1,5 @@
-import type { FC } from 'react'
+import type { FC, PropsWithChildren } from 'react'
 
-import type { ChildrenProps } from '@app-types/ChildrenProps'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import * as Content from './MainLayoutContent.styled'
 
@@ -18,6 +17,6 @@ const MainLayoutContent: FC<Props> = ({
 
 export default MainLayoutContent
 
-interface Props extends ChildrenProps, EmotionClassNameProps {
+interface Props extends PropsWithChildren, EmotionClassNameProps {
   withSidePanels: boolean
 }

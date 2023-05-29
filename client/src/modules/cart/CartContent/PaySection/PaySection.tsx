@@ -1,7 +1,7 @@
 import SectionHeader from './PaySectionHeader'
 import SectionContent from './PaySectionContent'
 import SectionFooter from './PaySectionFooter'
-import {SectionRoot} from '../CartContent.styled'
+import { SectionRoot } from '../CartContent.styled' // TODO: Payment?
 
 // TODO: Payment?
 const PaySection = () => (

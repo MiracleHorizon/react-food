@@ -1,7 +1,6 @@
-import { type FC, useCallback, useState } from 'react'
+import { type FC, type PropsWithChildren, useCallback, useState } from 'react'
 
 import CarouselButton from './CarouselButton'
-import type { ChildrenProps } from '@app-types/ChildrenProps'
 import * as Carousel from './Carousel.styled'
 
 const CarouselComponent: FC<Props> = ({ children, totalSteps }) => {
@@ -40,6 +39,6 @@ const CarouselComponent: FC<Props> = ({ children, totalSteps }) => {
 
 export default CarouselComponent
 
-interface Props extends ChildrenProps {
+interface Props extends PropsWithChildren {
   totalSteps: number
 }
