@@ -1,14 +1,12 @@
-import type { FC } from 'react'
-import { useEffect } from 'react'
+import { type FC, type PropsWithChildren, useEffect } from 'react'
 
 import { useVerticalScrollProgress } from '@hooks/useVerticalScrollProgress'
-import type { ChildrenProps } from '@app-types/ChildrenProps'
 import * as Header from './AppHeader.styled'
 
 import { useDeliveryStore } from '@stores/deliveryStore' // TODO: MOCK VALUE
 
 // TODO: MOCK VALUE
-const AppHeader: FC<ChildrenProps> = ({ children }) => {
+const AppHeader: FC<PropsWithChildren> = ({ children }) => {
   const { isScrollOnTop: isPageScrollOnTop } = useVerticalScrollProgress({
     positions: ['top']
   })

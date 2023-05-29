@@ -1,12 +1,10 @@
 import { createPortal } from 'react-dom'
-import type { FC } from 'react'
+import type { FC, PropsWithChildren } from 'react'
 
 import { checkIsClient } from '@helpers/checkIsClient'
 import { ROOT_ELEMENT_ID } from '@constants/next'
-import type { ChildrenProps } from '@app-types/ChildrenProps' // TODO: SSR?
 
-// TODO: SSR?
-const Portal: FC<ChildrenProps> = ({ children }) => {
+const Portal: FC<PropsWithChildren> = ({ children }) => {
   if (!checkIsClient()) {
     return null
   }

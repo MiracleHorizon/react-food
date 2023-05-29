@@ -1,9 +1,8 @@
-import type { FC } from 'react'
+import type { FC, PropsWithChildren } from 'react'
 
-import type { ChildrenProps } from '@app-types/ChildrenProps'
 import * as Content from './AuthLayoutContent.styled'
 
-const AuthLayoutContent: FC<ChildrenProps> = ({ children }) => {
+const AuthLayoutContent: FC<PropsWithChildren> = ({ children }) => {
   return (
     <Content.Root>
       <Content.CoverSection></Content.CoverSection>

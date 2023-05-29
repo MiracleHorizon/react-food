@@ -1,7 +1,6 @@
 import { Dialog } from '@headlessui/react'
-import type { FC } from 'react'
+import type { FC, PropsWithChildren } from 'react'
 
-import type { ChildrenProps } from '@app-types/ChildrenProps'
 import type { ModalProps } from '@app-types/ModalProps'
 import { ModalBackdrop } from '@styles/styled-components/ModalBackdrop'
 import * as Modal from './Modal.styled'
@@ -26,4 +25,4 @@ const ModalComponent: FC<Props> = ({
 
 export default ModalComponent
 
-type Props = ChildrenProps & ModalProps
+type Props = PropsWithChildren & ModalProps
