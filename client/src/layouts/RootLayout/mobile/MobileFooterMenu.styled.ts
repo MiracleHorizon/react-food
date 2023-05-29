@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 
+import { maxDeviceWidth } from '@styles/responsiveness/devices'
+
 export const Root = styled.menu`
   position: fixed;
   bottom: 0;
@@ -10,7 +12,7 @@ export const Root = styled.menu`
   display: none;
   box-shadow: 0 8px 20px rgb(117 115 111 / 20%);
 
-  @media screen and (max-width: 760px) {
+  @media screen and (${maxDeviceWidth.tablet}) {
     display: initial;
   }
 `
