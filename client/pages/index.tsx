@@ -1,18 +1,26 @@
+import { useEffect } from 'react'
 import type { NextPage } from 'next'
 
-import Home from '@modules/home'
-import {
-  productCategoryService,
-  ShowcaseProductCategoryModel
-} from '@modules/product-category'
-import {
-  EnvironmentData,
-  fetchEnvironmentData,
-  initializeEnvironmentData
-} from '@lib/environment'
+import Home from '@modules/Home'
+import { Routes } from '@router/Routes.enum'
+import { useRefreshAuth } from '@hooks/useRefreshAuth'
+import { useNavigationStore } from '@stores/navigationStore'
+import { environmentService } from '@api/EnvironmentService'
+import { productCategoriesService } from '@api/ProductCategoriesService'
+import type { NavigationCategory } from '@models/NavigationCategory'
+import type { ShowcaseProductCategoryModel } from '@models/productCategory/ShowcaseProductCategory'
 
-const HomePage: NextPage<Props> = ({ environmentData, productCategories }) => {
-  initializeEnvironmentData(environmentData)
+const HomePage: NextPage<Props> = ({
+  navigationCategories,
+  productCategories
+}) => {
+  useRefreshAuth()
+
+  const { setCategories: setNavigationCategories } = useNavigationStore()
+
+  useEffect(() => {
+    setNavigationCategories(navigationCategories)
+  }, [navigationCategories, setNavigationCategories])
 
   return <Home productCategories={productCategories} />
 }
@@ -20,21 +28,33 @@ const HomePage: NextPage<Props> = ({ environmentData, productCategories }) => {
 export default HomePage
 
 export const getServerSideProps = async () => {
-  const environmentData = await fetchEnvironmentData()
-  const productCategories = await productCategoryService.fetchAll({
-    skip: 0,
-    take: 3
-  })
+  try {
+    const navigationCategories =
+      await environmentService.fetchNavigationCategories()
+    const productCategories = await productCategoriesService.fetchAllCategories(
+      {
+        skip: 0,
+        take: 3
+      }
+    )
 
-  return {
-    props: {
-      environmentData,
-      productCategories
+    return {
+      props: {
+        navigationCategories,
+        productCategories
+      }
+    }
+  } catch {
+    return {
+      redirect: {
+        destination: Routes.NOT_FOUND,
+        permanent: false
+      }
     }
   }
 }
 
 interface Props {
+  navigationCategories: NavigationCategory[]
   productCategories: ShowcaseProductCategoryModel[]
-  environmentData: EnvironmentData
 }

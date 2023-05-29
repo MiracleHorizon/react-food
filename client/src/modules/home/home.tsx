@@ -1,27 +1,19 @@
 import type { FC } from 'react'
 
-import HomeContent from './home-content'
-import EmptyHome from './empty-home'
-import MainLayout from '@layouts/main'
-import { useRefreshAuth } from '@hooks/useRefreshAuth'
-import { APP_TITLE } from '@utils/constants/app'
-import type { ShowcaseProductCategoryModel } from '../product-category'
+import MainLayout from '@layouts/Main'
+import HomeContent from './HomeContent'
+import EmptyHome from './EmptyHome'
+import type { ShowcaseProductCategoryModel } from '@models/productCategory/ShowcaseProductCategory'
 
-const Home: FC<Props> = ({ productCategories }) => {
-  useRefreshAuth()
-
-  return (
-    <MainLayout title={`Главная | ${APP_TITLE}`}>
-      <>
-        {productCategories.length > 0 ? (
-          <HomeContent productCategories={productCategories} />
-        ) : (
-          <EmptyHome />
-        )}
-      </>
-    </MainLayout>
-  )
-}
+const Home: FC<Props> = ({ productCategories }) => (
+  <MainLayout title='Главная' withSidePanels>
+    {productCategories.length > 0 ? (
+      <HomeContent productCategories={productCategories} />
+    ) : (
+      <EmptyHome />
+    )}
+  </MainLayout>
+)
 
 export default Home
 

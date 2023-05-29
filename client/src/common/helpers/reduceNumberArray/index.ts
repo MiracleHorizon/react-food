@@ -1,0 +1,1 @@
+export { reduceNumberArray } from './reduceNumberArray'

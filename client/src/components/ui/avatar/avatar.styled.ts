@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 import NextImage from 'next/image'
 
-import { colors } from '@styles/variables'
+import { colors } from '@styles/colors'
 
 export const Root = styled.div<RootProps>`
-  cursor: ${p => (p.withAction ? 'pointer' : 'default')};
+  cursor: ${p => (p.withClickAction ? 'pointer' : 'default')};
   position: relative;
   width: 44px;
   height: 44px;
@@ -13,9 +13,9 @@ export const Root = styled.div<RootProps>`
 `
 
 export const Image = styled(NextImage)`
-  padding: 7px;
+  padding: 6px;
 `
 
 interface RootProps {
-  withAction: boolean
+  withClickAction: boolean
 }

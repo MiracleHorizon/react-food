@@ -1,22 +1,21 @@
-import { observer } from 'mobx-react-lite'
-import type { FC } from 'react'
+import { type FC, memo } from 'react'
 
-import userImage from '@images/user.png'
-import * as StyledAvatar from './avatar.styled'
+import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
+import userImage from '@public/images/user.png'
+import * as Avatar from './Avatar.styled'
 
-const Avatar: FC<Props> = ({ className, onClick }) => (
-  <StyledAvatar.Root
+const AvatarComponent: FC<Props> = ({ className, onClick }) => (
+  <Avatar.Root
     className={className}
-    withAction={Boolean(onClick)}
+    withClickAction={Boolean(onClick)}
     onClick={onClick}
   >
-    <StyledAvatar.Image src={userImage.src} alt='User' sizes='100%' fill />
-  </StyledAvatar.Root>
+    <Avatar.Image src={userImage.src} alt='Avatar' sizes='100%' fill />
+  </Avatar.Root>
 )
 
-export default observer(Avatar)
+export default memo(AvatarComponent)
 
-interface Props {
-  className?: string
-  onClick?: () => void
+interface Props extends EmotionClassNameProps {
+  onClick?: VoidFunction
 }

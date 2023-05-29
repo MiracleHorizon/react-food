@@ -1,0 +1,4 @@
+export enum Mode {
+  DEVELOPMENT = 'DEVELOPMENT',
+  PRODUCTION = 'PRODUCTION'
+}

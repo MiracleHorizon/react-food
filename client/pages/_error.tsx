@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { Routes } from '@router/routes.enum'
+import { Routes } from '@router/Routes.enum'
 
 const ErrorPage = () => {
   const router = useRouter()

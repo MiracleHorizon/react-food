@@ -1,46 +1,45 @@
-import { FC, useState } from 'react'
+import { type FC, useCallback, useState } from 'react'
 
-import CarouselButton from './carousel-button'
-import type { ChildrenProps } from '@app-types/children-props'
-import * as StyledCarousel from './carousel.styled'
+import CarouselButton from './CarouselButton'
+import type { ChildrenProps } from '@app-types/ChildrenProps'
+import * as Carousel from './Carousel.styled'
 
-const Carousel: FC<Props> = ({ children, totalSteps }) => {
+const CarouselComponent: FC<Props> = ({ children, totalSteps }) => {
   const [currentStep, setCurrentStep] = useState(1)
 
-  const nextStep = () => {
+  const nextStep = useCallback(() => {
     setCurrentStep(prevState =>
       prevState + 1 <= totalSteps ? prevState + 1 : prevState
     )
-  }
+  }, [totalSteps])
 
-  const prevStep = () => {
+  const prevStep = useCallback(() => {
     setCurrentStep(prevState =>
       prevState - 1 >= 1 ? prevState - 1 : prevState
     )
-  }
+  }, [])
 
   return (
-    <StyledCarousel.Root>
+    <Carousel.Root>
       <CarouselButton
-        dest='prev'
+        direction='prev'
         isActive={currentStep > 1}
         onClick={prevStep}
       />
       <CarouselButton
-        dest='next'
+        direction='next'
         isActive={currentStep !== totalSteps}
         onClick={nextStep}
       />
-      <StyledCarousel.List transform={-100 * (currentStep - 1)}>
+      <Carousel.List transform={-100 * (currentStep - 1)}>
         {children}
-      </StyledCarousel.List>
-    </StyledCarousel.Root>
+      </Carousel.List>
+    </Carousel.Root>
   )
 }
 
-export default Carousel
+export default CarouselComponent
 
 interface Props extends ChildrenProps {
   totalSteps: number
-  itemsPerStep: number
 }

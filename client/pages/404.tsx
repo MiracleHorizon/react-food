@@ -1,5 +1,5 @@
-import NotFoundPageComponent from '@modules/404'
+import NotFound from '@modules/404'
 
-const NotFoundPage = () => <NotFoundPageComponent />
+const NotFoundPage = () => <NotFound />
 
 export default NotFoundPage

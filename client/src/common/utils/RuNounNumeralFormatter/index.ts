@@ -1,0 +1,1 @@
+export { RuNounNumeralFormatter } from './RuNounNumeralFormatter'

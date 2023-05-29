@@ -1,14 +1,22 @@
+import { QueryClient } from '@tanstack/query-core'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import type { FC } from 'react'
 
-import GlobalStyles from '@components/GlobalStyles'
+import GlobalStyles from '@components/styles/GlobalStyles'
 
-export const queryClient = new QueryClient()
+const queryClient = new QueryClient()
 
-const App = ({ Component, pageProps }: AppProps) => (
+const App: FC<AppProps> = ({
+  Component,
+  pageProps: { session, ...pageProps }
+}) => (
   <QueryClientProvider client={queryClient}>
-    <GlobalStyles />
-    <Component {...pageProps} />
+    <SessionProvider session={session}>
+      <GlobalStyles />
+      <Component {...pageProps} />
+    </SessionProvider>
   </QueryClientProvider>
 )
 

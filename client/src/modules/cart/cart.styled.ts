@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 
-export const Wrapper = styled.div`
+export const Root = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
-  padding: 40px 0;
+  align-items: flex-start;
+  justify-content: center;
 `
-
-export const Left = styled.div``

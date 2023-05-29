@@ -1,13 +1,12 @@
-import type { FC } from 'react'
+import { type FC, memo } from 'react'
 
-import StyledBanner from './banner.styled'
+import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
+import { Banner } from './Banner.styled'
 
-const Banner: FC<Props> = ({ backgroundImage }) => (
-  <StyledBanner backgroundImage={backgroundImage} />
-)
+const BannerComponent: FC<Props> = props => <Banner {...props} />
 
-export default Banner
+export default memo(BannerComponent)
 
-interface Props {
-  backgroundImage: string
+interface Props extends EmotionClassNameProps {
+  bgImagePath: string
 }

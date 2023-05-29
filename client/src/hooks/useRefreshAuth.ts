@@ -1,41 +1,50 @@
 import { useCallback, useEffect } from 'react'
 import { useMutation } from '@tanstack/react-query'
 
-import { useUserStore } from '@stores/user.store'
-import { useCartStore } from '@stores/cart.store'
-import { authService } from '@modules/auth'
-import { cartService } from '@api/services/cart.service'
+import { authService } from '@api/AuthService'
+import { cartService } from '@api/CartService'
+import { useUserStore } from '@stores/userStore'
+import { useCartStore } from '@stores/cartStore'
 
 export const useRefreshAuth = () => {
+  const isAuth = useUserStore(state => state.isAuth())
+  const initialize = useCartStore(state => state.initialize)
+  const signin = useUserStore(state => state.signin)
+
   const { mutateAsync: refreshAuth } = useMutation({
     mutationKey: ['refreshAuth'],
     mutationFn: authService.refresh
   })
   const { mutateAsync: fetchCart } = useMutation({
-    mutationKey: ['fetchCart'],
-    mutationFn: cartService.fetchCart
+    mutationKey: ['fetchUserCart'],
+    mutationFn: cartService.fetchUserCart
   })
 
   const handleRefreshAuth = useCallback(async () => {
     return await refreshAuth().then(user => {
-      useUserStore.signin(user)
+      signin(user)
       return user
     })
-  }, [refreshAuth])
+  }, [refreshAuth, signin])
 
   const handleFetchCart = useCallback(
     (userId: string) => {
-      fetchCart(userId).then(cart => useCartStore.initialize(cart))
+      fetchCart(userId).then(cart => {
+        initialize({
+          userCartId: cart.id,
+          products: cart.products
+        })
+      })
     },
-    [fetchCart]
+    [fetchCart, initialize]
   )
 
   useEffect(() => {
-    if (!useUserStore.isAuth) {
+    if (!isAuth) {
       import('js-cookie').then(({ default: Cookie }) => {
         if (!Cookie.get('refreshToken')) return
         handleRefreshAuth().then(user => handleFetchCart(user.id))
       })
     }
-  }, [handleRefreshAuth, handleFetchCart])
+  }, [handleFetchCart, handleRefreshAuth, isAuth])
 }

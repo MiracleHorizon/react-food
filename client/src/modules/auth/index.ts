@@ -1,1 +1,1 @@
-export { authService } from './api/auth.service'
+export { default as SignupScreen } from './screens/Signup'
