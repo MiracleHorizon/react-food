@@ -1,20 +1,22 @@
 Application for ordering food and products.
 
 Frontend: 
-- Next.js, React
-- Emotion, framer-motion, headlessui
+- Next.js
+- Emotion, framer-motion, @headlessui
 - React-Query V4, axios
 - Zustand
 - react-hook-form
 
 Backend:
+
 - Node.js, Nest.js
-- PosgreSQL, PrismaORM
+- PostgreSQL, PrismaORM
 - JWT, PassportJWT, bcrypt
 
-General:
+Other:
 - TypeScript, Zod
 - Prettier, ESlint, Jest
+- Yarn
 
 Design:
 - Яндекс.Еда, Яндекс.Лавка
