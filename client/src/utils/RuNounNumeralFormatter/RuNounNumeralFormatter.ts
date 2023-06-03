@@ -1,4 +1,4 @@
-import { checkIsInteger } from '@helpers/checkIsInteger'
+import { isInteger } from '@helpers/isInteger'
 import { DigitsHandler } from '../DigitsHandler'
 
 interface Constructor {
@@ -40,7 +40,7 @@ export class RuNounNumeralFormatter {
       throw new Error('An overly large count')
     }
 
-    if (!checkIsInteger(count)) {
+    if (!isInteger(count)) {
       throw new Error('Number must be an integer')
     }
 

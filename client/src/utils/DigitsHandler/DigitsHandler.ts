@@ -1,4 +1,4 @@
-import { checkIsInteger } from '@helpers/checkIsInteger'
+import { isInteger } from '@helpers/isInteger'
 
 export class DigitsHandler {
   public static getLastOneNumberDigit(number: number): number {
@@ -17,7 +17,7 @@ export class DigitsHandler {
     return number
       .toString()
       .split('')
-      .filter(value => checkIsInteger(+value))
+      .filter(value => isInteger(+value))
       .map(digit => +digit)
   }
 }

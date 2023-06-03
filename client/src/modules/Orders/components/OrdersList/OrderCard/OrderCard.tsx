@@ -3,7 +3,7 @@ import { type FC, memo } from 'react'
 import OrderCardHeader from './OrderCardHeader'
 import OrderCardFooter from './OrderCardFooter'
 import { useOrdersStore } from '@modules/Orders/store'
-import { checkIsClient } from '@helpers/checkIsClient'
+import { isBrowser } from '@helpers/isBrowser'
 import type { OrderModel } from '@modules/Orders/models/Order'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
@@ -16,7 +16,7 @@ const OrderCard: FC<Props> = ({ className, ...order }) => {
   const handleSelectOrder = () => {
     selectOrder(order)
 
-    if (!checkIsClient()) return
+    if (!isBrowser()) return
 
     const isTablet = window.matchMedia(`(${maxDeviceWidth.tablet})`).matches
     !isTablet &&
