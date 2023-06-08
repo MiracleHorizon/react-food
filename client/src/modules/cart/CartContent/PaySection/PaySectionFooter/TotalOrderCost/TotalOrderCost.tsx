@@ -11,6 +11,7 @@ const TotalOrderCost = () => {
     ...DEFAULT_CURRENCY_INTL_ARGS
   })
 
+  // TODO: withBonusCoins
   return (
     <Cost.Root>
       {useOrderStore(state => state.withBonusCoins()) ? (

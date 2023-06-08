@@ -19,6 +19,10 @@ export const Title = styled.span<Props>`
   margin-right: 4px;
   font-size: 17px;
   color: ${p => (p.isSelected ? 'inherit' : colors.gray['8'])};
+
+  @media screen and (max-width: 480px) {
+    font-size: 15px;
+  }
 `
 
 interface Props {

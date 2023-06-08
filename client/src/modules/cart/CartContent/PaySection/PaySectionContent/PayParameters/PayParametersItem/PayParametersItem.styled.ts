@@ -13,4 +13,14 @@ export const Root = styled.li`
   span {
     font-size: 17px;
   }
+
+  @media screen and (max-width: 1230px) {
+    &:not(&:last-of-type) {
+      margin-bottom: 16px;
+    }
+
+    span {
+      font-size: 15px;
+    }
+  }
 `

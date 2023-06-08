@@ -7,11 +7,19 @@ export const Root = styled.div`
   display: flex;
   flex-direction: column;
   text-align: right;
+
+  @media screen and (max-width: 1230px) {
+    width: 140px;
+  }
 `
 
 export const Value = styled.span`
   font-size: 24px;
   font-weight: 500;
+
+  @media screen and (max-width: 1230px) {
+    font-size: 18px;
+  }
 `
 
 export const ThroughValue = styled.span`

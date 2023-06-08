@@ -4,7 +4,7 @@ import SegmentedControlItem from './SegmentedControlItem'
 import type { Props } from './SegmentedControl.types'
 import { Root } from './SegmentedControl.styled'
 
-const SegmentedControl: FC<Props> = ({ items, onChange }) => {
+const SegmentedControl: FC<Props> = ({ items, onChange, className }) => {
   const [selectedItem, setSelectedItem] = useState(items[0]!)
 
   // TODO: Array min length
@@ -13,7 +13,7 @@ const SegmentedControl: FC<Props> = ({ items, onChange }) => {
   }
 
   return (
-    <Root>
+    <Root className={className}>
       {items.map(item => (
         <SegmentedControlItem
           key={item.title}

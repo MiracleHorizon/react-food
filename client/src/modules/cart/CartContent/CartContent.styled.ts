@@ -8,7 +8,6 @@ export const Root = styled.div`
   display: flex;
   justify-content: center;
   padding: 40px 0;
-  transition: all 0.2s ease-out;
 
   @media screen and (max-width: 1000px) {
     align-items: center;
@@ -21,7 +20,6 @@ export const LeftSide = styled.div`
   min-width: 600px;
   width: 600px;
   margin-right: 90px;
-  transition: all 0.2s ease-out;
 
   @media screen and (max-width: 1230px) {
     width: 520px;
@@ -48,7 +46,6 @@ export const RightSide = styled.div`
   min-width: 450px;
   width: 450px;
   height: calc(100vh - 120px);
-  transition: all 0.2s ease-out;
 
   @media screen and (max-width: 1230px) {
     width: 400px;
@@ -71,4 +68,12 @@ export const SectionRoot = styled.section`
   padding: 32px;
   border-radius: 32px;
   background: white;
+
+  @media screen and (max-width: 480px) {
+    padding: 20px 16px 16px;
+  }
+
+  @media screen and (max-width: 390px) {
+    padding: 20px 12px 12px;
+  }
 `

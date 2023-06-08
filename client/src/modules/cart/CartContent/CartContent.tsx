@@ -6,15 +6,9 @@ import * as Content from './CartContent.styled'
 const EmptyCart = dynamic(import('../EmptyCart'), {
   ssr: true
 })
-const DeliverySection = dynamic(import('./DeliverySection'), {
-  ssr: true
-})
-const ProductsSection = dynamic(import('./ProductsSection'), {
-  ssr: true
-})
-const PaySection = dynamic(import('./PaySection'), {
-  ssr: true
-})
+const DeliverySection = dynamic(import('./DeliverySection'))
+const ProductsSection = dynamic(import('./ProductsSection'))
+const PaySection = dynamic(import('./PaySection'))
 
 const CartContent = () => {
   const isCartEmpty = useCartStore(state => state.isEmpty())

@@ -18,4 +18,12 @@ export const PayButton = styled(OrderButton)`
   span {
     margin: 0;
   }
+
+  @media screen and (max-width: 1230px) {
+    min-height: 50px;
+  }
+
+  @media screen and (max-width: 480px) {
+    min-height: 46px;
+  }
 `

@@ -4,8 +4,8 @@ import { useMakeOrder } from '@hooks/useMakeOrder'
 import { useSelectOrderCost } from '@hooks/selectors/useSelectOrderCost'
 import { useSelectIsMinOrderCostExceeded } from '@hooks/selectors/useSelectIsMinOrderCostExceeded'
 import { numberFormatter } from '@utils/NumberFormatter'
-import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import { MIN_ORDER_COST } from '@constants/payment'
+import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import * as Footer from './PaySectionFooter.styled'
 
 const PaySectionFooter = () => {

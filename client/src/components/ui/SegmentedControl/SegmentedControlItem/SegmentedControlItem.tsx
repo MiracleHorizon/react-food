@@ -1,4 +1,10 @@
-import { Dispatch, FC, memo, SetStateAction, useCallback } from 'react'
+import {
+  type Dispatch,
+  type FC,
+  memo,
+  type SetStateAction,
+  useCallback
+} from 'react'
 
 import type { SegmentedControlItemModel } from '@ui/SegmentedControl'
 import * as Item from './SegmentedControlItem.styled'
