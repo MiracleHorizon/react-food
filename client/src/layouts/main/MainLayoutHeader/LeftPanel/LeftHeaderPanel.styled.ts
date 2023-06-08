@@ -11,7 +11,7 @@ export const Root = styled.div`
 `
 
 export const Logo = styled(AppLogo)`
-  @media ${maxDeviceWidth.laptop} {
+  @media screen and (${maxDeviceWidth.tablet}) {
     display: none;
   }
 `

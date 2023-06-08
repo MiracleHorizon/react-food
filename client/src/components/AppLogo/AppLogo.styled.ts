@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import NextLink from 'next/link'
 
-import { maxDeviceWidth } from '@styles/responsiveness/devices'
 import { colors } from '@styles/colors'
 
 export const Root = styled.div`
@@ -26,10 +25,6 @@ export const MockLogo = styled.div`
 
 export const TextContainer = styled.div`
   margin-left: 12px;
-
-  @media (${maxDeviceWidth.tablet}) {
-    display: none;
-  }
 `
 
 export const Title = styled.h2`

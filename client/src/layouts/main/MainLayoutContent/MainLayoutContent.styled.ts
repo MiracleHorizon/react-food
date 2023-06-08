@@ -4,27 +4,32 @@ import LeftSidebarComponent from './LeftSidebar'
 import CartSidebarComponent from './CartSidebar'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
-export const contentTopPadding = 40
-
 export const Root = styled.div`
   position: relative;
   width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: ${contentTopPadding}px 55px 0 55px;
+  padding: 40px 55px 0 55px;
 
   @media screen and (${maxDeviceWidth.laptopLg}) {
-    padding: ${contentTopPadding}px 40px 0 40px;
+    padding: 40px 40px 0 40px;
   }
 
   @media screen and (${maxDeviceWidth.laptop}) {
-    padding: ${contentTopPadding}px 30px 0 30px;
+    padding: 40px 30px 0 30px;
   }
 
   @media screen and (max-width: 1240px) {
     justify-content: flex-start;
-    padding-right: 60px;
+  }
+
+  @media screen and (max-width: 1025px) {
+    padding-top: 30px;
+  }
+
+  @media screen and (max-width: 517px) {
+    padding-top: 20px;
   }
 `
 
