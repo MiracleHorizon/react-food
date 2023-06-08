@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import Carousel from '@ui/Carousel'
 import LoadMoreButton from './LoadMoreButton'
-import { ShowcaseProductCardVariant } from '@components/ShowcaseProductCard'
+import { ShowcaseProductCardVariant } from '@components/products/ShowcaseProductCard'
 import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct'
 import * as Content from './ProductCategoryContent.styled'
 

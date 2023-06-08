@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ShowcaseProductCard from '@components/ShowcaseProductCard'
+import ShowcaseProductCard from '@components/products/ShowcaseProductCard'
 
 const minCardWidth = 224
 

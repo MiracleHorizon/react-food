@@ -6,7 +6,7 @@ export const Root = styled.menu`
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 70px;
   background: white;
   display: none;

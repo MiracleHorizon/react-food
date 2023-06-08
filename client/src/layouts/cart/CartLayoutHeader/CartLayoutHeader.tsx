@@ -1,6 +1,6 @@
-import AppHeader from '@components/AppHeader'
+import AppHeader from '@components/general/AppHeader'
+import BackButton from '@components/general/BackButton'
 import UserLabel from '@components/user/UserLabel'
-import BackButton from '@ui/BackButton'
 import { Content } from './CartLayoutHeader.styled'
 
 const CartLayoutHeader = () => (

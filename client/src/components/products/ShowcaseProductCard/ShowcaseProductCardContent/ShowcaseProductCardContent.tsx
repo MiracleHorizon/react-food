@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import ShowcaseProductCardPrice from './ShowcaseProductCardPrice'
 import type { ProductModel } from '@models/product/Product'
-import type { IShowcaseProductCardVariant } from '@components/ShowcaseProductCard'
+import type { IShowcaseProductCardVariant } from '@components/products/ShowcaseProductCard'
 import type { MainPriceData } from '@entities/ProductPrice/ProductPrice.types'
 import * as Content from './ShowcaseProductCardContent.styled'
 

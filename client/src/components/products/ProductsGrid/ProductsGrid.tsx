@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { ShowcaseProductCardVariant } from '@components/ShowcaseProductCard'
+import { ShowcaseProductCardVariant } from '@components/products/ShowcaseProductCard'
 import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct'
 import * as Grid from './ProductsGrid.styled'
 

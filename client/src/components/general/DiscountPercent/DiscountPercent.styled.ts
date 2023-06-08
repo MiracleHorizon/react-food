@@ -12,7 +12,7 @@ export const Root = styled.div`
   background: ${colors.orange.primary};
 `
 
-export const Percent = styled.span`
+export const Value = styled.span`
   display: block;
   font-size: 13px;
   color: white;

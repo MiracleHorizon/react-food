@@ -1,24 +1,27 @@
 import { type FC, memo } from 'react'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 import type { Routes } from '@router/Routes.enum'
-import * as Item from './MobileFooterMenuItem.styled'
+import * as Item from './MobileMenuItem.styled'
 
-const MobileFooterMenuItem: FC<Props> = ({ title, imagePath, href }) => {
+const MobileMenuItem: FC<Props> = ({ title, imagePath, href }) => {
   const router = useRouter()
   const isSelected = router.asPath === href
 
   return (
     <li>
       <Item.Link href={href} selected={isSelected}>
-        <Item.Image src={imagePath} alt={title} width={34} height={34} />
+        <Item.ImageContainer>
+          <Image src={imagePath} alt={title} sizes='100%' fill />
+        </Item.ImageContainer>
         <Item.Title>{title}</Item.Title>
       </Item.Link>
     </li>
   )
 }
 
-export default memo(MobileFooterMenuItem)
+export default memo(MobileMenuItem)
 
 interface Props {
   title: string

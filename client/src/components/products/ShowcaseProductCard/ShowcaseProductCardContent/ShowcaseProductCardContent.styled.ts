@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import {
   type IShowcaseProductCardVariant,
   ShowcaseProductCardVariant
-} from '@components/ShowcaseProductCard'
+} from '@components/products/ShowcaseProductCard'
 import { colors } from '@styles/colors'
 
 export const Root = styled.main<IShowcaseProductCardVariant>`

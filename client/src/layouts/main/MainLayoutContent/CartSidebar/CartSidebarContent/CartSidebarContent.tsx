@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import ServiceFeeLabel from '@components/ServiceFeeLabel'
+import ServiceFeeLabel from '@components/general/ServiceFeeLabel'
 import EmptyCartSidebar from './EmptyCartSidebar'
 import ProductsList from './CartSidebarProductsList'
 import { useCartStore } from '@stores/cartStore'

@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
 import NextImage from 'next/image'
 
-import DiscountPercentLabelComponent from '@components/DiscountPercentLabel'
+import DiscountPercentLabelComponent from '@components/general/DiscountPercent'
 import {
   type IShowcaseProductCardVariant,
   ShowcaseProductCardVariant
-} from '@components/ShowcaseProductCard'
+} from '@components/products/ShowcaseProductCard'
 
 export const Root = styled.div<IShowcaseProductCardVariant>`
   position: relative;

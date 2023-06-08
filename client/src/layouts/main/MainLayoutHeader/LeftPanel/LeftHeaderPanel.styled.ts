@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import AppLogo from '@components/AppLogo'
+import AppLogo from '@components/general/AppLogo'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 export const Root = styled.div`

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import DeliveryInfoComponent from '@components/DeliveryInfo'
+import DeliveryInfoComponent from '@components/general/DeliveryInfo'
 
 export const Root = styled.aside`
   min-width: 240px;

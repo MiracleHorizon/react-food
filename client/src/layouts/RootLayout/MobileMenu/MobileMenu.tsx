@@ -1,9 +1,9 @@
-import MobileFooterMenuItem from './MobileFooterMenuItem'
+import MobileFooterMenuItem from './MobileMenuItem'
 import { Routes } from '@router/Routes.enum'
 import cartSvg from '@public/svg/cart_2.svg'
 import listSvg from '@public/svg/list.svg'
 import cutlerySvg from '@public/svg/cutlery.svg'
-import * as Menu from './MobileFooterMenu.styled'
+import * as Menu from './MobileMenu.styled'
 
 const menuItems = [
   { title: 'Главная', imagePath: cutlerySvg.src, href: Routes.HOME },
@@ -11,7 +11,7 @@ const menuItems = [
   { title: 'Корзина', imagePath: cartSvg.src, href: Routes.CART }
 ]
 
-const MobileFooterMenu = () => (
+const MobileMenu = () => (
   <Menu.Root>
     <Menu.Nav>
       <Menu.List>
@@ -23,4 +23,4 @@ const MobileFooterMenu = () => (
   </Menu.Root>
 )
 
-export default MobileFooterMenu
+export default MobileMenu

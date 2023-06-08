@@ -2,18 +2,21 @@ import { type FC, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 
 import Head from '@components/seo/Head'
-import MobileFooterMenu from './mobile'
+import MobileMenu from './MobileMenu'
 import { useChangeRoute } from '@hooks/useChangeRoute'
 import { HIDDEN_OVERFLOW_CLASSNAME } from '@styles/constants'
 import type { LayoutProps } from '@app-types/LayoutProps' // TODO: Set timeout
 
 // TODO: Set timeout
-const ChangeRouteLoader = dynamic(import('@components/ChangeRouteLoader'), {
-  ssr: false
-})
+const ChangeRouteLoader = dynamic(
+  import('@components/general/ChangeRouteLoader'),
+  {
+    ssr: false
+  }
+)
 
 const RootLayout: FC<LayoutProps> = ({ children, className, ...seoData }) => {
-  const isPageLoading = useChangeRoute()
+  const { isPageLoading } = useChangeRoute()
 
   useEffect(() => {
     isPageLoading
@@ -30,7 +33,7 @@ const RootLayout: FC<LayoutProps> = ({ children, className, ...seoData }) => {
       {isPageLoading && <ChangeRouteLoader />}
       <Head {...seoData} />
       {children}
-      <MobileFooterMenu />
+      <MobileMenu />
     </>
   )
 }

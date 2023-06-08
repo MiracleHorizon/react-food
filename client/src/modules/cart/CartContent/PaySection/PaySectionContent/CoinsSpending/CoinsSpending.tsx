@@ -1,8 +1,6 @@
 import { useMemo } from 'react'
 
-import SegmentedControl, {
-  SegmentedControlItemModel
-} from '@ui/SegmentedControl'
+import type { SegmentedControlItemModel } from '@ui/SegmentedControl'
 import * as Styled from './CoinsSpending.styled'
 
 const CoinsSpending = () => {
@@ -23,7 +21,7 @@ const CoinsSpending = () => {
   return (
     <Styled.Root>
       <Styled.Title>Баллы React</Styled.Title>
-      <SegmentedControl items={items} onChange={() => {}} />
+      <Styled.SegmentedControl items={items} onChange={() => {}} />
     </Styled.Root>
   )
 }

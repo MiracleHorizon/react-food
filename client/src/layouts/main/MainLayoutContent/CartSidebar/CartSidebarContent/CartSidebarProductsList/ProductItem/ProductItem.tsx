@@ -13,8 +13,6 @@ const ProductItem: FC<CartProductHocComponentProps> = ({
   formattedWeight,
   price: { withDiscount, formattedFullPrice, formattedTotalPrice }
 }) => {
-  console.log(count)
-
   return (
     <Item.Root>
       {withDiscount && <Item.DiscountBadge />}

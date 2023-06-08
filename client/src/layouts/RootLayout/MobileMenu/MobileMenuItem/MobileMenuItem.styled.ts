@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import NextImage from 'next/image'
 import NextLink from 'next/link'
 
 export const Link = styled(NextLink)<Props>`
@@ -15,8 +14,16 @@ export const Link = styled(NextLink)<Props>`
   }
 `
 
-export const Image = styled(NextImage)`
+export const ImageContainer = styled.div`
+  position: relative;
+  width: 34px;
+  height: 34px;
   margin-bottom: 2px;
+
+  @media screen and (max-width: 550px) {
+    width: 26px;
+    height: 26px;
+  }
 `
 
 export const Title = styled.span`

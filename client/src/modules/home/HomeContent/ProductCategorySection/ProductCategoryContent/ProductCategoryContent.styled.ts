@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ProductCardComponent from '@components/ShowcaseProductCard'
+import ProductCardComponent from '@components/products/ShowcaseProductCard'
 
 export const Root = styled.main`
   position: relative;

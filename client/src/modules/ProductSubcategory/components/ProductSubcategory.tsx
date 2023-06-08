@@ -1,7 +1,7 @@
 import { type FC, useMemo } from 'react'
 
 import MainLayout from '@layouts/Main'
-import ProductsGrid from '@components/ProductsGrid'
+import ProductsGrid from '@components/products/ProductsGrid'
 import ProductSubcategoryHeader from './ProductSubcategoryHeader'
 import { getKeywordsFromProducts } from '@helpers/getKeywordsFromProducts'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'

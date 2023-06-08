@@ -31,5 +31,5 @@ export const useChangeRoute = () => {
     }
   })
 
-  return isPageLoading
+  return { isPageLoading }
 }

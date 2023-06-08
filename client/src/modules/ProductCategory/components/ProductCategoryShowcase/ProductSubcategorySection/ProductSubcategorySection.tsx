@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import ProductsGrid from '@components/ProductsGrid'
+import ProductsGrid from '@components/products/ProductsGrid'
 import { Routes } from '@router/Routes.enum'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 import * as Section from './ProductSubcategorySection.styled'

@@ -3,9 +3,7 @@ import { type FC } from 'react'
 import RootLayout from '@layouts/RootLayout'
 import LayoutHeader from './MainLayoutHeader'
 import LayoutContent from './MainLayoutContent'
-import LayoutFooter from './MainLayoutFooter'
 import type { LayoutProps } from '@app-types/LayoutProps'
-import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import * as Layout from './MainLayout.styled'
 
 const MainLayout: FC<Props> = ({
@@ -21,7 +19,6 @@ const MainLayout: FC<Props> = ({
         <LayoutContent withSidePanels={withSidePanels} className={className}>
           {children}
         </LayoutContent>
-        <LayoutFooter />
       </Layout.Wrapper>
     </Layout.Root>
   </RootLayout>
@@ -29,6 +26,6 @@ const MainLayout: FC<Props> = ({
 
 export default MainLayout
 
-interface Props extends LayoutProps, EmotionClassNameProps {
+interface Props extends LayoutProps {
   withSidePanels: boolean
 }

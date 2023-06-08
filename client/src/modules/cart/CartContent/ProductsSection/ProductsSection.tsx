@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 
 import ProductsSectionHeader from './ProductsSectionHeader'
 import CutleryPanel from './CutleryPanel'
-import { Root } from './ProductsSection.styled'
+import { SectionRoot } from '../CartContent.styled' // TODO: Loader
 
 // TODO: Loader
 const ProductsList = dynamic(import('./ProductsList'), {
@@ -10,13 +10,13 @@ const ProductsList = dynamic(import('./ProductsList'), {
 })
 
 const ProductsSection = () => (
-  <Root>
+  <SectionRoot>
     <ProductsSectionHeader />
     <main>
       <CutleryPanel />
       <ProductsList />
     </main>
-  </Root>
+  </SectionRoot>
 )
 
 export default ProductsSection
