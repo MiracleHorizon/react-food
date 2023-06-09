@@ -1,18 +1,19 @@
 import NavigationMenuItem from './NavigationItem'
 import { useNavigationStore } from '@stores/navigationStore'
+import * as Navigation from './Navigation.styled'
 
-const Navigation = () => {
+const NavigationComponent = () => {
   const navigationCategories = useNavigationStore(state => state.categories)
 
   return (
-    <nav>
-      <ul>
+    <Navigation.Root>
+      <Navigation.List>
         {navigationCategories.map(category => (
           <NavigationMenuItem key={category.id} {...category} />
         ))}
-      </ul>
-    </nav>
+      </Navigation.List>
+    </Navigation.Root>
   )
 }
 
-export default Navigation
+export default NavigationComponent
