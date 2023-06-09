@@ -2,10 +2,10 @@ import { type FC } from 'react'
 
 import ItemContent from './ProductItemContent'
 import ChangeCountLabel from './ChangeCountLabel'
-import type { CartProductHocComponentProps } from '@hoc/withCartProduct'
+import type { CartProductHocProps } from '@hoc/withCartProduct'
 import * as Item from './ProductItem.styled'
 
-const ProductItem: FC<CartProductHocComponentProps> = ({
+const ProductItem: FC<CartProductHocProps> = ({
   image,
   count,
   title,

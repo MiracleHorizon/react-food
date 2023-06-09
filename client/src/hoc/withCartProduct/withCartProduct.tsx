@@ -1,16 +1,8 @@
-import {
-  type FC,
-  type FunctionComponent,
-  type NamedExoticComponent,
-  useCallback,
-  useMemo
-} from 'react'
+import { type FC, useCallback, useMemo } from 'react'
 
 import { CartProduct } from '@entities/CartProduct'
 import { useCartStore } from '@stores/cartStore'
-import type { CartProductModel } from '@models/product/CartProduct'
-import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
-import type { CartProductHocComponentProps } from './withCartProduct.types'
+import type { Props } from './withCartProduct.types'
 
 const WithCartProduct: FC<Props> = ({
   WrappedComponent,
@@ -57,10 +49,3 @@ const WithCartProduct: FC<Props> = ({
 }
 
 export default WithCartProduct
-
-interface Props extends EmotionClassNameProps {
-  WrappedComponent:
-    | NamedExoticComponent<CartProductHocComponentProps>
-    | FunctionComponent<CartProductHocComponentProps>
-  productData: CartProductModel
-}

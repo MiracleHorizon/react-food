@@ -1,10 +1,10 @@
 import { type FC, memo } from 'react'
 
 import ProductItemContent from './ProductItemContent'
-import type { CartProductHocComponentProps } from '@hoc/withCartProduct'
+import type { CartProductHocProps } from '@hoc/withCartProduct'
 import * as Item from './ProductItem.styled'
 
-const ProductItem: FC<CartProductHocComponentProps> = ({
+const ProductItem: FC<CartProductHocProps> = ({
   title,
   image,
   count,

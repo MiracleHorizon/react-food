@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import SmallPlusSvg from '@ui/svg/SmallPlusSvg'
 import SmallMinusSvg from '@ui/svg/SmallMinusSvg'
-import type { CartProductHocComponentProps } from '@hoc/withCartProduct'
+import type { CartProductHocProps } from '@hoc/withCartProduct'
 import * as Label from './ChangeCountLabel.styled'
 
 const ChangeCountLabel: FC<Props> = ({
@@ -22,6 +22,6 @@ const ChangeCountLabel: FC<Props> = ({
 
 export default ChangeCountLabel
 
-interface Props extends Pick<CartProductHocComponentProps, 'actions'> {
+interface Props extends Pick<CartProductHocProps, 'actions'> {
   count: number
 }
