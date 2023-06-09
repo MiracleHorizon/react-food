@@ -1,14 +1,18 @@
 import UserLabel from '@components/user/UserLabel'
 import OrdersLabel from '@components/order/OrdersLabel'
+import NavigationMenu from '@components/navigation/NavigationMenu'
 import CartLabel from './CartLabel'
-import { Panel } from './RightHeaderPanel.styled'
+import * as Panel from './RightHeaderPanel.styled'
 
 const RightHeaderPanel = () => (
-  <Panel>
-    <OrdersLabel />
-    <CartLabel />
-    <UserLabel />
-  </Panel>
+  <Panel.Root>
+    <Panel.Content>
+      <OrdersLabel />
+      <CartLabel />
+      <UserLabel />
+    </Panel.Content>
+    <NavigationMenu />
+  </Panel.Root>
 )
 
 export default RightHeaderPanel

@@ -1,6 +1,9 @@
 import { css, Global } from '@emotion/react'
 
-import { HIDDEN_OVERFLOW_CLASSNAME } from '@styles/constants'
+import {
+  HIDDEN_OVERFLOW_CLASSNAME,
+  POINTER_EVENTS_NONE_CLASSNAME
+} from '@styles/constants'
 import { colors } from '@styles/colors'
 
 const GlobalStyles = () => (
@@ -18,6 +21,7 @@ const GlobalStyles = () => (
         font-family: 'Proxima Nova', sans-serif;
         width: 100vw;
         min-height: 100vh;
+        background: ${colors.gray['2']};
       }
 
       a {
@@ -46,6 +50,10 @@ const GlobalStyles = () => (
 
       .${HIDDEN_OVERFLOW_CLASSNAME} {
         overflow: hidden;
+      }
+
+      .${POINTER_EVENTS_NONE_CLASSNAME} {
+        pointer-events: none;
       }
     `}
   />

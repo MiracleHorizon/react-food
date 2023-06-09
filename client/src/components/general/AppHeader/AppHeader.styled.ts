@@ -19,6 +19,14 @@ export const Root = styled(TopFixedElement.withComponent('header'))<RootProps>`
   @media screen and (${maxDeviceWidth.tablet}) {
     height: ${APP_HEADER_SMALL_HEIGHT}px;
   }
+
+  @media screen and (max-width: 500px) {
+    padding: 0 12px;
+  }
+
+  @media screen and (${maxDeviceWidth.mobileMd}) {
+    padding: 0 8px;
+  }
 `
 
 export const Content = styled.div`
