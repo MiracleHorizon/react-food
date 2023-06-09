@@ -1,10 +1,9 @@
-import Navigation from './Navigation'
+import Navigation from '@components/navigation/Navigation'
 import { useNavigationStore } from '@stores/navigationStore'
 import { Title } from './NavigationCatalog.styled'
 
 const NavigationCatalog = () => {
-  const navigationCategories = useNavigationStore().categories
-  const isNavigationEmpty = useNavigationStore().isEmpty()
+  const isNavigationEmpty = useNavigationStore(state => state.isEmpty())
 
   if (isNavigationEmpty) {
     return null
@@ -13,7 +12,7 @@ const NavigationCatalog = () => {
   return (
     <div>
       <Title>Каталог</Title>
-      <Navigation categories={navigationCategories} />
+      <Navigation />
     </div>
   )
 }
