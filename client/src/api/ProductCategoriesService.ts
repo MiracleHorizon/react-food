@@ -1,32 +1,37 @@
-import { BaseService } from '@api/BaseService'
+import { BaseService } from './BaseService'
 import type { PaginationParams } from '@app-types/PaginationParams'
 import type { ProductCategoryModel } from '@models/productCategory/ProductCategory'
 import type { ShowcaseProductCategoryModel } from '@models/productCategory/ShowcaseProductCategory'
 
 class ProductCategoriesService extends BaseService {
   constructor(endpoint: string) {
-    super({ endpoint })
+    super(endpoint)
   }
 
   public async fetchOneCategory(
     categoryId: string
   ): Promise<ProductCategoryModel> {
     try {
-      const { data } = await this.api.get<ProductCategoryModel>(categoryId)
-      return data
+      const url = this.url + '/' + categoryId
+      const response = await fetch(url)
+
+      return response.json()
     } catch (e) {
       throw e
     }
   }
 
-  public async fetchAllCategories(
-    paginationParams: PaginationParams
-  ): Promise<ShowcaseProductCategoryModel[]> {
+  public async fetchAllCategories({
+    skip,
+    take
+  }: PaginationParams): Promise<ShowcaseProductCategoryModel[]> {
     try {
-      const { data } = await this.api.get<ShowcaseProductCategoryModel[]>('', {
-        params: paginationParams
-      })
-      return data
+      const url = new URL('', this.url)
+      url.searchParams.set('skip', skip.toString())
+      url.searchParams.set('take', take.toString())
+      const response = await fetch(url)
+
+      return response.json()
     } catch (e) {
       throw e
     }

@@ -1,23 +1,20 @@
-import axios from 'axios'
-
-import { BaseService } from '@api/BaseService'
+import { BaseService } from './BaseService'
 import type { UserCart } from '@models/UserCart'
 import type { CartProductModel } from '@models/product/CartProduct'
-import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct' // TODO: Axios
+import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct' // TODO: Права доступа для эндпоинтов
 
-// TODO: Axios
+// TODO: Права доступа для эндпоинтов
 class CartService extends BaseService {
   constructor(endpoint: string) {
-    super({ endpoint })
+    super(endpoint)
   }
 
   public async fetchUserCart(userId: string): Promise<UserCart> {
     try {
-      // const { data } = await this.api.get<UserCart>(userId)
-      const { data } = await axios.get<UserCart>(
-        `${process.env.SERVER_API}/cart/${userId}`
-      )
-      return data
+      const url = this.url + '/' + userId
+      const response = await fetch(url)
+
+      return response.json()
     } catch (e) {
       throw e
     }
@@ -25,7 +22,10 @@ class CartService extends BaseService {
 
   public async clearUserCart(cartId: string): Promise<void> {
     try {
-      await this.api.patch(cartId + '/clear')
+      const url = `${this.url}/${cartId}/clear`
+      await fetch(url, {
+        method: 'PATCH'
+      })
     } catch (e) {
       throw e
     }
@@ -36,15 +36,17 @@ class CartService extends BaseService {
     product: Omit<ShowcaseProductModel, 'description' | 'subcategoryId'>
   ): Promise<CartProductModel> {
     try {
-      const postData = {
+      const url = `${this.url}/${cartId}/add_product`
+      const body = {
         productReferenceId: product.id,
         ...product
       }
-      const { data } = await this.api.post<CartProductModel>(
-        cartId + '/add_product',
-        postData
-      )
-      return data
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(body)
+      })
+
+      return response.json()
     } catch (e) {
       throw e
     }
@@ -55,7 +57,10 @@ class CartService extends BaseService {
     productId: string
   ): Promise<void> {
     try {
-      await this.api.patch(cartId + '/increment/' + productId)
+      const url = `${this.url}/${cartId}/increment/${productId}`
+      await fetch(url, {
+        method: 'PATCH'
+      })
     } catch (e) {
       throw e
     }
@@ -66,7 +71,10 @@ class CartService extends BaseService {
     productId: string
   ): Promise<void> {
     try {
-      await this.api.patch(cartId + '/decrement/' + productId)
+      const url = `${this.url}/${cartId}/decrement/${productId}`
+      await fetch(url, {
+        method: 'PATCH'
+      })
     } catch (e) {
       throw e
     }

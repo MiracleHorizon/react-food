@@ -1,18 +1,10 @@
-import axios, { type AxiosInstance, type CreateAxiosDefaults } from 'axios'
-
 import { SERVER_API } from '@constants/env'
 
 export abstract class BaseService {
-  protected readonly api: AxiosInstance
+  private readonly baseUrl: string = SERVER_API
+  protected readonly url: string
 
-  protected constructor({ endpoint, ...createAxiosDefaults }: Constructor) {
-    this.api = axios.create({
-      baseURL: SERVER_API + '/' + endpoint,
-      ...createAxiosDefaults
-    })
+  protected constructor(endpoint: string) {
+    this.url = this.baseUrl + '/' + endpoint
   }
-}
-
-interface Constructor extends Omit<CreateAxiosDefaults, 'baseURL'> {
-  endpoint: string
 }

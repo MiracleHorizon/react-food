@@ -1,24 +1,26 @@
-import axios from 'axios'
-
 import { BaseService } from './BaseService'
 import { UserRole } from '@models/UserRole'
-import type { UserModel } from '@models/User'
-import type { SigninDto } from '@app-types/auth/SigninDto'
-import type { SignupDto } from '@app-types/auth/SignupDto' // TODO: this.api.getUri
+import { REFRESH_TOKEN_COOKIE_NAME } from '@constants/cookie'
 
-// TODO: this.api.getUri
+import type { SignupDto } from '@app-types/auth/SignupDto'
+import type { SigninDto } from '@app-types/auth/SigninDto'
+import type { UserModel } from '@models/User'
+
 class AuthService extends BaseService {
   constructor(endpoint: string) {
-    super({
-      endpoint,
-      withCredentials: true
-    })
+    super(endpoint)
   }
 
   public async signup(dto: SignupDto): Promise<UserModel> {
     try {
-      const { data } = await this.api.post<UserModel>('local/signup', dto)
-      return data
+      const url = this.url + '/local/signup'
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(dto),
+        credentials: 'include'
+      })
+
+      return response.json()
     } catch (e) {
       throw e
     }
@@ -26,15 +28,14 @@ class AuthService extends BaseService {
 
   public async signin(dto: SigninDto): Promise<UserModel> {
     try {
-      // const { data } = await this.api.post<UserModel>('/local/signin', dto)
-      // return data
-      const { data } = await axios.post(
-        `${process.env.SERVER_API}/auth/local/signin`,
-        dto,
-        { withCredentials: true }
-      )
+      const url = this.url + '/local/signin'
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(dto),
+        credentials: 'include'
+      })
 
-      return data
+      return response.json()
     } catch (e) {
       throw e
     }
@@ -42,7 +43,11 @@ class AuthService extends BaseService {
 
   public async signout(): Promise<void> {
     try {
-      await this.api.patch<void>('signout')
+      const url = this.url + '/signout'
+      await fetch(url, {
+        method: 'PATCH',
+        credentials: 'include'
+      })
     } catch (e) {
       throw e
     }
@@ -50,29 +55,10 @@ class AuthService extends BaseService {
 
   public async refresh(): Promise<UserModel> {
     try {
-      const { data } = await axios.post(
-        `${process.env.SERVER_API}/auth/refresh`,
-        null,
-        {
-          withCredentials: true
-        }
-      )
-
-      return data
-      // const { data } = await this.api.post<UserModel>('refresh')
-      // return data
-    } catch (e) {
-      throw e
-    }
-  }
-
-  public async serverRefresh(refreshToken: string) {
-    try {
-      const response = await fetch(this.api.getUri() + '/refresh', {
+      const url = this.url + '/refresh'
+      const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          Cookie: `refreshToken=${refreshToken}`
-        }
+        credentials: 'include'
       })
 
       return response.json()
@@ -81,20 +67,24 @@ class AuthService extends BaseService {
     }
   }
 
-  public async fetchUserRole(
-    refreshToken: string
-  ): Promise<{ userRole: UserRole }> {
+  public async fetchRole(refreshToken: string): Promise<FetchRoleResponse> {
     try {
-      const response = await fetch(`${this.api.getUri()}/role`, {
+      const url = this.url + '/role'
+      const response = await fetch(url, {
         headers: {
-          Cookie: `refreshToken=${refreshToken}`
+          Cookie: `${REFRESH_TOKEN_COOKIE_NAME}=${refreshToken}`
         }
       })
+
       return response.json()
     } catch (e) {
       throw e
     }
   }
+}
+
+interface FetchRoleResponse {
+  userRole: UserRole
 }
 
 export const authService = new AuthService('auth')
