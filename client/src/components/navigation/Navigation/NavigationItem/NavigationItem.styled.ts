@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 import NextLink from 'next/link'
 
-import { colors } from '@styles/colors'
+import { maxDeviceWidth, minDeviceWidth } from '@styles/responsiveness/devices'
 import { truncateText } from '@styles/truncateText'
-import { maxDeviceWidth } from '@styles/responsiveness/devices'
+import { colors } from '@styles/colors'
 
 const imageSize = 44
 const smallImageSize = 38
@@ -20,6 +20,10 @@ export const Root = styled.li`
     background: ${colors.gray['5']};
   }
 
+  @media screen and (${maxDeviceWidth.laptop}) and (${minDeviceWidth.tablet}) {
+    padding: 0;
+  }
+
   @media screen and (${maxDeviceWidth.mobileLg}) {
     height: 46px;
   }
@@ -31,6 +35,10 @@ export const Link = styled(NextLink)`
   align-items: center;
   justify-content: flex-start;
   padding: 2px 4px;
+
+  @media screen and (${maxDeviceWidth.laptop}) and (${minDeviceWidth.tablet}) {
+    justify-content: center;
+  }
 `
 
 export const Picture = styled.div<PictureProps>`
@@ -65,6 +73,10 @@ export const PictureFallback = styled.div`
 export const Content = styled.div`
   width: calc(100% - ${imageSize}px - 12px);
   margin-left: 12px;
+
+  @media screen and (${maxDeviceWidth.laptop}) and (${minDeviceWidth.tablet}) {
+    display: none;
+  }
 
   @media screen and (${maxDeviceWidth.mobileLg}) {
     width: calc(100% - ${smallImageSize}px - 12px);

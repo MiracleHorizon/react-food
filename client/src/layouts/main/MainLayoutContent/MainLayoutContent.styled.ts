@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 
-import LeftSidebarComponent from './LeftSidebar'
 import CartSidebarComponent from './CartSidebar'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
@@ -16,12 +15,9 @@ export const Root = styled.div`
     padding: 40px 40px 0 40px;
   }
 
-  @media screen and (${maxDeviceWidth.laptop}) {
-    padding: 40px 30px 0 30px;
-  }
-
   @media screen and (max-width: 1240px) {
     justify-content: flex-start;
+    padding: 40px 24px 0 24px;
   }
 
   @media screen and (max-width: 1025px) {
@@ -30,12 +26,6 @@ export const Root = styled.div`
 
   @media screen and (max-width: 517px) {
     padding-top: 20px;
-  }
-`
-
-export const LeftSidebar = styled(LeftSidebarComponent)`
-  @media screen and (${maxDeviceWidth.laptop}) {
-    display: none;
   }
 `
 

@@ -1,5 +1,6 @@
 import type { FC, PropsWithChildren } from 'react'
 
+import LeftSidebar from './LeftSidebar'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import * as Content from './MainLayoutContent.styled'
 
@@ -9,7 +10,7 @@ const MainLayoutContent: FC<Props> = ({
   className
 }) => (
   <Content.Root className={className}>
-    {withSidePanels && <Content.LeftSidebar />}
+    {withSidePanels && <LeftSidebar />}
     {children}
     {withSidePanels && <Content.CartSidebar />}
   </Content.Root>
