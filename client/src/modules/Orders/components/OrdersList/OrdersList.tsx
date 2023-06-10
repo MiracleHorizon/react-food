@@ -1,26 +1,28 @@
-import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 
-import { ordersService } from '@modules/Orders/api'
 import { useOrdersStore } from '@modules/Orders/store'
 import { useUserStore } from '@stores/userStore'
+import { ordersService } from '@modules/Orders/api'
+import type { OrderModel } from '@modules/Orders/models/Order'
 import * as List from './OrdersList.styled'
 
 const OrdersList = () => {
+  const [orders, setOrders] = useState<OrderModel[]>([])
   const isAuth = useUserStore(state => state.isAuth())
-  const initialize = useOrdersStore(state => state.initialize)
-  const { data: orders } = useQuery({
-    queryKey: ['fetchAllOrders'],
-    queryFn: ordersService.fetchAllUserOrders,
-    refetchOnWindowFocus: false,
-    enabled: isAuth
-  })
+  const initializeOrders = useOrdersStore(state => state.initialize)
 
   useEffect(() => {
-    if (orders) initialize(orders)
-  }, [initialize, orders])
+    if (!isAuth) return
+    ordersService.fetchAllUserOrders().then(orders => setOrders(orders))
+  }, [isAuth])
 
-  if (!orders) {
+  useEffect(() => {
+    if (orders.length > 0) {
+      initializeOrders(orders)
+    }
+  }, [initializeOrders, orders])
+
+  if (orders.length === 0) {
     // TODO: Empty orders
     return null
   }

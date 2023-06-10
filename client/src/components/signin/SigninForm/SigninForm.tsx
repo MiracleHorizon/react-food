@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { authService } from '@api/AuthService'
@@ -7,16 +6,14 @@ import { cartService } from '@api/CartService'
 import { useUserStore } from '@stores/userStore'
 import { useCartStore } from '@stores/cartStore'
 import { ButtonVariant } from '@ui/Button'
+import type { UserModel } from '@models/User'
 import type { SigninDto } from '@app-types/auth/SigninDto'
 import * as Form from './SigninForm.styled'
 
 const SigninForm = () => {
+  const [user, setUser] = useState<UserModel | null>(null)
   const signin = useUserStore(state => state.signin)
   const initializeCart = useCartStore(state => state.initialize)
-  const { data: user, mutate: signinMutation } = useMutation({
-    mutationKey: ['signin'],
-    mutationFn: authService.signin
-  })
   const { register, handleSubmit } = useForm({
     defaultValues: {
       email: '',
@@ -25,19 +22,19 @@ const SigninForm = () => {
     reValidateMode: 'onSubmit'
   })
 
-  const onSubmit = (dto: SigninDto) => signinMutation(dto)
+  const onSubmit = async (dto: SigninDto) => {
+    const user = await authService.signin(dto)
+    setUser(user)
+  }
 
+  // TODO: ERROR HANDLING
   useEffect(() => {
     if (!user) return
 
     signin(user)
-    // TODO: ERROR HANDLING
-    cartService.fetchUserCart(user.id).then(({ id, products }) =>
-      initializeCart({
-        userCartId: id,
-        products
-      })
-    )
+    cartService
+      .fetchUserCart(user.id)
+      .then(userCart => initializeCart(userCart))
   }, [initializeCart, signin, user])
 
   return (

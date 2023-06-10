@@ -2,19 +2,19 @@ import { NextRequest, NextResponse } from 'next/server'
 import type { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 
 import { authService } from '@api/AuthService'
+import { RouteStatusHandler } from '@utils/RouteStatusHandler'
 import { UserRole } from '@models/UserRole'
 import { Routes } from '@router/Routes.enum'
+import { REFRESH_TOKEN_COOKIE_NAME } from '@constants/cookie'
 
 export class RoutesAccessHandler {
-  private readonly REFRESH_TOKEN_COOKIE_NAME: string = 'refreshToken'
-  private readonly PRIVATE_ROUTES: Routes[] = [Routes.DASHBOARD]
-  private readonly AUTHORIZED_ROUTES: Routes[] = [Routes.ORDERS, Routes.CART]
-  private readonly UNAUTHORIZED_ROUTES: Routes[] = [
-    Routes.SIGNIN,
-    Routes.SIGNUP
-  ]
+  private readonly nextRequest: NextRequest
+  private readonly routePathnameHandler: RouteStatusHandler
 
-  constructor(private readonly nextRequest: NextRequest) {}
+  constructor(nextRequest: NextRequest) {
+    this.nextRequest = nextRequest
+    this.routePathnameHandler = new RouteStatusHandler(this.routePathname)
+  }
 
   public async handleRouteAccess(): Promise<NextResponse> {
     const refreshToken = this.extractRefreshTokenCookie()
@@ -29,18 +29,22 @@ export class RoutesAccessHandler {
   }
 
   private extractRefreshTokenCookie(): RequestCookie | null {
-    return this.nextRequest.cookies.get(this.REFRESH_TOKEN_COOKIE_NAME) || null
+    return this.nextRequest.cookies.get(REFRESH_TOKEN_COOKIE_NAME) || null
   }
 
   private async handleUserRole(refreshToken: string): Promise<NextResponse> {
     try {
-      const { userRole } = await authService.fetchUserRole(refreshToken)
+      const { userRole } = await authService.fetchRole(refreshToken)
 
-      if (this.isPrivateRoute() && userRole === UserRole.USER) {
+      const isPrivateRoute = this.routePathnameHandler.isPrivateRoute()
+      const isUnauthorizedRoute =
+        this.routePathnameHandler.isUnauthorizedRoute()
+
+      if (isPrivateRoute && userRole === UserRole.USER) {
         return this.homeRouteRedirect
       }
 
-      if (this.isUnauthorizedRoute()) {
+      if (isUnauthorizedRoute) {
         return this.homeRouteRedirect
       }
 
@@ -61,19 +65,9 @@ export class RoutesAccessHandler {
   }
 
   private isRouteWithRequiredAuth(): Boolean {
-    return this.isPrivateRoute() || this.isAuthorizedRoute()
-  }
-
-  private isPrivateRoute(): Boolean {
-    return this.PRIVATE_ROUTES.includes(this.routePathname)
-  }
-
-  private isAuthorizedRoute(): Boolean {
-    return this.AUTHORIZED_ROUTES.includes(this.routePathname)
-  }
-
-  private isUnauthorizedRoute(): Boolean {
-    return this.UNAUTHORIZED_ROUTES.includes(this.routePathname)
+    const isPrivateRoute = this.routePathnameHandler.isPrivateRoute()
+    const isAuthorizedRoute = this.routePathnameHandler.isAuthorizedRoute()
+    return isPrivateRoute || isAuthorizedRoute
   }
 
   private get homeRouteRedirect(): NextResponse {

@@ -1,50 +1,40 @@
 import { useCallback, useEffect } from 'react'
-import { useMutation } from '@tanstack/react-query'
 
 import { authService } from '@api/AuthService'
 import { cartService } from '@api/CartService'
 import { useUserStore } from '@stores/userStore'
 import { useCartStore } from '@stores/cartStore'
+import { REFRESH_TOKEN_COOKIE_NAME } from '@constants/cookie'
 
 export const useRefreshAuth = () => {
-  const isAuth = useUserStore(state => state.isAuth())
-  const initialize = useCartStore(state => state.initialize)
   const signin = useUserStore(state => state.signin)
+  const isAuth = useUserStore(state => state.isAuth())
+  const initializeCart = useCartStore(state => state.initialize)
 
-  const { mutateAsync: refreshAuth } = useMutation({
-    mutationKey: ['refreshAuth'],
-    mutationFn: authService.refresh
-  })
-  const { mutateAsync: fetchCart } = useMutation({
-    mutationKey: ['fetchUserCart'],
-    mutationFn: cartService.fetchUserCart
-  })
-
-  const handleRefreshAuth = useCallback(async () => {
-    return await refreshAuth().then(user => {
+  const handleRefreshAuth = useCallback(() => {
+    return authService.refresh().then(user => {
       signin(user)
       return user
     })
-  }, [refreshAuth, signin])
+  }, [signin])
 
-  const handleFetchCart = useCallback(
+  const handleFetchUserCart = useCallback(
     (userId: string) => {
-      fetchCart(userId).then(cart => {
-        initialize({
-          userCartId: cart.id,
-          products: cart.products
-        })
-      })
+      cartService
+        .fetchUserCart(userId)
+        .then(userCart => initializeCart(userCart))
     },
-    [fetchCart, initialize]
+    [initializeCart]
   )
 
   useEffect(() => {
-    if (!isAuth) {
-      import('js-cookie').then(({ default: Cookie }) => {
-        if (!Cookie.get('refreshToken')) return
-        handleRefreshAuth().then(user => handleFetchCart(user.id))
-      })
-    }
-  }, [handleFetchCart, handleRefreshAuth, isAuth])
+    if (isAuth) return
+
+    import('js-cookie').then(({ default: Cookie }) => {
+      const refreshToken = Cookie.get(REFRESH_TOKEN_COOKIE_NAME)
+      if (!refreshToken) return
+
+      handleRefreshAuth().then(user => handleFetchUserCart(user.id))
+    })
+  }, [handleFetchUserCart, handleRefreshAuth, isAuth])
 }

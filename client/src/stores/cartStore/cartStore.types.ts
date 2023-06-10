@@ -1,5 +1,5 @@
+import type { UserCart } from '@models/UserCart'
 import type { CartProduct } from '@entities/CartProduct'
-import type { CartProductModel } from '@models/product/CartProduct'
 import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct'
 
 export type CartStore = State & Computed & Action
@@ -18,18 +18,13 @@ interface Computed {
 }
 
 interface Action {
-  initialize: (args: InitializeCartArgs) => void
+  initialize: (userCart: UserCart) => void
   deinitialize: VoidFunction
   addProduct: (showcaseProduct: ShowcaseProductModel) => Promise<void>
   removeProduct: (productId: string) => void
   incrementProductCount: (productReferenceId: string) => Promise<void>
   decrementProductCount: (productReferenceId: string) => Promise<void>
-  clearCart: () => Promise<void>
+  clearCart: VoidFunction
   getProductCount: (productReferenceId: string) => number
   isProductInCart: (productReferenceId: string) => boolean
-}
-
-interface InitializeCartArgs {
-  userCartId: string
-  products: CartProductModel[]
 }

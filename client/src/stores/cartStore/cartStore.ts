@@ -24,9 +24,9 @@ export const useCartStore = create(
       get().products.some(product => READY_MEAL_TAGS.includes(product.tag)),
 
     // Actions
-    initialize: ({ userCartId, products }) =>
+    initialize: ({ id, products }) =>
       set(() => ({
-        userCartId,
+        userCartId: id,
         products: products.map(product => new CartProduct(product))
       })),
     deinitialize: () => set(() => ({ userCartId: null, products: [] })),
