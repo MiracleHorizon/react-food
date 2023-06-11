@@ -10,7 +10,8 @@ const WithCartProduct: FC<Props> = ({
   className
 }) => {
   const cartProduct = useMemo(() => new CartProduct(productData), [productData])
-  const { productReferenceId, image, count, formattedWeight } = cartProduct
+  const { productReferenceId, image, formattedWeight } = cartProduct
+  const count = useCartStore(state => state.getProductCount(productReferenceId))
 
   const incrementProductCount = useCartStore(
     state => state.incrementProductCount
