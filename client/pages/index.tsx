@@ -14,13 +14,13 @@ const HomePage: NextPage<Props> = ({
   navigationCategories,
   productCategories
 }) => {
+  const setNavigation = useNavigationStore(state => state.setCategories)
+
   useRefreshAuth()
 
-  const { setCategories: setNavigationCategories } = useNavigationStore()
-
   useEffect(() => {
-    setNavigationCategories(navigationCategories)
-  }, [navigationCategories, setNavigationCategories])
+    setNavigation(navigationCategories)
+  }, [navigationCategories, setNavigation])
 
   return <Home productCategories={productCategories} />
 }

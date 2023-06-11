@@ -17,13 +17,13 @@ const ProductSubcategoryPage: FC<Props> = ({
   navigationCategories,
   ...props
 }) => {
+  const setNavigation = useNavigationStore(state => state.setCategories)
+
   useRefreshAuth()
 
-  const { setCategories: setNavigationCategories } = useNavigationStore()
-
   useEffect(() => {
-    setNavigationCategories(navigationCategories)
-  }, [navigationCategories, setNavigationCategories])
+    setNavigation(navigationCategories)
+  }, [navigationCategories, setNavigation])
 
   return <ProductSubcategory {...props} />
 }
