@@ -25,7 +25,7 @@ const OrderInfo = () => {
     ...DEFAULT_CURRENCY_INTL_ARGS
   })
 
-  const handleNavigateToCart = () => router.push(Routes.CART)
+  const navigateToCart = () => router.push(Routes.CART)
 
   return (
     <div>
@@ -33,7 +33,7 @@ const OrderInfo = () => {
         <OrderButton
           title='Верно, к оплате'
           orderCost={formattedOrderCost}
-          onClick={handleNavigateToCart}
+          onClick={navigateToCart}
           isDisabled={false}
         />
       ) : (

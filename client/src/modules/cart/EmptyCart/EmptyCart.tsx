@@ -6,7 +6,6 @@ import { ButtonVariant } from '@ui/Button'
 import emptyCartBag from '@public/svg/emptyCartBag.svg'
 import * as Styled from './EmptyCart.styled'
 
-// TODO: handleGoToHome => navigateToHome (ВЕЗДЕ)
 const EmptyCart = () => {
   const router = useRouter()
 
