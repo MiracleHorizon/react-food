@@ -9,13 +9,12 @@ import {
   POINTER_EVENTS_NONE_CLASSNAME
 } from '@styles/constants'
 import type { LayoutProps } from '@app-types/LayoutProps'
+import * as Layout from './RootLayout.styled'
 
 // TODO: Set timeout
 const ChangeRouteLoader = dynamic(
   import('@components/general/ChangeRouteLoader'),
-  {
-    ssr: false
-  }
+  { ssr: false }
 )
 
 const loadingClassNames = [
@@ -37,12 +36,12 @@ const RootLayout: FC<LayoutProps> = ({ children, className, ...seoData }) => {
   }, [isPageLoading])
 
   return (
-    <>
+    <Layout.Root>
       {isPageLoading && <ChangeRouteLoader />}
       <Head {...seoData} />
       {children}
       <MobileMenu />
-    </>
+    </Layout.Root>
   )
 }
 
