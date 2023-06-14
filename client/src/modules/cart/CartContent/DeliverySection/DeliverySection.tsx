@@ -1,7 +1,12 @@
-import { Root } from './DeliverySection.styled'
+import DeliveryAddressForm from './DeliveryAddressForm'
+import { SectionRoot } from '../CartContent.styled'
 
 const DeliverySection = () => {
-  return <Root></Root>
+  return (
+    <SectionRoot>
+      <DeliveryAddressForm />
+    </SectionRoot>
+  )
 }
 
 export default DeliverySection

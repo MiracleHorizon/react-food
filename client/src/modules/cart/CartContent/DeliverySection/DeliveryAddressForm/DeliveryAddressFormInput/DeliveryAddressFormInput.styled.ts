@@ -1,0 +1,52 @@
+import styled from '@emotion/styled'
+
+import { colors } from '@styles/colors'
+import { truncateText } from '@styles/truncateText'
+
+export const Root = styled.div<IsFocusedProps>`
+  position: relative;
+  flex: 1 1 auto;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 16px 0 16px;
+  border: 1px solid #d2d0cc;
+  border-radius: 16px;
+
+  &:hover {
+    label {
+      ${p => !p.isFocused && `color: ${colors.black.primary}`};
+    }
+  }
+`
+
+export const Label = styled.label<IsFocusedProps>`
+  position: absolute;
+  left: 16px;
+  color: ${colors.gray['8']};
+  ${truncateText};
+  z-index: 1;
+  transition: 0.2s ease-out;
+
+  ${p => {
+    return p.isFocused
+      ? `
+        top: 6px;
+        font-size: 12px;
+      `
+      : `
+        top: 16px;
+        font-size: 16px;
+    `
+  }};
+`
+
+export const Input = styled.input`
+  width: 100%;
+  font-size: 16px;
+`
+
+interface IsFocusedProps {
+  isFocused: boolean
+}
