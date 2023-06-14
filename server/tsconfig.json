@@ -4,31 +4,52 @@
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true,
+    "experimentalDecorators": true,
+    "allowJs": false,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
+    "forceConsistentCasingInFileNames": true,
+    "alwaysStrict": true,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "useUnknownInCatchVariables": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
     "paths": {
-      "@/models/*": [
-        "src/models/*"
-      ],
-      "@/resources/*": [
+      "@resources/*": [
         "src/resources/*"
       ],
-      "@/utils/*": [
+      "@utils/*": [
         "src/utils/*"
       ],
       "@common/*": [
         "src/common/*"
+      ],
+      "@guards/*": [
+        "src/common/guards/*"
+      ],
+      "@models/*": [
+        "src/common/models/*"
+      ],
+      "@constants/*": [
+        "src/common/constants/*"
       ]
     }
   }

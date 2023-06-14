@@ -11,7 +11,9 @@ import {
 import type { Response } from 'express'
 
 import { ProductCategoryService } from './product-category.service'
-import { CreateProductCategoryDto } from './dto/create-product-category.dto'
+import type { CreateProductCategoryDto } from './dto/CreateProductCategory.dto'
+import type { ProductCategoryWithSubcategories } from '@resources/product-category/models/ProductCategoryWithSubcategories'
+import type { ShowcaseProductCategoryModel } from '@resources/product-category/models/ShowcaseProductCategoryModel'
 
 @Controller('product_category')
 export class ProductCategoryController {
@@ -23,30 +25,33 @@ export class ProductCategoryController {
   public createOne(
     @Body() dto: CreateProductCategoryDto,
     @Res() res: Response
-  ) {
+  ): Promise<void> {
     return this.productCategoryService.createOne({ ...dto, res })
   }
 
   @Get(':id')
-  public findOne(@Param('id') id: string) {
+  public findOne(
+    @Param('id') id: string
+  ): Promise<ProductCategoryWithSubcategories> {
     return this.productCategoryService.findOne(id)
   }
 
   @Get()
-  public findAll(@Query('skip') skip: string, @Query('take') take: string) {
+  public findAll(
+    @Query('skip') skip: string,
+    @Query('take') take: string
+  ): Promise<ShowcaseProductCategoryModel[]> {
     return this.productCategoryService.findAll({
       skip: +skip,
       take: +take
     })
   }
 
-  @Get('/navigation/all')
-  public findAllForNavigation() {
-    return this.productCategoryService.findAllForNavigation()
-  }
-
   @Delete(':id')
-  public removeOne(@Param('id') id: string, @Res() res: Response) {
+  public removeOne(
+    @Param('id') id: string,
+    @Res() res: Response
+  ): Promise<void> {
     return this.productCategoryService.removeOne(id, res)
   }
 }

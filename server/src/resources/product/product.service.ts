@@ -5,8 +5,8 @@ import {
 } from '@nestjs/common'
 
 import { PrismaService } from 'prisma/prisma.service'
-import type { CreateProductArgs } from '@/models/product/create-product-args'
-import type { CreateManyProductsArgs } from '@/models/product/create-many-products-args'
+import type { CreateProductArgs } from './models/CreateProductArgs'
+import type { CreateManyProductsArgs } from './models/CreateManyProductsArgs'
 
 @Injectable()
 export class ProductService {
@@ -22,7 +22,7 @@ export class ProductService {
     )
 
     if (isProductExist) {
-      throw new BadRequestException('Product already exists.')
+      throw new BadRequestException('Product already exists')
     }
 
     await this.prisma.product.create({
@@ -60,7 +60,7 @@ export class ProductService {
     })
 
     if (!productSubcategory) {
-      throw new NotFoundException('Subcategory is not found.')
+      throw new NotFoundException('Subcategory is not found')
     }
 
     const subcategoryProducts = await this.prisma.product.findMany({

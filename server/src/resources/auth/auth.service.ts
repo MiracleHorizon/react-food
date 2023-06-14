@@ -5,14 +5,14 @@ import {
   NotFoundException
 } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { Response } from 'express'
 import { UserRole } from '@prisma/client'
+import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
-import { SigninDto, SignupDto } from './dto'
-import { TokensVm } from './view-models'
-import { BcryptProvider } from '@/utils/brypt-provider'
-import { excludeField } from '@/utils/exclude-field'
+import { BcryptProvider } from '@utils/BcryptProvider'
+import { excludeField } from '@common/helpers/excludeField'
+import type { SignupDto } from './dto'
+import type { Tokens } from './models'
 
 @Injectable()
 export class AuthService {
@@ -58,7 +58,7 @@ export class AuthService {
     userId: string,
     email: string,
     role: UserRole
-  ): Promise<TokensVm> {
+  ): Promise<Tokens> {
     const tokenPayload = { sub: userId, email, role }
 
     const [accessToken, refreshToken] = await Promise.all([
@@ -93,7 +93,7 @@ export class AuthService {
     })
   }
 
-  public async signinLocal(dto: SigninDto, res: Response): Promise<void> {
+  public async signinLocal(dto: any, res: Response): Promise<void> {
     const user = await this.prisma.user.findUnique({
       where: {
         email: dto.email
@@ -158,6 +158,9 @@ export class AuthService {
     })
     if (!user) {
       throw new NotFoundException('User is not found')
+    }
+    if (!user.hashedRefreshToken) {
+      throw new ForbiddenException('Bad credentials')
     }
 
     const isTokensMatches = await BcryptProvider.compare(

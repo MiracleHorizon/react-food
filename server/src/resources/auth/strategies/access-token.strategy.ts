@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
 import { ExtractJwt, Strategy } from 'passport-jwt'
-import { Request } from 'express'
+import type { Request } from 'express'
 
-import { JwtPayloadVm } from '../view-models'
+import type { JwtPayload } from '../models'
 
 @Injectable()
 export class AccessTokenStrategy extends PassportStrategy(Strategy, 'jwt') {
@@ -25,7 +25,7 @@ export class AccessTokenStrategy extends PassportStrategy(Strategy, 'jwt') {
     return null
   }
 
-  public validate(payload: JwtPayloadVm): JwtPayloadVm {
+  public validate(payload: JwtPayload): JwtPayload {
     return payload
   }
 }

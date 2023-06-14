@@ -1,56 +1,71 @@
-import { Body, Controller, Get, Param, Patch, Post, Res } from '@nestjs/common'
-import type { Response } from 'express'
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+  Req,
+  Res,
+  UseGuards
+} from '@nestjs/common'
+import type { Request, Response } from 'express'
 
+import { JwtGuard } from '@common/guards'
 import { OrderService } from './order.service'
-import { CreateOrderDto } from './dto/create-order.dto'
-import { UpdateOrderStatusDto } from './dto/update-order-status.dto'
-import { MOCK_USER_ID } from '@/utils/constants'
+import type { Order } from '@prisma/client'
+import type { JwtPayload } from '@resources/auth/models'
+import type { CreateOrderDto } from './dto/CreateOrder.dto'
+import type { UpdateOrderStatusDto } from './dto/UpdateOrderStatus.dto'
 
 @Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
+  @UseGuards(JwtGuard)
   @Post()
-  public create(@Body() dto: CreateOrderDto, @Res() res: Response) {
+  public create(
+    @Body() dto: CreateOrderDto,
+    @Req() req: Request,
+    @Res() res: Response
+  ) {
+    const userPayload = req.user as JwtPayload
     return this.orderService.create({
       ...dto,
-      userId: MOCK_USER_ID,
+      userId: userPayload.sub,
       res
     })
   }
 
-  @Get('order/:id')
-  public findOne(@Param('id') id: string) {
-    return this.orderService.findOne(id, MOCK_USER_ID)
-  }
-
+  @UseGuards(JwtGuard)
   @Get()
-  public findAll() {
-    return this.orderService.findAll(MOCK_USER_ID)
+  @HttpCode(HttpStatus.OK)
+  public findAllUserOrders(@Req() req: Request): Promise<Order[]> {
+    const userPayload = req.user as JwtPayload
+    return this.orderService.findAllUserOrders(userPayload.sub)
   }
 
   // TODO: Delivery.
   @Get('parameters')
-  public fetchOrderParameters() {
-    return this.orderService.fetchOrderParameters()
+  public getOrderParameters() {
+    return this.orderService.getOrderParameters()
   }
 
   @Patch(':id/update_status')
   public updateStatus(
     @Param('id') id: string,
     @Body() { status }: UpdateOrderStatusDto,
+    @Req() req: Request,
     @Res() res: Response
   ) {
+    const userPayload = req.user as JwtPayload
     return this.orderService.updateStatus({
-      userId: MOCK_USER_ID,
       orderId: id,
+      userId: userPayload.sub,
       status,
       res
     })
-  }
-
-  @Patch(':id/cancel')
-  public cancel(@Param('id') id: string) {
-    return this.orderService.cancel(id)
   }
 }

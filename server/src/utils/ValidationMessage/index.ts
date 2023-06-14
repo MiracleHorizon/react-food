@@ -1,0 +1,1 @@
+export { validationMessage } from './ValidationMessage'

@@ -3,9 +3,9 @@ import type { Response } from 'express'
 import type { DeliveryAddress } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
-import type { CreateDeliveryAddressArgs } from '@/models/delivery-address/CreateDeliveryAddressArgs'
+import type { CreateDeliveryAddressArgs } from '@resources/delivery-address/models/CreateDeliveryAddressArgs'
 
-// TODO Проверка на доступ пользователя.
+// TODO: Проверка на доступ пользователя
 @Injectable()
 export class DeliveryAddressService {
   constructor(private readonly prisma: PrismaService) {}
@@ -23,7 +23,7 @@ export class DeliveryAddressService {
     })
 
     res.send({
-      message: 'Delivery address successfully created.'
+      message: 'Delivery address successfully created'
     })
   }
 
@@ -45,7 +45,7 @@ export class DeliveryAddressService {
     })
 
     res.send({
-      message: `Delivery address with id: ${addressId} successfully removed.`
+      message: `Delivery address with id: ${addressId} successfully removed`
     })
   }
 
@@ -60,7 +60,7 @@ export class DeliveryAddressService {
     })
 
     res.send({
-      message: `All delivery addresses for user with id: ${userId} successfully removed.`
+      message: `All delivery addresses for user with id: ${userId} successfully removed`
     })
   }
 }

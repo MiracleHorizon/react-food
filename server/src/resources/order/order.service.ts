@@ -3,12 +3,11 @@ import {
   Injectable,
   NotFoundException
 } from '@nestjs/common'
+import type { Order } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
-import { OrderStatus } from '@/models/order/OrderStatus'
-import type { CreateOrderArgs } from '@/models/order/CreateOrderArgs'
-import type { UpdateOrderStatusArgs } from '@/models/order/UpdateOrderStatusArgs'
-import type { ClientOrder } from '@/models/order/ClientOrder'
+import type { CreateOrderArgs } from './models/CreateOrderArgs'
+import type { UpdateOrderStatusArgs } from './models/UpdateOrderStatusArgs'
 
 @Injectable()
 export class OrderService {
@@ -27,68 +26,29 @@ export class OrderService {
       }
     })
 
+    // TODO: PRICE
     await this.prisma.orderProduct.createMany({
       data: productsData.map(product => ({
         ...product,
+        price: product.fullPrice,
         orderId: order.id
       }))
     })
 
     res.send({
-      message: 'Order successfully created.'
+      message: 'Order successfully created'
     })
   }
 
-  // TODO Обновить тип
-  public async findOne(orderId: string, userId: string): Promise<any> {
-    const order = await this.prisma.order.findUnique({
-      where: {
-        id: orderId
-      },
-      select: {
-        id: true,
-        userId: true,
-        products: {
-          select: {
-            title: true,
-            count: true,
-            price: true
-          }
-        },
-        totalCost: true,
-        productsCost: true,
-        deliveryCost: true,
-        serviceFee: true,
-        createdAt: true
-      }
-    })
-
-    if (!order) throw new NotFoundException('Order is not found.')
-
-    if (userId !== order.userId) throw new ForbiddenException()
-
-    delete order.userId
-
-    return order
-  }
-
-  public async findAll(userId: string): Promise<ClientOrder[]> {
+  // TODO: Пагинация
+  public async findAllUserOrders(userId: string): Promise<Order[]> {
     const orders = await this.prisma.order.findMany({
       where: {
         userId
       },
-      select: {
-        id: true,
-        status: true,
-        createdAt: true,
-        totalCost: true,
-        products: {
-          select: {
-            imagePath: true
-          }
-        }
-      },
-      take: 6
+      include: {
+        products: true
+      }
     })
 
     return orders.map(order => ({
@@ -98,9 +58,7 @@ export class OrderService {
     }))
   }
 
-  public fetchOrderParameters() {
-    // TODO: Менять значения в зависимости от, например, времени суток
-
+  public getOrderParameters() {
     const SERVICE_FEE = 49
     const MIN_ORDER_COST = 1e3
     const MAX_ORDER_COST = 4e4
@@ -134,9 +92,13 @@ export class OrderService {
       }
     })
 
-    if (!order) throw new NotFoundException('Order is not found.')
+    if (!order) {
+      throw new NotFoundException('Order is not found')
+    }
 
-    if (userId !== order.userId) throw new ForbiddenException()
+    if (userId !== order.userId) {
+      throw new ForbiddenException()
+    }
 
     await this.prisma.order.update({
       where: {
@@ -148,19 +110,7 @@ export class OrderService {
     })
 
     res.send({
-      message: 'Order status successfully updated.'
-    })
-  }
-
-  // TODO Дополнить.
-  public async cancel(orderId: string): Promise<void> {
-    await this.prisma.order.update({
-      where: {
-        id: orderId
-      },
-      data: {
-        status: OrderStatus.CANCELED
-      }
+      message: 'Order status successfully updated'
     })
   }
 }

@@ -3,26 +3,15 @@ import {
   Injectable,
   NotFoundException
 } from '@nestjs/common'
-import type {
-  Product,
-  ProductCategory,
-  ProductSubcategory
-} from '@prisma/client'
+import type { ProductCategory } from '@prisma/client'
 import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
-import { CreateProductCategoryDto } from './dto/create-product-category.dto'
-import type { PaginationParams } from '@/models/PaginationParams'
-import type { Res } from '@/models/Res'
-
-type ProductCategoryWithSubcategories = ProductCategory & {
-  subcategories: ProductSubcategory[]
-}
-
-export interface ShowcaseProductCategoryModel
-  extends Omit<ProductCategoryWithSubcategories, 'subcategories'> {
-  products: Product[]
-}
+import type { Res } from '@models/Res'
+import type { PaginationParams } from '@models/PaginationParams'
+import type { CreateProductCategoryDto } from './dto/CreateProductCategory.dto'
+import type { ProductCategoryWithSubcategories } from './models/ProductCategoryWithSubcategories'
+import type { ShowcaseProductCategoryModel } from './models/ShowcaseProductCategoryModel'
 
 @Injectable()
 export class ProductCategoryService {
@@ -36,7 +25,7 @@ export class ProductCategoryService {
     const isCategoryExists = await this.checkIsExistsByTitle(dto.title)
 
     if (isCategoryExists) {
-      throw new BadRequestException('Category already exists.')
+      throw new BadRequestException('Category already exists')
     }
 
     const category = await this.prisma.productCategory.create({
@@ -44,7 +33,7 @@ export class ProductCategoryService {
     })
 
     res.send({
-      message: 'Category successfully created.',
+      message: 'Category successfully created',
       categoryId: category.id
     })
   }
@@ -85,7 +74,7 @@ export class ProductCategoryService {
     })
 
     if (!category) {
-      throw new NotFoundException('Category is not found.')
+      throw new NotFoundException('Category is not found')
     }
 
     return category
@@ -160,7 +149,7 @@ export class ProductCategoryService {
     })
 
     res.send({
-      message: 'Category successfully deleted.'
+      message: 'Category successfully deleted'
     })
   }
 

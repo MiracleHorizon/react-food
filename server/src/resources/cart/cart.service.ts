@@ -6,16 +6,12 @@ import {
 import type { Cart, CartProduct } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
-import { ProductService } from '@/resources/product/product.service'
-import { UsersService } from '@/resources/users/users.service'
-import { AddProductDto } from '@/resources/cart/dto/add-product.dto'
+import { ProductService } from '@resources/product/product.service'
+import { UsersService } from '@resources/users/users.service'
+import type { AddProductDto } from '@resources/cart/dto/AddProduct.dto'
+import type { ChangeProductCountArgs } from './models/ChangeProductCountArgs'
 
-interface ChangeProductCountArgs {
-  cartId: string
-  productId: string
-  dest: 'increment' | 'decrement'
-}
-
+// TODO: Проверка на доступ пользователя
 // TODO: Отслеживание изменений цены, скидок и удаления продуктов с витрины, OnUpdate
 @Injectable()
 export class CartService {
@@ -70,7 +66,6 @@ export class CartService {
     cartId: string,
     dto: AddProductDto
   ): Promise<CartProduct> {
-    // TODO: Проверка на доступ пользователя
     const cart = await this.prisma.cart.findFirst({
       where: {
         id: cartId
@@ -113,7 +108,6 @@ export class CartService {
     productId,
     dest
   }: ChangeProductCountArgs): Promise<void> {
-    // TODO: Проверка на доступ пользователя.
     const isCartExists = await this.checkIsExistsById(cartId)
     if (!isCartExists) {
       throw new NotFoundException('Cart is not found')

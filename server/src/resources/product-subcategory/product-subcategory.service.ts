@@ -7,10 +7,10 @@ import { ProductSubcategory } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
 import { ProductService } from '../product/product.service'
-import { CreateProductSubcategoryDto } from './dto/create-product-subcategory.dto'
-import type { Res } from '@/models/Res'
-import type { CreateProductArgs } from '@/models/product/create-product-args'
-import type { CreateManyProductsArgs } from '@/models/product/create-many-products-args'
+import type { Res } from '@common/models/Res'
+import type { CreateProductArgs } from '@resources/product/models/CreateProductArgs'
+import type { CreateManyProductsArgs } from '@resources/product/models/CreateManyProductsArgs'
+import type { CreateProductSubcategoryDto } from './dto/CreateProductSubcategory.dto'
 
 @Injectable()
 export class ProductSubcategoryService {
@@ -27,7 +27,7 @@ export class ProductSubcategoryService {
     const isSubcategoryExists = await this.checkIsExistsByTitle(dto.title)
 
     if (isSubcategoryExists) {
-      throw new BadRequestException('Subcategory already exists.')
+      throw new BadRequestException('Subcategory already exists')
     }
 
     const subcategory = await this.prisma.productSubcategory.create({
@@ -35,7 +35,7 @@ export class ProductSubcategoryService {
     })
 
     res.send({
-      message: 'Subcategory successfully created.',
+      message: 'Subcategory successfully created',
       subcategoryId: subcategory.id
     })
   }
@@ -52,7 +52,7 @@ export class ProductSubcategoryService {
     })
 
     if (!subcategory) {
-      throw new NotFoundException('Subcategory is not found.')
+      throw new NotFoundException('Subcategory is not found')
     }
 
     return subcategory
@@ -66,13 +66,13 @@ export class ProductSubcategoryService {
     const isSubcategoryExists = await this.checkIsExistsById(data.subcategoryId)
 
     if (!isSubcategoryExists) {
-      throw new NotFoundException('Subcategory is not found.')
+      throw new NotFoundException('Subcategory is not found')
     }
 
     await this.productService.createOne(data)
 
     res.send({
-      message: 'Product successfully added.'
+      message: 'Product successfully added'
     })
   }
 
@@ -90,7 +90,7 @@ export class ProductSubcategoryService {
     await this.productService.createMany(data)
 
     res.send({
-      message: 'Products successfully added.'
+      message: 'Products successfully added'
     })
   }
 

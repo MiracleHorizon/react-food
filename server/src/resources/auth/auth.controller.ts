@@ -10,12 +10,12 @@ import {
   Res,
   UseGuards
 } from '@nestjs/common'
-import { Request, Response } from 'express'
+import type { Request, Response } from 'express'
 
 import { AuthService } from './auth.service'
-import { SigninDto, SignupDto } from './dto'
-import { JwtPayloadVm } from './view-models'
 import { JwtGuard, JwtRefreshGuard } from '@common/guards'
+import type { SignupDto } from './dto'
+import type { JwtPayload } from './models'
 
 @Controller('auth')
 export class AuthController {
@@ -32,10 +32,7 @@ export class AuthController {
 
   @Post('local/signin')
   @HttpCode(HttpStatus.OK)
-  public signinLocal(
-    @Body() dto: SigninDto,
-    @Res() res: Response
-  ): Promise<void> {
+  public signinLocal(@Body() dto: any, @Res() res: Response): Promise<void> {
     return this.authService.signinLocal(dto, res)
   }
 
@@ -43,7 +40,7 @@ export class AuthController {
   @Patch('signout')
   @HttpCode(HttpStatus.OK)
   public signout(@Req() req: Request, @Res() res: Response): Promise<void> {
-    const userPayload = req.user as JwtPayloadVm
+    const userPayload = req.user as JwtPayload
     return this.authService.signout(userPayload.sub, res)
   }
 
@@ -54,7 +51,7 @@ export class AuthController {
     @Req() req: Request,
     @Res() res: Response
   ): Promise<void> {
-    const userPayload = req.user as JwtPayloadVm
+    const userPayload = req.user as JwtPayload
     return this.authService.refreshTokens(
       userPayload.sub,
       req.cookies.refreshToken,
@@ -66,7 +63,7 @@ export class AuthController {
   @Get('role')
   @HttpCode(HttpStatus.OK)
   public fetchRole(@Req() req: Request) {
-    const userPayload = req.user as JwtPayloadVm
+    const userPayload = req.user as JwtPayload
     return {
       role: userPayload.role
     }

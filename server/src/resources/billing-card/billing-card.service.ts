@@ -6,9 +6,9 @@ import {
 import type { Response } from 'express'
 
 import { PrismaService } from 'prisma/prisma.service'
-import type { CreateBillingCardArgs } from '@/models/billing-card/CreateBillingCardArgs'
-import type { DeleteBillingCardArgs } from '@/models/billing-card/DeleteBillingCardArgs'
-import type { ClientBillingCard } from '@/models/billing-card/ClientBillingCard'
+import type { CreateBillingCardArgs } from '@resources/billing-card/models/CreateBillingCardArgs'
+import type { DeleteBillingCardArgs } from '@resources/billing-card/models/DeleteBillingCardArgs'
+import type { ClientBillingCard } from '@resources/billing-card/models/ClientBillingCard'
 
 @Injectable()
 export class BillingCardService {
@@ -28,7 +28,7 @@ export class BillingCardService {
     })
 
     res.send({
-      message: 'Billing card successfully created.¬'
+      message: 'Billing card successfully created'
     })
   }
 
@@ -47,9 +47,13 @@ export class BillingCardService {
       }
     })
 
-    if (!card) throw new NotFoundException('Billing card is not found.')
+    if (!card) {
+      throw new NotFoundException('Billing card is not found')
+    }
 
-    if (card.userId !== userId) throw new ForbiddenException()
+    if (card.userId !== userId) {
+      throw new ForbiddenException()
+    }
 
     return {
       id: card.id,
@@ -70,7 +74,9 @@ export class BillingCardService {
       take: 5
     })
 
-    if (cards[0].userId !== userId) throw new ForbiddenException()
+    if (cards[0]?.userId !== userId) {
+      throw new ForbiddenException()
+    }
 
     return cards.map(({ id, number }) => ({
       id,
@@ -78,8 +84,9 @@ export class BillingCardService {
     }))
   }
 
-  private getLastNumbers(number: number[]): number {
-    return number[number.length - 1]
+  // TODO: Rework
+  private getLastNumbers(numbers: number[]): number {
+    return numbers[numbers.length - 1]!
   }
 
   public async removeOne({
@@ -93,6 +100,10 @@ export class BillingCardService {
       }
     })
 
+    if (!billingCard) {
+      throw new NotFoundException('Billing card is not found')
+    }
+
     if (billingCard.userId !== userId) throw new ForbiddenException()
 
     await this.prisma.billingCard.delete({
@@ -102,7 +113,7 @@ export class BillingCardService {
     })
 
     res.send({
-      message: 'Billing card successfully removed.'
+      message: 'Billing card successfully removed'
     })
   }
 
