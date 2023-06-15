@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  line-height: 1rem;
+  line-height: 20px;
   margin-left: 25px;
 
   @media screen and (max-width: 1230px) {

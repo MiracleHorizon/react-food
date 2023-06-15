@@ -30,7 +30,10 @@ export const Root = styled.button<RootProps>`
   }};
 `
 
-export const Title = styled.span<TitleProps>``
+export const Title = styled.span<TitleProps>`
+  font-size: 17px;
+  ${p => p.withLeadIcon && 'margin-left: 4px'};
+`
 
 interface RootProps {
   variant: ButtonVariant

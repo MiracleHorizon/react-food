@@ -6,7 +6,6 @@ import {
 } from './ShowcaseProductCard.types'
 
 export const Root = styled.div<IShowcaseProductCardVariant>`
-  cursor: pointer;
   width: ${p => (p.variant === ShowcaseProductCardVariant.SMALL ? 172 : 224)}px;
   display: flex;
   flex-direction: column;

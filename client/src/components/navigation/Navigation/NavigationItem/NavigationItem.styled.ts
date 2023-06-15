@@ -87,10 +87,6 @@ export const Title = styled.h6<TitleProps>`
   font-size: 17px;
   font-weight: ${p => (p.isItemSelected ? 600 : 500)};
   ${truncateText};
-
-  @media screen and (${maxDeviceWidth.mobileLg}) {
-    font-size: 15px;
-  }
 `
 
 interface PictureProps {

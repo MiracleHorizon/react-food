@@ -6,5 +6,6 @@ export const Root = styled.div`
 `
 
 export const Title = styled.p`
+  font-size: 20px;
   line-height: 30px;
 `

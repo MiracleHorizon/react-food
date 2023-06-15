@@ -17,7 +17,7 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   font-size: 16px;
-  line-height: 1rem;
+  line-height: 20px;
   margin-left: 12px;
 
   @media screen and (max-width: 1230px) {

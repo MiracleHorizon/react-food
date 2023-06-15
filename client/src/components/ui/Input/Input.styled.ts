@@ -1,4 +1,7 @@
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
+
+import { applyFirefoxStyles } from '@styles/helpers/applyFirefoxStyles'
 
 export const Root = styled.div<RootProps>`
   position: relative;
@@ -16,6 +19,14 @@ export const Root = styled.div<RootProps>`
 export const Field = styled.input`
   width: 100%;
   height: 100%;
+  font-size: 17px;
+  font-weight: 500;
+
+  ${applyFirefoxStyles(
+    css`
+      letter-spacing: -0.03em;
+    `
+  )};
 `
 
 export const LeadIconContainer = styled.div`

@@ -14,7 +14,7 @@ export const Item = styled.div`
   justify-content: space-between;
 
   &:not(&:last-of-type) {
-    margin-bottom: 24px;
+    margin-bottom: 18px;
   }
 
   span {
