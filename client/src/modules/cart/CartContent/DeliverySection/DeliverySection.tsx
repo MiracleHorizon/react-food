@@ -1,11 +1,11 @@
 import DeliveryAddressForm from './DeliveryAddressForm'
-import { SectionRoot } from '../CartContent.styled'
+import { Root } from './DeliverySection.styled'
 
 const DeliverySection = () => {
   return (
-    <SectionRoot>
+    <Root>
       <DeliveryAddressForm />
-    </SectionRoot>
+    </Root>
   )
 }
 
