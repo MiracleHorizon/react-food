@@ -3,7 +3,7 @@ import type { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 
 import { authService } from '@api/AuthService'
 import { RouteStatusHandler } from '@utils/RouteStatusHandler'
-import { UserRole } from '@models/UserRole'
+import { UserRole } from '@models/user/UserRole'
 import { Routes } from '@router/Routes.enum'
 import { REFRESH_TOKEN_COOKIE_NAME } from '@constants/cookie'
 

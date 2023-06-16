@@ -1,13 +1,13 @@
 import AppHeader from '@components/general/AppHeader'
 import BackButton from '@components/general/BackButton'
-import UserLabel from '@components/user/UserLabel'
+import UserMenuWidget from '@components//user/UserMenuWidget'
 import { Content } from './CartLayoutHeader.styled'
 
 const CartLayoutHeader = () => (
   <AppHeader>
     <Content>
       <BackButton />
-      <UserLabel />
+      <UserMenuWidget />
     </Content>
   </AppHeader>
 )

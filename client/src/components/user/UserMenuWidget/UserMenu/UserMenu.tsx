@@ -7,8 +7,8 @@ import { authService } from '@api/AuthService'
 import { useUserStore } from '@stores/userStore'
 import { useCartStore } from '@stores/cartStore'
 import { Routes } from '@router/Routes.enum'
-import type { UserModel } from '@models/User'
-import * as Menu from './UserMenu.styled' // TODO: Dialog -> Menu
+import type { UserModel } from '@models/user/User'
+import * as Menu from './UserMenu.styled'
 
 // TODO: Dialog -> Menu
 const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {

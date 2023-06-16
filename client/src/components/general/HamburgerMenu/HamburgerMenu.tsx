@@ -1,4 +1,4 @@
-import { type PropsWithChildren, useCallback, useEffect } from 'react'
+import { type FC, type PropsWithChildren, useCallback, useEffect } from 'react'
 import { useEventListener } from 'usehooks-ts'
 
 import Portal from '@components/Portal'
@@ -10,7 +10,7 @@ import { breakpoints } from '@styles/responsiveness/breakpoints'
 import { HIDDEN_OVERFLOW_CLASSNAME } from '@styles/constants'
 import * as Menu from './HamburgerMenu.styled'
 
-const HamburgerMenu = ({ children }: PropsWithChildren) => {
+const HamburgerMenu: FC<PropsWithChildren> = ({ children }) => {
   const { isOpen, close, toggle } = useToggle(false)
 
   const handlePressEscapeKey = useCallback(

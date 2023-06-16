@@ -1,4 +1,4 @@
-import type { UserCart } from '@models/UserCart'
+import type { UserCart } from '@models/user/UserCart'
 import type { CartProduct } from '@entities/CartProduct'
 import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct'
 

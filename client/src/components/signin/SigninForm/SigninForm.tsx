@@ -6,7 +6,7 @@ import { cartService } from '@api/CartService'
 import { useUserStore } from '@stores/userStore'
 import { useCartStore } from '@stores/cartStore'
 import { ButtonVariant } from '@ui/Button'
-import type { UserModel } from '@models/User'
+import type { UserModel } from '@models/user/User'
 import type { SigninDto } from '@app-types/auth/SigninDto'
 import * as Form from './SigninForm.styled'
 
