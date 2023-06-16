@@ -17,7 +17,7 @@ const NavigationItem: FC<NavigationCategory> = ({ id, title, imagePath }) => {
           <Item.PictureFallback />
         )}
         <Item.Content>
-          <Item.Title isItemSelected={router.query.categoryId === id}>
+          <Item.Title isItemSelected={router.query.slug === id}>
             {title}
           </Item.Title>
         </Item.Content>
