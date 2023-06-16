@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import { colors } from '@styles/colors'
 import { truncateText } from '@styles/truncateText'
-import { maxDeviceWidth } from '@styles/responsiveness/devices'
+import { maxDeviceWidth, minDeviceWidth } from '@styles/responsiveness/devices'
 
 const paddingX = 16
 
@@ -23,6 +23,10 @@ export const Root = styled.div<IsFocusedProps>`
     }
   }
 
+  @media screen and (max-width: 600px) and (${minDeviceWidth.mobileLg}) {
+    height: 46px;
+  }
+
   @media screen and (${maxDeviceWidth.mobileLg}) {
     height: 44px;
     padding-top: 0;
@@ -36,7 +40,7 @@ export const Label = styled.label<IsFocusedProps>`
   color: ${colors.gray['8']};
   ${truncateText};
   z-index: 1;
-  transition: 0.2s ease-out;
+  transition: all 0.2s ease-out;
 
   ${p => {
     return p.isFocused
@@ -45,7 +49,8 @@ export const Label = styled.label<IsFocusedProps>`
         font-size: 12px;
       `
       : `
-        top: 16px;
+        top: 50%;
+        transform: translateY(-50%);
         font-size: 16px;
     `
   }};
@@ -55,11 +60,20 @@ export const Label = styled.label<IsFocusedProps>`
     transform: translateY(-50%);
     ${p => (p.isFocused ? 'display: none' : 'font-size: 15px')};
   }
+
+  @media screen and (max-width: 600px) and (${minDeviceWidth.mobileLg}) {
+    ${p => !p.isFocused && 'font-size: 14px'};
+  }
 `
 
 export const Input = styled.input`
+  height: 100%;
   width: 100%;
   font-size: 16px;
+
+  @media screen and (max-width: 600px) and (${minDeviceWidth.mobileLg}) {
+    font-size: 14px;
+  }
 `
 
 interface IsFocusedProps {

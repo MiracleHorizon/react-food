@@ -1,30 +1,39 @@
 import dynamic from 'next/dynamic'
+import { useCallback, useEffect, useState } from 'react'
 
-import { useCartStore } from '@stores/cartStore'
+import { useMakeOrder } from '@hooks/useMakeOrder'
+import { useOrderStore } from '@stores/orderStore'
 import * as Content from './CartContent.styled'
 
-const EmptyCart = dynamic(import('../EmptyCart'), {
-  ssr: true
-})
-const DeliverySection = dynamic(import('./DeliverySection'))
-const ProductsSection = dynamic(import('./ProductsSection'))
-const PaySection = dynamic(import('./PaySection'))
+const DeliverySection = dynamic(import('./DeliverySection'), { ssr: false })
+const ProductsSection = dynamic(import('./ProductsSection'), { ssr: false })
+const PaySection = dynamic(import('./PaySection'), { ssr: false })
 
 const CartContent = () => {
-  const isCartEmpty = useCartStore(state => state.isEmpty())
+  const [isOrdering, setIsOrdering] = useState(false)
+  const deliveryAddress = useOrderStore(state => state.deliveryAddress)
+  const makeOrder = useMakeOrder()
 
-  if (isCartEmpty) {
-    return <EmptyCart />
-  }
+  const startOrdering = useCallback(() => setIsOrdering(true), [])
+
+  const endOrdering = useCallback(() => setIsOrdering(false), [])
+
+  useEffect(() => {
+    if (!deliveryAddress) return
+
+    endOrdering()
+    makeOrder()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deliveryAddress, endOrdering])
 
   return (
     <Content.Root>
       <Content.LeftSide>
-        <DeliverySection />
+        <DeliverySection isOrdering={isOrdering} endOrdering={endOrdering} />
         <ProductsSection />
       </Content.LeftSide>
       <Content.RightSide>
-        <PaySection />
+        <PaySection startOrdering={startOrdering} />
       </Content.RightSide>
     </Content.Root>
   )

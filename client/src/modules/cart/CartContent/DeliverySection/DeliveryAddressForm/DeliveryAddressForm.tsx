@@ -1,11 +1,13 @@
 import { useForm } from 'react-hook-form'
+import { type FC, FormEvent, useEffect } from 'react'
 
-import HiddenSubmitInput from '@components/HiddenSubmitInput'
-import type { AddressFormData } from './DeliveryAddressForm.types'
+import { useOrderStore } from '@stores/orderStore'
 import * as Form from './DeliveryAddressForm.styled'
 
-const DeliveryAddressForm = () => {
-  const { register, watch, handleSubmit, setFocus } = useForm({
+const DeliveryAddressForm: FC<Props> = ({ isOrdering, endOrdering }) => {
+  const setDeliveryAddress = useOrderStore(state => state.setDeliveryAddress)
+
+  const { register, watch, setFocus, getValues, formState } = useForm({
     defaultValues: {
       office: '',
       floor: '',
@@ -15,12 +17,22 @@ const DeliveryAddressForm = () => {
     }
   })
 
-  const onSubmit = (data: AddressFormData) => {
-    console.log(data)
-  }
+  const handleSubmit = (e: FormEvent) => e.preventDefault()
+
+  useEffect(() => {
+    if (!isOrdering) return
+
+    formState.isValid ? setDeliveryAddress(getValues()) : endOrdering()
+  }, [
+    formState.isValid,
+    getValues,
+    setDeliveryAddress,
+    isOrdering,
+    endOrdering
+  ])
 
   return (
-    <Form.Root onSubmit={handleSubmit(onSubmit)}>
+    <Form.Root onSubmit={handleSubmit}>
       <Form.FirstLine>
         <Form.Input
           type='text'
@@ -63,9 +75,13 @@ const DeliveryAddressForm = () => {
         isEmpty={watch('commentary') === ''}
         register={register('commentary')}
       />
-      <HiddenSubmitInput />
     </Form.Root>
   )
 }
 
 export default DeliveryAddressForm
+
+interface Props {
+  isOrdering: boolean
+  endOrdering: VoidFunction
+}

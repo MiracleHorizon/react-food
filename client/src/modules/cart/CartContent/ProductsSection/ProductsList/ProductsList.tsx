@@ -1,14 +1,14 @@
-import ProductItem from './ProductItem'
+import WithCartProduct from '@hoc/withCartProduct'
 import { useCartStore } from '@stores/cartStore'
 import { Item } from './ProductsList.styled'
 
 const ProductsList = () => (
   <ul>
     {useCartStore(state => state.products).map(product => (
-      <Item
+      <WithCartProduct
         key={product.id}
         productData={product.getData()}
-        WrappedComponent={ProductItem}
+        WrappedComponent={Item}
       />
     ))}
   </ul>

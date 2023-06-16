@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
-import CartProductHoc from '@hoc/withCartProduct'
+import ProductItem from './ProductItem'
 
-export const Item = styled(CartProductHoc)`
+export const Item = styled(ProductItem)`
   &:not(&:first-of-type) {
     margin-top: 24px;
 

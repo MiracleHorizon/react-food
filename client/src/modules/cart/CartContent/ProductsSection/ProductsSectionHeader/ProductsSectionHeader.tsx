@@ -18,7 +18,9 @@ const ProductsSectionHeader = () => {
   return (
     <Header.Root>
       <div>
-        <Header.Title>Ваш заказ</Header.Title>
+        <Header.TitleArticle>
+          <Header.Title>Ваш заказ</Header.Title>
+        </Header.TitleArticle>
         <Header.ProductsCount>
           {productNounNumeralFormatter.format(
             totalPositions > 0 ? totalPositions : 0

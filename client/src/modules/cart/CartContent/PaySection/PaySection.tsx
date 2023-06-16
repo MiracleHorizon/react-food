@@ -1,15 +1,21 @@
+import type { FC } from 'react'
+
 import SectionHeader from './PaySectionHeader'
 import SectionContent from './PaySectionContent'
 import SectionFooter from './PaySectionFooter'
-import { SectionRoot } from '../CartContent.styled' // TODO: Payment?
+import { SectionRoot } from '../CartContent.styled'
 
 // TODO: Payment?
-const PaySection = () => (
+const PaySection: FC<Props> = props => (
   <SectionRoot>
     <SectionHeader />
     <SectionContent />
-    <SectionFooter />
+    <SectionFooter {...props} />
   </SectionRoot>
 )
 
 export default PaySection
+
+interface Props {
+  startOrdering: VoidFunction
+}

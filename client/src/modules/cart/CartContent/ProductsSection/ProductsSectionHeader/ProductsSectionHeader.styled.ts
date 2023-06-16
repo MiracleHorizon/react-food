@@ -14,8 +14,15 @@ export const Root = styled.header`
   }
 `
 
-export const Title = styled.h3`
+export const TitleArticle = styled.article`
   margin-bottom: 4px;
+
+  @media screen and (max-width: 480px) {
+    margin-bottom: 2px;
+  }
+`
+
+export const Title = styled.h3`
   font-size: 24px;
   font-weight: 600;
 
@@ -24,7 +31,6 @@ export const Title = styled.h3`
   }
 
   @media screen and (max-width: 480px) {
-    margin-bottom: 2px;
     font-size: 19px;
   }
 `

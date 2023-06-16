@@ -1,4 +1,4 @@
-export interface AddressFormData {
+export interface DeliveryAddressFormData {
   office: string
   floor: string
   doorcode: string

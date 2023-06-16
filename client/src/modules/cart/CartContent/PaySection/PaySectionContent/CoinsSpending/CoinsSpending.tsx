@@ -20,7 +20,9 @@ const CoinsSpending = () => {
 
   return (
     <Styled.Root>
-      <Styled.Title>Баллы React</Styled.Title>
+      <article>
+        <Styled.Title>Баллы React</Styled.Title>
+      </article>
       <Styled.SegmentedControl items={items} onChange={() => {}} />
     </Styled.Root>
   )
