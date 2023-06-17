@@ -1,13 +1,13 @@
 import { useOrderStore } from '@stores/orderStore'
-import { useSelectOrderCost } from '@hooks/selectors/useSelectOrderCost'
+import { useSelectOrderCostDetails } from '@hooks/selectors/useSelectOrderCostDetails'
 import { numberFormatter } from '@utils/NumberFormatter'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import * as Cost from './TotalOrderCost.styled'
 
 const TotalOrderCost = () => {
-  const orderCost = useSelectOrderCost()
+  const { totalCost } = useSelectOrderCostDetails()
   const formattedOrderCost = numberFormatter.formatCurrency({
-    value: orderCost,
+    value: totalCost,
     ...DEFAULT_CURRENCY_INTL_ARGS
   })
 

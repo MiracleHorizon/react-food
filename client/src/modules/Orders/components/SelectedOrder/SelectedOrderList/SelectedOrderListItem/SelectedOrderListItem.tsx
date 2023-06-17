@@ -6,12 +6,11 @@ import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import type { OrderProductModel } from '@modules/Orders/models/OrderProduct'
 import * as Item from './SelectedOrderListItem.styled'
 
-// TODO: Оставить в модели только итоговую цену
 const SelectedOrderListItem: FC<OrderProductModel> = ({
   title,
   count,
-  imagePath,
-  fullPrice
+  price,
+  imagePath
 }) => (
   <Item.Root>
     <Item.LeftSide>
@@ -30,7 +29,7 @@ const SelectedOrderListItem: FC<OrderProductModel> = ({
     </Item.LeftSide>
     <span>
       {numberFormatter.formatCurrency({
-        value: fullPrice,
+        value: price,
         ...DEFAULT_CURRENCY_INTL_ARGS
       })}
     </span>

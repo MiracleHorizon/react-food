@@ -1,7 +1,7 @@
-import { useSelectOrderCost } from './useSelectOrderCost'
+import { useSelectOrderCostDetails } from './useSelectOrderCostDetails'
 import { MIN_ORDER_COST } from '@constants/payment'
 
 export const useSelectIsMinOrderCostExceeded = () => {
-  const orderCost = useSelectOrderCost()
-  return MIN_ORDER_COST - orderCost
+  const { totalCost } = useSelectOrderCostDetails()
+  return MIN_ORDER_COST - totalCost
 }

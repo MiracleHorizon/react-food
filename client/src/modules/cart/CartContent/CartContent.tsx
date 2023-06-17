@@ -11,20 +11,22 @@ const PaySection = dynamic(import('./PaySection'), { ssr: false })
 
 const CartContent = () => {
   const [isOrdering, setIsOrdering] = useState(false)
-  const deliveryAddress = useOrderStore(state => state.deliveryAddress)
-  const makeOrder = useMakeOrder()
+  const deliveryAddressDetails = useOrderStore(
+    state => state.deliveryAddressDetails
+  )
+  const { makeOrder } = useMakeOrder()
 
   const startOrdering = useCallback(() => setIsOrdering(true), [])
 
   const endOrdering = useCallback(() => setIsOrdering(false), [])
 
   useEffect(() => {
-    if (!deliveryAddress) return
+    if (!deliveryAddressDetails) return
 
     endOrdering()
-    makeOrder()
+    makeOrder(deliveryAddressDetails)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deliveryAddress, endOrdering])
+  }, [deliveryAddressDetails, endOrdering])
 
   return (
     <Content.Root>

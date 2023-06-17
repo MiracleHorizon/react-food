@@ -1,9 +1,9 @@
-import type { DeliveryAddressFormData } from '@modules/Cart/CartContent/DeliverySection/DeliveryAddressForm/DeliveryAddressForm.types'
+import type { DeliveryAddressDetailsForOrder } from '@models/user/DeliveryAddressDetailsForOrder'
 
 export type OrderStore = State & Computed & Action
 
 interface State {
-  deliveryAddress: DeliveryAddressFormData | null
+  deliveryAddressDetails: DeliveryAddressDetailsForOrder | null
 }
 
 interface Computed {
@@ -11,5 +11,6 @@ interface Computed {
 }
 
 interface Action {
-  setDeliveryAddress: (data: DeliveryAddressFormData) => void
+  setDeliveryAddressDetails: (data: DeliveryAddressDetailsForOrder) => void
+  reset: VoidFunction
 }

@@ -22,14 +22,10 @@ const ClearCartLabel: FC<Props> = ({
 
   const handleCloseModal = () => setIsModalOpen(false)
 
-  const handleClearCart = useCallback(() => {
-    clearCart()
-      .then(() => {
-        if (router.asPath === Routes.CART) {
-          router.push(Routes.HOME)
-        }
-      })
-      .finally(handleCloseModal)
+  const handleClearCart = useCallback(async () => {
+    await clearCart()
+    if (router.asPath === Routes.CART) router.push(Routes.HOME)
+    handleCloseModal
   }, [clearCart, router])
 
   return (

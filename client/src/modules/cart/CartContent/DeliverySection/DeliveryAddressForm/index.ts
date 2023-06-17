@@ -1,1 +1,1 @@
-export { default } from './DeliveryAddressForm'
+export { default } from './DeliveryAddressDetailsForm'

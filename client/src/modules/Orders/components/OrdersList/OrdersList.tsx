@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { useOrdersStore } from '@modules/Orders/store'
 import { useUserStore } from '@stores/userStore'
-import { ordersService } from '@modules/Orders/api'
+import { ordersService } from '@api/OrdersService'
 import type { OrderModel } from '@modules/Orders/models/Order'
 import * as List from './OrdersList.styled'
 

@@ -3,7 +3,7 @@ import type { FC, PropsWithChildren } from 'react'
 
 import UserAddressSelectOption from './UserAddressSelectOption'
 import { useUserStore } from '@stores/userStore'
-import type { UserAddress } from '@models/user/UserAddress'
+import type { DeliveryAddress } from '@models/user/DeliveryAddress'
 import * as Select from './UserAddressSelect.styled'
 
 const UserAddressSelect: FC<Props> = ({
@@ -13,7 +13,7 @@ const UserAddressSelect: FC<Props> = ({
 }) => {
   const setSelectedAddress = useUserStore(state => state.setSelectedAddress)
 
-  const changeSelectedAddress = (address: UserAddress) =>
+  const changeSelectedAddress = (address: DeliveryAddress) =>
     setSelectedAddress(address)
 
   return (
@@ -23,8 +23,8 @@ const UserAddressSelect: FC<Props> = ({
         <Listbox.Options as={Select.Options}>
           {addresses.map(address => (
             <UserAddressSelectOption
-              key={address.main.id}
-              isSelected={selectedAddress.main.id === address.main.id}
+              key={address.id}
+              isSelected={selectedAddress.id === address.id}
               {...address}
             />
           ))}
@@ -37,6 +37,6 @@ const UserAddressSelect: FC<Props> = ({
 export default UserAddressSelect
 
 interface Props extends PropsWithChildren {
-  addresses: UserAddress[]
-  selectedAddress: UserAddress
+  addresses: DeliveryAddress[]
+  selectedAddress: DeliveryAddress
 }

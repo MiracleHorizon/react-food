@@ -7,12 +7,13 @@ import * as Breadcrumb from './Breadcrumb.styled'
 const BreadcrumbComponent: FC<Props> = ({
   items,
   separator,
-  withFinishingSeparator
+  withFinishingSeparator,
+  className
 }) => {
   const router = useRouter()
 
   return (
-    <Breadcrumb.Root>
+    <Breadcrumb.Root className={className}>
       {items.map(({ title, href }, index) => (
         <Fragment key={href}>
           <Breadcrumb.Item href={href} selected={router.asPath === href}>

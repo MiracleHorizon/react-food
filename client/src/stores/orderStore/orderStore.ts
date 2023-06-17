@@ -4,11 +4,12 @@ import type { OrderStore } from './orderStore.types'
 
 export const useOrderStore = create<OrderStore>(set => ({
   // State
-  deliveryAddress: null,
+  deliveryAddressDetails: null,
 
   // Computed
   withBonusCoins: () => false,
 
-  // Action
-  setDeliveryAddress: data => set({ deliveryAddress: data })
+  // Actions
+  setDeliveryAddressDetails: data => set({ deliveryAddressDetails: data }),
+  reset: () => set({ deliveryAddressDetails: null })
 }))

@@ -1,7 +1,7 @@
 import { type FC, memo, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
 
-import { useSelectOrderCost } from '@hooks/selectors/useSelectOrderCost'
+import { useSelectOrderCostDetails } from '@hooks/selectors/useSelectOrderCostDetails'
 import { useSelectIsMinOrderCostExceeded } from '@hooks/selectors/useSelectIsMinOrderCostExceeded'
 import { numberFormatter } from '@utils/NumberFormatter'
 import { MIN_ORDER_COST } from '@constants/payment'
@@ -14,13 +14,13 @@ const CartModalFooter: FC<Props> = props => {
   const router = useRouter()
   const isMinOrderCostExceeded = useSelectIsMinOrderCostExceeded()
 
-  const orderCost = useSelectOrderCost()
+  const { totalCost } = useSelectOrderCostDetails()
   const formattedOrderCost = numberFormatter.formatCurrency({
-    value: orderCost,
+    value: totalCost,
     ...DEFAULT_CURRENCY_INTL_ARGS
   })
 
-  const minOrderCostShortage = MIN_ORDER_COST - orderCost
+  const minOrderCostShortage = MIN_ORDER_COST - totalCost
   const formattedMinOrderCostShortage = numberFormatter.formatCurrency({
     value: minOrderCostShortage,
     ...DEFAULT_CURRENCY_INTL_ARGS

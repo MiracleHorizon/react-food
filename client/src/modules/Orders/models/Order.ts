@@ -6,6 +6,7 @@ export interface OrderModel {
   userId: string
   cutleryCount: number
   deliveryAddress: string
+  // TODO: deliveryAddressString: string
   totalCost: number
   productsCost: number
   deliveryCost: number

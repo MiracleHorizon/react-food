@@ -1,3 +1,10 @@
-import type { CartProductModel } from '@models/product/CartProduct'
-
-export type OrderProductModel = Omit<CartProductModel, 'productReferenceId'>
+export interface OrderProductModel {
+  id: string
+  orderId: string
+  title: string
+  price: number
+  count: number
+  imagePath: string | null
+  createdAt: Date
+  updatedAt: Date
+}

@@ -4,7 +4,7 @@ import { Listbox } from '@headlessui/react'
 import UserAddressSelect from './UserAddressSelect'
 import { useToggle } from '@hooks/useToggle'
 import { useUserStore } from '@stores/userStore'
-import { getUserAddressString } from '@helpers/getUserAddressString'
+import { getDeliveryAddressString } from '@helpers/getDeliveryAddressString'
 import * as Widget from './UserAddressWidget.styled'
 
 const UserAddressWidget = () => {
@@ -33,7 +33,9 @@ const UserAddressWidget = () => {
       >
         <Listbox.Button as={Widget.Button} onClick={toggle}>
           <Widget.MapPinIcon />
-          <Widget.Title>{getUserAddressString(selectedAddress)}</Widget.Title>
+          <Widget.Title>
+            {getDeliveryAddressString(selectedAddress)}
+          </Widget.Title>
           <Widget.ArrowIcon open={isOpen} />
         </Listbox.Button>
       </UserAddressSelect>
