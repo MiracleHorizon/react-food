@@ -26,7 +26,9 @@ const ProductSubcategoryHeader: FC<Props> = ({
   return (
     <Header.Root>
       <Breadcrumb items={breadcrumbItems} withFinishingSeparator />
-      <Header.Title>{title}</Header.Title>
+      <Header.TitleArticle>
+        <Header.Title>{title}</Header.Title>
+      </Header.TitleArticle>
     </Header.Root>
   )
 }

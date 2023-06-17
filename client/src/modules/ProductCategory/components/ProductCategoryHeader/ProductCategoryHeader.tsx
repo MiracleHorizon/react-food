@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 
-import Breadcrumb, { BreadcrumbItem } from '@ui/Breadcrumb'
 import SubcategoriesNavigation from './SubcategoriesNavigation'
 import { Routes } from '@router/Routes.enum'
+import type { BreadcrumbItem } from '@ui/Breadcrumb'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 import * as Header from './ProductCategoryHeader.styled'
 
@@ -12,8 +12,10 @@ const breadcrumbItems: BreadcrumbItem[] = [
 
 const ProductCategoryHeader: FC<Props> = ({ title, subcategories }) => (
   <Header.Root>
-    <Breadcrumb items={breadcrumbItems} withFinishingSeparator />
-    <Header.Title>{title}</Header.Title>
+    <Header.Breadcrumb items={breadcrumbItems} withFinishingSeparator />
+    <Header.TitleArticle>
+      <Header.Title>{title}</Header.Title>
+    </Header.TitleArticle>
     <SubcategoriesNavigation subcategories={subcategories} />
   </Header.Root>
 )

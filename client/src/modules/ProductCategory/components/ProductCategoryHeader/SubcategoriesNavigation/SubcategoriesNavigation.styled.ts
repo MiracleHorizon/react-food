@@ -9,7 +9,12 @@ export const Root = styled.nav`
 export const List = styled.ul`
   width: 100%;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 505px) {
+    justify-content: center;
+  }
 `
 
 export const ToggleExpandButton = styled(

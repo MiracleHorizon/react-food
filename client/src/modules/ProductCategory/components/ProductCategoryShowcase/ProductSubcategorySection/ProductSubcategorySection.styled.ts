@@ -11,8 +11,15 @@ export const Root = styled.section`
 `
 
 export const Title = styled(Link)`
+  width: 100%;
   display: inline-block;
   margin-bottom: 20px;
   font-size: 26px;
   font-weight: 600;
+
+  @media screen and (max-width: 505px) {
+    margin-bottom: 14px;
+    text-align: center;
+    font-size: 24px;
+  }
 `
