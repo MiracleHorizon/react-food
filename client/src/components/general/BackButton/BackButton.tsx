@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router'
 
-import ArrowSvg from '@ui/svg/ArrowSvg'
-import { Button } from './BackButton.styled' // TODO: Не работает
+import ChevronSvg from '@ui/svg/ChevronSvg'
+import { Button } from './BackButton.styled'
 
-// TODO: Не работает
 const BackButton = () => {
   const router = useRouter()
 
@@ -11,7 +10,7 @@ const BackButton = () => {
 
   return (
     <Button onClick={handleGoBack}>
-      <ArrowSvg />
+      <ChevronSvg />
       <span>Назад</span>
     </Button>
   )

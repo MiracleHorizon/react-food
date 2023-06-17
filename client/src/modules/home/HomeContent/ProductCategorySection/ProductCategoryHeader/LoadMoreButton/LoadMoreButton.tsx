@@ -1,13 +1,13 @@
 import { type FC, memo } from 'react'
 
-import ArrowSvg from '@ui/svg/ArrowSvg'
+import ChevronSvg from '@ui/svg/ChevronSvg'
 import { Routes } from '@router/Routes.enum'
 import * as Button from './LoadMoreButton.styled'
 
 const LoadMoreButton: FC<Props> = ({ productCategoryId }) => (
   <Button.Root href={`${Routes.CATEGORY}/${productCategoryId}`}>
     <Button.Title>Все</Button.Title>
-    <ArrowSvg />
+    <ChevronSvg />
   </Button.Root>
 )
 

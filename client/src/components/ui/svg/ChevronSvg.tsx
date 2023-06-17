@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 
-const ArrowSvg: FC<EmotionClassNameProps> = props => (
+const ChevronSvg: FC<EmotionClassNameProps> = props => (
   <svg
     viewBox='0 0 24 24'
     fill='none'
@@ -18,4 +18,4 @@ const ArrowSvg: FC<EmotionClassNameProps> = props => (
   </svg>
 )
 
-export default ArrowSvg
+export default ChevronSvg

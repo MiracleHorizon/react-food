@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ArrowSvg from '@ui/svg/ArrowSvg'
+import ChevronSvg from '@ui/svg/ChevronSvg'
 import MapPinSvg from '@ui/svg/MapPinSvg'
 import { colors } from '@styles/colors'
 import { truncateText } from '@styles/truncateText'
@@ -43,7 +43,7 @@ export const MapPinIcon = styled(MapPinSvg)`
   margin-right: 4px;
 `
 
-export const ArrowIcon = styled(ArrowSvg)<ArrowIconProps>`
+export const ArrowIcon = styled(ChevronSvg)<ArrowIconProps>`
   width: 26px;
   height: 26px;
   margin-left: auto;

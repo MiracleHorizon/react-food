@@ -16,6 +16,9 @@ const ChangeRouteLoader = dynamic(
   import('@components/general/ChangeRouteLoader'),
   { ssr: false }
 )
+const BackTopButton = dynamic(import('@components/general/BackTopButton'), {
+  ssr: false
+})
 
 const loadingClassNames = [
   HIDDEN_OVERFLOW_CLASSNAME,
@@ -40,6 +43,7 @@ const RootLayout: FC<LayoutProps> = ({ children, className, ...seoData }) => {
       {isPageLoading && <ChangeRouteLoader />}
       <Head {...seoData} />
       {children}
+      <BackTopButton />
       <MobileMenu />
     </Layout.Root>
   )

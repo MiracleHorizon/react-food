@@ -1,11 +1,11 @@
 import { type FC, memo } from 'react'
 
-import ArrowSvg from '@ui/svg/ArrowSvg'
+import ChevronSvg from '@ui/svg/ChevronSvg'
 import { Root } from './CarouselButton.styled'
 
 const CarouselButton: FC<Props> = props => (
   <Root {...props}>
-    <ArrowSvg />
+    <ChevronSvg />
   </Root>
 )
 

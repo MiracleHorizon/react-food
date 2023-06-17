@@ -1,16 +1,15 @@
-import { type FC, memo, useCallback, useState } from 'react'
+import { type FC, memo, useCallback } from 'react'
 
-import ArrowSvg from '@ui/svg/ArrowSvg'
+import ChevronSvg from '@ui/svg/ChevronSvg'
 import SubcategoriesNavigationItem from './SubcategoriesNavigationItem'
+import { useToggle } from '@hooks/useToggle'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 import * as Navigation from './SubcategoriesNavigation.styled'
 
-const MAX_ITEMS = 10
+const MAX_DISPLAY_ITEMS: number = 10
 
 const SubcategoriesNavigation: FC<Props> = ({ subcategories }) => {
-  const [isExpanded, setIsExpanded] = useState(false)
-
-  const toggleIsExpanded = () => setIsExpanded(prevState => !prevState)
+  const { isOpen: isExpanded, toggle } = useToggle(false)
 
   const renderItems = useCallback((items: ProductSubcategoryModel[]) => {
     return items.map(subcategory => (
@@ -21,20 +20,20 @@ const SubcategoriesNavigation: FC<Props> = ({ subcategories }) => {
   return (
     <Navigation.Root>
       <Navigation.List>
-        {renderItems(subcategories.slice(0, MAX_ITEMS))}
+        {renderItems(subcategories.slice(0, MAX_DISPLAY_ITEMS))}
         <>
-          {isExpanded && renderItems(subcategories.slice(MAX_ITEMS))}
-          {subcategories.length > MAX_ITEMS && (
+          {isExpanded && renderItems(subcategories.slice(MAX_DISPLAY_ITEMS))}
+          {subcategories.length > MAX_DISPLAY_ITEMS && (
             <Navigation.ToggleExpandButton
               isExpanded={isExpanded}
-              onClick={toggleIsExpanded}
+              onClick={toggle}
             >
               <span>
                 {isExpanded
                   ? 'Скрыть'
-                  : `Ещё ${subcategories.length - MAX_ITEMS}`}
+                  : `Ещё ${subcategories.length - MAX_DISPLAY_ITEMS}`}
               </span>
-              <ArrowSvg />
+              <ChevronSvg />
             </Navigation.ToggleExpandButton>
           )}
         </>
