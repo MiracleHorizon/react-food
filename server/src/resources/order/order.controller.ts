@@ -28,14 +28,12 @@ export class OrderController {
   @Post()
   public create(
     @Body() dto: CreateOrderDto,
-    @Req() req: Request,
-    @Res() res: Response
-  ) {
+    @Req() req: Request
+  ): Promise<{ orderId: string }> {
     const userPayload = req.user as JwtPayload
     return this.orderService.create({
       ...dto,
-      userId: userPayload.sub,
-      res
+      userId: userPayload.sub
     })
   }
 
@@ -45,6 +43,11 @@ export class OrderController {
   public findAllUserOrders(@Req() req: Request): Promise<Order[]> {
     const userPayload = req.user as JwtPayload
     return this.orderService.findAllUserOrders(userPayload.sub)
+  }
+
+  @Get(':id')
+  public fetchUserOrderById(@Param('id') orderId: string): Promise<Order> {
+    return this.orderService.fetchUserOrderById(orderId)
   }
 
   // TODO: Delivery.

@@ -1,6 +1,5 @@
-import type { Res } from '@models/Res'
 import type { CreateOrderDto } from '../dto/CreateOrder.dto'
 
-export interface CreateOrderArgs extends CreateOrderDto, Res {
+export interface CreateOrderArgs extends CreateOrderDto {
   userId: string
 }

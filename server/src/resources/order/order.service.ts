@@ -13,15 +13,19 @@ import type { UpdateOrderStatusArgs } from './models/UpdateOrderStatusArgs'
 export class OrderService {
   constructor(private readonly prisma: PrismaService) {}
 
+  // TODO: Return type
   public async create({
     userId,
     productsData,
-    res,
+    deliveryAddress,
     ...dto
-  }: CreateOrderArgs): Promise<void> {
+  }: CreateOrderArgs): Promise<{ orderId: string }> {
+    // TODO: Delivered at
     const order = await this.prisma.order.create({
       data: {
         userId,
+        deliveredAt: new Date(Date.now() + (3600 / 2) * 1000),
+        deliveryAddress: deliveryAddress.street + ' ' + deliveryAddress.house,
         ...dto
       }
     })
@@ -29,15 +33,20 @@ export class OrderService {
     // TODO: PRICE
     await this.prisma.orderProduct.createMany({
       data: productsData.map(product => ({
-        ...product,
-        price: product.fullPrice,
-        orderId: order.id
+        count: product.count,
+        orderId: order.id,
+        price: Math.ceil(
+          product.fullPrice -
+            (product.fullPrice / 100) * product.discountPercent
+        ),
+        title: product.title,
+        imagePath: product.imagePath
       }))
     })
 
-    res.send({
-      message: 'Order successfully created'
-    })
+    return {
+      orderId: order.id
+    }
   }
 
   // TODO: Пагинация
@@ -56,6 +65,21 @@ export class OrderService {
       products: order.products.slice(0, 5),
       productsCount: order.products.length
     }))
+  }
+
+  // TODO: Права
+  public async fetchUserOrderById(orderId: string): Promise<Order> {
+    const order = await this.prisma.order.findUnique({
+      where: {
+        id: orderId
+      }
+    })
+
+    if (!order) {
+      throw new NotFoundException('Order is not found')
+    }
+
+    return order
   }
 
   public getOrderParameters() {

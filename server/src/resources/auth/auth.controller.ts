@@ -14,7 +14,7 @@ import type { Request, Response } from 'express'
 
 import { AuthService } from './auth.service'
 import { JwtGuard, JwtRefreshGuard } from '@common/guards'
-import type { SignupDto } from './dto'
+import type { SigninDto, SignupDto } from './dto'
 import type { JwtPayload } from './models'
 
 @Controller('auth')
@@ -32,7 +32,10 @@ export class AuthController {
 
   @Post('local/signin')
   @HttpCode(HttpStatus.OK)
-  public signinLocal(@Body() dto: any, @Res() res: Response): Promise<void> {
+  public signinLocal(
+    @Body() dto: SigninDto,
+    @Res() res: Response
+  ): Promise<void> {
     return this.authService.signinLocal(dto, res)
   }
 
