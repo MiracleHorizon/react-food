@@ -1,6 +1,6 @@
 import { Oval } from 'react-loader-spinner'
 
-import Portal from '@components/Portal'
+import Portal from '@components/general/Portal'
 import { colors } from '@styles/colors'
 import * as Loader from './ChangeRouteLoader.styled'
 

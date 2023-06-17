@@ -1,7 +1,7 @@
 import { type FC, type PropsWithChildren, useCallback, useEffect } from 'react'
 import { useEventListener } from 'usehooks-ts'
 
-import Portal from '@components/Portal'
+import Portal from '@components/general/Portal'
 import XMarkSvg from '@ui/svg/XMarkSvg'
 import ThreeBarsSvg from '@ui/svg/ThreeBarsSvg'
 import { useToggle } from '@hooks/useToggle'
