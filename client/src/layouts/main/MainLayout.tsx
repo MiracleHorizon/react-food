@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 
-import RootLayout from '@layouts/RootLayout'
+import RootLayout from '@layouts/Root'
 import LayoutHeader from './MainLayoutHeader'
 import LayoutContent from './MainLayoutContent'
 import type { LayoutProps } from '@app-types/LayoutProps'

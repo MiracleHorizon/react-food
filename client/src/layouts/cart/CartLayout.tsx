@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import RootLayout from '@layouts/RootLayout'
+import RootLayout from '@layouts/Root'
 import CartLayoutHeader from './CartLayoutHeader'
 import type { LayoutProps } from '@app-types/LayoutProps'
 import * as Layout from './CartLayout.styled'
