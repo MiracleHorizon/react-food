@@ -1,4 +1,5 @@
-import { APP_DESCRIPTION, APP_KEYWORDS, APP_TITLE } from '@constants/seo'
+import { writePageTitle } from '@helpers/writePageTitle'
+import { APP_DESCRIPTION, APP_KEYWORDS } from '@constants/seo'
 import type { SeoData } from '@models/SeoData'
 
 export class SearchEngineOptimizer {
@@ -17,7 +18,7 @@ export class SearchEngineOptimizer {
     keywords: string[]
   } {
     return {
-      title: `${this.title} | ${APP_TITLE}`,
+      title: writePageTitle(this.title),
       description: `${APP_DESCRIPTION}. ${this.description ?? ''}`,
       keywords: this.getUniqueKeywords()
     }
