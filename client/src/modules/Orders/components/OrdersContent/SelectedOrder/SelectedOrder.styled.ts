@@ -10,7 +10,6 @@ export const Root = styled.div`
   margin-left: 100px;
   border-radius: 32px;
   background: white;
-  transition: all 0.2s ease-out;
 
   @media (max-width: 1260px) {
     min-width: 500px;

@@ -10,8 +10,6 @@ export const Root = styled.div<Props>`
   padding: 24px;
   border-radius: 32px;
   background: ${p => (p.isSelected ? 'white' : 'rgba(255, 255, 255, 0.7)')};
-  transition: all 0.2s ease-out;
-  ${p => p.isSelected && 'box-shadow: 0 8px 20px rgb(0 0 0 / 7%)'};
 
   &:hover {
     background: white;

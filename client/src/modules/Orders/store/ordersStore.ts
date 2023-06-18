@@ -8,11 +8,7 @@ export const useOrdersStore = create<OrdersStore>((set, get) => ({
   selectedOrder: null,
 
   // Computed
-  isOrderSelected: orderId => {
-    const selectedOrder = get().selectedOrder
-    if (!selectedOrder) return false
-    return selectedOrder.id === orderId
-  },
+  isOrderSelected: orderId => get().selectedOrder?.id === orderId,
 
   // Actions
   initialize: orders =>
@@ -23,9 +19,7 @@ export const useOrdersStore = create<OrdersStore>((set, get) => ({
   selectOrder: order => {
     const selectedOrder = get().selectedOrder
     if (selectedOrder && selectedOrder.id !== order.id) {
-      set({
-        selectedOrder: order
-      })
+      set({ selectedOrder: order })
     }
   }
 }))
