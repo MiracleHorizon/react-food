@@ -58,9 +58,6 @@
       "@components/*": [
         "src/components/*"
       ],
-      "@hoc/*": [
-        "src/hoc/*"
-      ],
       "@ui/*": [
         "src/components/ui/*"
       ],
@@ -70,11 +67,14 @@
       "@hooks/*": [
         "src/hooks/*"
       ],
-      "@router/*": [
-        "src/common/router/*"
-      ],
       "@utils/*": [
         "src/utils/*"
+      ],
+      "@hoc/*": [
+        "src/common/hoc/*"
+      ],
+      "@router/*": [
+        "src/common/router/*"
       ],
       "@helpers/*": [
         "src/common/helpers/*"

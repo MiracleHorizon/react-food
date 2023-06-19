@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import PayParametersItem from './PayParametersItem'
 import { useCartStore } from '@stores/cartStore'
-import { useSelectDeliveryCost } from '@hooks/selectors/useSelectDeliveryCost'
+import { useSelectDeliveryCost } from '@stores/hooks/useSelectDeliveryCost'
 import { numberFormatter } from '@utils/NumberFormatter'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import { SERVICE_FEE } from '@constants/payment'

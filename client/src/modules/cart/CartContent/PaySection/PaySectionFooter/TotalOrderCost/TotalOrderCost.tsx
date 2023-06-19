@@ -1,5 +1,5 @@
 import { useOrderStore } from '@stores/orderStore'
-import { useSelectOrderCostDetails } from '@hooks/selectors/useSelectOrderCostDetails'
+import { useSelectOrderCostDetails } from '@stores/hooks/useSelectOrderCostDetails'
 import { numberFormatter } from '@utils/NumberFormatter'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import * as Cost from './TotalOrderCost.styled'
