@@ -6,7 +6,7 @@ import { useUserStore } from '@stores/userStore'
 import { useCutleryStore } from '@stores/cutleryStore'
 import { ordersService } from '@api/OrdersService'
 import { useResetOrder } from '@hooks/useResetOrder'
-import { useSelectOrderCostDetails } from './selectors/useSelectOrderCostDetails'
+import { useSelectOrderCostDetails } from '@stores/hooks/useSelectOrderCostDetails'
 import { Routes } from '@router/Routes.enum'
 import { SERVICE_FEE } from '@constants/payment'
 import type { CreateOrderDto } from '@models/order/CreateOrderDto'
@@ -44,8 +44,7 @@ export const useMakeOrder = () => {
         serviceFee: SERVICE_FEE,
         productsData: products.map(product => product.getData()),
         recipientName: user.name,
-        recipientPhoneNumber: '88800000000'
-        // TODO: recipientPhoneNumber: user.phoneNumber
+        recipientPhoneNumber: user.phoneNumber
       }
 
       ordersService.create(createOrderDto).then(orderId => {

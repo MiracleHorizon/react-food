@@ -1,8 +1,8 @@
 import { type FC, memo, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
 
-import { useSelectOrderCostDetails } from '@hooks/selectors/useSelectOrderCostDetails'
-import { useSelectIsMinOrderCostExceeded } from '@hooks/selectors/useSelectIsMinOrderCostExceeded'
+import { useSelectOrderCostDetails } from '@stores/hooks/useSelectOrderCostDetails'
+import { useSelectIsMinOrderCostExceeded } from '@stores/hooks/useSelectIsMinOrderCostExceeded'
 import { numberFormatter } from '@utils/NumberFormatter'
 import { MIN_ORDER_COST } from '@constants/payment'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
