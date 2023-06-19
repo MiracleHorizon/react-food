@@ -14,7 +14,7 @@ const ModalComponent: FC<Props> = ({
   <Dialog
     as={Modal.Root}
     open={isOpen}
-    unmount={isOpen}
+    unmount={true}
     initialFocus={initialFocusRef}
     onClose={onClose}
   >

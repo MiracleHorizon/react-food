@@ -5,7 +5,13 @@ import { useUserStore } from '@stores/userStore'
 import { useToggle } from '@hooks/useToggle'
 import { Avatar } from './UserMenuWidget.styled'
 
-const UserMenu = dynamic(import('./UserMenu'))
+const UserMenu = dynamic(() => import('./UserMenu'), {
+  ssr: false
+})
+const UserPersonalDataModal = dynamic(
+  () => import('../PersonalDataModal/PersonalDataModal'),
+  { ssr: false }
+)
 
 const UserMenuWidget = () => {
   const user = useUserStore(state => state.user)
@@ -19,6 +25,7 @@ const UserMenuWidget = () => {
     <>
       <Avatar onClick={open} />
       <UserMenu user={user} isOpen={isOpen} onClose={close} />
+      <UserPersonalDataModal />
     </>
   )
 }

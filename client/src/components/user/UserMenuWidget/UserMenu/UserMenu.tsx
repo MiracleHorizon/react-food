@@ -6,6 +6,7 @@ import UserMenuItem from './UserMenuItem'
 import { authService } from '@api/AuthService'
 import { useUserStore } from '@stores/userStore'
 import { useCartStore } from '@stores/cartStore'
+import { useModalsStore } from '@stores/modalsStore'
 import { Routes } from '@router/Routes.enum'
 import type { UserModel } from '@models/user/User'
 import * as Menu from './UserMenu.styled'
@@ -17,14 +18,15 @@ const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
 
   const signout = useUserStore(state => state.signout)
   const deinitializeCart = useCartStore(state => state.deinitialize)
+  const openPersonalDataModal = useModalsStore(
+    state => state.openPersonalDataModal
+  )
 
   const menuItems = useMemo(() => {
     return [
       {
         title: 'Мои данные',
-        action: () => {
-          console.log('Открылось модальное окно с данными')
-        }
+        action: openPersonalDataModal
       },
       {
         title: 'Мои адреса',

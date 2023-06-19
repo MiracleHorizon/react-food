@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
+import { truncateText } from '@styles/truncateText'
 
 export const Root = styled.div`
   position: relative;
@@ -42,9 +43,7 @@ export const Title = styled.h3`
   padding: 0 12px;
   font-size: 26px;
   font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  ${truncateText};
 
   @media (${maxDeviceWidth.tablet}) {
     font-size: 22px;

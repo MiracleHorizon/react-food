@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 
@@ -7,7 +7,9 @@ export enum ButtonVariant {
   SECONDARY = 'secondary'
 }
 
-export interface Props extends EmotionClassNameProps {
+export interface Props
+  extends EmotionClassNameProps,
+    ButtonHTMLAttributes<HTMLButtonElement> {
   title: string
   variant: ButtonVariant
   leadIcon?: ReactNode

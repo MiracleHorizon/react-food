@@ -1,12 +1,9 @@
-import { z } from 'zod'
+import type { UserRole } from './UserRole'
+import type { UserPersonalData } from './UserPersonalData'
 
-const UserSchema = z.object({
-  id: z.string().cuid(),
-  email: z.string().email(),
-  name: z.string(),
-  cartId: z.string().cuid(),
-  role: z.enum(['ADMIN', 'USER']),
-  bonusCoins: z.number().min(0)
-})
-
-export type UserModel = z.infer<typeof UserSchema>
+export interface UserModel extends UserPersonalData {
+  id: string
+  cartId: string
+  role: UserRole
+  bonusCoins: number
+}
