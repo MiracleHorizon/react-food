@@ -35,11 +35,6 @@ export const TitleArticle = styled.article`
   @media screen and (${maxDeviceWidth.tablet}) {
     margin-bottom: 12px;
   }
-
-  @media screen and (${maxDeviceWidth.mobileMd}) {
-    margin-bottom: 8px;
-    font-size: 30px;
-  }
 `
 
 export const Title = styled.h1`
@@ -50,7 +45,7 @@ export const Title = styled.h1`
     font-size: 38px;
   }
 
-  @media screen and (${maxDeviceWidth.mobileLg}) {
+  @media screen and (max-width: 600px) {
     font-size: 34px;
   }
 
@@ -65,9 +60,9 @@ export const Main = styled.main`
   justify-content: center;
 
   @media screen and (${maxDeviceWidth.laptop}) {
-    flex-direction: column-reverse;
     align-items: center;
     justify-content: flex-start;
+    flex-direction: column-reverse;
   }
 
   @media screen and (${maxDeviceWidth.tablet}) {

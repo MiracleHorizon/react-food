@@ -25,7 +25,6 @@ export const OrderCard = styled(OrderCardComponent)`
 
   @media (${maxDeviceWidth.laptop}) {
     width: 600px;
-    margin-top: 16px;
   }
 
   @media (${maxDeviceWidth.tablet}) {
