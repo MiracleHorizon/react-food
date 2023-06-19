@@ -1,12 +1,10 @@
-import dynamic from 'next/dynamic'
+import MediaQuery from 'react-responsive'
 import type { FC } from 'react'
 
 import OrdersList from './OrdersList'
-import { OrderModel } from '@modules/Orders/models/Order'
+import { OrderModel } from '@modules/Orders/screens/main/models/Order'
+import { breakpoints } from '@styles/responsiveness/breakpoints'
 import * as Content from './OrdersContent.styled'
-
-// TODO: Loader
-const SelectedOrder = dynamic(() => import('./SelectedOrder'), { ssr: false })
 
 const OrdersContent: FC<Props> = ({ orders }) => (
   <Content.Root>
@@ -15,7 +13,9 @@ const OrdersContent: FC<Props> = ({ orders }) => (
     </Content.TitleArticle>
     <Content.Main>
       <OrdersList orders={orders} />
-      <SelectedOrder />
+      <MediaQuery minWidth={breakpoints.laptop + 1}>
+        <Content.SelectedOrder />
+      </MediaQuery>
     </Content.Main>
   </Content.Root>
 )

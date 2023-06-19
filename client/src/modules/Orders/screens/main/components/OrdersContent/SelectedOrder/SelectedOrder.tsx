@@ -1,11 +1,15 @@
+import type { FC } from 'react'
+
 import SelectedOrderHeader from './SelectedOrderHeader'
 import SelectedOrderAddress from './SelectedOrderAddress'
 import SelectedOrderList from './SelectedOrderList'
 import SelectedOrderPayment from './SelectedOrderPayment'
-import { useOrdersStore } from '@modules/Orders/store'
+import { useOrdersStore } from '@modules/Orders/screens/main/store'
+import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import { Root } from './SelectedOrder.styled'
 
-const SelectedOrder = () => {
+// TODO: Scroll top
+const SelectedOrder: FC<EmotionClassNameProps> = props => {
   const selectedOrder = useOrdersStore(state => state.selectedOrder)
 
   if (!selectedOrder) {
@@ -13,7 +17,7 @@ const SelectedOrder = () => {
   }
 
   return (
-    <Root>
+    <Root {...props}>
       <SelectedOrderHeader {...selectedOrder} />
       <SelectedOrderAddress deliveryAddress={selectedOrder.deliveryAddress} />
       <SelectedOrderList products={selectedOrder.products} />

@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import SelectedOrderListItem from './SelectedOrderListItem'
-import type { OrderModel } from '@modules/Orders/models/Order'
+import type { OrderModel } from '@modules/Orders/screens/main/models/Order'
 import { SectionTitle } from '../SelectedOrder.styled'
 import * as List from './SelectedOrderList.styled'
 

@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { OrderModel } from '@modules/Orders/models/Order'
+import { OrderModel } from '@modules/Orders/screens/main/models/Order'
 import * as List from './OrdersList.styled'
 
 const OrdersList: FC<Props> = ({ orders }) => (

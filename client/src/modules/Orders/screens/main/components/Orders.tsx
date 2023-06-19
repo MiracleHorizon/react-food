@@ -1,8 +1,8 @@
 import { type FC, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 
-import { useOrdersStore } from '@modules/Orders/store'
-import type { OrderModel } from '@modules/Orders/models/Order'
+import { useOrdersStore } from '@modules/Orders/screens/main/store'
+import type { OrderModel } from '@modules/Orders/screens/main/models/Order'
 import { Layout } from './Orders.styled'
 
 // TODO: Loader
@@ -10,11 +10,9 @@ const OrdersContent = dynamic(() => import('./OrdersContent'))
 
 // TODO: Empty orders
 const Orders: FC<Props> = ({ orders }) => {
-  const initializeOrders = useOrdersStore(state => state.initialize)
+  const initialize = useOrdersStore(state => state.initialize)
 
-  useEffect(() => {
-    initializeOrders(orders)
-  }, [initializeOrders, orders])
+  useEffect(() => initialize(orders), [initialize, orders])
 
   return (
     <Layout title='Мои заказы' withSidePanels={false}>

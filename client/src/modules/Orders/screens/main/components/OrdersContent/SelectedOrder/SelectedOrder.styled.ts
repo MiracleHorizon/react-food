@@ -3,11 +3,11 @@ import styled from '@emotion/styled'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 import { colors } from '@styles/colors'
 
+// TODO: Sticky
 export const Root = styled.div`
   min-width: 600px;
   width: 600px;
   padding: 32px;
-  margin-left: 100px;
   border-radius: 32px;
   background: white;
 

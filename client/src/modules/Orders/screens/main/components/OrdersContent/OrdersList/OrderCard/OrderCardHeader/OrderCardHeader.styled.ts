@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
-import { getOrderStatusTitleColor } from '@modules/Orders/helpers/getOrderStatusTitleColor'
-import type { OrderStatus } from '@modules/Orders/models/OrderStatus'
+import { getOrderStatusTitleColor } from '@modules/Orders/screens/main/helpers/getOrderStatusTitleColor'
+import type { OrderStatus } from '@modules/Orders/screens/main/models/OrderStatus'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 export const Root = styled.header`
@@ -15,15 +15,6 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 500px) {
-  }
-
-  // @media (${maxDeviceWidth.mobileMd}) {
-  //   span {
-  //     font-size: 15px;
-  //   }
-  // }
-  //
   span {
     display: -webkit-box;
     -webkit-box-orient: vertical;

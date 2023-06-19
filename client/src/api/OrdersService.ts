@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import { BaseService } from '@api/BaseService'
-import type { OrderModel } from '@modules/Orders/models/Order'
+import type { OrderModel } from '@modules/Orders'
 import type { CreateOrderDto } from '@models/order/CreateOrderDto'
 
 class OrdersService extends BaseService {

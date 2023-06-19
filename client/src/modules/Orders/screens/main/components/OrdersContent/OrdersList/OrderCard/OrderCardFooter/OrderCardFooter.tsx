@@ -1,7 +1,7 @@
 import { type FC, memo } from 'react'
 
 import { PRODUCT_IMAGE_FALLBACK } from '@constants/images'
-import type { OrderProductModel } from '@modules/Orders/models/OrderProduct'
+import type { OrderProductModel } from '@modules/Orders/screens/main/models/OrderProduct'
 import * as Footer from './OrderCardFooter.styled'
 
 const OrderCardFooter: FC<Props> = ({ products }) => (

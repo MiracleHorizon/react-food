@@ -1,12 +1,15 @@
-import { GetServerSidePropsContext, NextPage } from 'next'
+import type { GetServerSidePropsContext, NextPage } from 'next'
 
-import { ParsedUrlQueryHandler } from '@utils/ParsedUrlQueryHandler'
+import { Order, type OrderModel } from '@modules/Orders'
 import { ordersService } from '@api/OrdersService'
+import { useRefreshAuth } from '@hooks/useRefreshAuth'
+import { ParsedUrlQueryHandler } from '@utils/ParsedUrlQueryHandler'
 import { Routes } from '@router/Routes.enum'
-import type { OrderModel } from '@modules/Orders/models/Order'
 
-const OrderPage: NextPage<Props> = () => {
-  return <div></div>
+const OrderPage: NextPage<Props> = ({ order }) => {
+  useRefreshAuth()
+
+  return <Order order={order} />
 }
 
 export default OrderPage

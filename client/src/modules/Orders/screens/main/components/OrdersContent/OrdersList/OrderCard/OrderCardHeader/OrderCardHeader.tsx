@@ -1,10 +1,10 @@
 import { type FC, memo } from 'react'
 
 import { numberFormatter } from '@utils/NumberFormatter'
-import { getOrderStatusTitle } from '@modules/Orders/helpers/getOrderStatusTitle'
-import { getFormattedOrderDate } from '@modules/Orders/helpers/getFormattedOrderDate'
+import { getOrderStatusTitle } from '@modules/Orders/screens/main/helpers/getOrderStatusTitle'
+import { getFormattedOrderDate } from '@modules/Orders/screens/main/helpers/getFormattedOrderDate'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
-import type { OrderModel } from '@modules/Orders/models/Order'
+import type { OrderModel } from '@modules/Orders/screens/main/models/Order'
 import * as Header from './OrderCardHeader.styled'
 
 const OrderCardHeader: FC<Props> = ({

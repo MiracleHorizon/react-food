@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
-export const Root = styled.div<Props>`
+export const Content = styled.div<Props>`
   cursor: pointer;
   max-height: 140px;
   display: flex;
