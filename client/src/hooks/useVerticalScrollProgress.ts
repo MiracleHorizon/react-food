@@ -8,26 +8,40 @@ export const useVerticalScrollProgress = ({
   positions,
   ...options
 }: Parameters) => {
-  const { scrollYProgress } = useScroll(options)
-  const [isScrollOnTop, setIsScrollOnTop] = useState(true)
-  const [isScrollOnBottom, setIsScrollOnBottom] = useState(false)
+  const { scrollY, scrollYProgress } = useScroll(options)
+  const [isScrollOnTop, setIsScrollOnTop] = useState<boolean>(
+    scrollYProgress.get() <= 0
+  )
+  const [isScrollOnBottom, setIsScrollOnBottom] = useState<boolean>(
+    scrollYProgress.get() >= 1
+  )
 
   const handleVerticalScroll = useCallback(
     (latest: number): void => {
+      const scrollYValue = scrollY.get()
+
       if (positions.includes('top')) {
-        // TODO: Скорректировать
-        if (isScrollOnTop && latest === 1) return
-        if (latest > 0) setIsScrollOnTop(false)
-        if (latest === 0) setIsScrollOnTop(true)
-        if (latest === 1) setIsScrollOnTop(true)
+        if (latest > 0) {
+          setIsScrollOnTop(false)
+        }
+        if (latest <= 0) {
+          setIsScrollOnTop(true)
+        }
+        if (latest === 1 && scrollYValue === 0) {
+          setIsScrollOnTop(true)
+        }
       }
 
       if (positions.includes('bottom')) {
-        if (latest >= 1) setIsScrollOnBottom(true)
-        if (latest < 1) setIsScrollOnBottom(false)
+        if (latest >= 1) {
+          setIsScrollOnBottom(true)
+        }
+        if (latest < 1) {
+          setIsScrollOnBottom(false)
+        }
       }
     },
-    [isScrollOnTop, positions]
+    [positions, scrollY]
   )
 
   useMotionValueEvent(scrollYProgress, 'change', handleVerticalScroll)
