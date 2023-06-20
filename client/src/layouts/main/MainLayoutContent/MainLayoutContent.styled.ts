@@ -1,18 +1,17 @@
 import styled from '@emotion/styled'
 
 import CartSidebarComponent from './CartSidebar'
-import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 export const Root = styled.div`
   position: relative;
   width: 100%;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
   padding: 40px 55px 0 55px;
 
-  @media screen and (${maxDeviceWidth.laptopLg}) {
-    padding: 40px 40px 0 40px;
+  @media screen and (max-width: 1680px) {
+    padding: 40px 35px 0 35px;
   }
 
   @media screen and (max-width: 1240px) {

@@ -7,11 +7,6 @@ export const Root = styled.aside`
   min-width: 240px;
   width: 240px;
   margin-right: 32px;
-  padding-left: 6px;
-
-  @media screen and (max-width: 1240px) {
-    padding-left: 0;
-  }
 
   @media screen and (${maxDeviceWidth.laptop}) {
     min-width: 50px;
