@@ -1,5 +1,5 @@
 import { type FC, useCallback, useMemo } from 'react'
-import { RegisterOptions, useForm } from 'react-hook-form'
+import { type RegisterOptions, useForm } from 'react-hook-form'
 
 import { ButtonVariant } from '@ui/Button'
 import * as Form from './SignupForm.styled'

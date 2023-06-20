@@ -2,7 +2,7 @@ import MediaQuery from 'react-responsive'
 import type { FC } from 'react'
 
 import OrdersList from './OrdersList'
-import { OrderModel } from '@modules/Orders/screens/main/models/Order'
+import type { OrderModel } from '@modules/Orders'
 import { breakpoints } from '@styles/responsiveness/breakpoints'
 import * as Content from './OrdersContent.styled'
 

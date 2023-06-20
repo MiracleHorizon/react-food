@@ -2,7 +2,7 @@ import { type FC, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 
 import { useOrdersStore } from '@modules/Orders/screens/main/store'
-import type { OrderModel } from '@modules/Orders/screens/main/models/Order'
+import type { OrderModel } from '@modules/Orders'
 import { Layout } from './Orders.styled'
 
 // TODO: Loader

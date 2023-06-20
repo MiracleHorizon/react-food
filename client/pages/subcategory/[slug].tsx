@@ -1,5 +1,5 @@
-import { type FC, useEffect } from 'react'
-import type { GetServerSidePropsContext } from 'next'
+import { useEffect } from 'react'
+import type { GetServerSidePropsContext, NextPage } from 'next'
 
 import ProductSubcategory, {
   productSubcategoryService
@@ -13,7 +13,7 @@ import { Routes } from '@router/Routes.enum'
 import type { NavigationCategory } from '@models/NavigationCategory'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 
-const ProductSubcategoryPage: FC<Props> = ({
+const ProductSubcategoryPage: NextPage<Props> = ({
   navigationCategories,
   ...props
 }) => {
@@ -57,7 +57,7 @@ export const getServerSideProps = async ({
     return {
       redirect: {
         destination: Routes.HOME,
-        permanent: true
+        permanent: false
       }
     }
   }

@@ -1,6 +1,6 @@
 import { type FC, memo } from 'react'
 
-import type { OrderModel } from '@modules/Orders/screens/main/models/Order'
+import type { OrderModel } from '@modules/Orders'
 import { SectionTitle } from '../SelectedOrder.styled'
 import * as Section from './SelectedOrderAddress.styled'
 

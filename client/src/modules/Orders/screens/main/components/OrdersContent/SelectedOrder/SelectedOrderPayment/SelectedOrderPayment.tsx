@@ -2,7 +2,7 @@ import { type FC, useMemo } from 'react'
 
 import { numberFormatter } from '@utils/NumberFormatter'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
-import type { OrderModel } from '@modules/Orders/screens/main/models/Order'
+import type { OrderModel } from '@modules/Orders'
 import { SectionTitle } from '../SelectedOrder.styled'
 import * as Payment from './SelectedOrderPayment.styled'
 

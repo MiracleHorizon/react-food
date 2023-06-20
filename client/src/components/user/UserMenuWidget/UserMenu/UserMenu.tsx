@@ -53,7 +53,7 @@ const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
         }
       }
     ]
-  }, [deinitializeCart, router, signout])
+  }, [deinitializeCart, openPersonalDataModal, router, signout])
 
   return (
     <Dialog
