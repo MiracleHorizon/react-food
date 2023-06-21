@@ -7,7 +7,7 @@ import { SearchService } from './search.service'
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
-  @Get('search')
+  @Get('products')
   public searchProducts(@Query('query') query: string): Promise<Product[]> {
     return this.searchService.searchProducts(query)
   }
