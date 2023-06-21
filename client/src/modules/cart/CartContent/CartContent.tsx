@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { useCallback, useEffect, useState } from 'react'
 
-import { useMakeOrder } from '@hooks/useMakeOrder'
+import { useMakeOrder } from '@stores/hooks/useMakeOrder'
 import { useOrderStore } from '@stores/orderStore'
 import * as Content from './CartContent.styled'
 

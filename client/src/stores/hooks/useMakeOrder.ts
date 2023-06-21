@@ -1,11 +1,11 @@
 import { useCallback } from 'react'
 import { useRouter } from 'next/router'
 
+import { ordersService } from '@api/OrdersService'
 import { useCartStore } from '@stores/cartStore'
 import { useUserStore } from '@stores/userStore'
 import { useCutleryStore } from '@stores/cutleryStore'
-import { ordersService } from '@api/OrdersService'
-import { useResetOrder } from '@hooks/useResetOrder'
+import { useResetOrder } from '@stores/hooks/useResetOrder'
 import { useSelectOrderCostDetails } from '@stores/hooks/useSelectOrderCostDetails'
 import { Routes } from '@router/Routes.enum'
 import { SERVICE_FEE } from '@constants/payment'
