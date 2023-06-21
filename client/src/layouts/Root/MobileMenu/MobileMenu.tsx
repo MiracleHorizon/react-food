@@ -1,8 +1,11 @@
+import MediaQuery from 'react-responsive'
+
 import MobileFooterMenuItem from './MobileMenuItem'
 import { Routes } from '@router/Routes.enum'
 import cartSvg from '@public/svg/cart_2.svg'
 import listSvg from '@public/svg/list.svg'
 import cutlerySvg from '@public/svg/cutlery.svg'
+import { breakpoints } from '@styles/responsiveness/breakpoints'
 import * as Menu from './MobileMenu.styled'
 
 const menuItems = [
@@ -12,15 +15,17 @@ const menuItems = [
 ]
 
 const MobileMenu = () => (
-  <Menu.Root>
-    <Menu.Nav>
-      <Menu.List>
-        {menuItems.map(item => (
-          <MobileFooterMenuItem key={item.href} {...item} />
-        ))}
-      </Menu.List>
-    </Menu.Nav>
-  </Menu.Root>
+  <MediaQuery maxWidth={breakpoints.tablet}>
+    <Menu.Root>
+      <Menu.Nav>
+        <Menu.List>
+          {menuItems.map(item => (
+            <MobileFooterMenuItem key={item.href} {...item} />
+          ))}
+        </Menu.List>
+      </Menu.Nav>
+    </Menu.Root>
+  </MediaQuery>
 )
 
 export default MobileMenu

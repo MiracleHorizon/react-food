@@ -1,12 +1,17 @@
-import { type FC, memo, useCallback, useState } from 'react'
+import { type FC, memo, useCallback } from 'react'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 
-import ClearCartModal from '../ClearCartModal'
+import { useToggle } from '@hooks/useToggle'
 import { useCartStore } from '@stores/cartStore'
 import { Routes } from '@router/Routes.enum'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import trashSvg from '@public/svg/trash.svg'
 import * as Label from './ClearCartLabel.styled'
+
+const ClearCartModal = dynamic(import('@components/cart/ClearCartModal'), {
+  ssr: false
+})
 
 const ClearCartLabel: FC<Props> = ({
   title,
@@ -14,25 +19,23 @@ const ClearCartLabel: FC<Props> = ({
   withConfirm,
   className
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const clearCart = useCartStore(state => state.clearCart)
   const router = useRouter()
-
-  const handleOpenModal = () => setIsModalOpen(true)
-
-  const handleCloseModal = () => setIsModalOpen(false)
+  const { isOpen, open, close } = useToggle(false)
+  const clearCart = useCartStore(state => state.clearCart)
 
   const handleClearCart = useCallback(async () => {
     await clearCart()
-    if (router.asPath === Routes.CART) router.push(Routes.HOME)
-    handleCloseModal
-  }, [clearCart, router])
+    if (router.asPath === Routes.CART) {
+      await router.push(Routes.HOME)
+    }
+    close()
+  }, [clearCart, close, router])
 
   return (
     <>
       <Label.Root
         className={className}
-        onClick={withConfirm ? handleOpenModal : handleClearCart}
+        onClick={withConfirm ? open : handleClearCart}
       >
         {withImage && (
           <Label.Image src={trashSvg} height={24} width={24} alt='Очистить' />
@@ -40,8 +43,8 @@ const ClearCartLabel: FC<Props> = ({
         <span>{title}</span>
       </Label.Root>
       <ClearCartModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
+        isOpen={isOpen}
+        onClose={close}
         handleClearCart={handleClearCart}
       />
     </>
