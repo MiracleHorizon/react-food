@@ -15,6 +15,9 @@ const nextConfig = {
       'avatars.mds.yandex.net',
       'yastatic.net'
     ]
+  },
+  compiler: {
+    emotion: true
   }
 }
 
