@@ -4,7 +4,6 @@ import type { GetServerSidePropsContext, NextPage } from 'next'
 import ProductSubcategory, {
   productSubcategoryService
 } from '@modules/ProductSubcategory'
-import { useRefreshAuth } from '@hooks/useRefreshAuth'
 import { useNavigationStore } from '@stores/navigationStore'
 import { environmentService } from '@api/EnvironmentService'
 import { productCategoriesService } from '@api/ProductCategoriesService'
@@ -18,8 +17,6 @@ const ProductSubcategoryPage: NextPage<Props> = ({
   ...props
 }) => {
   const setNavigation = useNavigationStore(state => state.setCategories)
-
-  useRefreshAuth()
 
   useEffect(() => {
     setNavigation(navigationCategories)

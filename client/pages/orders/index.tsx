@@ -2,16 +2,11 @@ import axios from 'axios'
 import type { GetServerSidePropsContext, NextPage } from 'next'
 
 import { type OrderModel, Orders } from '@modules/Orders'
-import { useRefreshAuth } from '@hooks/useRefreshAuth'
 import { Routes } from '@router/Routes.enum'
 import { SERVER_API } from '@constants/env'
 import { ACCESS_TOKEN_COOKIE_NAME } from '@constants/cookie'
 
-const OrdersPage: NextPage<Props> = ({ orders }) => {
-  useRefreshAuth()
-
-  return <Orders orders={orders} />
-}
+const OrdersPage: NextPage<Props> = ({ orders }) => <Orders orders={orders} />
 
 export default OrdersPage
 

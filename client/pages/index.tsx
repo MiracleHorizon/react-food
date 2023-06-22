@@ -1,9 +1,7 @@
 import { useEffect } from 'react'
-import type { NextPage } from 'next'
+import type { GetServerSidePropsContext, NextPage } from 'next'
 
 import Home from '@modules/Home'
-import { Routes } from '@router/Routes.enum'
-import { useRefreshAuth } from '@hooks/useRefreshAuth'
 import { useNavigationStore } from '@stores/navigationStore'
 import { environmentService } from '@api/EnvironmentService'
 import { productCategoriesService } from '@api/ProductCategoriesService'
@@ -16,8 +14,6 @@ const HomePage: NextPage<Props> = ({
 }) => {
   const setNavigation = useNavigationStore(state => state.setCategories)
 
-  useRefreshAuth()
-
   useEffect(() => {
     setNavigation(navigationCategories)
   }, [navigationCategories, setNavigation])
@@ -27,10 +23,16 @@ const HomePage: NextPage<Props> = ({
 
 export default HomePage
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({
+  res
+}: GetServerSidePropsContext) => {
+  res.setHeader(
+    'Cache-Control',
+    `public, s-maxage=10, stale-while-revalidate=${60 * 10 - 1}`
+  )
+
   try {
-    const navigationCategories =
-      await environmentService.fetchNavigationCategories()
+    const navigation = await environmentService.fetchNavigationCategories()
     const productCategories = await productCategoriesService.fetchAllCategories(
       {
         skip: 0,
@@ -40,15 +42,15 @@ export const getServerSideProps = async () => {
 
     return {
       props: {
-        navigationCategories,
+        navigationCategories: navigation,
         productCategories
       }
     }
   } catch {
     return {
-      redirect: {
-        destination: Routes.NOT_FOUND,
-        permanent: false
+      props: {
+        navigationCategories: [],
+        productCategories: []
       }
     }
   }

@@ -3,7 +3,6 @@ import type { GetServerSidePropsContext, NextPage } from 'next'
 
 import ProductCategory from '@modules/ProductCategory'
 import { useNavigationStore } from '@stores/navigationStore'
-import { useRefreshAuth } from '@hooks/useRefreshAuth'
 import { environmentService } from '@api/EnvironmentService'
 import { productCategoriesService } from '@api/ProductCategoriesService'
 import { Routes } from '@router/Routes.enum'
@@ -17,11 +16,10 @@ const ProductCategoryPage: NextPage<Props> = ({
 }) => {
   const setNavigation = useNavigationStore(state => state.setCategories)
 
-  useRefreshAuth()
-
   useEffect(() => {
     setNavigation(navigationCategories)
   }, [navigationCategories, setNavigation])
+
   return <ProductCategory {...productCategory} />
 }
 
@@ -50,7 +48,7 @@ export const getServerSideProps = async ({
     return {
       redirect: {
         destination: Routes.HOME,
-        permanent: true
+        permanent: false
       }
     }
   }
