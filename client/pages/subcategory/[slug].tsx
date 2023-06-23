@@ -1,29 +1,16 @@
-import { useEffect } from 'react'
 import type { GetServerSidePropsContext, NextPage } from 'next'
 
 import ProductSubcategory, {
   productSubcategoryService
 } from '@modules/ProductSubcategory'
-import { useNavigationStore } from '@stores/navigationStore'
-import { environmentService } from '@api/EnvironmentService'
 import { productCategoriesService } from '@api/ProductCategoriesService'
 import { ParsedUrlQueryHandler } from '@utils/ParsedUrlQueryHandler'
 import { Routes } from '@router/Routes.enum'
-import type { NavigationCategory } from '@models/NavigationCategory'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 
-const ProductSubcategoryPage: NextPage<Props> = ({
-  navigationCategories,
-  ...props
-}) => {
-  const setNavigation = useNavigationStore(state => state.setCategories)
-
-  useEffect(() => {
-    setNavigation(navigationCategories)
-  }, [navigationCategories, setNavigation])
-
-  return <ProductSubcategory {...props} />
-}
+const ProductSubcategoryPage: NextPage<Props> = props => (
+  <ProductSubcategory {...props} />
+)
 
 export default ProductSubcategoryPage
 
@@ -40,12 +27,9 @@ export const getServerSideProps = async ({
     const category = await productCategoriesService.fetchOneCategory(
       subcategory.categoryId
     )
-    const navigationCategories =
-      await environmentService.fetchNavigationCategories()
 
     return {
       props: {
-        navigationCategories,
         productSubcategory: subcategory,
         categoryTitle: category.title
       }
@@ -61,7 +45,6 @@ export const getServerSideProps = async ({
 }
 
 interface Props {
-  navigationCategories: NavigationCategory[]
   productSubcategory: ProductSubcategoryModel
   categoryTitle: string
 }

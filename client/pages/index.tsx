@@ -1,25 +1,10 @@
-import { useEffect } from 'react'
 import type { GetServerSidePropsContext, NextPage } from 'next'
 
 import Home from '@modules/Home'
-import { useNavigationStore } from '@stores/navigationStore'
-import { environmentService } from '@api/EnvironmentService'
 import { productCategoriesService } from '@api/ProductCategoriesService'
-import type { NavigationCategory } from '@models/NavigationCategory'
 import type { ShowcaseProductCategoryModel } from '@models/productCategory/ShowcaseProductCategory'
 
-const HomePage: NextPage<Props> = ({
-  navigationCategories,
-  productCategories
-}) => {
-  const setNavigation = useNavigationStore(state => state.setCategories)
-
-  useEffect(() => {
-    setNavigation(navigationCategories)
-  }, [navigationCategories, setNavigation])
-
-  return <Home productCategories={productCategories} />
-}
+const HomePage: NextPage<Props> = props => <Home {...props} />
 
 export default HomePage
 
@@ -32,7 +17,6 @@ export const getServerSideProps = async ({
   )
 
   try {
-    const navigation = await environmentService.fetchNavigationCategories()
     const productCategories = await productCategoriesService.fetchAllCategories(
       {
         skip: 0,
@@ -42,14 +26,12 @@ export const getServerSideProps = async ({
 
     return {
       props: {
-        navigationCategories: navigation,
         productCategories
       }
     }
   } catch {
     return {
       props: {
-        navigationCategories: [],
         productCategories: []
       }
     }
@@ -57,6 +39,5 @@ export const getServerSideProps = async ({
 }
 
 interface Props {
-  navigationCategories: NavigationCategory[]
   productCategories: ShowcaseProductCategoryModel[]
 }

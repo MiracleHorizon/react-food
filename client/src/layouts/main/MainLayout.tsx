@@ -3,6 +3,7 @@ import { type FC } from 'react'
 import RootLayout from '@layouts/Root'
 import LayoutHeader from './MainLayoutHeader'
 import LayoutContent from './MainLayoutContent'
+import { useFetchNavigation } from '@hooks/useFetchNavigation'
 import type { LayoutProps } from '@app-types/LayoutProps'
 import * as Layout from './MainLayout.styled'
 
@@ -11,18 +12,22 @@ const MainLayout: FC<Props> = ({
   withSidePanels,
   className,
   ...seoData
-}) => (
-  <RootLayout {...seoData}>
-    <Layout.Root>
-      <Layout.Wrapper>
-        <LayoutHeader />
-        <LayoutContent withSidePanels={withSidePanels} className={className}>
-          {children}
-        </LayoutContent>
-      </Layout.Wrapper>
-    </Layout.Root>
-  </RootLayout>
-)
+}) => {
+  useFetchNavigation()
+
+  return (
+    <RootLayout {...seoData}>
+      <Layout.Root>
+        <Layout.Wrapper>
+          <LayoutHeader />
+          <LayoutContent withSidePanels={withSidePanels} className={className}>
+            {children}
+          </LayoutContent>
+        </Layout.Wrapper>
+      </Layout.Root>
+    </RootLayout>
+  )
+}
 
 export default MainLayout
 
