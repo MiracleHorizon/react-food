@@ -1,5 +1,5 @@
-import Signup from '@modules/Auth/screens/Signup'
+import { SignupScreen } from '@modules/Auth'
 
-const SignupPage = () => <Signup />
+const SignupPage = () => <SignupScreen />
 
 export default SignupPage

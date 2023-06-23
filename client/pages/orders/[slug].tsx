@@ -5,7 +5,7 @@ import { ordersService } from '@api/OrdersService'
 import { ParsedUrlQueryHandler } from '@utils/ParsedUrlQueryHandler'
 import { Routes } from '@router/Routes.enum'
 
-const OrderPage: NextPage<Props> = ({ order }) => <Order order={order} />
+const OrderPage: NextPage<Props> = props => <Order {...props} />
 
 export default OrderPage
 

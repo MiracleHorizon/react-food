@@ -6,7 +6,7 @@ import { Routes } from '@router/Routes.enum'
 import { SERVER_API } from '@constants/env'
 import { ACCESS_TOKEN_COOKIE_NAME } from '@constants/cookie'
 
-const OrdersPage: NextPage<Props> = ({ orders }) => <Orders orders={orders} />
+const OrdersPage: NextPage<Props> = props => <Orders {...props} />
 
 export default OrdersPage
 
