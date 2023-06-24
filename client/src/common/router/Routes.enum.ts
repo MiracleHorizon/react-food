@@ -7,5 +7,6 @@ export enum Routes {
   SIGNUP = '/auth/signup',
   SIGNIN = '/auth/signin',
   NOT_FOUND = '/404',
-  DASHBOARD = '/dashboard'
+  DASHBOARD = '/dashboard',
+  SEARCH = '/search'
 }
