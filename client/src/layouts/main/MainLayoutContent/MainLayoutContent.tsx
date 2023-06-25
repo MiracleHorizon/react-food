@@ -11,7 +11,7 @@ const MainLayoutContent: FC<Props> = ({
 }) => (
   <Content.Root className={className}>
     {withSidePanels && <LeftSidebar />}
-    {children}
+    <Content.Container>{children}</Content.Container>
     {withSidePanels && <Content.CartSidebar />}
   </Content.Root>
 )

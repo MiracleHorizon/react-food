@@ -28,6 +28,14 @@ export const Root = styled.div`
   }
 `
 
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-bottom: 20px;
+`
+
 export const CartSidebar = styled(CartSidebarComponent)`
   @media screen and (max-width: 1240px) {
     display: none;

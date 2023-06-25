@@ -10,6 +10,10 @@ const rootBoxShadow = 'box-shadow: 0 8px 20px rgb(117 115 111 / 20%)'
 
 export const Root = styled(TopFixedElement.withComponent('header'))<RootProps>`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   height: ${APP_HEADER_HEIGHT}px;
   padding: 0 24px;
   background: ${colors.gray['2']};
@@ -30,6 +34,7 @@ export const Root = styled(TopFixedElement.withComponent('header'))<RootProps>`
 `
 
 export const Content = styled.div`
+  max-width: 1920px;
   width: 100%;
   height: 100%;
   display: flex;

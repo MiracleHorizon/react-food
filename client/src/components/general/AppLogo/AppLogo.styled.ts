@@ -4,6 +4,7 @@ import NextLink from 'next/link'
 import { colors } from '@styles/colors'
 
 export const Root = styled.div`
+  min-width: 310px;
   display: flex;
   align-items: center;
   justify-content: flex-start;

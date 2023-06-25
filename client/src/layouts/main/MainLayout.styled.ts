@@ -4,11 +4,16 @@ import { APP_HEADER_HEIGHT, APP_HEADER_SMALL_HEIGHT } from '@styles/constants'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 export const Root = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 300px;
   width: 100%;
 `
 
 export const Wrapper = styled.div`
+  width: 100%;
+  max-width: 1920px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
