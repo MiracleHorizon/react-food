@@ -1,8 +1,20 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Req,
+  UseGuards
+} from '@nestjs/common'
+import type { Request } from 'express'
 
+import { JwtGuard } from '@common/guards'
 import { CartService } from './cart.service'
 import type { Cart, CartProduct } from '@prisma/client'
 import type { AddProductDto } from './dto/AddProduct.dto'
+import type { JwtPayload } from '@resources/auth/models'
 
 @Controller('cart')
 export class CartController {
@@ -13,9 +25,11 @@ export class CartController {
     return this.cartService.createOne(userId)
   }
 
-  @Get(':userId')
-  public findOneByUser(@Param('userId') userId: string): Promise<Cart> {
-    return this.cartService.findOneByUser(userId)
+  @UseGuards(JwtGuard)
+  @Get('user')
+  public findOneByUser(@Req() req: Request): Promise<Cart> {
+    const userPayload = req.user as JwtPayload
+    return this.cartService.findOneByUser(userPayload.sub)
   }
 
   @Post(':id/add_product')

@@ -94,9 +94,13 @@ export class CartService {
       throw new BadRequestException('Product already in this cart')
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // @ts-ignore
+    const { description, subcategoryId, ...data } = dto
+
     return this.prisma.cartProduct.create({
       data: {
-        ...dto,
+        ...data,
         productReferenceId: dto.productReferenceId,
         cartId
       }
