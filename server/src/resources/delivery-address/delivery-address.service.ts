@@ -1,18 +1,19 @@
-import { Injectable } from '@nestjs/common'
-import type { Response } from 'express'
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException
+} from '@nestjs/common'
 import type { DeliveryAddress } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
 import type { CreateDeliveryAddressArgs } from '@resources/delivery-address/models/CreateDeliveryAddressArgs'
 
-// TODO: Проверка на доступ пользователя
 @Injectable()
 export class DeliveryAddressService {
   constructor(private readonly prisma: PrismaService) {}
 
   public async create({
     userId,
-    res,
     ...dto
   }: CreateDeliveryAddressArgs): Promise<void> {
     await this.prisma.deliveryAddress.create({
@@ -21,46 +22,37 @@ export class DeliveryAddressService {
         userId
       }
     })
-
-    res.send({
-      message: 'Delivery address successfully created'
-    })
   }
 
   public async findAllUserAddresses(
     userId: string
   ): Promise<DeliveryAddress[]> {
-    return await this.prisma.deliveryAddress.findMany({
+    return this.prisma.deliveryAddress.findMany({
       where: {
         userId
       }
     })
   }
 
-  public async removeOne(addressId: string, res: Response): Promise<void> {
-    await this.prisma.deliveryAddress.delete({
+  public async removeOne(addressId: string, userId: string): Promise<void> {
+    const address = await this.prisma.deliveryAddress.findUnique({
       where: {
         id: addressId
       }
     })
 
-    res.send({
-      message: `Delivery address with id: ${addressId} successfully removed`
-    })
-  }
+    if (!address) {
+      throw new NotFoundException('Address is not found')
+    }
 
-  public async removeAllUserAddresses(
-    userId: string,
-    res: Response
-  ): Promise<void> {
-    await this.prisma.deliveryAddress.deleteMany({
+    if (address.userId !== userId) {
+      throw new ForbiddenException('Access denied')
+    }
+
+    await this.prisma.deliveryAddress.delete({
       where: {
-        userId
+        id: addressId
       }
-    })
-
-    res.send({
-      message: `All delivery addresses for user with id: ${userId} successfully removed`
     })
   }
 }

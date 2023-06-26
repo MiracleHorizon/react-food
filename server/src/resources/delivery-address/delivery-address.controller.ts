@@ -6,11 +6,9 @@ import {
   Param,
   Post,
   Req,
-  Res,
   UseGuards
 } from '@nestjs/common'
-import type { Response } from 'express'
-import { Request } from 'express'
+import type { Request } from 'express'
 
 import { JwtGuard } from '@common/guards'
 import { DeliveryAddressService } from './delivery-address.service'
@@ -26,37 +24,29 @@ export class DeliveryAddressController {
   @Post()
   public create(
     @Body() dto: CreateDeliveryAddressDto,
-    @Req() req: Request,
-    @Res() res: Response
+    @Req() req: Request
   ): Promise<void> {
     const userPayload = req.user as JwtPayload
     return this.addressService.create({
       userId: userPayload.sub,
-      res,
       ...dto
     })
   }
 
-  @Get(':userId/all')
-  public findAllUserAddresses(
-    @Param('userId') userId: string
-  ): Promise<DeliveryAddress[]> {
-    return this.addressService.findAllUserAddresses(userId)
+  @UseGuards(JwtGuard)
+  @Get('all/user')
+  public findAllUserAddresses(@Req() req: Request): Promise<DeliveryAddress[]> {
+    const userPayload = req.user as JwtPayload
+    return this.addressService.findAllUserAddresses(userPayload.sub)
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
   public removeOne(
     @Param('id') id: string,
-    @Res() res: Response
+    @Req() req: Request
   ): Promise<void> {
-    return this.addressService.removeOne(id, res)
-  }
-
-  @Delete(':userId/all')
-  public removeAllUserAddresses(
-    @Param('userId') userId: string,
-    @Res() res: Response
-  ): Promise<void> {
-    return this.addressService.removeAllUserAddresses(userId, res)
+    const userPayload = req.user as JwtPayload
+    return this.addressService.removeOne(id, userPayload.sub)
   }
 }

@@ -1,6 +1,4 @@
-import { IsInt, IsNotEmpty, IsOptional, IsString, Min } from 'class-validator'
-
-import { validationMessage } from '@utils/ValidationMessage'
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator'
 
 export class CreateDeliveryAddressDto {
   @IsString()
@@ -12,31 +10,32 @@ export class CreateDeliveryAddressDto {
   public street: string
 
   @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  public house: string
+  public house: string | number
 
-  @IsInt()
+  @IsOptional()
+  @IsString()
   @IsNotEmpty()
-  @Min(1, {
-    message: ({ value }) => validationMessage.getMinValueMessage(value)
-  })
-  public entrance: number
+  public office?: string
 
-  @IsInt()
+  @IsOptional()
+  @IsString()
   @IsNotEmpty()
-  @Min(-1, {
-    message: ({ value }) => validationMessage.getMinValueMessage(value)
-  })
-  public floor: number
+  public floor?: string
 
-  @IsInt()
+  @IsOptional()
+  @IsString()
   @IsNotEmpty()
-  @Min(0, {
-    message: ({ value }) => validationMessage.getMinValueMessage(value)
-  })
-  public flatOrOffice: number
+  public doorcode?: string
 
-  @IsInt()
-  @IsOptional(undefined)
-  public intercom?: number
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  public entrance?: string
+
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  public commentary?: string
 }
