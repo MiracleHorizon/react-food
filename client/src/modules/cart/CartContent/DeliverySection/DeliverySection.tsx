@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import UserAddressWidget from '@components/user/UserAddressWidget'
-import DeliveryAddressDetailsForm from './DeliveryAddressForm'
+import DeliveryAddressDetailsFormWrapper from './DeliveryAddressDetailsFormWrapper'
 import { useUserStore } from '@stores/userStore'
 import * as Section from './DeliverySection.styled'
 
@@ -16,7 +16,7 @@ const DeliverySection: FC<Props> = props => {
       <UserAddressWidget />
       {!isAddressesEmpty && (
         <Section.FormContainer>
-          <DeliveryAddressDetailsForm {...props} />
+          <DeliveryAddressDetailsFormWrapper {...props} />
         </Section.FormContainer>
       )}
     </Section.Root>

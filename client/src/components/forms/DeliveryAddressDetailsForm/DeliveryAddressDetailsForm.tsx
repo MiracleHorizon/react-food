@@ -1,39 +1,28 @@
-import { useForm } from 'react-hook-form'
-import { type FC, type FormEvent, useEffect } from 'react'
+import type {
+  UseFormHandleSubmit,
+  UseFormRegister,
+  UseFormSetFocus,
+  UseFormWatch
+} from 'react-hook-form'
+import type { FC, FormEvent } from 'react'
 
-import { useOrderStore } from '@stores/orderStore'
 import type { DeliveryAddressDetailsForOrder } from '@models/user/DeliveryAddressDetailsForOrder'
 import * as Form from './DeliveryAddressDetailsForm.styled'
 
-const DeliveryAddressDetailsForm: FC<Props> = ({ isOrdering, endOrdering }) => {
-  const setDeliveryAddressDetails = useOrderStore(
-    state => state.setDeliveryAddressDetails
-  )
+const DeliveryAddressDetailsForm: FC<Props> = ({
+  register,
+  setFocus,
+  watch,
+  submitActions
+}) => {
+  const handleSubmit = (e: FormEvent) => {
+    if (submitActions) {
+      const { handler, onSubmit } = submitActions
+      return handler(onSubmit)
+    }
 
-  const { register, watch, setFocus, getValues, formState } =
-    useForm<DeliveryAddressDetailsForOrder>({
-      defaultValues: {
-        office: '',
-        floor: '',
-        doorcode: '',
-        entrance: '',
-        commentary: ''
-      }
-    })
-
-  const handleSubmit = (e: FormEvent) => e.preventDefault()
-
-  useEffect(() => {
-    if (!isOrdering) return
-
-    formState.isValid ? setDeliveryAddressDetails(getValues()) : endOrdering()
-  }, [
-    setDeliveryAddressDetails,
-    formState.isValid,
-    getValues,
-    isOrdering,
-    endOrdering
-  ])
+    return e.preventDefault
+  }
 
   return (
     <Form.Root onSubmit={handleSubmit}>
@@ -86,6 +75,11 @@ const DeliveryAddressDetailsForm: FC<Props> = ({ isOrdering, endOrdering }) => {
 export default DeliveryAddressDetailsForm
 
 interface Props {
-  isOrdering: boolean
-  endOrdering: VoidFunction
+  setFocus: UseFormSetFocus<DeliveryAddressDetailsForOrder>
+  watch: UseFormWatch<DeliveryAddressDetailsForOrder>
+  register: UseFormRegister<DeliveryAddressDetailsForOrder>
+  submitActions?: {
+    handler: UseFormHandleSubmit<DeliveryAddressDetailsForOrder>
+    onSubmit: (data: DeliveryAddressDetailsForOrder) => void
+  }
 }
