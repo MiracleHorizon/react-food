@@ -1,4 +1,3 @@
-import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import type { FC } from 'react'
 
@@ -12,10 +11,10 @@ const App: FC<AppProps> = ({
   useRefreshAuth()
 
   return (
-    <SessionProvider session={session}>
+    <>
       <GlobalStyles />
       <Component {...pageProps} />
-    </SessionProvider>
+    </>
   )
 }
 
