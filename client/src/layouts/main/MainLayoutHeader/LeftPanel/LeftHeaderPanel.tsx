@@ -9,9 +9,9 @@ const LeftHeaderPanel = () => {
   return (
     <Panel.Root>
       <Panel.Logo />
-      {(asPath === Routes.HOME ||
-        asPath === Routes.CATEGORY ||
-        asPath === Routes.SUBCATEGORY) && <Panel.Search />}
+      {(asPath === Routes.HOME || asPath === Routes.CATEGORY) && (
+        <Panel.Search />
+      )}
     </Panel.Root>
   )
 }

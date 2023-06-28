@@ -7,7 +7,8 @@ export const ProductSubcategorySchema = z.object({
   title: z.string(),
   description: z.string(),
   products: z.array(ShowcaseProductSchema),
-  categoryId: z.string().cuid()
+  categoryId: z.string().cuid(),
+  categoryTitle: z.string()
 })
 
 export type ProductSubcategoryModel = z.infer<typeof ProductSubcategorySchema>

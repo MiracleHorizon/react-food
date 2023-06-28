@@ -7,10 +7,7 @@ import { getKeywordsFromProducts } from '@helpers/getKeywordsFromProducts'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 import { Root } from './ProductSubcategory.styled'
 
-const ProductSubcategory: FC<Props> = ({
-  productSubcategory,
-  categoryTitle
-}) => {
+const ProductSubcategory: FC<ProductSubcategoryModel> = productSubcategory => {
   const keywords = useMemo(() => {
     return getKeywordsFromProducts(productSubcategory.products)
   }, [productSubcategory.products])
@@ -23,10 +20,7 @@ const ProductSubcategory: FC<Props> = ({
       withSidePanels
     >
       <Root>
-        <ProductSubcategoryHeader
-          {...productSubcategory}
-          categoryTitle={categoryTitle}
-        />
+        <ProductSubcategoryHeader {...productSubcategory} />
         <ProductsGrid products={productSubcategory.products} />
       </Root>
     </MainLayout>
@@ -34,8 +28,3 @@ const ProductSubcategory: FC<Props> = ({
 }
 
 export default ProductSubcategory
-
-interface Props {
-  productSubcategory: ProductSubcategoryModel
-  categoryTitle: string
-}

@@ -35,6 +35,7 @@ const ProductSubcategoryHeader: FC<Props> = ({
 
 export default ProductSubcategoryHeader
 
-interface Props extends Pick<ProductSubcategoryModel, 'categoryId' | 'title'> {
-  categoryTitle: string
-}
+type Props = Pick<
+  ProductSubcategoryModel,
+  'title' | 'categoryId' | 'categoryTitle'
+>

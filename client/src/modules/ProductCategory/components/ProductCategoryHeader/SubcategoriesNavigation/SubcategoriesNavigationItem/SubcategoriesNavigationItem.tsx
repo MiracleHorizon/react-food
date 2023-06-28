@@ -9,7 +9,7 @@ const SubcategoriesNavigationItem: FC<ProductSubcategoryModel> = ({
   title
 }) => (
   <Item.Root>
-    <Item.Link href={`${Routes.SUBCATEGORY}/${id}`}>{title}</Item.Link>
+    <Item.Link href={`${Routes.CATEGORY}?subcategory=${id}`}>{title}</Item.Link>
   </Item.Root>
 )
 

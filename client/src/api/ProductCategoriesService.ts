@@ -39,5 +39,5 @@ class ProductCategoriesService extends BaseService {
 }
 
 export const productCategoriesService = new ProductCategoriesService(
-  'product_category'
+  'product_categories'
 )

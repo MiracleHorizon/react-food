@@ -11,7 +11,9 @@ const ProductSubcategorySection: FC<ProductSubcategoryModel> = ({
   products
 }) => (
   <Section.Root>
-    <Section.Title href={`${Routes.SUBCATEGORY}/${id}`}>{title}</Section.Title>
+    <Section.Title href={`${Routes.CATEGORY}?subcategory=${id}`}>
+      {title}
+    </Section.Title>
     <ProductsGrid products={products} />
   </Section.Root>
 )
