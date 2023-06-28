@@ -20,11 +20,6 @@ import type { JwtPayload } from '@resources/auth/models'
 export class CartController {
   constructor(private readonly cartService: CartService) {}
 
-  @Post(':userId')
-  public createOne(@Param('userId') userId: string): Promise<Cart> {
-    return this.cartService.createOne(userId)
-  }
-
   @UseGuards(JwtGuard)
   @Get('user')
   public findOneByUser(@Req() req: Request): Promise<Cart> {
@@ -32,40 +27,60 @@ export class CartController {
     return this.cartService.findOneByUser(userPayload.sub)
   }
 
+  @UseGuards(JwtGuard)
   @Post(':id/add_product')
   public addProduct(
     @Param('id') id: string,
+    @Req() req: Request,
     @Body() dto: AddProductDto
   ): Promise<CartProduct> {
-    return this.cartService.addProduct(id, dto)
+    const userPayload = req.user as JwtPayload
+    return this.cartService.addProduct({
+      cartId: id,
+      userId: userPayload.sub,
+      dto
+    })
   }
 
+  @UseGuards(JwtGuard)
   @Patch(':cartId/increment/:productId')
   public incrementProductCount(
     @Param('cartId') cartId: string,
-    @Param('productId') productId: string
+    @Param('productId') productId: string,
+    @Req() req: Request
   ) {
+    const userPayload = req.user as JwtPayload
     return this.cartService.changeProductCountInCart({
       cartId,
+      userId: userPayload.sub,
       productId,
       dest: 'increment'
     })
   }
 
+  @UseGuards(JwtGuard)
   @Patch(':cartId/decrement/:productId')
   public decrementProductCount(
     @Param('cartId') cartId: string,
-    @Param('productId') productId: string
+    @Param('productId') productId: string,
+    @Req() req: Request
   ): Promise<void> {
+    const userPayload = req.user as JwtPayload
     return this.cartService.changeProductCountInCart({
       cartId,
+      userId: userPayload.sub,
       productId,
       dest: 'decrement'
     })
   }
 
+  @UseGuards(JwtGuard)
   @Patch(':id/clear')
-  public clearCart(@Param('id') id: string): Promise<void> {
-    return this.cartService.clearCart(id)
+  public clearCart(
+    @Param('id') id: string,
+    @Req() req: Request
+  ): Promise<void> {
+    const userPayload = req.user as JwtPayload
+    return this.cartService.clearCart(id, userPayload.sub)
   }
 }

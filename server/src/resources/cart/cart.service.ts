@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   NotFoundException
 } from '@nestjs/common'
@@ -7,43 +8,16 @@ import type { Cart, CartProduct } from '@prisma/client'
 
 import { PrismaService } from 'prisma/prisma.service'
 import { ProductService } from '@resources/product/product.service'
-import { UsersService } from '@resources/users/users.service'
-import type { AddProductDto } from '@resources/cart/dto/AddProduct.dto'
+import type { AddProductArgs } from './models/AddProductArgs'
 import type { ChangeProductCountArgs } from './models/ChangeProductCountArgs'
 
-// TODO: Проверка на доступ пользователя
 // TODO: Отслеживание изменений цены, скидок и удаления продуктов с витрины, OnUpdate
 @Injectable()
 export class CartService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly productService: ProductService,
-    private readonly usersService: UsersService
+    private readonly productService: ProductService
   ) {}
-
-  public async createOne(userId: string): Promise<Cart> {
-    const isUserExists = await this.usersService.checkIsExistsById(userId)
-    if (!isUserExists) {
-      throw new NotFoundException('User is not found')
-    }
-
-    const isUserHasCart = await this.isUserHasCart(userId)
-    if (isUserHasCart) {
-      throw new BadRequestException('User already has a cart')
-    }
-
-    return this.prisma.cart.create({
-      data: {
-        userId
-      }
-    })
-  }
-
-  private async isUserHasCart(userId: string): Promise<boolean> {
-    return this.prisma.cart
-      .findFirst({ where: { userId } })
-      .then(result => Boolean(result))
-  }
 
   public async findOneByUser(userId: string): Promise<Cart> {
     const cart = await this.prisma.cart.findFirst({
@@ -62,21 +36,28 @@ export class CartService {
     return cart
   }
 
-  public async addProduct(
-    cartId: string,
-    dto: AddProductDto
-  ): Promise<CartProduct> {
+  public async addProduct({
+    cartId,
+    userId,
+    dto
+  }: AddProductArgs): Promise<CartProduct> {
     const cart = await this.prisma.cart.findFirst({
       where: {
         id: cartId
       },
       select: {
         id: true,
+        userId: true,
         products: true
       }
     })
+
     if (!cart) {
       throw new NotFoundException('Cart is not found')
+    }
+
+    if (cart.userId !== userId) {
+      throw new ForbiddenException('Access denied')
     }
 
     const isProductExists = await this.productService.checkIsExistsById(
@@ -109,12 +90,22 @@ export class CartService {
 
   public async changeProductCountInCart({
     cartId,
+    userId,
     productId,
     dest
   }: ChangeProductCountArgs): Promise<void> {
-    const isCartExists = await this.checkIsExistsById(cartId)
-    if (!isCartExists) {
+    const cart = await this.prisma.cart.findUnique({
+      where: {
+        id: cartId
+      }
+    })
+
+    if (!cart) {
       throw new NotFoundException('Cart is not found')
+    }
+
+    if (cart.userId !== userId) {
+      throw new ForbiddenException('Access denied')
     }
 
     const cartProduct = await this.prisma.cartProduct.findFirst({
@@ -182,10 +173,19 @@ export class CartService {
     })
   }
 
-  public async clearCart(cartId: string): Promise<void> {
-    const isCartExists = await this.checkIsExistsById(cartId)
-    if (!isCartExists) {
+  public async clearCart(cartId: string, userId: string): Promise<void> {
+    const cart = await this.prisma.cart.findUnique({
+      where: {
+        id: cartId
+      }
+    })
+
+    if (!cart) {
       throw new NotFoundException('Cart is not found')
+    }
+
+    if (cart.userId !== userId) {
+      throw new ForbiddenException('Access denied')
     }
 
     await this.prisma.cartProduct.deleteMany({
@@ -193,11 +193,5 @@ export class CartService {
         cartId
       }
     })
-  }
-
-  private async checkIsExistsById(id: string): Promise<boolean> {
-    return await this.prisma.cart
-      .findFirst({ where: { id } })
-      .then(result => Boolean(result))
   }
 }
