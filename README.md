@@ -2,10 +2,9 @@ Application for ordering food and products.
 
 Frontend: 
 - Next.js 13 (Pages Router)
-- Emotion, framer-motion, headlessui
-- Auth.js (Next-Auth), axios
+- Emotion, framer-motion, @headlessui
+- axios, SWR
 - Zustand
-- react-hook-form
 
 Backend:
 - Node.js, Nest.js
