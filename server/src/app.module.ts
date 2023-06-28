@@ -5,8 +5,8 @@ import { AuthModule } from '@resources/auth/auth.module'
 import { UsersModule } from '@resources/users/users.module'
 import { CartModule } from '@resources/cart/cart.module'
 import { OrderModule } from '@resources/order/order.module'
-import { ProductCategoryModule } from '@resources/product-category/product-category.module'
-import { ProductSubcategoryModule } from '@resources/product-subcategory/product-subcategory.module'
+import { ProductCategoriesModule } from '@resources/product-categories/product-categories.module'
+import { ProductSubcategoriesModule } from '@resources/product-subcategories/product-subcategories.module'
 import { ProductModule } from '@resources/product/product.module'
 import { EnvironmentModule } from '@resources/environment/environment.module'
 import { DeliveryAddressModule } from '@resources/delivery-address/delivery-address.module'
@@ -22,8 +22,8 @@ import { SearchModule } from '@resources/search/search.module'
     OrderModule,
     DeliveryAddressModule,
     BillingCardModule,
-    ProductCategoryModule,
-    ProductSubcategoryModule,
+    ProductCategoriesModule,
+    ProductSubcategoriesModule,
     ProductModule,
     EnvironmentModule,
     SearchModule

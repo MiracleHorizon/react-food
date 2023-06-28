@@ -13,7 +13,7 @@ import type { CreateManyProductsArgs } from '@resources/product/models/CreateMan
 import type { CreateProductSubcategoryDto } from './dto/CreateProductSubcategory.dto'
 
 @Injectable()
-export class ProductSubcategoryService {
+export class ProductSubcategoriesService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly productService: ProductService
@@ -24,6 +24,16 @@ export class ProductSubcategoryService {
     res,
     ...dto
   }: CreateProductSubcategoryDto & Res): Promise<void> {
+    const productCategory = await this.prisma.productSubcategory.findFirst({
+      where: {
+        id: dto.categoryId
+      }
+    })
+
+    if (!productCategory) {
+      throw new NotFoundException('Parent category is not found')
+    }
+
     const isSubcategoryExists = await this.checkIsExistsByTitle(dto.title)
 
     if (isSubcategoryExists) {
@@ -31,7 +41,10 @@ export class ProductSubcategoryService {
     }
 
     const subcategory = await this.prisma.productSubcategory.create({
-      data: dto
+      data: {
+        ...dto,
+        categoryTitle: productCategory.title
+      }
     })
 
     res.send({

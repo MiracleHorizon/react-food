@@ -14,7 +14,7 @@ import type { ProductCategoryWithSubcategories } from './models/ProductCategoryW
 import type { ShowcaseProductCategoryModel } from './models/ShowcaseProductCategoryModel'
 
 @Injectable()
-export class ProductCategoryService {
+export class ProductCategoriesService {
   constructor(private readonly prisma: PrismaService) {}
 
   // @Admin
@@ -67,6 +67,7 @@ export class ProductCategoryService {
             title: true,
             description: true,
             categoryId: true,
+            categoryTitle: true,
             products: true
           }
         }

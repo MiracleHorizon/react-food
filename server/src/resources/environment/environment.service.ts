@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import type { ProductCategory } from '@prisma/client'
 
-import { ProductCategoryService } from '@resources/product-category/product-category.service'
+import { ProductCategoriesService } from '@resources/product-categories/product-categories.service'
 
 @Injectable()
 export class EnvironmentService {
   constructor(
-    private readonly productCategoryService: ProductCategoryService
+    private readonly productCategoryService: ProductCategoriesService
   ) {}
 
   public async findAllNavigationCategories(): Promise<ProductCategory[]> {

@@ -1,15 +1,15 @@
 import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common'
 import type { Response } from 'express'
 
-import { ProductSubcategoryService } from './product-subcategory.service'
+import { ProductSubcategoriesService } from './product-subcategories.service'
 import type { ProductSubcategory } from '@prisma/client'
 import type { CreateProductSubcategoryDto } from './dto/CreateProductSubcategory.dto'
 import type { CreateProductDto } from '../product/dto/CreateProduct.dto'
 
-@Controller('product_subcategory')
-export class ProductSubcategoryController {
+@Controller('product_subcategories')
+export class ProductSubcategoriesController {
   constructor(
-    private readonly productSubcategoryService: ProductSubcategoryService
+    private readonly productSubcategoryService: ProductSubcategoriesService
   ) {}
 
   @Post()

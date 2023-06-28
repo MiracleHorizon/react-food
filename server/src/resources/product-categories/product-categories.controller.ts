@@ -10,15 +10,15 @@ import {
 } from '@nestjs/common'
 import type { Response } from 'express'
 
-import { ProductCategoryService } from './product-category.service'
+import { ProductCategoriesService } from './product-categories.service'
 import type { CreateProductCategoryDto } from './dto/CreateProductCategory.dto'
-import type { ProductCategoryWithSubcategories } from '@resources/product-category/models/ProductCategoryWithSubcategories'
-import type { ShowcaseProductCategoryModel } from '@resources/product-category/models/ShowcaseProductCategoryModel'
+import type { ShowcaseProductCategoryModel } from './models/ShowcaseProductCategoryModel'
+import type { ProductCategoryWithSubcategories } from './models/ProductCategoryWithSubcategories'
 
-@Controller('product_category')
-export class ProductCategoryController {
+@Controller('product_categories')
+export class ProductCategoriesController {
   constructor(
-    private readonly productCategoryService: ProductCategoryService
+    private readonly productCategoryService: ProductCategoriesService
   ) {}
 
   @Post()

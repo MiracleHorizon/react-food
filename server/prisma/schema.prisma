@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -135,6 +136,7 @@ model ProductSubcategory {
   products        Product[]
   productCategory ProductCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId      String
+  categoryTitle   String
 
   @@map("productSubcategories")
 }
