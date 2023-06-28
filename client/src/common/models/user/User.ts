@@ -5,5 +5,4 @@ export interface UserModel extends UserPersonalData {
   id: string
   cartId: string
   role: UserRole
-  bonusCoins: number
 }
