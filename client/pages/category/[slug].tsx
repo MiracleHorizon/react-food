@@ -1,15 +1,17 @@
 import type { GetServerSidePropsContext, NextPage } from 'next'
 
-import ProductCategory from '@modules/ProductCategory'
-import ProductSubcategory, {
-  productSubcategoriesService
-} from '@modules/ProductSubcategory'
-import { productCategoriesService } from '@api/ProductCategoriesService'
+import {
+  productCategoriesService,
+  ProductCategory,
+  productSubcategoriesService,
+  ProductSubcategory
+} from '@modules/ProductCategory'
 import { ParsedUrlQueryHandler } from '@utils/ParsedUrlQueryHandler'
 import { Routes } from '@router/Routes.enum'
 import type { ProductCategoryModel } from '@models/productCategory/ProductCategory'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 
+// TODO: dynamic imports
 const ProductCategoryPage: NextPage<Props> = ({
   productCategory,
   productSubcategory

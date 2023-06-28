@@ -6,10 +6,13 @@ import * as Item from './SubcategoriesNavigationItem.styled'
 
 const SubcategoriesNavigationItem: FC<ProductSubcategoryModel> = ({
   id,
-  title
+  title,
+  categoryId
 }) => (
   <Item.Root>
-    <Item.Link href={`${Routes.CATEGORY}?subcategory=${id}`}>{title}</Item.Link>
+    <Item.Link href={`${Routes.CATEGORY}/${categoryId}?subcategory=${id}`}>
+      {title}
+    </Item.Link>
   </Item.Root>
 )
 

@@ -1,7 +1,7 @@
 import type { GetServerSidePropsContext, NextPage } from 'next'
 
 import Home from '@modules/Home'
-import { productCategoriesService } from '@api/ProductCategoriesService'
+import { productCategoriesService } from '@modules/ProductCategory'
 import type { ShowcaseProductCategoryModel } from '@models/productCategory/ShowcaseProductCategory'
 
 const HomePage: NextPage<Props> = props => <Home {...props} />

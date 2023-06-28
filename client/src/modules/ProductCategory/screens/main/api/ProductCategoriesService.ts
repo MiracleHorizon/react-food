@@ -1,4 +1,4 @@
-import { BaseService } from './BaseService'
+import { BaseService } from '@api/BaseService'
 import type { PaginationParams } from '@app-types/PaginationParams'
 import type { ProductCategoryModel } from '@models/productCategory/ProductCategory'
 import type { ShowcaseProductCategoryModel } from '@models/productCategory/ShowcaseProductCategory'

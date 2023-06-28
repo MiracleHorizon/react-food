@@ -8,10 +8,11 @@ import * as Section from './ProductSubcategorySection.styled'
 const ProductSubcategorySection: FC<ProductSubcategoryModel> = ({
   id,
   title,
+  categoryId,
   products
 }) => (
   <Section.Root>
-    <Section.Title href={`${Routes.CATEGORY}?subcategory=${id}`}>
+    <Section.Title href={`${Routes.CATEGORY}/${categoryId}?subcategory=${id}`}>
       {title}
     </Section.Title>
     <ProductsGrid products={products} />
