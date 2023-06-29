@@ -32,9 +32,7 @@ const SigninForm = () => {
     if (!user) return
 
     signin(user)
-    cartService
-      .fetchUserCart(user.id)
-      .then(userCart => initializeCart(userCart))
+    cartService.fetchUserCart().then(userCart => initializeCart(userCart))
   }, [initializeCart, signin, user])
 
   return (

@@ -4,10 +4,7 @@ import type { FC } from 'react'
 import GlobalStyles from '@components/styles/GlobalStyles'
 import { useRefreshAuth } from '@hooks/useRefreshAuth'
 
-const App: FC<AppProps> = ({
-  Component,
-  pageProps: { session, ...pageProps }
-}) => {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
   useRefreshAuth()
 
   return (

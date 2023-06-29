@@ -1,0 +1,1 @@
+export { searchService } from './SearchService'

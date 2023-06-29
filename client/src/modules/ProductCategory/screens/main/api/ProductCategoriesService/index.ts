@@ -1,0 +1,1 @@
+export { productCategoriesService } from './ProductCategoriesService'
