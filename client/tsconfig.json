@@ -95,7 +95,7 @@
         "src/common/types/*"
       ],
       "@styles/*": [
-        "public/styles/*"
+        "src/styles/*"
       ]
     }
   },
