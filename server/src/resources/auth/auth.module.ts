@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
 
 import { PrismaService } from 'prisma/prisma.service'
+import { CartService } from '@resources/cart/cart.service'
+import { ProductService } from '@resources/product/product.service'
 import { AuthService } from './auth.service'
 import { AuthController } from './auth.controller'
 import { AccessTokenStrategy, RefreshTokenStrategy } from './strategies'
@@ -11,9 +13,11 @@ import { AccessTokenStrategy, RefreshTokenStrategy } from './strategies'
   controllers: [AuthController],
   providers: [
     AuthService,
-    RefreshTokenStrategy,
+    CartService,
+    ProductService,
+    PrismaService,
     AccessTokenStrategy,
-    PrismaService
+    RefreshTokenStrategy
   ]
 })
 export class AuthModule {}

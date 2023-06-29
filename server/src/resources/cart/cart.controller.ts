@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Get,
   Param,
   Patch,
   Post,
@@ -12,20 +11,13 @@ import type { Request } from 'express'
 
 import { JwtGuard } from '@common/guards'
 import { CartService } from './cart.service'
-import type { Cart, CartProduct } from '@prisma/client'
+import type { CartProduct } from '@prisma/client'
 import type { AddProductDto } from './dto/AddProduct.dto'
 import type { JwtPayload } from '@resources/auth/models'
 
 @Controller('cart')
 export class CartController {
   constructor(private readonly cartService: CartService) {}
-
-  @UseGuards(JwtGuard)
-  @Get('user')
-  public findOneByUser(@Req() req: Request): Promise<Cart> {
-    const userPayload = req.user as JwtPayload
-    return this.cartService.findOneByUser(userPayload.sub)
-  }
 
   @UseGuards(JwtGuard)
   @Post(':id/add_product')

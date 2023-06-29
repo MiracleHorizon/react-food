@@ -9,12 +9,8 @@ import {
 } from '@constants/cookie'
 import type { SignupDto } from '@app-types/auth/SignupDto'
 import type { SigninDto } from '@app-types/auth/SigninDto'
-import type { UserModel } from '@models/user/User'
-import type {
-  AuthServiceModel,
-  FetchRoleResponse,
-  SignupResponse
-} from './types'
+import type { UserData } from '@models/user/UserData'
+import type { AuthServiceModel, FetchRoleResponse } from './types'
 
 class AuthService extends AxiosService implements AuthServiceModel {
   constructor(endpoint: ApiEndpoint) {
@@ -24,9 +20,9 @@ class AuthService extends AxiosService implements AuthServiceModel {
     })
   }
 
-  public async signup(dto: SignupDto): Promise<SignupResponse> {
+  public async signup(dto: SignupDto): Promise<UserData> {
     try {
-      const { data } = await this.api.post<SignupResponse>('local/signup', dto)
+      const { data } = await this.api.post<UserData>('local/signup', dto)
 
       return data
     } catch (err) {
@@ -34,9 +30,9 @@ class AuthService extends AxiosService implements AuthServiceModel {
     }
   }
 
-  public async signin(dto: SigninDto): Promise<UserModel> {
+  public async signin(dto: SigninDto): Promise<UserData> {
     try {
-      const { data } = await this.api.post<UserModel>('local/signin', dto)
+      const { data } = await this.api.post<UserData>('local/signin', dto)
 
       return data
     } catch (err) {
@@ -46,15 +42,15 @@ class AuthService extends AxiosService implements AuthServiceModel {
 
   public async signout(): Promise<void> {
     try {
-      await this.api<void>('signout', { method: 'PATCH' })
+      await this.api.patch<void>('signout')
     } catch (err) {
       throw err
     }
   }
 
-  public async refresh(): Promise<UserModel> {
+  public async refresh(): Promise<UserData> {
     try {
-      const { data } = await this.api.post<UserModel>('refresh')
+      const { data } = await this.api.post<UserData>('refresh')
 
       return data
     } catch (err: unknown) {
@@ -88,8 +84,8 @@ class AuthService extends AxiosService implements AuthServiceModel {
   }
 
   private clearAuthCookies(): void {
-    Cookie.remove(REFRESH_TOKEN_COOKIE_NAME)
     Cookie.remove(ACCESS_TOKEN_COOKIE_NAME)
+    Cookie.remove(REFRESH_TOKEN_COOKIE_NAME)
   }
 }
 

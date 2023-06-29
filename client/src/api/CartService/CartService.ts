@@ -1,6 +1,5 @@
 import { AxiosService } from '@api/AxiosService'
 import { ApiEndpoint } from '@models/ApiEndpoint'
-import type { UserCart } from '@models/user/UserCart'
 import type { CartProductModel } from '@models/product/CartProduct'
 import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct'
 import type { CartServiceModel } from './types'
@@ -11,16 +10,6 @@ class CartService extends AxiosService implements CartServiceModel {
       endpoint,
       withCredentials: true
     })
-  }
-
-  public async fetchUserCart(): Promise<UserCart> {
-    try {
-      const { data } = await this.api.get<UserCart>('user')
-
-      return data
-    } catch (err) {
-      throw err
-    }
   }
 
   public async clearUserCart(cartId: string): Promise<void> {

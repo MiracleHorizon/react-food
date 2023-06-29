@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { authService } from '@api/AuthService'
-import { cartService } from '@api/CartService'
 import { useUserStore } from '@stores/userStore'
 import { useCartStore } from '@stores/cartStore'
 import { ButtonVariant } from '@ui/Button'
-import type { UserModel } from '@models/user/User'
+import type { UserData } from '@models/user/UserData'
 import type { SigninDto } from '@app-types/auth/SigninDto'
 import * as Form from './SigninForm.styled'
 
 const SigninForm = () => {
-  const [user, setUser] = useState<UserModel | null>(null)
+  const [userData, setUserData] = useState<UserData | null>(null)
   const signin = useUserStore(state => state.signin)
   const initializeCart = useCartStore(state => state.initialize)
   const { register, handleSubmit } = useForm({
@@ -24,16 +23,17 @@ const SigninForm = () => {
 
   const onSubmit = async (dto: SigninDto) => {
     const user = await authService.signin(dto)
-    setUser(user)
+    setUserData(user)
   }
 
   // TODO: ERROR HANDLING
   useEffect(() => {
-    if (!user) return
+    if (!userData) return
 
+    const { user, cart } = userData
     signin(user)
-    cartService.fetchUserCart().then(userCart => initializeCart(userCart))
-  }, [initializeCart, signin, user])
+    initializeCart(cart)
+  }, [initializeCart, signin, userData])
 
   return (
     <Form.Root onSubmit={handleSubmit(onSubmit)}>
