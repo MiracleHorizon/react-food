@@ -10,7 +10,11 @@ import {
 import type { SignupDto } from '@app-types/auth/SignupDto'
 import type { SigninDto } from '@app-types/auth/SigninDto'
 import type { UserModel } from '@models/user/User'
-import type { AuthServiceModel, FetchRoleResponse } from './types'
+import type {
+  AuthServiceModel,
+  FetchRoleResponse,
+  SignupResponse
+} from './types'
 
 class AuthService extends AxiosService implements AuthServiceModel {
   constructor(endpoint: ApiEndpoint) {
@@ -20,9 +24,9 @@ class AuthService extends AxiosService implements AuthServiceModel {
     })
   }
 
-  public async signup(dto: SignupDto): Promise<UserModel> {
+  public async signup(dto: SignupDto): Promise<SignupResponse> {
     try {
-      const { data } = await this.api.post<UserModel>('local/signup', dto)
+      const { data } = await this.api.post<SignupResponse>('local/signup', dto)
 
       return data
     } catch (err) {

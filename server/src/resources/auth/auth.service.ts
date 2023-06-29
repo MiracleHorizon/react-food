@@ -40,17 +40,23 @@ export class AuthService {
     await this.updateRefreshToken(id, tokens.refreshToken)
 
     // При регистрации нового пользователя для него создаётся корзина
-    await this.prisma.cart.create({
+    const cart = await this.prisma.cart.create({
       data: {
         userId: id
       }
     })
 
+    const userToClient = excludeField(newUser, [
+      'hashedPassword',
+      'hashedRefreshToken'
+    ])
+
     res.cookie('accessToken', tokens.accessToken)
     res.cookie('refreshToken', tokens.refreshToken)
 
     res.send({
-      ...excludeField(newUser, ['hashedPassword', 'hashedRefreshToken'])
+      user: userToClient,
+      cart
     })
   }
 
