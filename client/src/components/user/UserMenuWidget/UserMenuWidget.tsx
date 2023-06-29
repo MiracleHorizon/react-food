@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 
-import SigninButton from '@components/signin/SigninButton'
+import SigninButton from '@components/user/SigninButton'
 import { useUserStore } from '@stores/userStore'
 import { useToggle } from '@hooks/useToggle'
 import { Avatar } from './UserMenuWidget.styled'
