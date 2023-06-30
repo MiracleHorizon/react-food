@@ -1,4 +1,4 @@
 .eslintrc.js
 next.config.js
-jest.config.js
+jest.config.mjs
 prettier.config.js
