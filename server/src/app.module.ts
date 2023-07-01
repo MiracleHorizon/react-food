@@ -12,6 +12,7 @@ import { EnvironmentModule } from '@resources/environment/environment.module'
 import { DeliveryAddressModule } from '@resources/delivery-address/delivery-address.module'
 import { BillingCardModule } from '@resources/billing-card/billing-card.module'
 import { SearchModule } from '@resources/search/search.module'
+import { AddressLocationModule } from '@resources/address-location/address-location.module'
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { SearchModule } from '@resources/search/search.module'
     ProductSubcategoriesModule,
     ProductModule,
     EnvironmentModule,
-    SearchModule
+    SearchModule,
+    AddressLocationModule
   ]
 })
 export class AppModule {}

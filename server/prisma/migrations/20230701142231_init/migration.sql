@@ -48,6 +48,16 @@ CREATE TABLE "cartProducts" (
 );
 
 -- CreateTable
+CREATE TABLE "addressLocation" (
+    "id" TEXT NOT NULL,
+    "street" TEXT NOT NULL,
+    "house" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+
+    CONSTRAINT "addressLocation_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "deliveryAddresses" (
     "id" TEXT NOT NULL,
     "city" TEXT NOT NULL,
@@ -129,6 +139,7 @@ CREATE TABLE "productSubcategories" (
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "categoryId" TEXT NOT NULL,
+    "categoryTitle" TEXT NOT NULL,
 
     CONSTRAINT "productSubcategories_pkey" PRIMARY KEY ("id")
 );

@@ -52,6 +52,16 @@ model CartProduct {
   @@map("cartProducts")
 }
 
+// Model for delivery adddress location autocomplete
+model AddressLocation {
+  id     String @id @default(cuid())
+  street String
+  house  String
+  city   String
+
+  @@map("addressLocation")
+}
+
 model DeliveryAddress {
   id           String   @id @default(cuid())
   city         String
