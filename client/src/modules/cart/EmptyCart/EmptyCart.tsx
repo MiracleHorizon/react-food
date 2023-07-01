@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import { Routes } from '@router/Routes.enum'
 import { ButtonVariant } from '@ui/Button'
-import emptyCartBag from '@public/svg/emptyCartBag.svg'
+import emptyCartBag from '@public/svg/empty_cart_bag.svg'
 import * as Styled from './EmptyCart.styled'
 
 const EmptyCart = () => {
