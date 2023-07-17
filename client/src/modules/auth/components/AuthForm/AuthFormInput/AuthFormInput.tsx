@@ -1,27 +1,18 @@
-import type { HTMLAttributes, HTMLInputTypeAttribute } from 'react'
 import type { UseFormRegisterReturn } from 'react-hook-form'
 
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
-import * as Input from './AuthFormInput.styled'
+import type { AuthFormInputModel } from '@modules/Auth/models/AuthFormInputModel'
+import { Input } from './AuthFormInput.styled'
 
-const AuthFormInput = <T extends string>({
+// TODO: Autocomplete warning
+export const AuthFormInput = <T extends string>({
   register,
-  className,
-  ...inputAttributes
-}: Props<T>) => (
-  <Input.Root className={className}>
-    <Input.Field {...register} {...inputAttributes} />
-  </Input.Root>
-)
+  ...props
+}: Props<T>) => <Input {...register} {...props} />
 
-export default AuthFormInput
-
+// TODO: Унифицировать input props
 interface Props<T extends string>
-  extends Omit<
-      HTMLAttributes<HTMLInputElement>,
-      'type' | 'dangerouslySetInnerHTML'
-    >,
+  extends AuthFormInputModel,
     EmotionClassNameProps {
-  type: HTMLInputTypeAttribute
   register: UseFormRegisterReturn<T>
 }

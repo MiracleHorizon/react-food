@@ -1,5 +1,5 @@
-const SigninPage = () => {
-  return <div>Signin</div>
-}
+import { SigninScreen } from '@modules/Auth'
+
+const SigninPage = () => <SigninScreen />
 
 export default SigninPage

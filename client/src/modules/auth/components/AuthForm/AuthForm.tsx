@@ -1,40 +1,46 @@
-import { useForm } from 'react-hook-form'
-import type { FC } from 'react'
+import {
+  type DeepPartial,
+  type FieldValues,
+  type Path,
+  useForm
+} from 'react-hook-form'
 
-import AuthFormInput from './AuthFormInput'
+import { ButtonVariant } from '@ui/Button'
+import type { AuthFormInputModel } from '@modules/Auth/models/AuthFormInputModel'
 import * as Form from './AuthForm.styled'
 
-const inputs = [
-  {
-    fieldName: 'email',
-    type: 'email'
-  },
-  {
-    fieldName: 'name',
-    type: 'text'
-  }
-]
-
-const AuthForm: FC<Props> = ({ defaultValues }) => {
-  const { register } = useForm({
+// TODO: Восстановление пароля
+export const AuthForm = <T extends FieldValues>({
+  inputs,
+  defaultValues,
+  onSubmit
+}: Props<T>) => {
+  const { handleSubmit, register } = useForm({
     defaultValues
   })
 
   return (
-    <Form.Root>
-      {inputs.map(({ fieldName, type }) => (
-        <AuthFormInput
-          key={fieldName}
-          register={register(fieldName)}
-          type={type}
+    <Form.Root onSubmit={handleSubmit(onSubmit)}>
+      {inputs.map(input => (
+        <Form.Input
+          key={input.fieldName}
+          register={register(input.fieldName as Path<T>, {
+            required: true
+          })}
+          {...input}
         />
       ))}
+      <Form.SubmitButton
+        variant={ButtonVariant.PRIMARY}
+        type='submit'
+        title='Отправить'
+      />
     </Form.Root>
   )
 }
 
-export default AuthForm
-
-interface Props {
-  defaultValues: any
+interface Props<T extends FieldValues> {
+  defaultValues: DeepPartial<T>
+  onSubmit: (data: T) => void
+  inputs: AuthFormInputModel[]
 }

@@ -1,0 +1,1 @@
+export { AuthHero } from './AuthHero'
