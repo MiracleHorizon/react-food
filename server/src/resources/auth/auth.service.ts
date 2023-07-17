@@ -46,6 +46,9 @@ export class AuthService {
     const userCart = await this.prisma.cart.create({
       data: {
         userId: newUser.id
+      },
+      include: {
+        products: true
       }
     })
 
