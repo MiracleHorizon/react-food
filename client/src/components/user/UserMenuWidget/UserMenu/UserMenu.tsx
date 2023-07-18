@@ -1,29 +1,41 @@
-import {type FC, useMemo, useRef} from 'react'
-import {useRouter} from 'next/router'
-import {Dialog} from '@headlessui/react'
+import { type FC, useCallback, useMemo, useRef } from 'react'
+import { useRouter } from 'next/router'
+import { Dialog } from '@headlessui/react'
 
-import {UserMenuItem} from './UserMenuItem'
-import {authService} from '@api/AuthService'
-import {useUserStore} from '@stores/userStore'
-import {useCartStore} from '@stores/cartStore'
-import {useModalsStore} from '@stores/modalsStore'
-import {Routes} from '@router/Routes.enum'
-import type {UserModel} from '@models/user/User'
+import { UserMenuItem } from './UserMenuItem'
+import { authService } from '@api/AuthService'
+import { useModalsStore } from '@stores/modalsStore'
+import { useDeinitializeUser } from '@hooks/useDeinitializeUser'
+import { RouteStatusHandler } from '@utils/RouteStatusHandler'
+import { Routes } from '@router/Routes.enum'
+import type { UserModel } from '@models/user/User'
 import * as Menu from './UserMenu.styled'
 
-// TODO: Dialog -> Menu
 export const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
   const router = useRouter()
   const panelRef = useRef<HTMLDivElement>(null)
 
-  const signout = useUserStore(state => state.signout)
-  const deinitializeCart = useCartStore(state => state.deinitialize)
   const openPersonalDataModal = useModalsStore(
     state => state.openPersonalDataModal
   )
   const openUserAddressesModal = useModalsStore(
     state => state.openDeliveryAddressesModal
   )
+
+  const { deinitialize } = useDeinitializeUser()
+  const signout = useCallback(() => {
+    authService
+      .signout()
+      .then(deinitialize)
+      .then(() => {
+        const pathName = router.asPath as Routes
+        const routeStatusHandler = new RouteStatusHandler(pathName)
+
+        if (routeStatusHandler.isAuthorizedRoute()) {
+          router.replace(Routes.HOME)
+        }
+      })
+  }, [deinitialize, router])
 
   const menuItems = useMemo(() => {
     return [
@@ -41,26 +53,10 @@ export const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
       },
       {
         title: 'Выйти',
-        action: () => {
-          authService
-            .signout()
-            .then(() => router.replace(Routes.HOME))
-            .then(() => {
-              // TODO: Deinitialize all
-              // TODO: Редирект только если для страницы необходимо авторизация
-              deinitializeCart()
-              signout()
-            })
-        }
+        action: signout
       }
     ]
-  }, [
-    router,
-    deinitializeCart,
-    openPersonalDataModal,
-    openUserAddressesModal,
-    signout
-  ])
+  }, [openPersonalDataModal, openUserAddressesModal, signout])
 
   return (
     <Dialog
