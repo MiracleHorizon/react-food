@@ -1,0 +1,1 @@
+export { SelectedOrderPayment } from './SelectedOrderPayment'

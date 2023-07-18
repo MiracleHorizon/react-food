@@ -7,7 +7,7 @@ export const useResetOrder = () => {
   const clearCart = useCartStore(state => state.clearCart)
   const resetOrder = useOrderStore(state => state.reset)
 
-  const handleResetOrder = useCallback(() => {
+  const handleResetOrder = useCallback(async () => {
     resetOrder()
     clearCart()
   }, [clearCart, resetOrder])

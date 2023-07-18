@@ -19,19 +19,19 @@ export const useMakeOrder = () => {
   const deliveryAddress = useUserStore(state => state.selectedAddress)
   const products = useCartStore(state => state.products)
   const cutleryCount = useCutleryStore(state => state.count)
+
   const orderCost = useSelectOrderCostDetails()
   const { handleResetOrder } = useResetOrder()
 
-  const navigateToOrderPage = useCallback(
-    (orderId: string) => {
-      router.replace(`${Routes.ORDERS}/${orderId}`)
-    },
+  const navigateToOrdersPage = useCallback(
+    () => router.replace(Routes.ORDERS),
     [router]
   )
 
+  // TODO: Phone number
   const makeOrder = useCallback(
     (deliveryAddressDetails: DeliveryAddressDetailsForOrder) => {
-      if (!deliveryAddress || !user) return
+      if (!deliveryAddress || !user || !user.phoneNumber) return
 
       // TODO: Что делать с id?
       const createOrderDto: CreateOrderDto = {
@@ -47,10 +47,10 @@ export const useMakeOrder = () => {
         recipientPhoneNumber: user.phoneNumber
       }
 
-      ordersService.create(createOrderDto).then(orderId => {
-        handleResetOrder()
-        navigateToOrderPage(orderId)
-      })
+      ordersService
+        .create(createOrderDto)
+        .then(handleResetOrder)
+        .then(navigateToOrdersPage)
     },
     [
       deliveryAddress,
@@ -59,7 +59,7 @@ export const useMakeOrder = () => {
       cutleryCount,
       products,
       handleResetOrder,
-      navigateToOrderPage
+      navigateToOrdersPage
     ]
   )
 
