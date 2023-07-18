@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
+import dynamic from 'next/dynamic'
 
-import { Avatar as AvatarComponent } from '@ui/Avatar'
+const AvatarComponent = dynamic(import('@ui/Avatar').then(mod => mod.Avatar))
 
 export const Avatar = styled(AvatarComponent)`
   margin-left: 6px;

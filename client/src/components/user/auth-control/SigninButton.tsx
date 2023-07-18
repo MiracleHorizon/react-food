@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 
 import { ButtonVariant } from '@ui/Button'
 import { Routes } from '@router/Routes.enum'
-import { Button } from './SigninButton.styled'
+import { Button } from './styled-components'
 
 export const SigninButton = () => {
   const router = useRouter()

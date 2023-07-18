@@ -1,19 +1,16 @@
-import { type FC, useCallback, useMemo, useRef } from 'react'
-import { useRouter } from 'next/router'
+import { type FC, useMemo, useRef } from 'react'
 import { Dialog } from '@headlessui/react'
 
 import { UserMenuItem } from './UserMenuItem'
-import { authService } from '@api/AuthService'
 import { useModalsStore } from '@stores/modalsStore'
-import { useDeinitializeUser } from '@hooks/useDeinitializeUser'
-import { RouteStatusHandler } from '@utils/RouteStatusHandler'
+import { useSignout } from '@hooks/useSignout'
 import { Routes } from '@router/Routes.enum'
 import type { UserModel } from '@models/user/User'
 import * as Menu from './UserMenu.styled'
 
 export const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
-  const router = useRouter()
   const panelRef = useRef<HTMLDivElement>(null)
+  const { signout } = useSignout()
 
   const openPersonalDataModal = useModalsStore(
     state => state.openPersonalDataModal
@@ -21,21 +18,6 @@ export const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
   const openUserAddressesModal = useModalsStore(
     state => state.openDeliveryAddressesModal
   )
-
-  const { deinitialize } = useDeinitializeUser()
-  const signout = useCallback(() => {
-    authService
-      .signout()
-      .then(deinitialize)
-      .then(() => {
-        const pathName = router.asPath as Routes
-        const routeStatusHandler = new RouteStatusHandler(pathName)
-
-        if (routeStatusHandler.isAuthorizedRoute()) {
-          router.replace(Routes.HOME)
-        }
-      })
-  }, [deinitialize, router])
 
   const menuItems = useMemo(() => {
     return [
