@@ -8,7 +8,7 @@ import { getAuthPageTitle } from '../helpers/getAuthPageTitle'
 import type { Routes } from '@router/Routes.enum'
 import * as Layout from './AuthLayout.styled'
 
-const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
+export const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
   const { asPath } = useRouter()
 
   return (
@@ -24,5 +24,3 @@ const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
     </>
   )
 }
-
-export default AuthLayout

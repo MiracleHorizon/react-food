@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import useSWRMutation from 'swr/mutation'
 
-import AuthLayout from '@modules/Auth/layout'
+import { AuthLayout } from '@modules/Auth/layout'
 import { AuthForm } from '@modules/Auth/components/AuthForm'
 import { authService } from '@api/AuthService'
 import { useUserStore } from '@stores/userStore'
