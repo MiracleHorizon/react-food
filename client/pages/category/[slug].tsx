@@ -1,17 +1,25 @@
+import dynamic from 'next/dynamic'
 import type { GetServerSidePropsContext, NextPage } from 'next'
 
+import { Loader } from '@ui/Loader'
 import {
   productCategoriesService,
-  ProductCategory,
-  productSubcategoriesService,
-  ProductSubcategory
+  productSubcategoriesService
 } from '@modules/ProductCategory'
 import { ParsedUrlQueryHandler } from '@utils/ParsedUrlQueryHandler'
 import { Routes } from '@router/Routes.enum'
 import type { ProductCategoryModel } from '@models/productCategory/ProductCategory'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 
-// TODO: dynamic imports
+const ProductCategory = dynamic(
+  import('@modules/ProductCategory').then(mod => mod.ProductCategory),
+  { loading: () => <Loader fullScreen /> }
+)
+const ProductSubcategory = dynamic(
+  import('@modules/ProductCategory').then(mod => mod.ProductSubcategory),
+  { loading: () => <Loader fullScreen /> }
+)
+
 const ProductCategoryPage: NextPage<Props> = ({
   productCategory,
   productSubcategory
