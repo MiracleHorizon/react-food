@@ -1,4 +1,4 @@
-import SearchScreen from '@modules/Search'
+import { SearchScreen } from '@modules/Search'
 
 const SearchPage = () => <SearchScreen />
 

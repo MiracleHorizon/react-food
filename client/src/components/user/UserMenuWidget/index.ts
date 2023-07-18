@@ -1,1 +1,1 @@
-export { default } from './UserMenuWidget'
+export { UserMenuWidget } from './UserMenuWidget'

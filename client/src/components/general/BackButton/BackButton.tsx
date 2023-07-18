@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 
-import ChevronSvg from '@ui/svg/ChevronSvg'
+import { ChevronSvg } from '@ui/svg/ChevronSvg'
 import { Button } from './BackButton.styled'
 
-const BackButton = () => {
+export const BackButton = () => {
   const router = useRouter()
 
   const handleGoBack = () => router.back()
@@ -15,5 +15,3 @@ const BackButton = () => {
     </Button>
   )
 }
-
-export default BackButton

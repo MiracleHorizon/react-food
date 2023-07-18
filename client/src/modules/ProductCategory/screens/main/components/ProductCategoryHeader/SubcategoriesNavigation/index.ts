@@ -1,1 +1,1 @@
-export { default } from './SubcategoriesNavigation'
+export { SubcategoriesNavigation } from './SubcategoriesNavigation'

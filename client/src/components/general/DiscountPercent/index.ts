@@ -1,1 +1,1 @@
-export { default } from './DiscountPercent'
+export { DiscountPercent } from './DiscountPercent'

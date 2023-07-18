@@ -1,1 +1,1 @@
-export { default } from './MainLayoutContent'
+export { MainLayoutContent } from './MainLayoutContent'

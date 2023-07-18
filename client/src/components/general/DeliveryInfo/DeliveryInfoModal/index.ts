@@ -1,1 +1,1 @@
-export { default } from './DeliveryInfoModal'
+export { DeliveryInfoModal } from './DeliveryInfoModal'

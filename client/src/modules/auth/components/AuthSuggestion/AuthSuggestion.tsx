@@ -6,11 +6,11 @@ import { Routes } from '@router/Routes.enum'
 import * as Suggestion from './AuthSuggestion.styled'
 
 export const AuthSuggestion = () => {
-  const router = useRouter()
+  const { asPath } = useRouter()
 
   const { title, linkTitle, href } = useMemo(
-    () => getAuthSuggestionData(router.asPath as Routes),
-    [router.asPath]
+    () => getAuthSuggestionData(asPath as Routes),
+    [asPath]
   )
 
   return (

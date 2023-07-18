@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ClearCartLabelComponent from '@components/cart/ClearCartLabel'
+import { ClearCartLabel as ClearCartLabelComponent } from '@components/cart/ClearCartLabel'
 import { colors } from '@styles/colors'
 
 export const Root = styled.header`

@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 
-const MapPinSvg: FC<EmotionClassNameProps> = props => (
+export const MapPinSvg: FC<EmotionClassNameProps> = props => (
   <svg
     width={24}
     height={24}
@@ -19,5 +19,3 @@ const MapPinSvg: FC<EmotionClassNameProps> = props => (
     />
   </svg>
 )
-
-export default MapPinSvg

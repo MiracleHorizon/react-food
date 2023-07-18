@@ -1,1 +1,1 @@
-export { default } from './ShowcaseProductCardPrice'
+export { ShowcaseProductCardPrice } from './ShowcaseProductCardPrice'

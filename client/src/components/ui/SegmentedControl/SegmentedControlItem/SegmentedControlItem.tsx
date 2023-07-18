@@ -9,26 +9,21 @@ import {
 import type { SegmentedControlItemModel } from '@ui/SegmentedControl'
 import * as Item from './SegmentedControlItem.styled'
 
-const SegmentedControlItem: FC<Props> = ({
-  isSelected,
-  setSelectedItem,
-  onChange,
-  ...item
-}) => {
-  const handleClick = useCallback(() => {
-    setSelectedItem(item)
-    onChange(item)
-  }, [setSelectedItem, onChange, item])
+export const SegmentedControlItem: FC<Props> = memo(
+  ({ isSelected, setSelectedItem, onChange, ...item }) => {
+    const handleClick = useCallback(() => {
+      setSelectedItem(item)
+      onChange(item)
+    }, [setSelectedItem, onChange, item])
 
-  return (
-    <Item.Root isSelected={isSelected} onClick={handleClick}>
-      <Item.Title isSelected={isSelected}>{item.title}</Item.Title>
-      {item.icon}
-    </Item.Root>
-  )
-}
-
-export default memo(SegmentedControlItem)
+    return (
+      <Item.Root isSelected={isSelected} onClick={handleClick}>
+        <Item.Title isSelected={isSelected}>{item.title}</Item.Title>
+        {item.icon}
+      </Item.Root>
+    )
+  }
+)
 
 interface Props extends SegmentedControlItemModel {
   isSelected: boolean

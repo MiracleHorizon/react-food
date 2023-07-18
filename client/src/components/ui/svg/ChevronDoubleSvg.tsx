@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 
-const ChevronDoubleSvg: FC<EmotionClassNameProps> = props => (
+export const ChevronDoubleSvg: FC<EmotionClassNameProps> = props => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     fill='none'
@@ -18,5 +18,3 @@ const ChevronDoubleSvg: FC<EmotionClassNameProps> = props => (
     />
   </svg>
 )
-
-export default ChevronDoubleSvg

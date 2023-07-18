@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import OrderButtonComponent from '@components/order/OrderButton'
+import { OrderButton as OrderButtonComponent } from '@components/order/OrderButton'
 
 const rootBoxShadow = 'box-shadow: 0px -4px 20px rgb(117 115 111 / 20%)'
 

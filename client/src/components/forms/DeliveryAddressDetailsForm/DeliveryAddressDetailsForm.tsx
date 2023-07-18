@@ -9,19 +9,17 @@ import type { FC, FormEvent } from 'react'
 import type { DeliveryAddressDetailsForOrder } from '@models/user/DeliveryAddressDetailsForOrder'
 import * as Form from './DeliveryAddressDetailsForm.styled'
 
-const DeliveryAddressDetailsForm: FC<Props> = ({
+export const DeliveryAddressDetailsForm: FC<Props> = ({
   register,
   setFocus,
   watch,
   submitActions
 }) => {
   const handleSubmit = (e: FormEvent) => {
-    if (submitActions) {
-      const { handler, onSubmit } = submitActions
-      return handler(onSubmit)
-    }
+    if (!submitActions) return e.preventDefault
 
-    return e.preventDefault
+    const { handler, onSubmit } = submitActions
+    return handler(onSubmit)
   }
 
   return (
@@ -71,8 +69,6 @@ const DeliveryAddressDetailsForm: FC<Props> = ({
     </Form.Root>
   )
 }
-
-export default DeliveryAddressDetailsForm
 
 interface Props {
   setFocus: UseFormSetFocus<DeliveryAddressDetailsForOrder>

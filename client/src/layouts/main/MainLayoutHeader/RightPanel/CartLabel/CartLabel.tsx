@@ -5,7 +5,7 @@ import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import { CartButton } from './CartLabel.styled'
 
 // TODO: Конфликт названий
-const CartLabel = () => {
+export const CartLabel = () => {
   const { totalCost } = useSelectOrderCostDetails()
 
   return (
@@ -21,5 +21,3 @@ const CartLabel = () => {
     </>
   )
 }
-
-export default CartLabel

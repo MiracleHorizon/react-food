@@ -1,9 +1,9 @@
-import WithCartProduct from '@hoc/withCartProduct'
-import CartProductItem from './CartProductItem'
+import { WithCartProduct } from '@hoc/withCartProduct'
+import { CartProductItem } from './CartProductItem'
 import { useCartStore } from '@stores/cartStore'
 import * as List from './CartProductsList.styled'
 
-const CartProductsList = () => {
+export const CartProductsList = () => {
   const products = useCartStore(state => state.products)
 
   return (
@@ -18,5 +18,3 @@ const CartProductsList = () => {
     </List.Root>
   )
 }
-
-export default CartProductsList

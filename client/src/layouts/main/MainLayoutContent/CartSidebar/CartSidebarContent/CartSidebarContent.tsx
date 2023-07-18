@@ -1,13 +1,13 @@
 import { useRef } from 'react'
 
-import ServiceFeeLabel from '@components/general/ServiceFeeLabel'
-import EmptyCartSidebar from './EmptyCartSidebar'
-import ProductsList from './CartSidebarProductsList'
+import { ServiceFeeLabel } from '@components/general/ServiceFeeLabel'
+import { EmptyCartSidebar } from './EmptyCartSidebar'
+import { ProductsList } from './CartSidebarProductsList'
 import { useCartStore } from '@stores/cartStore'
 import { useVerticalScrollProgress } from '@hooks/useVerticalScrollProgress'
 import { Root } from './CartSidebarContent.styled'
 
-const CartSidebarContent = () => {
+export const CartSidebarContent = () => {
   const isCartEmpty = useCartStore(state => state.isEmpty())
   const rootRef = useRef<HTMLElement>(null)
   const { isScrollOnTop } = useVerticalScrollProgress({
@@ -28,5 +28,3 @@ const CartSidebarContent = () => {
     </Root>
   )
 }
-
-export default CartSidebarContent

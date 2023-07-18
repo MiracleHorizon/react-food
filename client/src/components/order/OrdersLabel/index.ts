@@ -1,1 +1,1 @@
-export { default } from './OrdersLabel'
+export { OrdersLabel } from './OrdersLabel'

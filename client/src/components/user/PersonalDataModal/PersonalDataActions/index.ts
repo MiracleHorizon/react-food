@@ -1,1 +1,1 @@
-export { default } from './PersonalDataActions'
+export { PersonalDataActions } from './PersonalDataActions'

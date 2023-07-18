@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import BreadcrumbComponent from '@ui/Breadcrumb'
+import { Breadcrumb as BreadcrumbComponent } from '@ui/Breadcrumb'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 import { truncateText } from '@styles/truncateText'
 

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { darken } from 'polished'
 
-import ButtonComponent from '@ui/Button'
+import { Button as ButtonComponent } from '@ui/Button'
 import { colors } from '@styles/colors'
 
 const buttonColor = colors.gray['6']

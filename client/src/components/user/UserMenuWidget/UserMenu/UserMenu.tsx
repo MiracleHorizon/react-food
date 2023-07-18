@@ -1,18 +1,18 @@
-import { type FC, useMemo, useRef } from 'react'
-import { useRouter } from 'next/router'
-import { Dialog } from '@headlessui/react'
+import {type FC, useMemo, useRef} from 'react'
+import {useRouter} from 'next/router'
+import {Dialog} from '@headlessui/react'
 
-import UserMenuItem from './UserMenuItem'
-import { authService } from '@api/AuthService'
-import { useUserStore } from '@stores/userStore'
-import { useCartStore } from '@stores/cartStore'
-import { useModalsStore } from '@stores/modalsStore'
-import { Routes } from '@router/Routes.enum'
-import type { UserModel } from '@models/user/User'
+import {UserMenuItem} from './UserMenuItem'
+import {authService} from '@api/AuthService'
+import {useUserStore} from '@stores/userStore'
+import {useCartStore} from '@stores/cartStore'
+import {useModalsStore} from '@stores/modalsStore'
+import {Routes} from '@router/Routes.enum'
+import type {UserModel} from '@models/user/User'
 import * as Menu from './UserMenu.styled'
 
 // TODO: Dialog -> Menu
-const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
+export const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
   const router = useRouter()
   const panelRef = useRef<HTMLDivElement>(null)
 
@@ -20,6 +20,9 @@ const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
   const deinitializeCart = useCartStore(state => state.deinitialize)
   const openPersonalDataModal = useModalsStore(
     state => state.openPersonalDataModal
+  )
+  const openUserAddressesModal = useModalsStore(
+    state => state.openDeliveryAddressesModal
   )
 
   const menuItems = useMemo(() => {
@@ -30,9 +33,7 @@ const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
       },
       {
         title: 'Мои адреса',
-        action: () => {
-          console.log('Открылось модальное окно с адресами')
-        }
+        action: openUserAddressesModal
       },
       {
         title: 'Мои заказы',
@@ -53,7 +54,13 @@ const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
         }
       }
     ]
-  }, [deinitializeCart, openPersonalDataModal, router, signout])
+  }, [
+    router,
+    deinitializeCart,
+    openPersonalDataModal,
+    openUserAddressesModal,
+    signout
+  ])
 
   return (
     <Dialog
@@ -74,8 +81,6 @@ const UserMenu: FC<Props> = ({ user, isOpen, onClose }) => {
     </Dialog>
   )
 }
-
-export default UserMenu
 
 interface Props {
   user: UserModel

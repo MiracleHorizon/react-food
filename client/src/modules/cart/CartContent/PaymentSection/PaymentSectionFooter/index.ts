@@ -1,0 +1,1 @@
+export { PaymentSectionFooter } from './PaymentSectionFooter'

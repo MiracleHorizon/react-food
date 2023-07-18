@@ -1,14 +1,13 @@
 import type { FC } from 'react'
 
-import NavigationCatalog from './NavigationCatalog'
+import { NavigationCatalog } from './NavigationCatalog'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import * as Sidebar from './LeftSidebar.styled'
 
-const LeftSidebar: FC<EmotionClassNameProps> = ({ className }) => (
-  <Sidebar.Root className={className}>
+// TODO: Delivery
+export const LeftSidebar: FC<EmotionClassNameProps> = props => (
+  <Sidebar.Root {...props}>
     {/*<Sidebar.DeliveryInfo />*/}
     <NavigationCatalog />
   </Sidebar.Root>
 )
-
-export default LeftSidebar

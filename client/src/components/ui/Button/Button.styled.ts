@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { darken, lighten } from 'polished'
+import { css } from '@emotion/react'
 
 import { ButtonVariant } from './Button.types'
 import { colors } from '@styles/colors'
@@ -17,17 +18,26 @@ export const Root = styled.button<RootProps>`
   ${p => {
     const bgColor = getBgColorByButtonVariant(p.variant)
 
-    return `
-    background: ${bgColor};
-    
-    &:hover {
-      background: ${darken(0.03, bgColor)};
-    }
-    
-    &:active {
-      background: ${lighten(0.01, bgColor)};
-    }`
+    return css`
+      background: ${bgColor};
+
+      &:hover {
+        background: ${darken(0.03, bgColor)};
+      }
+
+      &:active {
+        background: ${lighten(0.01, bgColor)};
+      }
+    `
   }};
+
+  ${p =>
+    p.isDisabled &&
+    css`
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.5;
+    `};
 `
 
 export const Title = styled.span<TitleProps>`
@@ -37,6 +47,7 @@ export const Title = styled.span<TitleProps>`
 
 interface RootProps {
   variant: ButtonVariant
+  isDisabled?: boolean
 }
 
 interface TitleProps {

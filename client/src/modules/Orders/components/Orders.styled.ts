@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import MainLayout from '@layouts/Main'
+import { MainLayout } from '@layouts/Main'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 export const Layout = styled(MainLayout)`

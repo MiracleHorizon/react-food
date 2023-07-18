@@ -1,11 +1,11 @@
 import { type FC, memo } from 'react'
 import { useRouter } from 'next/router'
 
-import ChevronSvg from '@ui/svg/ChevronSvg'
+import { ChevronSvg } from '@ui/svg/ChevronSvg'
 import { Routes } from '@router/Routes.enum'
 import * as Button from './LoadMoreButton.styled'
 
-const LoadMoreButton: FC<Props> = ({ productCategoryId }) => {
+export const LoadMoreButton: FC<Props> = memo(({ productCategoryId }) => {
   const router = useRouter()
 
   const handleLoadMore = () =>
@@ -19,9 +19,7 @@ const LoadMoreButton: FC<Props> = ({ productCategoryId }) => {
       </Button.Content>
     </Button.Root>
   )
-}
-
-export default memo(LoadMoreButton)
+})
 
 interface Props {
   productCategoryId: string

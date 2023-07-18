@@ -1,0 +1,1 @@
+export { PaymentSectionHeader } from './PaymentSectionHeader'

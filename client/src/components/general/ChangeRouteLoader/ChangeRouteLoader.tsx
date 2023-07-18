@@ -1,10 +1,10 @@
 import { Oval } from 'react-loader-spinner'
 
-import Portal from '@components/general/Portal'
+import { Portal } from '@components/general/Portal'
 import { colors } from '@styles/colors'
 import * as Loader from './ChangeRouteLoader.styled'
 
-const ChangeRouteLoader = () => (
+export const ChangeRouteLoader = () => (
   <Portal>
     <Loader.Backdrop>
       <Loader.Container>
@@ -19,5 +19,3 @@ const ChangeRouteLoader = () => (
     </Loader.Backdrop>
   </Portal>
 )
-
-export default ChangeRouteLoader

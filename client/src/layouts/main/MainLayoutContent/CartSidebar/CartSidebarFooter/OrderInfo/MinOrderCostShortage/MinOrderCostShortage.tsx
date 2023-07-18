@@ -5,7 +5,7 @@ import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import { MIN_ORDER_COST } from '@constants/payment'
 import * as Shortage from './MinOrderCostShortage.styled'
 
-const MinOrderCostShortage = () => {
+export const MinOrderCostShortage = () => {
   const totalProductsCost = useCartStore(state => state.totalProductsCost())
   const shortage = numberFormatter.formatCurrency({
     value: MIN_ORDER_COST - totalProductsCost,
@@ -19,5 +19,3 @@ const MinOrderCostShortage = () => {
     </Shortage.Root>
   )
 }
-
-export default MinOrderCostShortage

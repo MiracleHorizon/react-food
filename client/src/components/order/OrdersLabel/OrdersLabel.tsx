@@ -6,11 +6,11 @@ import { Routes } from '@router/Routes.enum'
 import listSvg from '@public/svg/list.svg'
 import * as Label from './OrdersLabel.styled'
 
-const OrdersLabel = () => {
-  const router = useRouter()
+export const OrdersLabel = () => {
+  const { asPath } = useRouter()
   const isAuth = useUserStore(state => state.isAuth())
 
-  if (!isAuth || router.asPath.startsWith(Routes.ORDERS)) {
+  if (!isAuth || asPath === Routes.ORDERS) {
     return null
   }
 
@@ -23,5 +23,3 @@ const OrdersLabel = () => {
     </Label.Root>
   )
 }
-
-export default OrdersLabel

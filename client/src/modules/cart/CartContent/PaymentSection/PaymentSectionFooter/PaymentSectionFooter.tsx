@@ -1,15 +1,15 @@
 import type { FC } from 'react'
 
-import OrderButton from '@components/order/OrderButton'
-import TotalOrderCost from './TotalOrderCost'
+import { OrderButton } from '@components/order/OrderButton'
+import { TotalOrderCost } from './TotalOrderCost'
 import { useSelectOrderCostDetails } from '@stores/hooks/useSelectOrderCostDetails'
 import { useSelectIsMinOrderCostExceeded } from '@stores/hooks/useSelectIsMinOrderCostExceeded'
 import { numberFormatter } from '@utils/NumberFormatter'
 import { MIN_ORDER_COST } from '@constants/payment'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
-import * as Footer from './PaySectionFooter.styled'
+import * as Footer from './PaymentSectionFooter.styled'
 
-const PaySectionFooter: FC<Props> = ({ startOrdering }) => {
+export const PaymentSectionFooter: FC<Props> = ({ startOrdering }) => {
   const isMinOrderCostExceeded = useSelectIsMinOrderCostExceeded()
 
   const { totalCost } = useSelectOrderCostDetails()
@@ -42,8 +42,6 @@ const PaySectionFooter: FC<Props> = ({ startOrdering }) => {
     </Footer.Root>
   )
 }
-
-export default PaySectionFooter
 
 interface Props {
   startOrdering: VoidFunction

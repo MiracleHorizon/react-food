@@ -1,1 +1,1 @@
-export { default } from './MobileMenuItem'
+export { MobileMenuItem } from './MobileMenuItem'

@@ -1,6 +1,6 @@
 import type { GetServerSidePropsContext, NextPage } from 'next'
 
-import Home from '@modules/Home'
+import { Home } from '@modules/Home'
 import { productCategoriesService } from '@modules/ProductCategory'
 import type { ShowcaseProductCategoryModel } from '@models/productCategory/ShowcaseProductCategory'
 

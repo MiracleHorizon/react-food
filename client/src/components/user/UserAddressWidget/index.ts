@@ -1,1 +1,1 @@
-export { default } from './UserAddressWidget'
+export { UserAddressWidget } from './UserAddressWidget'

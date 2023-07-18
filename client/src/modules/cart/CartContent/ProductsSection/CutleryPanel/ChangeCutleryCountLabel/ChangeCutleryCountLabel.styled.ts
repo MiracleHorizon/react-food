@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import NextImage from 'next/image'
 
-import ChangeCountLabelComponent from '@ui/ChangeCountLabel'
+import { ChangeCountLabel as ChangeCountLabelComponent } from '@ui/ChangeCountLabel'
 
 export const Root = styled.div`
   width: 100%;

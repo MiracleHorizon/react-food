@@ -1,1 +1,1 @@
-export { default } from './LeftHeaderPanel'
+export { LeftHeaderPanel } from './LeftHeaderPanel'

@@ -1,11 +1,11 @@
 import type { FC } from 'react'
 
-import SmallPlusSvg from '@ui/svg/SmallPlusSvg'
-import SmallMinusSvg from '@ui/svg/SmallMinusSvg'
+import { SmallPlusSvg } from '@ui/svg/SmallPlusSvg'
+import { SmallMinusSvg } from '@ui/svg/SmallMinusSvg'
 import type { CartProductHocProps } from '@hoc/withCartProduct'
 import * as Label from './ChangeCountLabel.styled'
 
-const ChangeCountLabel: FC<Props> = ({
+export const ChangeCountLabel: FC<Props> = ({
   count,
   actions: { increment, decrement }
 }) => (
@@ -19,8 +19,6 @@ const ChangeCountLabel: FC<Props> = ({
     </Label.Button>
   </Label.Root>
 )
-
-export default ChangeCountLabel
 
 interface Props extends Pick<CartProductHocProps, 'actions'> {
   count: number

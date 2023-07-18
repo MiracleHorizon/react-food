@@ -4,7 +4,7 @@ import { SERVICE_FEE } from '@constants/payment'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import * as Info from './DeliveryInfo.styled'
 
-const DeliveryInfo = () => (
+export const DeliveryInfo = () => (
   <Info.Root>
     <CarBanner />
     <Info.Content>
@@ -19,5 +19,3 @@ const DeliveryInfo = () => (
     </Info.Content>
   </Info.Root>
 )
-
-export default DeliveryInfo

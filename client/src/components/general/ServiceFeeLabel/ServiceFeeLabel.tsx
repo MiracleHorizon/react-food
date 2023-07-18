@@ -3,7 +3,7 @@ import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import { SERVICE_FEE } from '@constants/payment'
 import * as Label from './ServiceFeeLabel.styled'
 
-const ServiceFeeLabel = () => (
+export const ServiceFeeLabel = () => (
   <Label.Root>
     <span>Работа сервиса</span>
     <Label.Value>
@@ -14,5 +14,3 @@ const ServiceFeeLabel = () => (
     </Label.Value>
   </Label.Root>
 )
-
-export default ServiceFeeLabel

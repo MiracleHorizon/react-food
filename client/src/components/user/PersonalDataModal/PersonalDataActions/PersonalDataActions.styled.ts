@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ButtonComponent from '@ui/Button'
+import { Button as ButtonComponent } from '@ui/Button'
 
 export const Root = styled.div`
   display: flex;

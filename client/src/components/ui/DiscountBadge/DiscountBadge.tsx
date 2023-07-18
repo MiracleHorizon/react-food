@@ -4,10 +4,8 @@ import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import percentImage from '@public/images/percent.png'
 import * as Badge from './DiscountBadge.styled'
 
-const DiscountBadge: FC<EmotionClassNameProps> = ({ className }) => (
-  <Badge.Root className={className}>
+export const DiscountBadge: FC<EmotionClassNameProps> = props => (
+  <Badge.Root {...props}>
     <Badge.Image src={percentImage} width={20} height={20} alt='Скидка' />
   </Badge.Root>
 )
-
-export default DiscountBadge

@@ -1,1 +1,1 @@
-export { default } from './CartLayoutHeader'
+export { CartLayoutHeader } from './CartLayoutHeader'

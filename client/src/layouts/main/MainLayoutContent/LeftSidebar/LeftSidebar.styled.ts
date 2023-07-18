@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import DeliveryInfoComponent from '@components/general/DeliveryInfo'
+import { DeliveryInfo as DeliveryInfoComponent } from '@components/general/DeliveryInfo'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 export const Root = styled.aside`

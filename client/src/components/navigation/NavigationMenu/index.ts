@@ -1,1 +1,1 @@
-export { default } from './NavigationMenu'
+export { NavigationMenu } from './NavigationMenu'

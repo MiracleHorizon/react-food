@@ -1,12 +1,10 @@
-import DeliveryInfo from './DeliveryInfo'
-import OrderInfo from './OrderInfo'
+import { DeliveryInfo } from './DeliveryInfo'
+import { OrderInfo } from './OrderInfo'
 import { useCartStore } from '@stores/cartStore'
 import { Root } from './CartSidebarFooter.styled'
 
-const CartSidebarFooter = () => (
-  <Root>
-    {useCartStore(state => state.isEmpty()) ? <DeliveryInfo /> : <OrderInfo />}
-  </Root>
-)
+export const CartSidebarFooter = () => {
+  const isCartEmpty = useCartStore(state => state.isEmpty())
 
-export default CartSidebarFooter
+  return <Root>{isCartEmpty ? <DeliveryInfo /> : <OrderInfo />}</Root>
+}

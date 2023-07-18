@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ChangeCountLabelComponent from '@ui/ChangeCountLabel'
+import { ChangeCountLabel as ChangeCountLabelComponent } from '@ui/ChangeCountLabel'
 import { colors } from '@styles/colors'
 
 export const Root = styled.li`

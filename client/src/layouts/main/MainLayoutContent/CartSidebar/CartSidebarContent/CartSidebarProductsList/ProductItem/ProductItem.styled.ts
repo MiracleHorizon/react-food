@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import NextImage from 'next/image'
 
-import DiscountBadgeComponent from '@ui/DiscountBadge'
+import { DiscountBadge as DiscountBadgeComponent } from '@ui/DiscountBadge'
 import { colors } from '@styles/colors'
 
 export const imageSize = 60

@@ -1,11 +1,11 @@
 import { type FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import DeliveryAddressDetailsForm from '@components/forms/DeliveryAddressDetailsForm'
+import { DeliveryAddressDetailsForm } from '@components/forms/DeliveryAddressDetailsForm'
 import { useOrderStore } from '@stores/orderStore'
 import type { DeliveryAddressDetailsForOrder } from '@models/user/DeliveryAddressDetailsForOrder'
 
-const DeliveryAddressDetailsFormWrapper: FC<Props> = ({
+export const DeliveryAddressDetailsFormWrapper: FC<Props> = ({
   isOrdering,
   endOrdering
 }) => {
@@ -13,7 +13,7 @@ const DeliveryAddressDetailsFormWrapper: FC<Props> = ({
     state => state.setDeliveryAddressDetails
   )
 
-  const { register, watch, setFocus, getValues, formState } =
+  const { getValues, formState, ...otherUseFormParams } =
     useForm<DeliveryAddressDetailsForOrder>({
       defaultValues: {
         office: '',
@@ -36,16 +36,8 @@ const DeliveryAddressDetailsFormWrapper: FC<Props> = ({
     endOrdering
   ])
 
-  return (
-    <DeliveryAddressDetailsForm
-      register={register}
-      setFocus={setFocus}
-      watch={watch}
-    />
-  )
+  return <DeliveryAddressDetailsForm {...otherUseFormParams} />
 }
-
-export default DeliveryAddressDetailsFormWrapper
 
 interface Props {
   isOrdering: boolean

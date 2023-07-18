@@ -1,1 +1,1 @@
-export { default } from './NavigationCatalog'
+export { NavigationCatalog } from './NavigationCatalog'

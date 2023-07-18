@@ -1,1 +1,1 @@
-export { default } from './UserAddressSelect'
+export { UserAddressSelect } from './UserAddressSelect'

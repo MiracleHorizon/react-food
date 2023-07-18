@@ -1,11 +1,11 @@
 import { type FC, useMemo } from 'react'
 
-import Breadcrumb, { type BreadcrumbItem } from '@ui/Breadcrumb'
+import { Breadcrumb, type BreadcrumbItem } from '@ui/Breadcrumb'
 import { Routes } from '@router/Routes.enum'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 import * as Header from './ProductSubcategoryHeader.styled'
 
-const ProductSubcategoryHeader: FC<Props> = ({
+export const ProductSubcategoryHeader: FC<Props> = ({
   title,
   categoryId,
   categoryTitle
@@ -32,8 +32,6 @@ const ProductSubcategoryHeader: FC<Props> = ({
     </Header.Root>
   )
 }
-
-export default ProductSubcategoryHeader
 
 type Props = Pick<
   ProductSubcategoryModel,

@@ -1,12 +1,12 @@
 import { Listbox } from '@headlessui/react'
 import type { FC, PropsWithChildren } from 'react'
 
-import UserAddressSelectOption from './UserAddressSelectOption'
+import { UserAddressSelectOption } from './UserAddressSelectOption'
 import { useUserStore } from '@stores/userStore'
 import type { DeliveryAddress } from '@models/user/DeliveryAddress'
 import * as Select from './UserAddressSelect.styled'
 
-const UserAddressSelect: FC<Props> = ({
+export const UserAddressSelect: FC<Props> = ({
   children,
   addresses,
   selectedAddress
@@ -33,8 +33,6 @@ const UserAddressSelect: FC<Props> = ({
     </Select.Root>
   )
 }
-
-export default UserAddressSelect
 
 interface Props extends PropsWithChildren {
   addresses: DeliveryAddress[]

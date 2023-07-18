@@ -1,1 +1,1 @@
-export { default } from './ProductCategoryShowcase'
+export { ProductCategoryShowcase } from './ProductCategoryShowcase'

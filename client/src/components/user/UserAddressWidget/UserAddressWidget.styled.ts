@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
-import ChevronSvg from '@ui/svg/ChevronSvg'
-import MapPinSvg from '@ui/svg/MapPinSvg'
+import { ChevronSvg } from '@ui/svg/ChevronSvg'
+import { MapPinSvg } from '@ui/svg/MapPinSvg'
 import { colors } from '@styles/colors'
 import { truncateText } from '@styles/truncateText'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'

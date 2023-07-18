@@ -4,7 +4,7 @@ import { ButtonVariant } from '@ui/Button'
 import { Routes } from '@router/Routes.enum'
 import { Button } from './SigninButton.styled'
 
-const SigninButton = () => {
+export const SigninButton = () => {
   const router = useRouter()
 
   const navigateToSignin = () => router.push(Routes.SIGNIN)
@@ -17,5 +17,3 @@ const SigninButton = () => {
     />
   )
 }
-
-export default SigninButton

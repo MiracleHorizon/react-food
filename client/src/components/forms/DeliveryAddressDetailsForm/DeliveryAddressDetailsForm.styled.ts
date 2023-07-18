@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import DeliveryAddressDetailsFormInput from './DeliveryAddressDetailsFormInput'
+import { DeliveryAddressDetailsFormInput } from './DeliveryAddressDetailsFormInput'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 export const Root = styled.form`

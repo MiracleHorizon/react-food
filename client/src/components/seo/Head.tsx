@@ -27,4 +27,4 @@ const HeadComponent: FC<SeoData> = seoData => {
   )
 }
 
-export default HeadComponent
+export { HeadComponent as Head }

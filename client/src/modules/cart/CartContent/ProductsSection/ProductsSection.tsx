@@ -1,15 +1,16 @@
 import dynamic from 'next/dynamic'
 
-import ProductsSectionHeader from './ProductsSectionHeader'
-import CutleryPanel from './CutleryPanel'
+import { ProductsSectionHeader } from './ProductsSectionHeader'
+import { CutleryPanel } from './CutleryPanel'
 import { SectionRoot } from '../CartContent.styled'
 
 // TODO: Loader
-const ProductsList = dynamic(import('./ProductsList'), {
-  ssr: false
-})
+const ProductsList = dynamic(
+  import('./ProductsList').then(mod => mod.ProductsList),
+  { ssr: false }
+)
 
-const ProductsSection = () => (
+export const ProductsSection = () => (
   <SectionRoot>
     <ProductsSectionHeader />
     <main>
@@ -18,5 +19,3 @@ const ProductsSection = () => (
     </main>
   </SectionRoot>
 )
-
-export default ProductsSection

@@ -1,17 +1,17 @@
 import { useRef } from 'react'
 import { Dialog } from '@headlessui/react'
 
-import ModalWrapper from '@ui/Modal'
-import PersonalDataForm from './PersonalDataForm'
-import PersonalDataActions from './PersonalDataActions'
+import { ModalWrapper } from '@ui/Modal'
+import { PersonalDataForm } from './PersonalDataForm'
+import { PersonalDataActions } from './PersonalDataActions'
 import { userService } from '@api/UserService'
 import { useUserStore } from '@stores/userStore'
 import { useModalsStore } from '@stores/modalsStore'
 import type { UserPersonalData } from '@models/user/UserPersonalData'
 import * as Modal from './PersonalDataModal.styled'
 
-const PersonalDataModal = () => {
-  const titleArticleRef = useRef<HTMLDivElement>(null)
+export const PersonalDataModal = () => {
+  const titleArticleRef = useRef<HTMLElement>(null)
 
   const user = useUserStore(state => state.user)
   const signin = useUserStore(state => state.signin)
@@ -46,5 +46,3 @@ const PersonalDataModal = () => {
     </ModalWrapper>
   )
 }
-
-export default PersonalDataModal

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import Button from '@ui/Button'
+import { Button } from '@ui/Button'
 import { AuthFormInput } from './AuthFormInput'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 

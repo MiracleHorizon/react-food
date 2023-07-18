@@ -1,14 +1,14 @@
 import { type FC, useMemo } from 'react'
 
-import MainLayout from '@layouts/Main'
-import ProductCategoryHeader from './ProductCategoryHeader'
-import ProductCategoryShowcase from './ProductCategoryShowcase'
+import { MainLayout } from '@layouts/Main'
+import { ProductCategoryHeader } from './ProductCategoryHeader'
+import { ProductCategoryShowcase } from './ProductCategoryShowcase'
 import { getKeywordsFromProducts } from '@helpers/getKeywordsFromProducts'
 import { getProductCategoryProducts } from '../helpers/getProductCategoryProducts'
 import type { ProductCategoryModel } from '@models/productCategory/ProductCategory'
 import { Root } from './ProductCategory.styled'
 
-const ProductCategory: FC<ProductCategoryModel> = productCategory => {
+export const ProductCategory: FC<ProductCategoryModel> = productCategory => {
   const keywords = useMemo(() => {
     const products = getProductCategoryProducts(productCategory)
     return getKeywordsFromProducts(products)
@@ -28,5 +28,3 @@ const ProductCategory: FC<ProductCategoryModel> = productCategory => {
     </MainLayout>
   )
 }
-
-export default ProductCategory

@@ -1,1 +1,1 @@
-export { default } from './CartSidebarHeader'
+export { CartSidebarHeader } from './CartSidebarHeader'

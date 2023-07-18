@@ -1,11 +1,11 @@
 import type { FC } from 'react'
 
-import HomeDescription from './HomeDescription'
-import ProductCategorySection from './ProductCategorySection'
+import { HomeDescription } from './HomeDescription'
+import { ProductCategorySection } from './ProductCategorySection'
 import type { ShowcaseProductCategoryModel } from '@models/productCategory/ShowcaseProductCategory'
 import { Root } from './HomeContent.styled'
 
-const HomeContent: FC<Props> = ({ productCategories }) => (
+export const HomeContent: FC<Props> = ({ productCategories }) => (
   <Root>
     <HomeDescription />
     {productCategories.map(productCategory => (
@@ -13,8 +13,6 @@ const HomeContent: FC<Props> = ({ productCategories }) => (
     ))}
   </Root>
 )
-
-export default HomeContent
 
 interface Props {
   productCategories: ShowcaseProductCategoryModel[]

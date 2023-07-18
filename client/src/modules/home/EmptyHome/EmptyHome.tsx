@@ -1,7 +1,7 @@
 import { colors } from '@styles/colors'
 import * as Styled from './EmptyHome.styled'
 
-const EmptyHome = () => (
+export const EmptyHome = () => (
   <Styled.Root>
     <Styled.Title>
       К сожалению, в данный момент ассортимент отсутствует
@@ -242,5 +242,3 @@ const EmptyHome = () => (
     </Styled.Svg>
   </Styled.Root>
 )
-
-export default EmptyHome

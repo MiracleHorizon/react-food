@@ -1,12 +1,12 @@
 import { type FC, useRef } from 'react'
 import { Dialog } from '@headlessui/react'
 
-import ModalWrapper from '@ui/Modal'
-import ModalContent from './DeliveryInfoModalContent'
+import { ModalWrapper } from '@ui/Modal'
+import { DeliveryInfoModalContent } from './DeliveryInfoModalContent'
 import type { ModalProps } from '@app-types/ModalProps'
 import * as Modal from './DeliveryInfoModal.styled'
 
-const DeliveryInfoModal: FC<ModalProps> = modalProps => {
+export const DeliveryInfoModal: FC<ModalProps> = modalProps => {
   const titleRef = useRef<HTMLHeadingElement>(null)
 
   return (
@@ -15,10 +15,8 @@ const DeliveryInfoModal: FC<ModalProps> = modalProps => {
         <Dialog.Title ref={titleRef} as={Modal.Title}>
           Информация о доставке
         </Dialog.Title>
-        <ModalContent />
+        <DeliveryInfoModalContent />
       </Dialog.Panel>
     </ModalWrapper>
   )
 }
-
-export default DeliveryInfoModal

@@ -1,1 +1,1 @@
-export { default } from './DiscountBadge'
+export { DiscountBadge } from './DiscountBadge'

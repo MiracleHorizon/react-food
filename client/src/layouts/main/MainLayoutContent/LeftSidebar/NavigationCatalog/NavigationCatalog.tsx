@@ -1,8 +1,8 @@
-import Navigation from '@components/navigation/Navigation'
+import { Navigation } from '@components/navigation/Navigation'
 import { useNavigationStore } from '@stores/navigationStore'
 import { Title } from './NavigationCatalog.styled'
 
-const NavigationCatalog = () => {
+export const NavigationCatalog = () => {
   const isNavigationEmpty = useNavigationStore(state => state.isEmpty())
 
   if (isNavigationEmpty) {
@@ -16,5 +16,3 @@ const NavigationCatalog = () => {
     </div>
   )
 }
-
-export default NavigationCatalog

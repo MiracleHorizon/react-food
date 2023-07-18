@@ -1,1 +1,1 @@
-export { default as ProductSubcategory } from './ProductSubcategory'
+export { ProductSubcategory } from './ProductSubcategory'

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ProductItem from './ProductItem'
+import { ProductItem } from './ProductItem'
 
 export const Item = styled(ProductItem)`
   &:not(&:first-of-type) {

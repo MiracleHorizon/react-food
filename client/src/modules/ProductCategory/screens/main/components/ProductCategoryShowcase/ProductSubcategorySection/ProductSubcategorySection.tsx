@@ -1,11 +1,11 @@
 import type { FC } from 'react'
 
-import ProductsGrid from '@components/products/ProductsGrid'
+import { ProductsGrid } from '@components/products/ProductsGrid'
 import { Routes } from '@router/Routes.enum'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 import * as Section from './ProductSubcategorySection.styled'
 
-const ProductSubcategorySection: FC<ProductSubcategoryModel> = ({
+export const ProductSubcategorySection: FC<ProductSubcategoryModel> = ({
   id,
   title,
   categoryId,
@@ -18,5 +18,3 @@ const ProductSubcategorySection: FC<ProductSubcategoryModel> = ({
     <ProductsGrid products={products} />
   </Section.Root>
 )
-
-export default ProductSubcategorySection

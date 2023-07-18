@@ -4,7 +4,7 @@ import { useCutleryStore } from '@stores/cutleryStore'
 import cutlerySvg from '@public/svg/cutlery.svg'
 import * as Button from './AddCutleryButton.styled'
 
-const AddCutleryButton = () => {
+export const AddCutleryButton = () => {
   const addCutlery = useCutleryStore(state => state.addCutlery)
 
   const handleAddCutlery = () => addCutlery()
@@ -20,5 +20,3 @@ const AddCutleryButton = () => {
     </Button.Root>
   )
 }
-
-export default AddCutleryButton

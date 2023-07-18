@@ -6,7 +6,7 @@ import { maxDeviceWidth, minDeviceWidth } from '@styles/responsiveness/devices'
 
 const paddingX = 16
 
-export const Root = styled.div<IsFocusedProps>`
+export const Root = styled.div<Props>`
   position: relative;
   flex: 1 1 auto;
   height: 48px;
@@ -19,7 +19,7 @@ export const Root = styled.div<IsFocusedProps>`
 
   &:hover {
     label {
-      ${p => !p.isFocused && `color: ${colors.black.primary}`};
+      ${p => (!p.isFocused || !p.isEmpty) && `color: ${colors.black.primary}`};
     }
   }
 
@@ -33,7 +33,7 @@ export const Root = styled.div<IsFocusedProps>`
   }
 `
 
-export const Label = styled.label<IsFocusedProps>`
+export const Label = styled.label<Props>`
   position: absolute;
   left: 16px;
   width: calc(100% - ${paddingX * 2}px);
@@ -43,7 +43,7 @@ export const Label = styled.label<IsFocusedProps>`
   transition: all 0.2s ease-out;
 
   ${p => {
-    return p.isFocused
+    return p.isFocused || !p.isEmpty
       ? `
         top: 6px;
         font-size: 12px;
@@ -58,11 +58,11 @@ export const Label = styled.label<IsFocusedProps>`
   @media screen and (${maxDeviceWidth.mobileLg}) {
     top: 50%;
     transform: translateY(-50%);
-    ${p => (p.isFocused ? 'display: none' : 'font-size: 15px')};
+    ${p => (p.isFocused || !p.isEmpty ? 'display: none' : 'font-size: 15px')};
   }
 
   @media screen and (max-width: 600px) and (${minDeviceWidth.mobileLg}) {
-    ${p => !p.isFocused && 'font-size: 14px'};
+    ${p => (!p.isFocused || !p.isEmpty) && 'font-size: 14px'};
   }
 `
 
@@ -76,6 +76,7 @@ export const Input = styled.input`
   }
 `
 
-interface IsFocusedProps {
+interface Props {
   isFocused: boolean
+  isEmpty: boolean
 }

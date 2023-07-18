@@ -6,7 +6,7 @@ import { ButtonVariant } from '@ui/Button'
 import emptyCartBag from '@public/svg/empty_cart_bag.svg'
 import * as Styled from './EmptyCart.styled'
 
-const EmptyCart = () => {
+export const EmptyCart = () => {
   const router = useRouter()
 
   const navigateToHome = () => router.push(Routes.HOME)
@@ -30,5 +30,3 @@ const EmptyCart = () => {
     </Styled.Root>
   )
 }
-
-export default EmptyCart

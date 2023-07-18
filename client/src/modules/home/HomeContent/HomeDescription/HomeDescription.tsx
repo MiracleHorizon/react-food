@@ -1,13 +1,14 @@
 import * as Description from './HomeDescription.styled'
 
-const HomeDescription = () => (
+export const HomeDescription = () => (
   <Description.Root>
     <Description.Title>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae dolorem
-      doloribus est explicabo fugit maiores odit officiis optio voluptatem
-      voluptatum.
+      Вкусные радости – прямо к Вам на дом! Откройте двери к удовольствию с
+      React.Едой. Подарите себе и своим близким удивительный кулинарный опыт,
+      где каждое блюдо – искусство на вашем столе. Быстрая, свежая и
+      непревзойденная доставка – это наш стиль жизни. Дарим Вам больше времени
+      на наслаждение, а нам – счастливых клиентов, которые приходят к нам вновь
+      и вновь. Закажите удовольствие прямо сейчас!
     </Description.Title>
   </Description.Root>
 )
-
-export default HomeDescription

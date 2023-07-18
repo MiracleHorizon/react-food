@@ -1,1 +1,1 @@
-export { default } from './ShowcaseProductCardImage'
+export { ShowcaseProductCardImage } from './ShowcaseProductCardImage'

@@ -1,8 +1,8 @@
-import ClearCartLabel from '@components/cart/ClearCartLabel'
+import { ClearCartLabel } from '@components/cart/ClearCartLabel'
 import { useCartStore } from '@stores/cartStore'
 import * as Header from './CartSidebarHeader.styled'
 
-const CartSidebarHeader = () => (
+export const CartSidebarHeader = () => (
   <Header.Root>
     <Header.Title>Корзина</Header.Title>
     {useCartStore(state => !state.isEmpty()) && (
@@ -10,5 +10,3 @@ const CartSidebarHeader = () => (
     )}
   </Header.Root>
 )
-
-export default CartSidebarHeader

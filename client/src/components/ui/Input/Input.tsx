@@ -27,8 +27,9 @@ const InputComponent = <T extends string>({
   </Input.Root>
 )
 
-export default InputComponent
+export { InputComponent as Input }
 
+// TODO: Отвязать от react-hook-form
 interface Props<T extends string>
   extends EmotionClassNameProps,
     Omit<HTMLAttributes<HTMLInputElement>, 'type' | 'dangerouslySetInnerHTML'> {

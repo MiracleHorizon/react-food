@@ -1,3 +1,3 @@
-export { default } from './Banner'
-export { default as CartBanner } from './components/CartBanner'
-export { default as CarBanner } from './components/CarBanner'
+export { Banner } from './Banner'
+export { CartBanner } from './components/CartBanner'
+export { CarBanner } from './components/CarBanner'

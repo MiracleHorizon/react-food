@@ -1,1 +1,1 @@
-export { default } from './CartSidebarFooter'
+export { CartSidebarFooter } from './CartSidebarFooter'

@@ -1,13 +1,17 @@
 import dynamic from 'next/dynamic'
 
-import CartLayout from '@layouts/Cart'
-import CartContent from './CartContent'
+import { CartLayout } from '@layouts/Cart'
 import { useCartStore } from '@stores/cartStore'
 import { Root } from './Cart.styled'
 
-const EmptyCart = dynamic(import('./EmptyCart'))
+const EmptyCart = dynamic(import('./EmptyCart').then(mod => mod.EmptyCart))
+// TODO: Loader
+const CartContent = dynamic(
+  import('./CartContent').then(mod => mod.CartContent),
+  { ssr: false }
+)
 
-const Cart = () => {
+export const Cart = () => {
   const isCartEmpty = useCartStore(state => state.isEmpty())
 
   return (
@@ -16,5 +20,3 @@ const Cart = () => {
     </CartLayout>
   )
 }
-
-export default Cart

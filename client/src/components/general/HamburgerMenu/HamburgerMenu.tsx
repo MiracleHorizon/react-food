@@ -1,16 +1,16 @@
 import { type FC, type PropsWithChildren, useCallback, useEffect } from 'react'
 import { useEventListener } from 'usehooks-ts'
 
-import Portal from '@components/general/Portal'
-import XMarkSvg from '@ui/svg/XMarkSvg'
-import ThreeBarsSvg from '@ui/svg/ThreeBarsSvg'
+import { Portal } from '@components/general/Portal'
+import { XMarkSvg } from '@ui/svg/XMarkSvg'
+import { ThreeBarsSvg } from '@ui/svg/ThreeBarsSvg'
 import { useToggle } from '@hooks/useToggle'
 import { isBrowser } from '@helpers/isBrowser'
 import { breakpoints } from '@styles/responsiveness/breakpoints'
 import { HIDDEN_OVERFLOW_CLASSNAME } from '@styles/constants'
 import * as Menu from './HamburgerMenu.styled'
 
-const HamburgerMenu: FC<PropsWithChildren> = ({ children }) => {
+export const HamburgerMenu: FC<PropsWithChildren> = ({ children }) => {
   const { isOpen, close, toggle } = useToggle(false)
 
   const handlePressEscapeKey = useCallback(
@@ -46,5 +46,3 @@ const HamburgerMenu: FC<PropsWithChildren> = ({ children }) => {
     </Menu.Root>
   )
 }
-
-export default HamburgerMenu

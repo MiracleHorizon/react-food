@@ -1,9 +1,9 @@
-import { type FC, memo } from 'react'
+import type { FC } from 'react'
 
 import type { CartProductModel } from '@models/product/CartProduct'
 import * as Content from './ProductItemContent.styled'
 
-const ProductItemContent: FC<Props> = ({
+export const ProductItemContent: FC<Props> = ({
   title,
   image,
   withDiscount,
@@ -24,8 +24,6 @@ const ProductItemContent: FC<Props> = ({
     </Content.Wrapper>
   </Content.Root>
 )
-
-export default memo(ProductItemContent)
 
 interface Props extends Pick<CartProductModel, 'title'> {
   image: string

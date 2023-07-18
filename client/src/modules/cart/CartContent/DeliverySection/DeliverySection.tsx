@@ -1,11 +1,11 @@
 import type { FC } from 'react'
 
-import UserAddressWidget from '@components/user/UserAddressWidget'
-import DeliveryAddressDetailsFormWrapper from './DeliveryAddressDetailsFormWrapper'
+import { UserAddressWidget } from '@components/user/UserAddressWidget'
+import { DeliveryAddressDetailsFormWrapper } from './DeliveryAddressDetailsFormWrapper'
 import { useUserStore } from '@stores/userStore'
 import * as Section from './DeliverySection.styled'
 
-const DeliverySection: FC<Props> = props => {
+export const DeliverySection: FC<Props> = props => {
   const isAddressesEmpty = useUserStore(state => state.isAddressesEmpty())
 
   return (
@@ -22,8 +22,6 @@ const DeliverySection: FC<Props> = props => {
     </Section.Root>
   )
 }
-
-export default DeliverySection
 
 interface Props {
   isOrdering: boolean

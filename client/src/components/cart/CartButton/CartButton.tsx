@@ -7,11 +7,12 @@ import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import cartSvg from '@public/svg/cart_2.svg'
 import * as Button from './CartButton.styled'
 
-const CartModal = dynamic(import('@components/cart/CartModal'), {
-  ssr: false
-})
+const CartModal = dynamic(
+  import('../CartModal').then(mod => mod.CartModal),
+  { ssr: false }
+)
 
-const CartButton: FC<Props> = ({ cartCost, className }) => {
+export const CartButton: FC<Props> = memo(({ cartCost, className }) => {
   const { isOpen, open, close } = useToggle(false)
 
   return (
@@ -23,9 +24,7 @@ const CartButton: FC<Props> = ({ cartCost, className }) => {
       <CartModal isOpen={isOpen} onClose={close} />
     </>
   )
-}
-
-export default memo(CartButton)
+})
 
 interface Props extends EmotionClassNameProps {
   cartCost: string

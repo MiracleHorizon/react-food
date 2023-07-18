@@ -1,1 +1,1 @@
-export { default } from './ChangeCountLabel'
+export { ChangeCountLabel } from './ChangeCountLabel'

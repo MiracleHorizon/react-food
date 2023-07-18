@@ -1,16 +1,16 @@
-import { type FC, memo, useCallback, useMemo } from 'react'
-import { useRouter } from 'next/router'
+import {type FC, memo, useCallback, useMemo} from 'react'
+import {useRouter} from 'next/router'
 
-import { useSelectOrderCostDetails } from '@stores/hooks/useSelectOrderCostDetails'
-import { useSelectIsMinOrderCostExceeded } from '@stores/hooks/useSelectIsMinOrderCostExceeded'
-import { numberFormatter } from '@utils/NumberFormatter'
-import { MIN_ORDER_COST } from '@constants/payment'
-import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
-import { Routes } from '@router/Routes.enum'
-import * as Footer from './CartModalFooter.styled' // TODO: Without cost, cost
+import {useSelectOrderCostDetails} from '@stores/hooks/useSelectOrderCostDetails'
+import {useSelectIsMinOrderCostExceeded} from '@stores/hooks/useSelectIsMinOrderCostExceeded'
+import {numberFormatter} from '@utils/NumberFormatter'
+import {MIN_ORDER_COST} from '@constants/payment'
+import {DEFAULT_CURRENCY_INTL_ARGS} from '@constants/intl'
+import {Routes} from '@router/Routes.enum'
+import * as Footer from './CartModalFooter.styled'
 
 // TODO: Without cost, cost
-const CartModalFooter: FC<Props> = props => {
+export const CartModalFooter: FC<Props> = memo(props => {
   const router = useRouter()
   const isMinOrderCostExceeded = useSelectIsMinOrderCostExceeded()
 
@@ -51,9 +51,7 @@ const CartModalFooter: FC<Props> = props => {
       <Footer.Cost>{formattedOrderCost}</Footer.Cost>
     </Footer.Root>
   )
-}
-
-export default memo(CartModalFooter)
+})
 
 interface Props {
   isScrollOnTop: boolean

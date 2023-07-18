@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import { darken } from 'polished'
 
-import ChevronDoubleSvg from '@ui/svg/ChevronDoubleSvg'
+import { ChevronDoubleSvg } from '@ui/svg/ChevronDoubleSvg'
 import { MOBILE_MENU_HEIGHT } from '@styles/constants'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 import { colors } from '@styles/colors'

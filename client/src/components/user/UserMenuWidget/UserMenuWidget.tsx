@@ -1,20 +1,22 @@
 import dynamic from 'next/dynamic'
 
-import SigninButton from '@components/user/SigninButton'
+import { SigninButton } from '@components/user/SigninButton'
 import { useUserStore } from '@stores/userStore'
 import { useToggle } from '@hooks/useToggle'
 import { Avatar } from './UserMenuWidget.styled'
 
-const UserMenu = dynamic(() => import('./UserMenu'), {
-  ssr: false
-})
-const PersonalDataModal = dynamic(import('../PersonalDataModal'), {
-  ssr: false
-})
+const UserMenu = dynamic(
+  import('./UserMenu').then(mod => mod.UserMenu),
+  { ssr: false }
+)
+const PersonalDataModal = dynamic(
+  import('../PersonalDataModal').then(mod => mod.PersonalDataModal),
+  { ssr: false }
+)
 
-const UserMenuWidget = () => {
-  const user = useUserStore(state => state.user)
+export const UserMenuWidget = () => {
   const { isOpen, open, close } = useToggle(false)
+  const user = useUserStore(state => state.user)
 
   if (!user) {
     return <SigninButton />
@@ -28,5 +30,3 @@ const UserMenuWidget = () => {
     </>
   )
 }
-
-export default UserMenuWidget

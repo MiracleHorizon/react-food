@@ -1,22 +1,25 @@
 import type { FC, PropsWithChildren } from 'react'
 
-import LeftSidebar from './LeftSidebar'
+import { LeftSidebar } from './LeftSidebar'
+import { useNavigationStore } from '@stores/navigationStore'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import * as Content from './MainLayoutContent.styled'
 
-const MainLayoutContent: FC<Props> = ({
+export const MainLayoutContent: FC<Props> = ({
   children,
   withSidePanels,
   className
-}) => (
-  <Content.Root className={className}>
-    {withSidePanels && <LeftSidebar />}
-    <Content.Container>{children}</Content.Container>
-    {withSidePanels && <Content.CartSidebar />}
-  </Content.Root>
-)
+}) => {
+  const isNavigationEmpty = useNavigationStore(state => state.isEmpty())
 
-export default MainLayoutContent
+  return (
+    <Content.Root className={className}>
+      {!isNavigationEmpty && withSidePanels && <LeftSidebar />}
+      <Content.Container>{children}</Content.Container>
+      {!isNavigationEmpty && withSidePanels && <Content.CartSidebar />}
+    </Content.Root>
+  )
+}
 
 interface Props extends PropsWithChildren, EmotionClassNameProps {
   withSidePanels: boolean

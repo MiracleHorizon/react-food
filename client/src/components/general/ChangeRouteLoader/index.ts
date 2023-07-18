@@ -1,1 +1,1 @@
-export { default } from './ChangeRouteLoader'
+export { ChangeRouteLoader } from './ChangeRouteLoader'

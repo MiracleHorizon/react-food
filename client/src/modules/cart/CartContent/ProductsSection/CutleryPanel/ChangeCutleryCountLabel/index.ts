@@ -1,1 +1,1 @@
-export { default } from './ChangeCutleryCountLabel'
+export { ChangeCutleryCountLabel } from './ChangeCutleryCountLabel'

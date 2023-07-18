@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import OrderButton from '@components/order/OrderButton'
+import { OrderButton } from '@components/order/OrderButton'
 
 export const Root = styled.footer`
   width: 100%;

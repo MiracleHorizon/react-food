@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
-import OrderButton from '@components/order/OrderButton'
-import MinOrderCostShortage from './MinOrderCostShortage'
+import { OrderButton } from '@components/order/OrderButton'
+import { MinOrderCostShortage } from './MinOrderCostShortage'
 import { useSelectOrderCostDetails } from '@stores/hooks/useSelectOrderCostDetails'
 import { useSelectIsMinOrderCostExceeded } from '@stores/hooks/useSelectIsMinOrderCostExceeded'
 import { numberFormatter } from '@utils/NumberFormatter'
@@ -9,7 +9,7 @@ import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import { MIN_ORDER_COST } from '@constants/payment'
 import { Routes } from '@router/Routes.enum'
 
-const OrderInfo = () => {
+export const OrderInfo = () => {
   const router = useRouter()
   const isMinOrderCostExceeded = useSelectIsMinOrderCostExceeded()
 
@@ -50,5 +50,3 @@ const OrderInfo = () => {
     </div>
   )
 }
-
-export default OrderInfo

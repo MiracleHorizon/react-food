@@ -1,4 +1,4 @@
-import NavigationMenuItem from './NavigationItem'
+import { NavigationItem } from './NavigationItem'
 import { useNavigationStore } from '@stores/navigationStore'
 import * as Navigation from './Navigation.styled'
 
@@ -9,11 +9,11 @@ const NavigationComponent = () => {
     <Navigation.Root>
       <Navigation.List>
         {navigationCategories.map(category => (
-          <NavigationMenuItem key={category.id} {...category} />
+          <NavigationItem key={category.id} {...category} />
         ))}
       </Navigation.List>
     </Navigation.Root>
   )
 }
 
-export default NavigationComponent
+export { NavigationComponent as Navigation }

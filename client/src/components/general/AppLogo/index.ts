@@ -1,1 +1,1 @@
-export { default } from './AppLogo'
+export { AppLogo } from './AppLogo'

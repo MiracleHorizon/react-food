@@ -1,11 +1,11 @@
 import type { FC } from 'react'
 
-import LoadMoreButton from './LoadMoreButton'
+import { LoadMoreButton } from './LoadMoreButton'
 import { Routes } from '@router/Routes.enum'
 import type { ShowcaseProductCategoryModel } from '@models/productCategory/ShowcaseProductCategory'
 import * as Header from './ProductCategoryHeader.styled'
 
-const ProductCategoryHeader: FC<Props> = ({ id, title, imagePath }) => (
+export const ProductCategoryHeader: FC<Props> = ({ id, title, imagePath }) => (
   <Header.Root>
     <Header.Content>
       {imagePath ? (
@@ -20,7 +20,5 @@ const ProductCategoryHeader: FC<Props> = ({ id, title, imagePath }) => (
     <LoadMoreButton productCategoryId={id} />
   </Header.Root>
 )
-
-export default ProductCategoryHeader
 
 type Props = Pick<ShowcaseProductCategoryModel, 'id' | 'title' | 'imagePath'>

@@ -1,10 +1,10 @@
 import type { FC } from 'react'
 
-import ChangeCountButton from './ChangeCountButton'
+import { ChangeCountButton } from './ChangeCountButton'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import * as Label from './ChangeCountLabel.styled'
 
-const ChangeCountLabel: FC<Props> = ({
+export const ChangeCountLabel: FC<Props> = ({
   value,
   decrement,
   increment,
@@ -26,8 +26,6 @@ const ChangeCountLabel: FC<Props> = ({
     />
   </Label.Root>
 )
-
-export default ChangeCountLabel
 
 interface Props extends EmotionClassNameProps {
   value: number

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import CartSidebarComponent from './CartSidebar'
+import { CartSidebar as CartSidebarComponent } from './CartSidebar'
 
 export const Root = styled.div`
   position: relative;

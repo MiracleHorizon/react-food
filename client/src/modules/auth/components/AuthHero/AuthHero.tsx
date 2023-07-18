@@ -5,9 +5,9 @@ import type { Routes } from '@router/Routes.enum'
 import * as Hero from './AuthHero.styled'
 
 export const AuthHero = () => {
-  const router = useRouter()
+  const { asPath } = useRouter()
 
-  const title = getAuthHeroTitle(router.asPath as Routes)
+  const title = getAuthHeroTitle(asPath as Routes)
 
   return (
     <Hero.Root>

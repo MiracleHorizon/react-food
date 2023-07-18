@@ -8,12 +8,15 @@ export const Root = styled.main`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-top: 20px;
+  padding-top: 10vh;
 `
 
 export const Title = styled.h1`
-  font-size: 26px;
+  display: inline-block;
+  max-width: 600px;
+  font-size: 32px;
   font-weight: 500;
+  line-height: 1.2;
   text-align: center;
 
   @media (${maxDeviceWidth.laptop}) {

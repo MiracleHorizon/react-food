@@ -1,10 +1,9 @@
-import Head from '@components/seo/Head'
-
-import NotFoundContent from './NotFoundContent'
+import { Head } from '@components/seo/Head'
+import { NotFoundContent } from './NotFoundContent'
 import notFoundImage from '@public/images/404.png'
 import * as Styled from './NotFound.styled'
 
-const NotFound = () => (
+export const NotFound = () => (
   <>
     <Head title='Страница не найдена' />
     <Styled.Root>
@@ -21,5 +20,3 @@ const NotFound = () => (
     </Styled.Root>
   </>
 )
-
-export default NotFound

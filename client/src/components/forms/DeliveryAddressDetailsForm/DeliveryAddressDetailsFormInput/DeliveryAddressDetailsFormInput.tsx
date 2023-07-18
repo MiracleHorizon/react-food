@@ -9,7 +9,7 @@ import type { UseFormRegisterReturn, UseFormSetFocus } from 'react-hook-form'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import * as Input from './DeliveryAddressDetailsFormInput.styled'
 
-const DeliveryAddressDetailsFormInput = <T extends string>({
+export const DeliveryAddressDetailsFormInput = <T extends string>({
   labelTitle,
   isEmpty,
   className,
@@ -33,19 +33,18 @@ const DeliveryAddressDetailsFormInput = <T extends string>({
     <Input.Root
       className={className}
       isFocused={isFocused}
+      isEmpty={isEmpty}
       tabIndex={0}
       onFocus={handleFocus}
       onBlur={handleBlur}
     >
-      <Input.Label htmlFor={id} isFocused={isFocused}>
+      <Input.Label htmlFor={id} isEmpty={isEmpty} isFocused={isFocused}>
         {labelTitle}
       </Input.Label>
       <Input.Input {...props} {...register} id={id} />
     </Input.Root>
   )
 }
-
-export default DeliveryAddressDetailsFormInput
 
 interface Props<T extends string>
   extends Omit<HTMLAttributes<HTMLInputElement>, 'type' | 'placeholder'>,

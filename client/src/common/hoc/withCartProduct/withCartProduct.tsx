@@ -4,7 +4,7 @@ import { CartProduct } from '@entities/CartProduct'
 import { useCartStore } from '@stores/cartStore'
 import type { Props } from './withCartProduct.types'
 
-const WithCartProduct: FC<Props> = ({
+export const WithCartProduct: FC<Props> = ({
   WrappedComponent,
   productData,
   className
@@ -48,5 +48,3 @@ const WithCartProduct: FC<Props> = ({
     />
   )
 }
-
-export default WithCartProduct

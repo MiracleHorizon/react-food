@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
-import AppLogo from '@components/general/AppLogo'
-import SearchWidget from '@components/general/SearchWidget'
+import { AppLogo } from '@components/general/AppLogo'
+import { SearchWidget } from '@components/general/SearchWidget'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 export const Root = styled.div`

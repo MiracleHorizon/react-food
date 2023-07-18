@@ -1,1 +1,1 @@
-export { default } from './CartModalHeader'
+export { CartModalHeader } from './CartModalHeader'

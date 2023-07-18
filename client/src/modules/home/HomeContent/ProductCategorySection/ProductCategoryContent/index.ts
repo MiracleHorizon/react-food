@@ -1,1 +1,1 @@
-export { default } from './ProductCategoryContent'
+export { ProductCategoryContent } from './ProductCategoryContent'

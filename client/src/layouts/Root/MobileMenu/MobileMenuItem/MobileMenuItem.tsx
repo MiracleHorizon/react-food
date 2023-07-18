@@ -5,13 +5,12 @@ import Image from 'next/image'
 import type { Routes } from '@router/Routes.enum'
 import * as Item from './MobileMenuItem.styled'
 
-const MobileMenuItem: FC<Props> = ({ title, imagePath, href }) => {
-  const router = useRouter()
-  const isSelected = router.asPath === href
+export const MobileMenuItem: FC<Props> = memo(({ title, imagePath, href }) => {
+  const { asPath } = useRouter()
 
   return (
     <li>
-      <Item.Link href={href} selected={isSelected}>
+      <Item.Link href={href} selected={asPath === href}>
         <Item.ImageContainer>
           <Image src={imagePath} alt={title} sizes='100%' fill />
         </Item.ImageContainer>
@@ -19,9 +18,7 @@ const MobileMenuItem: FC<Props> = ({ title, imagePath, href }) => {
       </Item.Link>
     </li>
   )
-}
-
-export default memo(MobileMenuItem)
+})
 
 interface Props {
   title: string

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ButtonComponent from '@ui/Button'
+import { Button as ButtonComponent } from '@ui/Button'
 
 export const Panel = styled.div`
   max-width: 400px;

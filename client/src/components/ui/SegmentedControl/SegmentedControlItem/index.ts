@@ -1,1 +1,1 @@
-export { default } from './SegmentedControlItem'
+export { SegmentedControlItem } from './SegmentedControlItem'

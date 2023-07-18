@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import type { CartProductModel } from '@models/product/CartProduct'
 import * as Content from './CartProductItemContent.styled'
 
-const CartProductItemContent: FC<Props> = ({
+export const CartProductItemContent: FC<Props> = ({
   title,
   imagePath,
   withDiscount,
@@ -20,8 +20,6 @@ const CartProductItemContent: FC<Props> = ({
     </Content.Container>
   </Content.Root>
 )
-
-export default CartProductItemContent
 
 interface Props extends Pick<CartProductModel, 'title'> {
   formattedWeight: string

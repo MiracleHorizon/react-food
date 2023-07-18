@@ -5,7 +5,7 @@ import * as Label from './ChangeCutleryCountLabel.styled'
 import cutlerySvg from '@public/svg/cutlery.svg' // TODO: useCallback
 
 // TODO: useCallback
-const ChangeCutleryCountLabel = () => {
+export const ChangeCutleryCountLabel = () => {
   const count = useCutleryStore(state => state.count)
   const isMaxCount = useCutleryStore(state => state.isMaxCount())
 
@@ -42,5 +42,3 @@ const ChangeCutleryCountLabel = () => {
     </Label.Root>
   )
 }
-
-export default ChangeCutleryCountLabel

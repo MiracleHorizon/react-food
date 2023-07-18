@@ -1,1 +1,1 @@
-export { default } from './MainLayoutHeader'
+export { MainLayoutHeader } from './MainLayoutHeader'

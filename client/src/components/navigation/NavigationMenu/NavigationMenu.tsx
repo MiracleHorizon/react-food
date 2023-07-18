@@ -1,9 +1,16 @@
-import Navigation from '../Navigation'
-import HamburgerMenu from '@components/general/HamburgerMenu'
+import dynamic from 'next/dynamic'
+
+import { HamburgerMenu } from '@components/general/HamburgerMenu'
 import { useNavigationStore } from '@stores/navigationStore'
 import * as Menu from './NavigationMenu.styled'
 
-const NavigationMenu = () => {
+const Navigation = dynamic(
+  import('../Navigation').then(mod => mod.Navigation),
+  { ssr: false }
+)
+
+// TODO: Skeleton
+export const NavigationMenu = () => {
   const isNavigationEmpty = useNavigationStore(state => state.isEmpty())
 
   if (isNavigationEmpty) {
@@ -20,5 +27,3 @@ const NavigationMenu = () => {
     </HamburgerMenu>
   )
 }
-
-export default NavigationMenu

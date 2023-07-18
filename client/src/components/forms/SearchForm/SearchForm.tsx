@@ -1,4 +1,4 @@
-import { type FC, useLayoutEffect } from 'react'
+import { type FC, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
@@ -6,7 +6,7 @@ import { Routes } from '@router/Routes.enum'
 import type { OnSubmitData } from '@components/general/SearchWidget'
 import { Input } from './SearchForm.styled'
 
-const SearchForm: FC<Props> = ({ onSubmit }) => {
+export const SearchForm: FC<Props> = ({ onSubmit }) => {
   const router = useRouter()
 
   const { register, handleSubmit, getValues, setValue, watch, resetField } =
@@ -23,7 +23,7 @@ const SearchForm: FC<Props> = ({ onSubmit }) => {
     }
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const inputQueryValue = getValues('query')
     const routerQueryValue = router.query.q
 
@@ -39,6 +39,7 @@ const SearchForm: FC<Props> = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input
+        data-testid='search-input'
         type='text'
         placeholder='Найти товар'
         register={register('query', {
@@ -68,8 +69,6 @@ const SearchForm: FC<Props> = ({ onSubmit }) => {
     </form>
   )
 }
-
-export default SearchForm
 
 interface Props {
   onSubmit: (data: OnSubmitData) => void

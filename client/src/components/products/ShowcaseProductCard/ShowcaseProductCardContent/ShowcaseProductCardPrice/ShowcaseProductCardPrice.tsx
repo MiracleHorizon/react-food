@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import type { MainPriceData } from '@entities/ProductPrice/ProductPrice.types'
 import * as Price from './ShowcaseProductCardPrice.styled'
 
-const ShowcaseProductCardPrice: FC<MainPriceData> = ({
+export const ShowcaseProductCardPrice: FC<MainPriceData> = ({
   totalPrice,
   fullPrice,
   withDiscount
@@ -19,5 +19,3 @@ const ShowcaseProductCardPrice: FC<MainPriceData> = ({
     )}
   </div>
 )
-
-export default ShowcaseProductCardPrice

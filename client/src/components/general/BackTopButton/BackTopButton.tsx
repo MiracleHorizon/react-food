@@ -8,7 +8,7 @@ const calcIsVisible = (scrollProgress: number): boolean => {
   return scrollProgress >= VISION_POINT
 }
 
-const BackTopButton = () => {
+export const BackTopButton = () => {
   const { scrollY } = useScroll()
   const [isVisible, setIsVisible] = useState(calcIsVisible(scrollY.get()))
 
@@ -35,5 +35,3 @@ const BackTopButton = () => {
     </AnimatePresence>
   )
 }
-
-export default BackTopButton

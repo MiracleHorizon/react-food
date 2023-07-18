@@ -1,13 +1,15 @@
 import { type FC, useMemo } from 'react'
 
-import MainLayout from '@layouts/Main'
-import ProductsGrid from '@components/products/ProductsGrid'
-import ProductSubcategoryHeader from './ProductSubcategoryHeader'
+import { MainLayout } from '@layouts/Main'
+import { ProductsGrid } from '@components/products/ProductsGrid'
+import { ProductSubcategoryHeader } from './ProductSubcategoryHeader'
 import { getKeywordsFromProducts } from '@helpers/getKeywordsFromProducts'
 import type { ProductSubcategoryModel } from '@models/productCategory/ProductSubcategory'
 import { Root } from './ProductSubcategory.styled'
 
-const ProductSubcategory: FC<ProductSubcategoryModel> = productSubcategory => {
+export const ProductSubcategory: FC<
+  ProductSubcategoryModel
+> = productSubcategory => {
   const keywords = useMemo(() => {
     return getKeywordsFromProducts(productSubcategory.products)
   }, [productSubcategory.products])
@@ -26,5 +28,3 @@ const ProductSubcategory: FC<ProductSubcategoryModel> = productSubcategory => {
     </MainLayout>
   )
 }
-
-export default ProductSubcategory

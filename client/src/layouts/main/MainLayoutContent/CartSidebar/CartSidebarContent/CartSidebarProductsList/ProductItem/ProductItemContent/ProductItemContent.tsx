@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import type { ProductModel } from '@models/product/Product'
 import * as Content from './ProductItemContent.styled'
 
-const ProductItemContent: FC<Props> = ({
+export const ProductItemContent: FC<Props> = ({
   title,
   withDiscount,
   formattedFullPrice,
@@ -30,8 +30,6 @@ const ProductItemContent: FC<Props> = ({
     </Content.Wrapper>
   </Content.Root>
 )
-
-export default ProductItemContent
 
 interface Props extends Pick<ProductModel, 'title'> {
   formattedWeight: string

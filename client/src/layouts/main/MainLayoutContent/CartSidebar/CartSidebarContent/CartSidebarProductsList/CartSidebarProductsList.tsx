@@ -1,9 +1,9 @@
-import WithCartProduct from '@hoc/withCartProduct'
-import ProductItem from './ProductItem'
+import { WithCartProduct } from '@hoc/withCartProduct'
+import { ProductItem } from './ProductItem'
 import { useCartStore } from '@stores/cartStore'
 import { Root } from './CartSidebarProductsList.styled'
 
-const CartSidebarProductsList = () => {
+export const CartSidebarProductsList = () => {
   const cartProducts = useCartStore(state => state.products)
 
   return (
@@ -18,5 +18,3 @@ const CartSidebarProductsList = () => {
     </Root>
   )
 }
-
-export default CartSidebarProductsList

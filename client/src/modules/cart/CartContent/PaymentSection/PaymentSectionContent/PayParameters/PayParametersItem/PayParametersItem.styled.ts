@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const Root = styled.li`
+export const Item = styled.li`
   width: 100%;
   display: flex;
   align-items: center;

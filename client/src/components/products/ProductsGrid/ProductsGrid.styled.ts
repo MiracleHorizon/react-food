@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ShowcaseProductCard from '@components/products/ShowcaseProductCard'
+import { ShowcaseProductCard } from '@components/products/ShowcaseProductCard'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 const minCardWidth = 224

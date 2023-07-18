@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ProductCardComponent from '@components/products/ShowcaseProductCard'
+import { ShowcaseProductCard } from '@components/products/ShowcaseProductCard'
 
 export const Root = styled.main`
   position: relative;
@@ -10,6 +10,12 @@ export const Root = styled.main`
   justify-content: space-between;
 `
 
-export const ProductCard = styled(ProductCardComponent)`
+export const Scroll = styled.ul`
+  width: 100%;
+  display: flex;
+  overflow-x: scroll;
+`
+
+export const ProductCard = styled(ShowcaseProductCard)`
   margin: 0 4px;
 `

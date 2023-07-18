@@ -1,1 +1,1 @@
-export { default } from './ClearCartModal'
+export { ClearCartModal } from './ClearCartModal'

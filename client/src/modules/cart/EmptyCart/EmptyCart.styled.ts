@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import ButtonComponent from '@ui/Button'
+import { Button as ButtonComponent } from '@ui/Button'
 import { APP_HEADER_HEIGHT } from '@styles/constants'
 
 export const Root = styled.div`

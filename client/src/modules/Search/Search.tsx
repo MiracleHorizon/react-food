@@ -2,11 +2,11 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import useSWR from 'swr'
 
-import MainLayout from '@layouts/Main'
-import ProductsGrid from '@components/products/ProductsGrid'
+import { MainLayout } from '@layouts/Main'
+import { ProductsGrid } from '@components/products/ProductsGrid'
 import { searchService } from '@api/SearchService'
 
-const SearchScreen = () => {
+export const SearchScreen = () => {
   const router = useRouter()
   const query = router.query.q
 
@@ -41,5 +41,3 @@ const SearchScreen = () => {
     </MainLayout>
   )
 }
-
-export default SearchScreen

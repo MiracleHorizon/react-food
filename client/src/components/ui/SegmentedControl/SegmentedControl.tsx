@@ -1,10 +1,10 @@
 import { type FC, useState } from 'react'
 
-import SegmentedControlItem from './SegmentedControlItem'
+import { SegmentedControlItem } from './SegmentedControlItem'
 import type { Props } from './SegmentedControl.types'
 import { Root } from './SegmentedControl.styled'
 
-const SegmentedControl: FC<Props> = ({ items, onChange, className }) => {
+export const SegmentedControl: FC<Props> = ({ items, onChange, className }) => {
   const [selectedItem, setSelectedItem] = useState(items[0]!)
 
   // TODO: Array min length
@@ -26,5 +26,3 @@ const SegmentedControl: FC<Props> = ({ items, onChange, className }) => {
     </Root>
   )
 }
-
-export default SegmentedControl

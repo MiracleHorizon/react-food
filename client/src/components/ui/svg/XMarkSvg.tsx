@@ -1,4 +1,4 @@
-const XMarkSvg = () => (
+export const XMarkSvg = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     fill='none'
@@ -15,5 +15,3 @@ const XMarkSvg = () => (
     />
   </svg>
 )
-
-export default XMarkSvg

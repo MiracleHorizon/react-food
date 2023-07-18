@@ -1,1 +1,1 @@
-export { default } from './EmptyCartSidebar'
+export { EmptyCartSidebar } from './EmptyCartSidebar'

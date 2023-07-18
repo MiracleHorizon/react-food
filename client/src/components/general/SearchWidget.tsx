@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 
-import SearchForm from '@components/forms/SearchForm'
+import { SearchForm } from '@components/forms/SearchForm'
 import { Routes } from '@router/Routes.enum'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 
-const SearchWidget: FC<EmotionClassNameProps> = props => {
+export const SearchWidget: FC<EmotionClassNameProps> = props => {
   const router = useRouter()
 
   const onSubmit = async ({ query }: OnSubmitData) => {
@@ -41,8 +41,6 @@ const SearchWidget: FC<EmotionClassNameProps> = props => {
     </div>
   )
 }
-
-export default SearchWidget
 
 export interface OnSubmitData {
   query: string

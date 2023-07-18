@@ -1,6 +1,6 @@
 import MediaQuery from 'react-responsive'
 
-import MobileFooterMenuItem from './MobileMenuItem'
+import { MobileMenuItem } from './MobileMenuItem'
 import { Routes } from '@router/Routes.enum'
 import cartSvg from '@public/svg/cart_2.svg'
 import listSvg from '@public/svg/list.svg'
@@ -14,18 +14,16 @@ const menuItems = [
   { title: 'Корзина', imagePath: cartSvg.src, href: Routes.CART }
 ]
 
-const MobileMenu = () => (
+export const MobileMenu = () => (
   <MediaQuery maxWidth={breakpoints.tablet}>
     <Menu.Root>
       <Menu.Nav>
         <Menu.List>
           {menuItems.map(item => (
-            <MobileFooterMenuItem key={item.href} {...item} />
+            <MobileMenuItem key={item.href} {...item} />
           ))}
         </Menu.List>
       </Menu.Nav>
     </Menu.Root>
   </MediaQuery>
 )
-
-export default MobileMenu

@@ -1,4 +1,4 @@
-import Cart from '@modules/Cart'
+import { Cart } from '@modules/Cart'
 
 const CartPage = () => <Cart />
 

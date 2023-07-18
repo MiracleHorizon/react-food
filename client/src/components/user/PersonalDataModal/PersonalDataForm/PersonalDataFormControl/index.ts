@@ -1,1 +1,1 @@
-export { default } from './PersonalDataFormControl'
+export { PersonalDataFormControl } from './PersonalDataFormControl'

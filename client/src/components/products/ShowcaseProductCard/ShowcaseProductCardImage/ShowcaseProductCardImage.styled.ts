@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import NextImage from 'next/image'
 
-import DiscountPercentLabelComponent from '@components/general/DiscountPercent'
+import { DiscountPercent as DiscountPercentComponent } from '@components/general/DiscountPercent'
 import {
   type IShowcaseProductCardVariant,
   ShowcaseProductCardVariant
@@ -17,7 +17,7 @@ export const Root = styled.div<IShowcaseProductCardVariant>`
 `
 
 export const DiscountPercentLabel = styled(
-  DiscountPercentLabelComponent
+  DiscountPercentComponent
 )<IShowcaseProductCardVariant>`
   position: absolute;
   right: ${p => (p.variant === ShowcaseProductCardVariant.SMALL ? 8 : 12)}px;

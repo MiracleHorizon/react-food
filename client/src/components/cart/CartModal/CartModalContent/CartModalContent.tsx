@@ -1,18 +1,17 @@
 import {
   type Dispatch,
   type FC,
-  memo,
   type SetStateAction,
   useEffect,
   useRef
 } from 'react'
 
-import OrderInfo from './OrderInfo'
-import CartProductsList from './CartProductsList'
+import { OrderInfo } from './OrderInfo'
+import { CartProductsList } from './CartProductsList'
 import { useVerticalScrollProgress } from '@hooks/useVerticalScrollProgress'
 import { Root } from './CartModalContent.styled'
 
-const CartModalContent: FC<Props> = ({
+export const CartModalContent: FC<Props> = ({
   setScrollIsOnTop,
   setScrollIsOnBottom
 }) => {
@@ -37,8 +36,6 @@ const CartModalContent: FC<Props> = ({
     </Root>
   )
 }
-
-export default memo(CartModalContent)
 
 interface Props {
   setScrollIsOnTop: Dispatch<SetStateAction<boolean>>

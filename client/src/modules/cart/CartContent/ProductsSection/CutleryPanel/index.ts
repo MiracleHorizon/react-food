@@ -1,1 +1,1 @@
-export { default } from './CutleryPanel'
+export { CutleryPanel } from './CutleryPanel'

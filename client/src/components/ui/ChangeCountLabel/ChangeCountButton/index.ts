@@ -1,1 +1,1 @@
-export { default } from './ChangeCountButton'
+export { ChangeCountButton } from './ChangeCountButton'

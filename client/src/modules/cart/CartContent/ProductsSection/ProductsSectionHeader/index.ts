@@ -1,1 +1,1 @@
-export { default } from './ProductsSectionHeader'
+export { ProductsSectionHeader } from './ProductsSectionHeader'

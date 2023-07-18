@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import InputComponent from '@ui/Input'
+import { Input as InputComponent } from '@ui/Input'
 import { colors } from '@styles/colors'
 
 export const Input = styled(InputComponent)`

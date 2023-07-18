@@ -1,1 +1,1 @@
-export { default } from './MinOrderCostShortage'
+export { MinOrderCostShortage } from './MinOrderCostShortage'

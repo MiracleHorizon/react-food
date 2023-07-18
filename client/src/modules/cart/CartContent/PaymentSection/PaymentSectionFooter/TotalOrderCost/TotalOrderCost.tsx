@@ -4,7 +4,7 @@ import { numberFormatter } from '@utils/NumberFormatter'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import * as Cost from './TotalOrderCost.styled'
 
-const TotalOrderCost = () => {
+export const TotalOrderCost = () => {
   const { totalCost } = useSelectOrderCostDetails()
   const formattedOrderCost = numberFormatter.formatCurrency({
     value: totalCost,
@@ -25,5 +25,3 @@ const TotalOrderCost = () => {
     </Cost.Root>
   )
 }
-
-export default TotalOrderCost

@@ -5,11 +5,20 @@ import { useMakeOrder } from '@stores/hooks/useMakeOrder'
 import { useOrderStore } from '@stores/orderStore'
 import * as Content from './CartContent.styled'
 
-const DeliverySection = dynamic(import('./DeliverySection'), { ssr: false })
-const ProductsSection = dynamic(import('./ProductsSection'), { ssr: false })
-const PaySection = dynamic(import('./PaySection'), { ssr: false })
+const DeliverySection = dynamic(
+  import('./DeliverySection').then(mod => mod.DeliverySection),
+  { ssr: false }
+)
+const ProductsSection = dynamic(
+  import('./ProductsSection').then(mod => mod.ProductsSection),
+  { ssr: false }
+)
+const PaySection = dynamic(
+  import('./PaymentSection').then(mod => mod.PaymentSection),
+  { ssr: false }
+)
 
-const CartContent = () => {
+export const CartContent = () => {
   const [isOrdering, setIsOrdering] = useState(false)
   const deliveryAddressDetails = useOrderStore(
     state => state.deliveryAddressDetails
@@ -40,5 +49,3 @@ const CartContent = () => {
     </Content.Root>
   )
 }
-
-export default CartContent

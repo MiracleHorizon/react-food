@@ -1,1 +1,1 @@
-export { default } from './ServiceFeeLabel'
+export { ServiceFeeLabel } from './ServiceFeeLabel'

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { Routes } from '@router/Routes.enum'
 import * as Panel from './LeftHeaderPanel.styled'
 
-const LeftHeaderPanel = () => {
+export const LeftHeaderPanel = () => {
   const { asPath } = useRouter()
 
   return (
@@ -15,5 +15,3 @@ const LeftHeaderPanel = () => {
     </Panel.Root>
   )
 }
-
-export default LeftHeaderPanel

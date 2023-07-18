@@ -1,4 +1,4 @@
-import NotFound from '@modules/404'
+import { NotFound } from '@modules/404'
 
 const NotFoundPage = () => <NotFound />
 

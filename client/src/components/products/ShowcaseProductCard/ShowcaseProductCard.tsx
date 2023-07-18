@@ -1,51 +1,47 @@
 import { type FC, memo, useMemo } from 'react'
 
-import ShowcaseProductCardImage from './ShowcaseProductCardImage'
-import ShowcaseProductCardContent from './ShowcaseProductCardContent'
-import ShowcaseProductCardFooter from './ShowcaseProductCardFooter'
+import { ShowcaseProductCardImage } from './ShowcaseProductCardImage'
+import { ShowcaseProductCardContent } from './ShowcaseProductCardContent'
+import { ShowcaseProductCardFooter } from './ShowcaseProductCardFooter'
 import { ShowcaseProduct } from '@entities/ShowcaseProduct'
 import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import type { IShowcaseProductCardVariant } from './ShowcaseProductCard.types'
 import { Root } from './ShowcaseProductCard.styled'
 
-const ShowcaseProductCard: FC<Props> = ({
-  variant,
-  className,
-  ...productData
-}) => {
-  const showcaseProduct = useMemo(
-    () => new ShowcaseProduct(productData),
-    [productData]
-  )
+export const ShowcaseProductCard: FC<Props> = memo(
+  ({ variant, className, ...productData }) => {
+    const showcaseProduct = useMemo(
+      () => new ShowcaseProduct(productData),
+      [productData]
+    )
 
-  const {
-    title,
-    image,
-    price: { withDiscount, discountPercent, mainPriceData }
-  } = showcaseProduct
+    const {
+      title,
+      image,
+      price: { withDiscount, discountPercent, mainPriceData }
+    } = showcaseProduct
 
-  return (
-    <Root className={className} variant={variant}>
-      <ShowcaseProductCardImage
-        alt={title}
-        imagePath={image}
-        withDiscount={withDiscount}
-        discountPercent={discountPercent}
-        variant={variant}
-      />
-      <ShowcaseProductCardContent
-        title={title}
-        weight={showcaseProduct.formattedWeight}
-        variant={variant}
-        {...mainPriceData}
-      />
-      <ShowcaseProductCardFooter {...productData} />
-    </Root>
-  )
-}
-
-export default memo(ShowcaseProductCard)
+    return (
+      <Root className={className} variant={variant}>
+        <ShowcaseProductCardImage
+          alt={title}
+          imagePath={image}
+          withDiscount={withDiscount}
+          discountPercent={discountPercent}
+          variant={variant}
+        />
+        <ShowcaseProductCardContent
+          title={title}
+          weight={showcaseProduct.formattedWeight}
+          variant={variant}
+          {...mainPriceData}
+        />
+        <ShowcaseProductCardFooter {...productData} />
+      </Root>
+    )
+  }
+)
 
 type Props = ShowcaseProductModel &
   IShowcaseProductCardVariant &

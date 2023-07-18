@@ -1,8 +1,8 @@
-import AppHeader from '@components/general/AppHeader'
-import LeftHeaderPanel from './LeftPanel'
-import RightHeaderPanel from './RightPanel'
+import { AppHeader } from '@components/general/AppHeader'
+import { LeftHeaderPanel } from './LeftPanel'
+import { RightHeaderPanel } from './RightPanel'
 
-const MainLayoutHeader = () => (
+export const MainLayoutHeader = () => (
   <AppHeader>
     <>
       <LeftHeaderPanel />
@@ -10,5 +10,3 @@ const MainLayoutHeader = () => (
     </>
   </AppHeader>
 )
-
-export default MainLayoutHeader

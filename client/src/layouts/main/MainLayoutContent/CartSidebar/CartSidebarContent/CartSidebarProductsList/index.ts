@@ -1,1 +1,1 @@
-export { default } from './CartSidebarProductsList'
+export { CartSidebarProductsList as ProductsList } from './CartSidebarProductsList'

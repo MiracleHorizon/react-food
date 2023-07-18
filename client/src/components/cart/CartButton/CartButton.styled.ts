@@ -5,6 +5,7 @@ import { colors } from '@styles/colors'
 
 export const Root = styled.button`
   cursor: pointer;
+  min-width: 100px;
   height: 100%;
   display: flex;
   align-items: center;

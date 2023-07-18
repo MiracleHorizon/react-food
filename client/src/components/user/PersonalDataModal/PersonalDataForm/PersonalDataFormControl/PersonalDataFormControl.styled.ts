@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import InputComponent from '@ui/Input'
+import { Input as InputComponent } from '@ui/Input'
 
 export const Root = styled.div`
   height: 44px;

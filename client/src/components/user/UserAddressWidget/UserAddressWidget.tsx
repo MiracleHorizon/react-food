@@ -1,14 +1,16 @@
-import { useEffect } from 'react'
-import { Listbox } from '@headlessui/react'
+import {useEffect} from 'react'
+import {Listbox} from '@headlessui/react'
 
-import UserAddressSelect from './UserAddressSelect'
-import { useToggle } from '@hooks/useToggle'
-import { useUserStore } from '@stores/userStore'
-import { getDeliveryAddressString } from '@helpers/getDeliveryAddressString'
+import {UserAddressSelect} from './UserAddressSelect'
+import {useToggle} from '@hooks/useToggle'
+import {useUserStore} from '@stores/userStore'
+import {getDeliveryAddressString} from '@helpers/getDeliveryAddressString'
 import * as Widget from './UserAddressWidget.styled'
 
-const UserAddressWidget = () => {
+// TODO: Select
+export const UserAddressWidget = () => {
   const { isOpen, toggle } = useToggle(false)
+
   const addresses = useUserStore(state => state.addresses)
   const isAddressesEmpty = useUserStore(state => state.isAddressesEmpty())
   const selectedAddress = useUserStore(state => state.selectedAddress)
@@ -42,5 +44,3 @@ const UserAddressWidget = () => {
     </div>
   )
 }
-
-export default UserAddressWidget

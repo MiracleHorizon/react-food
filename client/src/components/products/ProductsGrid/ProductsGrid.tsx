@@ -4,7 +4,7 @@ import { ShowcaseProductCardVariant } from '@components/products/ShowcaseProduct
 import type { ShowcaseProductModel } from '@models/product/ShowcaseProduct'
 import * as Grid from './ProductsGrid.styled'
 
-const ProductsGrid: FC<Props> = ({ products }) => (
+export const ProductsGrid: FC<Props> = ({ products }) => (
   <Grid.Root>
     {products.map(product => (
       <Grid.Card
@@ -15,8 +15,6 @@ const ProductsGrid: FC<Props> = ({ products }) => (
     ))}
   </Grid.Root>
 )
-
-export default ProductsGrid
 
 interface Props {
   products: ShowcaseProductModel[]

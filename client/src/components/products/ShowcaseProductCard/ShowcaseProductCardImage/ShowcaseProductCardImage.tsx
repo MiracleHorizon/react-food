@@ -6,7 +6,7 @@ import {
 } from '../ShowcaseProductCard.types'
 import * as Image from './ShowcaseProductCardImage.styled'
 
-const ShowcaseProductCardImage: FC<Props> = ({
+export const ShowcaseProductCardImage: FC<Props> = ({
   alt,
   imagePath,
   variant,
@@ -32,8 +32,6 @@ const ShowcaseProductCardImage: FC<Props> = ({
     </Image.Root>
   )
 }
-
-export default ShowcaseProductCardImage
 
 interface Props extends IShowcaseProductCardVariant {
   alt: string

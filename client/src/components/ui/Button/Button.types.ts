@@ -10,8 +10,9 @@ export enum ButtonVariant {
 export interface Props
   extends EmotionClassNameProps,
     ButtonHTMLAttributes<HTMLButtonElement> {
-  title: string
   variant: ButtonVariant
+  title?: string
   leadIcon?: ReactNode
   onClick?: VoidFunction
+  isDisabled?: boolean
 }

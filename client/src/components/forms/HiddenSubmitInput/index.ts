@@ -1,1 +1,1 @@
-export { default } from './HiddenSubmitInput'
+export { HiddenSubmitInput } from './HiddenSubmitInput'

@@ -1,12 +1,11 @@
 import { useForm } from 'react-hook-form'
-import type { FC, PropsWithChildren } from 'react'
-import { useMemo } from 'react'
+import { type FC, type PropsWithChildren, useMemo } from 'react'
 
-import PersonalDataFormControl from './PersonalDataFormControl'
+import { PersonalDataFormControl } from './PersonalDataFormControl'
 import type { UserModel } from '@models/user/User'
 import type { UserPersonalData } from '@models/user/UserPersonalData'
 
-const PersonalDataForm: FC<Props> = ({ children, user, onSubmit }) => {
+export const PersonalDataForm: FC<Props> = ({ children, user, onSubmit }) => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       name: user.name,
@@ -53,8 +52,6 @@ const PersonalDataForm: FC<Props> = ({ children, user, onSubmit }) => {
     </form>
   )
 }
-
-export default PersonalDataForm
 
 interface Props extends PropsWithChildren {
   user: UserModel

@@ -1,13 +1,13 @@
 import { type FC } from 'react'
 
-import RootLayout from '@layouts/Root'
-import LayoutHeader from './MainLayoutHeader'
-import LayoutContent from './MainLayoutContent'
+import { RootLayout } from '@layouts/Root'
+import { MainLayoutHeader } from './MainLayoutHeader'
+import { MainLayoutContent } from './MainLayoutContent'
 import { useFetchNavigation } from '@hooks/useFetchNavigation'
 import type { LayoutProps } from '@app-types/LayoutProps'
 import * as Layout from './MainLayout.styled'
 
-const MainLayout: FC<Props> = ({
+export const MainLayout: FC<Props> = ({
   children,
   withSidePanels,
   className,
@@ -19,17 +19,18 @@ const MainLayout: FC<Props> = ({
     <RootLayout {...seoData}>
       <Layout.Root>
         <Layout.Wrapper>
-          <LayoutHeader />
-          <LayoutContent withSidePanels={withSidePanels} className={className}>
+          <MainLayoutHeader />
+          <MainLayoutContent
+            withSidePanels={withSidePanels}
+            className={className}
+          >
             {children}
-          </LayoutContent>
+          </MainLayoutContent>
         </Layout.Wrapper>
       </Layout.Root>
     </RootLayout>
   )
 }
-
-export default MainLayout
 
 interface Props extends LayoutProps {
   withSidePanels: boolean

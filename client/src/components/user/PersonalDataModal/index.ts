@@ -1,1 +1,1 @@
-export { default } from './PersonalDataModal'
+export { PersonalDataModal } from './PersonalDataModal'

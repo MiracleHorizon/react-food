@@ -1,1 +1,1 @@
-export { default } from './ClearCartLabel'
+export { ClearCartLabel } from './ClearCartLabel'

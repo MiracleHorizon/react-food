@@ -1,7 +1,7 @@
 import { Routes } from '@router/Routes.enum'
 import * as Content from './NotFoundContent.styled'
 
-const NotFoundContent = () => (
+export const NotFoundContent = () => (
   <Content.Root>
     <Content.Title>404. Страница не найдена</Content.Title>
     <Content.Description>
@@ -10,5 +10,3 @@ const NotFoundContent = () => (
     <Content.HomeLink href={Routes.HOME}>Перейти на главную</Content.HomeLink>
   </Content.Root>
 )
-
-export default NotFoundContent

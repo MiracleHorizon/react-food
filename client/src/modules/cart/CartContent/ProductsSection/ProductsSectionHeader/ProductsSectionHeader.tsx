@@ -4,7 +4,7 @@ import { useCartStore } from '@stores/cartStore'
 import { RuNounNumeralFormatter } from '@utils/RuNounNumeralFormatter'
 import * as Header from './ProductsSectionHeader.styled'
 
-const ProductsSectionHeader = () => {
+export const ProductsSectionHeader = () => {
   const totalPositions = useCartStore(state => state.totalPositions())
 
   const productNounNumeralFormatter = useMemo(() => {
@@ -31,5 +31,3 @@ const ProductsSectionHeader = () => {
     </Header.Root>
   )
 }
-
-export default ProductsSectionHeader

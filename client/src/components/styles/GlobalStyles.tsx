@@ -6,7 +6,7 @@ import {
 } from '@styles/constants'
 import { colors } from '@styles/colors'
 
-const GlobalStyles = () => (
+export const GlobalStyles = () => (
   <Global
     styles={css`
       * {
@@ -58,5 +58,3 @@ const GlobalStyles = () => (
     `}
   />
 )
-
-export default GlobalStyles

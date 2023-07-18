@@ -6,7 +6,7 @@ import { SERVICE_FEE } from '@constants/payment'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import * as Info from './OrderInfo.styled'
 
-const OrderInfo = () => {
+export const OrderInfo = () => {
   const deliveryCost = useSelectDeliveryCost()
 
   const orderInfo = useMemo(() => {
@@ -39,5 +39,3 @@ const OrderInfo = () => {
     </Info.Root>
   )
 }
-
-export default OrderInfo

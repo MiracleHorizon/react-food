@@ -5,25 +5,25 @@ import { Routes } from '@router/Routes.enum'
 import type { NavigationCategory } from '@models/NavigationCategory'
 import * as Item from './NavigationItem.styled'
 
-const NavigationItem: FC<NavigationCategory> = ({ id, title, imagePath }) => {
-  const router = useRouter()
+export const NavigationItem: FC<NavigationCategory> = memo(
+  ({ id, title, imagePath }) => {
+    const router = useRouter()
 
-  return (
-    <Item.Root>
-      <Item.Link href={`${Routes.CATEGORY}/${id}`}>
-        {imagePath ? (
-          <Item.Picture bgImagePath={imagePath} />
-        ) : (
-          <Item.PictureFallback />
-        )}
-        <Item.Content>
-          <Item.Title isItemSelected={router.query.slug === id}>
-            {title}
-          </Item.Title>
-        </Item.Content>
-      </Item.Link>
-    </Item.Root>
-  )
-}
-
-export default memo(NavigationItem)
+    return (
+      <Item.Root>
+        <Item.Link href={`${Routes.CATEGORY}/${id}`}>
+          {imagePath ? (
+            <Item.Picture bgImagePath={imagePath} />
+          ) : (
+            <Item.PictureFallback />
+          )}
+          <Item.Content>
+            <Item.Title isItemSelected={router.query.slug === id}>
+              {title}
+            </Item.Title>
+          </Item.Content>
+        </Item.Link>
+      </Item.Root>
+    )
+  }
+)

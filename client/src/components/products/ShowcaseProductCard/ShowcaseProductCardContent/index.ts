@@ -1,1 +1,1 @@
-export { default } from './ShowcaseProductCardContent'
+export { ShowcaseProductCardContent } from './ShowcaseProductCardContent'
