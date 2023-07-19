@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import dynamic from 'next/dynamic'
 
+import { NavigationMenu as NavigationMenuComponent } from '@components/navigation/NavigationMenu'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 // TODO: Loader
@@ -39,4 +40,8 @@ export const SignoutButton = styled(SignoutButtonComponent)`
   span {
     font-size: 16px;
   }
+`
+
+export const NavigationMenu = styled(NavigationMenuComponent)`
+  margin-left: auto;
 `

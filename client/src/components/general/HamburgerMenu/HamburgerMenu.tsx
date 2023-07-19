@@ -8,9 +8,10 @@ import { useToggle } from '@hooks/useToggle'
 import { isBrowser } from '@helpers/isBrowser'
 import { breakpoints } from '@styles/responsiveness/breakpoints'
 import { HIDDEN_OVERFLOW_CLASSNAME } from '@styles/constants'
+import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import * as Menu from './HamburgerMenu.styled'
 
-export const HamburgerMenu: FC<PropsWithChildren> = ({ children }) => {
+export const HamburgerMenu: FC<Props> = ({ children, className }) => {
   const { isOpen, close, toggle } = useToggle(false)
 
   const handlePressEscapeKey = useCallback(
@@ -38,7 +39,7 @@ export const HamburgerMenu: FC<PropsWithChildren> = ({ children }) => {
   useEventListener('resize', handleWindowResize)
 
   return (
-    <Menu.Root>
+    <Menu.Root className={className}>
       <Menu.Button onClick={toggle}>
         {isOpen ? <XMarkSvg /> : <ThreeBarsSvg />}
       </Menu.Button>
@@ -46,3 +47,5 @@ export const HamburgerMenu: FC<PropsWithChildren> = ({ children }) => {
     </Menu.Root>
   )
 }
+
+type Props = PropsWithChildren & EmotionClassNameProps
