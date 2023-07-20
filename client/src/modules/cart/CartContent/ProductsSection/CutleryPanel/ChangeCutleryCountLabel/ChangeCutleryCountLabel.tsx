@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 
 import { useCutleryStore } from '@stores/cutleryStore'
 import * as Label from './ChangeCutleryCountLabel.styled'
-import cutlerySvg from '@public/svg/cutlery.svg' // TODO: useCallback
+import cutlerySvg from '@public/svg/cutlery.svg'
 
 // TODO: useCallback
 export const ChangeCutleryCountLabel = () => {

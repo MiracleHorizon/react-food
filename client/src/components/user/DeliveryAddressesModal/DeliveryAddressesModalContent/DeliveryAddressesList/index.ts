@@ -1,0 +1,1 @@
+export { DeliveryAddressesList } from './DeliveryAddressesList'

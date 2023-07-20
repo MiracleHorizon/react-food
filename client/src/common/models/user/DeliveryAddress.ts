@@ -1,8 +1,8 @@
 import type { DeliveryAddressDetails } from '@models/user/DeliveryAddressDetails'
-import type { DeliveryAddressLocation } from '@models/user/DeliveryAddressLocation'
+import type { AddressLocation } from '@models/user/AddressLocation'
 
 export interface DeliveryAddress
-  extends DeliveryAddressLocation,
+  extends Omit<AddressLocation, 'id'>,
     DeliveryAddressDetails {
   id: string
 }

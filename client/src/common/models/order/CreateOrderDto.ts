@@ -1,11 +1,11 @@
 import type { CartProductModel } from '@models/product/CartProduct'
-import type { DeliveryAddressLocation } from '@models/user/DeliveryAddressLocation'
+import type { AddressLocation } from '@models/user/AddressLocation'
 import type { DeliveryAddressDetailsForOrder } from '@models/user/DeliveryAddressDetailsForOrder'
 
 export interface CreateOrderDto {
   cutleryCount: number
   serviceFee: number
-  deliveryAddress: DeliveryAddressLocation & DeliveryAddressDetailsForOrder
+  deliveryAddress: AddressLocation & DeliveryAddressDetailsForOrder
   productsData: CartProductModel[]
   recipientName: string
   recipientPhoneNumber: string

@@ -17,7 +17,7 @@ export const Root = styled(motion.button)`
   border-radius: 50%;
   background: ${colors.yellow.primary};
   box-shadow: 0 8px 20px rgb(0 0 0 / 7%);
-  z-index: 10000;
+  z-index: 100;
 
   &:hover {
     background: ${darken(0.02, colors.yellow.primary)};

@@ -1,4 +1,4 @@
-import { Navigation } from '@components/navigation/Navigation'
+import { Navigation } from '@components/general/Navigation'
 import { useNavigationStore } from '@stores/navigationStore'
 import { Title } from './NavigationCatalog.styled'
 
