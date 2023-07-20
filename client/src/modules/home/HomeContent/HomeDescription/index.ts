@@ -1,1 +1,0 @@
-export { HomeDescription } from './HomeDescription'

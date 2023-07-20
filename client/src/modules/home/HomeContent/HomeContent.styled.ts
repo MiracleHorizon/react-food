@@ -4,6 +4,7 @@ import { css } from '@emotion/react'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 const calculateMaxWidth = () => {
+  // TODO: Variables
   const cartSbWidth = 320
   const navSbWidth = 240
   const smNavSbWidth = 50
@@ -14,7 +15,8 @@ const calculateMaxWidth = () => {
   const smSbMx = 22
 
   return css`
-    width: calc(
+    width: 100%;
+    max-width: calc(
       100vw - ${cartSbWidth + navSbWidth + defaultPx * 2 + sbMx * 2}px
     );
 
