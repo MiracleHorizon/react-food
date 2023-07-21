@@ -15,7 +15,8 @@ import type { SwrFetcherArgs } from '@models/SwrFetcherArgs'
 const defaultValues: SignupDto = {
   name: '',
   email: '',
-  password: ''
+  password: '',
+  phoneNumber: '+7 999 999 99 99'
 }
 
 const fetcher = (...args: SwrFetcherArgs<SignupDto>) => {

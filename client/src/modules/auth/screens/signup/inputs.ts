@@ -1,5 +1,6 @@
 import type { AuthFormInputModel } from '@modules/Auth/models/AuthFormInputModel'
 
+// TODO: Валидация
 export const signupFormInputs: AuthFormInputModel[] = [
   {
     fieldName: 'email',
@@ -10,6 +11,11 @@ export const signupFormInputs: AuthFormInputModel[] = [
     fieldName: 'name',
     type: 'text',
     placeholder: 'Как нам к Вам обращаться?'
+  },
+  {
+    fieldName: 'phoneNumber',
+    type: 'tel',
+    placeholder: '+7'
   },
   {
     fieldName: 'password',
