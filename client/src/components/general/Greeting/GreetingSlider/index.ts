@@ -1,0 +1,1 @@
+export { GreetingSlider } from './GreetingSlider'

@@ -1,0 +1,1 @@
+export { WishesSlide } from './WishesSlide'
