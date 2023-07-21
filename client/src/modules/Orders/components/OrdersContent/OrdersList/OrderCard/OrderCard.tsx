@@ -1,10 +1,11 @@
-import { type FC, memo } from 'react'
+import { type FC, memo, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useMediaQuery } from 'react-responsive'
 
 import { OrderCardHeader } from './OrderCardHeader'
 import { OrderCardFooter } from './OrderCardFooter'
 import { useOrdersStore } from '@modules/Orders/store'
+import { OrderImpl } from '@modules/Orders/entities/Order'
 import type { OrderModel } from '@modules/Orders/models/Order'
 import type { EmotionClassNameProps } from '@app-types/EmotionClassNameProps'
 import { breakpoints } from '@styles/responsiveness/breakpoints'
@@ -16,14 +17,17 @@ const SelectedOrder = dynamic(
   { ssr: false }
 )
 
-export const OrderCard: FC<Props> = memo(({ className, ...order }) => {
+export const OrderCard: FC<Props> = memo(({ className, ...orderData }) => {
   const isLaptopOrSmaller = useMediaQuery({ maxWidth: breakpoints.laptop })
+  const orderImpl = useMemo(() => new OrderImpl(orderData), [orderData.id])
 
   const selectOrder = useOrdersStore(state => state.selectOrder)
-  const isSelected = useOrdersStore(state => state.isOrderSelected(order.id))
+  const isSelected = useOrdersStore(state =>
+    state.isOrderSelected(orderData.id)
+  )
 
   const handleSelectOrder = () => {
-    selectOrder(order)
+    selectOrder(orderData)
     !isLaptopOrSmaller &&
       window.scrollTo({
         top: 0,
@@ -36,8 +40,13 @@ export const OrderCard: FC<Props> = memo(({ className, ...order }) => {
     <li className={className}>
       {(!isLaptopOrSmaller || !isSelected) && (
         <Content isSelected={isSelected} onClick={handleSelectOrder}>
-          <OrderCardHeader {...order} />
-          <OrderCardFooter products={order.products} />
+          <OrderCardHeader
+            {...orderData}
+            formattedDate={orderImpl.getFormattedDate()}
+            statusColor={orderImpl.getStatusColor()}
+            statusTitle={orderImpl.getStatusTitle()}
+          />
+          <OrderCardFooter products={orderData.products} />
         </Content>
       )}
       {isLaptopOrSmaller && isSelected && <SelectedOrder />}

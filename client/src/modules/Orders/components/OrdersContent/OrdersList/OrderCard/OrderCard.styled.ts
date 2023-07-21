@@ -10,6 +10,7 @@ export const Content = styled.div<Props>`
   padding: 24px;
   border-radius: 32px;
   background: ${p => (p.isSelected ? 'white' : 'rgba(255, 255, 255, 0.7)')};
+  ${p => p.isSelected && 'box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.07)'};
 
   &:hover {
     background: white;

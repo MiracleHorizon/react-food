@@ -1,17 +1,15 @@
 import { type FC, memo } from 'react'
 
 import { numberFormatter } from '@utils/NumberFormatter'
-import { getOrderStatusTitle } from '@modules/Orders/helpers/getOrderStatusTitle'
-import { getFormattedOrderDate } from '@modules/Orders/helpers/getFormattedOrderDate'
 import { DEFAULT_CURRENCY_INTL_ARGS } from '@constants/intl'
 import type { OrderModel } from '@modules/Orders/models/Order'
 import * as Header from './OrderCardHeader.styled'
 
 export const OrderCardHeader: FC<Props> = memo(
-  ({ deliveryAddress, createdAt, totalCost, status }) => (
+  ({ deliveryAddress, formattedDate, totalCost, statusTitle, statusColor }) => (
     <Header.Root>
       <Header.LeftSide>
-        <Header.CreatedAt>{getFormattedOrderDate(createdAt)}</Header.CreatedAt>
+        <Header.CreatedAt>{formattedDate}</Header.CreatedAt>
         <Header.DeliveryAddress>{deliveryAddress}</Header.DeliveryAddress>
       </Header.LeftSide>
       <Header.RightSide>
@@ -21,15 +19,14 @@ export const OrderCardHeader: FC<Props> = memo(
             ...DEFAULT_CURRENCY_INTL_ARGS
           })}
         </Header.TotalCost>
-        <Header.Status status={status}>
-          {getOrderStatusTitle(status)}
-        </Header.Status>
+        <Header.Status color={statusColor}>{statusTitle}</Header.Status>
       </Header.RightSide>
     </Header.Root>
   )
 )
 
-type Props = Pick<
-  OrderModel,
-  'createdAt' | 'totalCost' | 'status' | 'deliveryAddress'
->
+interface Props extends Pick<OrderModel, 'totalCost' | 'deliveryAddress'> {
+  formattedDate: string
+  statusColor: string
+  statusTitle: string
+}

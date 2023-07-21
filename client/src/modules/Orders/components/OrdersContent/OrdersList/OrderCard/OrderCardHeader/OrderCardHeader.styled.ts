@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
 
-import { getOrderStatusTitleColor } from '@modules/Orders/helpers/getOrderStatusTitleColor'
-import type { OrderStatus } from '@modules/Orders/models/OrderStatus'
 import { maxDeviceWidth } from '@styles/responsiveness/devices'
 
 export const Root = styled.header`
@@ -63,7 +61,7 @@ export const TotalCost = styled.span`
 export const Status = styled.span<StatusProps>`
   font-size: 14px;
   text-transform: lowercase;
-  color: ${p => getOrderStatusTitleColor(p.status)};
+  color: ${p => p.color};
 
   @media (${maxDeviceWidth.mobileMd}) {
     font-size: 12px;
@@ -71,5 +69,5 @@ export const Status = styled.span<StatusProps>`
 `
 
 interface StatusProps {
-  status: OrderStatus
+  color: string
 }

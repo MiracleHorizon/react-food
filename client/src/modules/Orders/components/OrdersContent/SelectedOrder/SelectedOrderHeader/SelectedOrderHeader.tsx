@@ -1,9 +1,8 @@
 import type { FC } from 'react'
 
 import { DateFns } from '@libs/DateFns'
+import type { OrderModel } from '@modules/Orders'
 import { Root } from './SelectedOrderHeader.styled'
-
-const dateFormat = 'd MMMM yyyy, k:mm'
 
 export const SelectedOrderHeader: FC<Props> = ({ id, createdAt }) => (
   <Root>
@@ -11,12 +10,12 @@ export const SelectedOrderHeader: FC<Props> = ({ id, createdAt }) => (
       <span>№{id}</span>
     </div>
     <div>
-      <span>Создан {DateFns.formatDateWithFormat(createdAt, dateFormat)}</span>
+      <span>
+        Создан{' '}
+        {DateFns.formatDateWithFormat(new Date(createdAt), 'd MMMM yyyy, k:mm')}
+      </span>
     </div>
   </Root>
 )
 
-interface Props {
-  id: string
-  createdAt: Date
-}
+type Props = Pick<OrderModel, 'id' | 'createdAt'>

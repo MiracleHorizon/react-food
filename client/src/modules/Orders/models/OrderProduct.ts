@@ -5,6 +5,6 @@ export interface OrderProductModel {
   price: number
   count: number
   imagePath: string | null
-  createdAt: Date
-  updatedAt: Date
+  createdAt: string
+  updatedAt: string
 }

@@ -1,4 +1,3 @@
-import type { OrderStatus } from './OrderStatus'
 import type { OrderProductModel } from './OrderProduct'
 
 export interface OrderModel {
@@ -11,10 +10,9 @@ export interface OrderModel {
   productsCost: number
   deliveryCost: number
   serviceFee: number
-  status: OrderStatus
-  createdAt: Date
-  updatedAt: Date
-  deliveredAt: Date
+  createdAt: string // NOTE: Даты в формате строк
+  updatedAt: string
+  deliveredAt: string // NOTE: Поле deliveredAt - схематичная реализация функциональности отслеживания и изменения статуса заказа
   recipientPhoneNumber: string
   products: OrderProductModel[]
   commentary?: string // TODO: | null
