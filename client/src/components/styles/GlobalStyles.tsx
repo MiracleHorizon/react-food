@@ -1,10 +1,19 @@
 import { css, Global } from '@emotion/react'
+import { Inter } from 'next/font/google'
 
 import {
   HIDDEN_OVERFLOW_CLASSNAME,
   POINTER_EVENTS_NONE_CLASSNAME
 } from '@styles/constants'
 import { colors } from '@styles/colors'
+
+const inter = Inter({
+  preload: true,
+  subsets: ['cyrillic', 'latin'],
+  weight: ['300', '400', '500', '700'],
+  style: 'normal',
+  display: 'auto'
+})
 
 export const GlobalStyles = () => (
   <Global
@@ -18,7 +27,7 @@ export const GlobalStyles = () => (
       }
 
       body {
-        font-family: 'Proxima Nova', sans-serif;
+        ${inter.style};
         width: 100vw;
         min-height: 100vh;
         background: ${colors.gray['2']};
